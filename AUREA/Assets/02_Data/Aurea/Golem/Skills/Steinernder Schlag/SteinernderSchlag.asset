@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5141f22e145ac4bb8403f31c619f6f, type: 3}
+  m_Name: SteinernderSchlag
+  m_EditorClassIdentifier: 
+  NAME: SteinernderSchlag
+  DESCRIPTION: "Ein m\xE4chtiger Schlag aus Steinen"
+  ID: GOLSKI#001
+  costs: 1
+  skillType: 0
+  modifier: []
+  physicalDamageMultiplier: 30
+  attackPrefab: {fileID: 8060223261874345957, guid: cc688c33d610aae4d988bd27cc2c6334,
+    type: 3}
