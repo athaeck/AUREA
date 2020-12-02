@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8511d382de1533458b3f136ea18f0ff, type: 3}
+  m_Name: Erdbeben
+  m_EditorClassIdentifier: 
+  NAME: Erdbeben
+  DESCRIPTION: "Ersch\xFCttere den Boden"
+  ID: GOLSKI#003
+  costs: 1
+  skillType: 0
+  modifier: []
+  physicalDamageMultiplier: 30
+  attackPrefab: {fileID: 8560728659125216114, guid: 64ae620918121c642a2135cc0d5d58e0,
+    type: 3}
+  attackDelay: 1.8
