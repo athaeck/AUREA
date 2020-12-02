@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c793968e6ad7804083cb65cedb344fb, type: 3}
+  m_Name: Golem
+  m_EditorClassIdentifier: 
+  NAME: Golem
+  ID: GOL#001
+  DESCRIPTION: A Fucking mighty Golem
+  level: 1
+  levels:
+  - {fileID: 11400000, guid: e1568bde86468c843834e83401588e70, type: 2}
+  - {fileID: 11400000, guid: c455a119aacfb574abf796d01aeb4f7a, type: 2}
+  - {fileID: 11400000, guid: afb0f6d6dbca33742ad2e3d970eca151, type: 2}
