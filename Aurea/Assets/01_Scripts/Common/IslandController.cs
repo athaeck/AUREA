@@ -12,6 +12,7 @@ public enum Island
 
 public class IslandController : MonoBehaviour
 {
+    #region Singleton
     public static IslandController _instance;
     public static IslandController Instance
     {
@@ -29,6 +30,7 @@ public class IslandController : MonoBehaviour
             return _instance;
         }
     }
+    #endregion
 
     private Island activeIsland = Island.SkyIsland;
     private SkyIslandController skyIsland = null;
