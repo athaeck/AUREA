@@ -22,10 +22,10 @@ public class Aurea : MonoBehaviour
     public List<Modifier> modifier = new List<Modifier>();
     public List<Item> activeItems = new List<Item>();
 
-    private Player player = null;
+    private PlayerController player = null;
     private Animator anim = null;
 
-    public void Init(int initLevel, Player aureaPlayer)
+    public void Init(int initLevel, PlayerController aureaPlayer)
     {
         level = initLevel;
         player = aureaPlayer;
@@ -75,7 +75,7 @@ public class Aurea : MonoBehaviour
     public string GetID() { return data.ID; }
     public string GetDescription() { return data.DESCRIPTION; }
     public List<Skill> GetSkills() { return data.levels[level - 1].skills; }
-    public Player GetPlayer() { return player; }
+    public PlayerController GetPlayer() { return player; }
     public Damage GetDamage(Aurea target, Skill skill)
     {
         Damage newDamage = new Damage

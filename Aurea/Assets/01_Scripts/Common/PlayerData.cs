@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
+    #region Stats
     [SerializeField]
     public string NAME = "";
 
@@ -32,6 +33,10 @@ public class PlayerData
 
     [SerializeField]
     private List<PlayerItemData> items = new List<PlayerItemData>();
+    #endregion
+
+
+    #region Functions
 
     public List<string> GetSquad() { return squad; }
     public void AddAurea(PlayerAureaData _aurea)
@@ -41,7 +46,7 @@ public class PlayerData
     public void AddAureaToSquad(string _aurea) { squad.Add(_aurea); }
     public int GetAureaLevel(string name)
     {
-        foreach(PlayerAureaData data in playerAureaData)
+        foreach (PlayerAureaData data in playerAureaData)
         {
             if (data.aureaName == name)
                 return data.aureaLevel;
@@ -54,6 +59,9 @@ public class PlayerData
     public void AddLoseStatistics() { lose++; }
     public int GetDrawStatistics() { return draw; }
     public void AddDrawStatistics() { draw++; }
-    public int GetCorwns() { return crowns; }
+    public int GetCrowns() { return crowns; }
+    public void AddCrowns(int amount) { crowns += amount; }
     public int GetMoney() { return money; }
+    public void AddMoney(int amount) { money += amount; }
+    #endregion
 }

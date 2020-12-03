@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public Action StartedTurn;
     public Action EndedTurn;
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public Action<Aurea> SelectedTarget;
     public Action ResetTarget;
     public Action ResetedSelection;
-    public Action<Player> GameOver;
+    public Action<PlayerController> GameOver;
     public Action<Aurea> AureaHasDied;
 
     [SerializeField]

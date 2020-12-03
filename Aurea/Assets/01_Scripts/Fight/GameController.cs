@@ -14,18 +14,18 @@ public class GameController : MonoBehaviour
     public Action EndedUsingSkill;
     public Action<Aurea> SelectedAurea;
     public Action<Aurea> TargetedAurea;
-    public Action<Player> TurnChanged;
-    public Action<Player> LoadedPlayer;
-    public Action<Player> LoadedEnemy;
+    public Action<PlayerController> TurnChanged;
+    public Action<PlayerController> LoadedPlayer;
+    public Action<PlayerController> LoadedEnemy;
 
     [SerializeField]
     public AureaList aureaData = null;
 
     [SerializeField]
-    private Player player = null;
+    private PlayerController player = null;
 
     [SerializeField]
-    private Player enemy = null;
+    private PlayerController enemy = null;
 
     [SerializeField]
     private List<GameObject> playerSpawnpoints = new List<GameObject>();
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private float roundTime = 30f;
 
-    private Player activePlayer = null;
+    private PlayerController activePlayer = null;
     private bool canInteract = true;
     private float timeLeft = 0;
     private bool timerStarted = false;
@@ -93,7 +93,7 @@ public class GameController : MonoBehaviour
         player.ResetSelectedTarget();
     }
 
-    void EndGame(Player _player)
+    void EndGame(PlayerController _player)
     {
         canInteract = false;
 
@@ -116,7 +116,7 @@ public class GameController : MonoBehaviour
         GameEnded?.Invoke();
     }
 
-    void StartTurn(Player player)
+    void StartTurn(PlayerController player)
     {
         activePlayer = player;
 
@@ -158,12 +158,12 @@ public class GameController : MonoBehaviour
         return canInteract;
     }
 
-    public Player GetPlayer()
+    public PlayerController GetPlayer()
     {
         return player;
     }
 
-    public Player GetEnemy() { return enemy; }
+    public PlayerController GetEnemy() { return enemy; }
 
     public AureaData GetAureaData(string name)
     {

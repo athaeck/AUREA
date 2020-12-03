@@ -34,7 +34,7 @@ public class VisualizationController : MonoBehaviour
     [SerializeField]
     private TargetHUDController targetHUDController = null;
 
-    Player player = null;
+    PlayerController player = null;
 
     void Awake()
     {
@@ -46,7 +46,7 @@ public class VisualizationController : MonoBehaviour
         controller.GameEnded += ResettedSelections;
     }
 
-    void HandlePlayerLoad(Player player)
+    void HandlePlayerLoad(PlayerController player)
     {
         this.player = player;
         player.ChangedAP += UpdatePlayerCrystals;
@@ -56,7 +56,7 @@ public class VisualizationController : MonoBehaviour
         player.ResetTarget += ResetTarget;
     }
 
-    void HandleEnemyLoad(Player enemy)
+    void HandleEnemyLoad(PlayerController enemy)
     {
         enemy.ChangedAP += UpdateEnemyCrystals;
         enemy.SelectedAurea += SelectedAureaEnemy;
@@ -85,7 +85,7 @@ public class VisualizationController : MonoBehaviour
         enemyCrystals.ActiveCrystals(amount);
     }
 
-    void ChangeTurn(Player player)
+    void ChangeTurn(PlayerController player)
     {
         if (player.isPlayer)
             turnObject.TakeTarget(playerTurnPosition);

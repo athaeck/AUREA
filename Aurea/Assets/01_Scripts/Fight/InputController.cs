@@ -4,20 +4,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms;
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerController))]
 public class InputController : MonoBehaviour
 {
     [SerializeField]
     private float waitBetweenClicks = 1f;
 
-    private Player target = null;
+    private PlayerController target = null;
 
     bool justClicked = false;
 
     
     void Start()
     {
-        target = GetComponent<Player>();
+        target = GetComponent<PlayerController>();
     }
     
     void Update()

@@ -16,7 +16,7 @@ public class HUDController : MonoBehaviour
     private SelectedHUDController selectedHUDController = null;
     private TargetHUDController targetHUDController = null;
 
-    Player player = null;
+    PlayerController player = null;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class HUDController : MonoBehaviour
         controller.LoadedPlayer += HandleLoadPlayer;
     }
 
-    private void HandleLoadPlayer(Player playerLoaded)
+    private void HandleLoadPlayer(PlayerController playerLoaded)
     {
         player = playerLoaded;
         player.SelectedAurea += HandleAureaSelect;
