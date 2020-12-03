@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -130,13 +130,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 16201880}
+  - component: {fileID: 16201881}
   m_Layer: 0
   m_Name: TempleOfDoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &16201880
 Transform:
   m_ObjectHideFlags: 0
@@ -151,6 +152,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &16201881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16201879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d298ff5d7da598a409bc5109e9014138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &89329275
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,9 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d4f2cbc1031ac448075012dc59c799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skyIsland: {fileID: 2085040455}
-  temple: {fileID: 16201879}
-  fight: {fileID: 1588246678}
 --- !u!4 &229417298
 Transform:
   m_ObjectHideFlags: 0
@@ -563,13 +573,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1588246679}
+  - component: {fileID: 1588246680}
   m_Layer: 0
   m_Name: ChickenFight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1588246679
 Transform:
   m_ObjectHideFlags: 0
@@ -584,6 +595,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1588246680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588246678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d28ae884939304dae1956ba4ba4bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1638590002
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2085040456}
+  - component: {fileID: 2085040457}
   m_Layer: 0
   m_Name: SkyIsland
   m_TagString: Untagged
@@ -704,3 +728,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2085040457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085040455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38278b47348f9643a5ef587804cd03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

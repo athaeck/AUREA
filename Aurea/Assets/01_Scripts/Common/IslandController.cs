@@ -66,18 +66,24 @@ public class IslandController : MonoBehaviour
         {
             case Island.SkyIsland:
                 IslandController.Instance.skyIsland.gameObject.SetActive(true);
+                IslandController.Instance.skyIsland.ResetIsland();
+
                 IslandController.Instance.temple.gameObject.SetActive(false);
                 IslandController.Instance.fight.gameObject.SetActive(false);
                 break;
             case Island.TempleOfDoom:
-                IslandController.Instance.skyIsland.gameObject.SetActive(false);
                 IslandController.Instance.temple.gameObject.SetActive(true);
+                IslandController.Instance.temple.ResetIsland();
+
+                IslandController.Instance.skyIsland.gameObject.SetActive(false);
                 IslandController.Instance.fight.gameObject.SetActive(false);
                 break;
             case Island.ChickenFight:
+                IslandController.Instance.fight.gameObject.SetActive(true);
+                IslandController.Instance.fight.ResetIsland();
+
                 IslandController.Instance.skyIsland.gameObject.SetActive(false);
                 IslandController.Instance.temple.gameObject.SetActive(false);
-                IslandController.Instance.fight.gameObject.SetActive(true);
                 break;
         }
         activeIsland = _island;
