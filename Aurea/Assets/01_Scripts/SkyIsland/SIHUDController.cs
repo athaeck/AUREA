@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class SIHUDController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
