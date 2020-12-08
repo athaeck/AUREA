@@ -47,11 +47,6 @@ public class IslandController : MonoBehaviour
         {
             FindIslandRecursive(rootObject);
         }
-
-        // for (int i = 0; i < rootObjects.Count; ++i)
-        // {
-
-        // }
     }
 
     public void FindIslandRecursive(GameObject root)
@@ -93,8 +88,7 @@ public class IslandController : MonoBehaviour
                 IslandController.Instance.fight.gameObject.SetActive(false);
                 break;
             case Island.TempleOfDoom:
-                IslandController IsInstance = IslandController.Instance;
-                IsInstance.temple.gameObject.SetActive(true);
+                IslandController.Instance.temple.gameObject.SetActive(true);
                 IslandController.Instance.temple.ResetIsland();
 
                 IslandController.Instance.skyIsland.gameObject.SetActive(false);
