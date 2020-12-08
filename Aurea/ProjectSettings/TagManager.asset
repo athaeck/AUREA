@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - Walkable
+  - Settings
+  - Inventory
+  - Aurea
+  - EndTurn
   layers:
   - Default
   - TransparentFX
@@ -14,10 +19,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - UnInteractable
+  - Shop
+  - Inventory
+  - Settings
   - 
   - 
   - 
