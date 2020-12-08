@@ -24,5 +24,10 @@ public class IslandControllerEditor : Editor {
         {
             myScript.ChangeActiveIsland(Island.ChickenFight);
         }
+        
+        if(GUILayout.Button("Find Islands"))
+        {
+            myScript.FindIslands();
+        }
     }
 }
