@@ -64,6 +64,9 @@ public class IslandController : MonoBehaviour
 
     public void ChangeActiveIsland(Island _island)
     {
+        if(!skyIsland || !temple || !fight)
+            FindIslands();
+        
         switch (_island)
         {
             case Island.SkyIsland:
