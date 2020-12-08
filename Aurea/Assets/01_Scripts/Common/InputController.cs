@@ -78,6 +78,7 @@ public class InputController : MonoBehaviour
             {
                 MoveCharacter(hit);
             }
+
         }
     }
 

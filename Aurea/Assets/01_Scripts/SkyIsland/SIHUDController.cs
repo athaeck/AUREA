@@ -4,15 +4,45 @@ using UnityEngine;
 
 public class SIHUDController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject portalHUD = null;
+
+    private Difficulty difficulty;
+
+    private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("To-Gameground"))
+        {
+            if(portalHUD != null)
+            {
+                ControlPortal(true,"Durch dieses Portal gelangst du zum Arenakampf");
+            }
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if(other.CompareTag("To-Gameground"))
+        {
+            ControlPortal(false,null);
+        }
+
     }
+
+    private void ControlPortal(bool state,string message)
+    {
+        portalHUD.SetActive(state);
+       if(state == true)
+        {
+            portalHUD.transform.position = transform.position;
+            PortalController pc = portalHUD.GetComponent<PortalController>();
+            pc.SetHUD(difficulty,message);
+        }
+    }
+    private void Update()
+    {
+        difficulty = Player._instance.GetDifficulty();
+    }
+
 }
