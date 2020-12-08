@@ -24,4 +24,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3d7f1e749abb7e42a7c848eec849b13, type: 2}
   - {fileID: 11400000, guid: fb2f791457b04824dbb77147e57fe97c, type: 2}
   passiveSkills: []
-  prefab: {fileID: 5908261786386759112, guid: 8fc581b8c8ae44342ac924d334d9f91b, type: 3}
+  prefab: {fileID: 1317695420550259231, guid: 13312d61f52d35b4296cabf9e5ba8985, type: 3}

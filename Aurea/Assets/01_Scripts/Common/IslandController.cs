@@ -43,44 +43,37 @@ public class IslandController : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         scene.GetRootGameObjects(rootObjects);
 
-        foreach (GameObject rootObject in rootObjects)
-        {
-            FindIslandRecursive(rootObject);
+        foreach(GameObject rootObject in rootObjects) {
+            IslandController.Instance.FindIslandsRecursive(rootObject);
         }
-
-        // for (int i = 0; i < rootObjects.Count; ++i)
-        // {
-
-        // }
     }
 
-    public void FindIslandRecursive(GameObject root)
-    {
-        SkyIslandController skyIslandController = root.GetComponent<SkyIslandController>();
-        TempleController templeController = root.GetComponent<TempleController>();
-        FightController fightController = root.GetComponent<FightController>();
+    void FindIslandsRecursive(GameObject root) {
 
-        if (skyIslandController)
-            skyIsland = skyIslandController;
+            SkyIslandController skyIslandController = root.GetComponent<SkyIslandController>();
+            TempleController templeController = root.GetComponent<TempleController>();
+            FightController fightController = root.GetComponent<FightController>();
 
-        if (templeController)
-            temple = templeController;
+            if (skyIslandController)
+                skyIsland = skyIslandController;
 
-        if (fightController)
-            fight = fightController;
+            if (templeController)
+                temple = templeController;
 
-        if (skyIslandController && templeController && fightController)
-            return;
+            if (fightController)
+                fight = fightController;
 
-        foreach (Transform child in root.transform)
-        {
-            FindIslandRecursive(child.gameObject);
-        }
+            if(skyIsland && temple && fight)
+                return;
+            
+            foreach(Transform child in root.transform) {
+                FindIslandsRecursive(child.gameObject);
+            }
     }
 
     public void ChangeActiveIsland(Island _island)
     {
-        if (!skyIsland || !temple || !fight)
+        if(!skyIsland || !temple || !fight)
             IslandController.Instance.FindIslands();
 
         switch (_island)
@@ -93,8 +86,7 @@ public class IslandController : MonoBehaviour
                 IslandController.Instance.fight.gameObject.SetActive(false);
                 break;
             case Island.TempleOfDoom:
-                IslandController IsInstance = IslandController.Instance;
-                IsInstance.temple.gameObject.SetActive(true);
+                IslandController.Instance.temple.gameObject.SetActive(true);
                 IslandController.Instance.temple.ResetIsland();
 
                 IslandController.Instance.skyIsland.gameObject.SetActive(false);
