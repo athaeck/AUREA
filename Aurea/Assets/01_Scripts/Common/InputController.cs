@@ -78,7 +78,10 @@ public class InputController : MonoBehaviour
             {
                 MoveCharacter(hit);
             }
-
+            if(hit.collider.CompareTag("To-Gameground"))
+            {
+                IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
+            }
         }
     }
 
