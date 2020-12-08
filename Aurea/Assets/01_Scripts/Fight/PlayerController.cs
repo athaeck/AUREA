@@ -55,18 +55,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void StartGame(List<GameObject> spawnPoints)
+    public void StartGame(List<GameObject> _spawnPoints)
     {
-        InstantiateSquad(spawnPoints);
+        InstantiateSquad(_spawnPoints);
 
         AddAP(actionPoints);
     }
 
-    void InstantiateSquad(List<GameObject> spawnPoints)
+    void InstantiateSquad(List<GameObject> _spawnPoints)
     {
         int i = 0;
         List<string> squad = data.GetSquad();
-        foreach (GameObject spawnPoint in spawnPoints)
+        foreach (GameObject spawnPoint in _spawnPoints)
         {
             if (squad[i] == "" || squad[i] == null)
             {
@@ -125,9 +125,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Select(Aurea aurea)
+    public void Select(Aurea _aurea)
     {
-        if (!aurea && gameController.CanInteract())
+        if (!_aurea && gameController.CanInteract())
         {
             selected = null;
             target = null;
@@ -136,17 +136,17 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (!isOnTurn || !gameController.CanInteract() || !aurea.IsAlive()) { return; }
+        if (!isOnTurn || !gameController.CanInteract() || !_aurea.IsAlive()) { return; }
 
 
-        if (!selected && IsOwnAurea(aurea))
+        if (!selected && IsOwnAurea(_aurea))
         {
-            selected = aurea;
+            selected = _aurea;
             SelectedAurea?.Invoke(selected);
         }
         else
         {
-            target = aurea;
+            target = _aurea;
             SelectedTarget?.Invoke(target);
         }
 
@@ -154,9 +154,9 @@ public class PlayerController : MonoBehaviour
             UseSkill();
     }
 
-    public void SelectSkill(Skill skill)
+    public void SelectSkill(Skill _skill)
     {
-        selectedSkill = skill;
+        selectedSkill = _skill;
 
         if (target)
             UseSkill();
@@ -172,15 +172,15 @@ public class PlayerController : MonoBehaviour
 
         selectedSkill = null;
     }
-    void AddAP(int amount)
+    void AddAP(int _amount)
     {
-        actionPointsLeft = Mathf.Clamp(actionPointsLeft + amount, 0, actionPoints);
+        actionPointsLeft = Mathf.Clamp(actionPointsLeft + _amount, 0, actionPoints);
         ChangedAP?.Invoke(actionPointsLeft);
     }
     
-    public void RemoveAP(int amount)
+    public void RemoveAP(int _amount)
     {
-        actionPointsLeft = Mathf.Clamp(actionPointsLeft - amount, 0, actionPoints);
+        actionPointsLeft = Mathf.Clamp(actionPointsLeft - _amount, 0, actionPoints);
         ChangedAP?.Invoke(actionPointsLeft);
     }
 
@@ -194,11 +194,11 @@ public class PlayerController : MonoBehaviour
         return heros;
     }
 
-    bool IsOwnAurea(Aurea aureaToCheck)
+    bool IsOwnAurea(Aurea _aureaToCheck)
     {
         foreach (Aurea aurea in aureaInstances)
         {
-            if (aurea == aureaToCheck)
+            if (aurea == _aureaToCheck)
                 return true;
         }
 
