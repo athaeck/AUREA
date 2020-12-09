@@ -78,6 +78,10 @@ public class PlayerData
         return difficulty;
     }
     public bool IsArOn() { return ar; }
-    public void SwitchARMode() { ar = !ar; }
+    public void SwitchARMode()
+    {
+        ar = !ar;
+        StateManager.SavePlayer(this);
+    }
     #endregion
 }
