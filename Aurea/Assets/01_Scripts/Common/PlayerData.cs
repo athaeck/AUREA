@@ -26,6 +26,9 @@ public class PlayerData
     private int money = 0;
 
     [SerializeField]
+    private bool ar = true;
+
+    [SerializeField]
     private List<PlayerAureaData> playerAureaData = new List<PlayerAureaData>();
 
     [SerializeField]
@@ -63,5 +66,7 @@ public class PlayerData
     public void AddCrowns(int amount) { crowns += amount; }
     public int GetMoney() { return money; }
     public void AddMoney(int amount) { money += amount; }
+    public bool IsArOn() { return ar; }
+    public void SwitchARMode() { ar = !ar; }
     #endregion
 }
