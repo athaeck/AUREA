@@ -36,6 +36,8 @@ public class PlayerData
 
     [SerializeField]
     private List<PlayerItemData> items = new List<PlayerItemData>();
+
+    private Difficulty difficulty;
     #endregion
 
 
@@ -66,6 +68,15 @@ public class PlayerData
     public void AddCrowns(int amount) { crowns += amount; }
     public int GetMoney() { return money; }
     public void AddMoney(int amount) { money += amount; }
+
+    public void SetDifficulty(Difficulty df)
+    {
+        difficulty = df;
+    }
+    public Difficulty GetDifficulty()
+    {
+        return difficulty;
+    }
     public bool IsArOn() { return ar; }
     public void SwitchARMode() { ar = !ar; }
     #endregion
