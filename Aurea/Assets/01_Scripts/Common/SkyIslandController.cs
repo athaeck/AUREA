@@ -10,13 +10,18 @@ public class SkyIslandController : MonoBehaviour
     [SerializeField]
     private GameObject character = null;
 
-    [SerializeField]
-    private Camera cam = null;
+    // [SerializeField]
+    // private Camera cam = null;
 
 
     private void Start()
     {
-        if(spawnPlace != null && character != null && cam != null)
+        // if(spawnPlace != null && character != null && cam != null)
+        // {
+        //     Init();
+        // }
+
+        if(spawnPlace != null && character != null)
         {
             Init();
         }
@@ -32,7 +37,7 @@ public class SkyIslandController : MonoBehaviour
     {
         character.transform.position = spawnPlace.transform.position;
 
-        cam.transform.position = spawnPlace.transform.position;
+        //cam.transform.position = spawnPlace.transform.position;
 
         character.GetComponent<MovementController>().Move(character.transform.position);
     }
