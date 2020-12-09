@@ -79,6 +79,7 @@ public class ARToolkitController : MonoBehaviour
         else
         {
             islands.transform.localScale = Vector3.one;
+            islands.transform.position = Vector3.zero;
             InitView(false);
         }
 
@@ -97,6 +98,7 @@ public class ARToolkitController : MonoBehaviour
         InitView(true);
         yield return new WaitForSecondsRealtime(waitForSeconds);
         InitView(Player._instance.IsArOn());
+        islands.transform.position = Vector3.zero;
         loadingScreen.SetActive(false);
     }
 }
