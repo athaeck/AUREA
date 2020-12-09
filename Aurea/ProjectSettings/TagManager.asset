@@ -10,6 +10,11 @@ TagManager:
   - Inventory
   - Aurea
   - EndTurn
+  - To-Gameground
+  - To-Competition
+  - Easy
+  - Medium
+  - Hard
   layers:
   - Default
   - TransparentFX
