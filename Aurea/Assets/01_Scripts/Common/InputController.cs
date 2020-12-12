@@ -20,6 +20,7 @@ public class InputController : MonoBehaviour
 
 
 
+
     void Start()
     {
        // target = GetComponent<PlayerController>();
@@ -27,6 +28,7 @@ public class InputController : MonoBehaviour
     
     void FixedUpdate()
     {
+        ReactiveProps();
         // Bit shift the index of the layer (8) to get a bit mask
         int layerMask = 1 << 8;
 
@@ -78,16 +80,16 @@ public class InputController : MonoBehaviour
             {
                 MoveCharacter(hit);
             }
-            if(hit.collider.CompareTag("To-Gameground"))
-            {
-                IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
-            }
+            //if(hit.collider.CompareTag("To-Gameground"))
+           // {
+           //     IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
+           // }
         }
     }
 
     private void ReactiveProps()
     {
-
+       // IslandController.Instance.
     }
     private void MoveCharacter(RaycastHit hit)
     {
