@@ -18,7 +18,9 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private MovementController character = null;
 
+    private bool staticmode = false;
 
+    private bool collided = false;
 
 
     void Start()
@@ -52,44 +54,60 @@ public class InputController : MonoBehaviour
         }
         else { return; }
 
-        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask))
+        if(Physics.Raycast(ray,out RaycastHit hit,float.MaxValue,layerMask))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if(EventSystem.current.IsPointerOverGameObject())
                 return;
 
             Aurea hero = null;
-            if (hit.collider.CompareTag("Aurea"))
+            if(hit.collider.CompareTag("Aurea"))
             {
                 hero = hit.collider.GetComponent<Aurea>();
                 StartCoroutine(WaitBetweetClick());
             }
-           // target.Select(hero);
+            // target.Select(hero);
 
-            if (hit.collider.CompareTag("EndTurn"))
+            if(hit.collider.CompareTag("EndTurn"))
             {
                 //target.ManuallyEndTurn();
                 StartCoroutine(WaitBetweetClick());
             }
 
-            if (hit.collider.CompareTag("Inventory"))
+            if(hit.collider.CompareTag("Inventory"))
             {
                 Debug.Log("Open Inventory");
                 StartCoroutine(WaitBetweetClick());
             }
-            if(hit.collider.CompareTag("Walkable"))
+            if(staticmode == false)
             {
-                MoveCharacter(hit);
+
             }
-            //if(hit.collider.CompareTag("To-Gameground"))
-           // {
-           //     IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
-           // }
+            else
+            {
+                if(hit.collider.CompareTag("Walkable"))
+                {
+                    MoveCharacter(hit);
+                }
+            }
+
+            if(collided == true)
+            { 
+               if(hit.collider.CompareTag("To-Gameground"))
+               {
+                    IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
+               }
+               if(hit.collider.CompareTag("To-Competition"))
+               {
+                    IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
+               }
+            }
         }
     }
 
     private void ReactiveProps()
     {
-       // IslandController.Instance.
+        staticmode = StateController.Instance.GetWalkability();
+        collided = StateController.Instance.GetCollided();
     }
     private void MoveCharacter(RaycastHit hit)
     {
