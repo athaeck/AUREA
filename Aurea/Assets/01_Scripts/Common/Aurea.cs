@@ -102,5 +102,10 @@ public class Aurea : MonoBehaviour
         this.lifePointsLeft -= amount;
         ChangedLifepoints?.Invoke();
     }
+
+    public float GetMagicalDamage() { return data.levels[level - 1].magicalDamage; }
+    public float GetMagicalDefence() { return data.levels[level - 1].magicalDefense; }
+    public float GetPhysicalDamage() { return data.levels[level - 1].physicalDamage; }
+    public float GetPhysicalDefence() { return data.levels[level - 1].physicalDefense; }
     #endregion
 }

@@ -15,6 +15,7 @@ TagManager:
   - Easy
   - Medium
   - Hard
+  - Locked
   layers:
   - Default
   - TransparentFX
