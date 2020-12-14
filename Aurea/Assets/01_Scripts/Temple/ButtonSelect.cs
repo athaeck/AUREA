@@ -97,14 +97,12 @@ public class ButtonSelect : MonoBehaviour
                 {
                     viewAureaHUD.GetComponent<ViewAurea>().HUDtext(g.GetComponent<Aurea>());
                     viewAureaHUD.SetActive(true);
-                    cam.TakeTarget(g.transform);
-                    cam.NewOffset(new Vector3(0, 5, -24));
                     viewAureaHUD.GetComponent<ViewAurea>().HUDtext(g.GetComponent<Aurea>());
                     viewAureaHUD.SetActive(true);
                     position = g.transform.position;
                     g.transform.localScale = new Vector3(2, 2, 2);
-                    g.transform.position = Vector3.zero;
-                    g.transform.LookAt(new Vector3(0, 0, -10));
+                    g.transform.position = new Vector3(0,1,0);
+                    g.transform.LookAt(new Vector3(0, g.transform.position.y, -10));
                 }
             }
         }
@@ -118,8 +116,6 @@ public class ButtonSelect : MonoBehaviour
             if (g.tag == "Player")
             {
                 g.SetActive(true);
-                cam.TakeTarget(g.transform);
-                cam.NewOffset(new Vector3(0, 5, -15));
             }
             if (g.tag == "Aurea" || g.tag == "Locked")
             {
@@ -134,7 +130,7 @@ public class ButtonSelect : MonoBehaviour
                     viewAureaHUD.SetActive(false);
                     g.transform.localScale = new Vector3(1, 1, 1);
                     g.transform.position = position;
-                    g.transform.LookAt(Vector3.zero);
+                    g.transform.LookAt(new Vector3(0, g.transform.position.y, 0));
                 }
             }
         }
