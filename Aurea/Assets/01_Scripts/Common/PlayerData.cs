@@ -35,6 +35,9 @@ public class PlayerData
     private List<PlayerItemData> items = new List<PlayerItemData>();
 
     private Difficulty difficulty;
+
+    [SerializeField]
+    private bool arMode = true;
     #endregion
 
 
@@ -73,6 +76,14 @@ public class PlayerData
     public Difficulty GetDifficulty()
     {
         return difficulty;
+    }
+    public bool GetArMode()
+    {
+        return arMode;
+    }
+    public void SetArMode(bool b)
+    {
+        arMode = b;
     }
     #endregion
 }

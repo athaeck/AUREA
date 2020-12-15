@@ -17,6 +17,7 @@ public class ItemHUDController : MonoBehaviour
     [SerializeField]
     private GameObject hud = null;
 
+
     public void SetTitle(string s)
     {
         if(title != null)

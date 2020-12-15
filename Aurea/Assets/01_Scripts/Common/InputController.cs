@@ -22,6 +22,9 @@ public class InputController : MonoBehaviour
 
     private bool collided = false;
 
+    [SerializeField]
+    private EnterController enterController = null;
+
 
     void Start()
     {
@@ -100,6 +103,10 @@ public class InputController : MonoBehaviour
                {
                     IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
                }
+                if(hit.collider.CompareTag("Shop"))
+                {
+                    enterController.EnterShop();
+                }
             }
         }
     }
