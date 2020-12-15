@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5638191878412255895}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pasted__pDisc2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4197138068832472301}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pasted__transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 7616508827694063167}
   - component: {fileID: 8963823783111208103}
   - component: {fileID: 3130506967942663494}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pasted__pPlatonic2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8621948907972509591}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pasted__pPlatonic1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6698974561149541266}
   - component: {fileID: -3537985575397292079}
-  m_Layer: 0
+  - component: {fileID: 4903348041522037916}
+  - component: {fileID: 3881668088760267037}
+  m_Layer: 9
   m_Name: Potion3
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -220,6 +222,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837258dd14fcd5048b7615cd1270b262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &4903348041522037916
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322026325196538152}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.005
+  m_Height: 0.013
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3881668088760267037
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322026325196538152}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8547574345378354469
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5304067599782222049}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pasted__transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

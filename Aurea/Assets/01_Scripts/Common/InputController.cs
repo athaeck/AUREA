@@ -83,7 +83,11 @@ public class InputController : MonoBehaviour
             }
             if(staticmode == false)
             {
-
+                if(hit.collider.CompareTag("Item"))
+                {
+                    ItemData item = hit.collider.gameObject.GetComponent<ItemData>();
+                   if(enterController !=null) enterController.Transfer(item,hit.collider.gameObject);
+                }
             }
             else
             {

@@ -15,6 +15,11 @@ public class EnterController : MonoBehaviour
     [SerializeField]
     private GameObject exitShopHud = null;
 
+    private GameObject characterPosition = null;
+
+    [SerializeField]
+    private GameObject character = null;
+
     private bool collided = false;
 
     private bool armode = true;
@@ -26,17 +31,20 @@ public class EnterController : MonoBehaviour
         if(shopController != null)
         {
             shopCamPosition = shopController.GetCamPosition();
+            characterPosition = shopController.GetCharacterPosition();
         }
         ReactiveProps();
+        safeCamPosition = cam.transform;
+       
     }
 
     private void ReactiveProps()
     {
         collided = StateController.Instance.GetCollided();
-       armode = Player.Instance.GetArMode();
+        armode = Player.Instance.GetArMode();
+      //  armode = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         ReactiveProps();
@@ -56,10 +64,21 @@ public class EnterController : MonoBehaviour
         {
             if(exitShopHud != null)
             {
+                exitShopHud.SetActive(true);
                 StateController.Instance.SetWalkable(false);
-               
+                if(characterPosition != null && shopCamPosition != null && character != null)
+                {
+                    cam.transform.position = shopCamPosition.transform.position;
+                    cam.transform.rotation = shopCamPosition.transform.rotation;
+                    character.transform.position = characterPosition.transform.position;
+                }
             }
         }
+    }
+    public void Transfer(ItemData item, GameObject gobject)
+    {
+        if(shopController != null)   shopController.ActivateItemHUD(item,gobject);
+     
     }
     public void ExitShop()
     {
@@ -74,7 +93,16 @@ public class EnterController : MonoBehaviour
         }
         else
         {
-
+            if(exitShopHud != null)
+            {
+                exitShopHud.SetActive(false);
+                StateController.Instance.SetWalkable(true);
+                if(cam != null)
+                {
+                    cam.transform.position = safeCamPosition.position;
+                    cam.transform.rotation = safeCamPosition.rotation;
+                }
+            }
         }
     }
 }

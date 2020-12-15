@@ -15,6 +15,14 @@ public class ShopController : MonoBehaviour
 
     private List<GameObject> storedPrefab = new List<GameObject>();
 
+    [SerializeField]
+    private GameObject characterPosition = null;
+
+    [SerializeField]
+    private ItemHUDController itemHUDController = null;
+
+    private ItemData activeItem = null;
+
     private void Awake()
     {
         ResetItems();
@@ -23,7 +31,7 @@ public class ShopController : MonoBehaviour
             int i = 0;
             foreach(GameObject spawn in spawnPlaces)
             {
-               if(i < storedPrefab.Count)
+               if(i < prefabItem.Count)
                {
                     SpawnItems(i,spawn.transform);
                }
@@ -58,19 +66,31 @@ public class ShopController : MonoBehaviour
     {
         GameObject prefab = Instantiate(prefabItem[index],transform);
         ItemData itemData = prefab.GetComponent<ItemData>();
-        itemData.Init("item" + index.ToString(),"schmack schmack",index * index);
+        itemData.Init("item" + index.ToString(),"schmack schmack",index + index);
         storedPrefab.Add(prefab);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    public void ActivateItemHUD(ItemData item, GameObject gobject)
     {
-        
+        activeItem = item;
+        string title = item.GetTitle();
+        string description = item.GetDescription();
+        string price = item.GetPrice();
+        if(itemHUDController != null)
+        {
+            itemHUDController.Init(title,description,price,true, gobject.transform);
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject GetCharacterPosition()
     {
-        
+        return characterPosition;
+    }
+    public void BuyItem()
+    {
+        if(activeItem != null)
+        {
+            Debug.Log(activeItem.GetPrice());
+        }
     }
 }
