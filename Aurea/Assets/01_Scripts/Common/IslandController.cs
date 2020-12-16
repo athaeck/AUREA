@@ -76,6 +76,8 @@ public class IslandController : MonoBehaviour
             _fight = value;
         }
     }
+    
+    [SerializeField]
     private Island _activeIsland;
     public Island activeIsland
     {
@@ -87,6 +89,10 @@ public class IslandController : MonoBehaviour
         {
             _activeIsland = value;
         }
+    }
+
+    private void Start() {
+        ChangeActiveIsland(activeIsland);
     }
 
     public void FindIslands()
@@ -156,5 +162,18 @@ public class IslandController : MonoBehaviour
                 break;
         }
         activeIsland = _island;
+    }
+
+    public void OpenSkyIsland()
+    {
+        ChangeActiveIsland(Island.SkyIsland);
+    }
+    public void OpenTemple()
+    {
+        ChangeActiveIsland(Island.TempleOfDoom);
+    }
+    public void OpenFight()
+    {
+        ChangeActiveIsland(Island.ChickenFight);
     }
 }

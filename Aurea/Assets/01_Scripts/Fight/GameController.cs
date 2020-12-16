@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
     void StartGame()
     {
         // Load PlayerData
-        player.SetData(StateManager.LoadPlayer());
+        // player.SetData(StateManager.LoadPlayer());
 
         //Load Enemy Data
 

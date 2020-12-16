@@ -22,6 +22,9 @@ public class InputController : MonoBehaviour
     // [SerializeField]
     // private MovementController character = null;
 
+    private bool staticmode = false;
+
+    private bool collided = false;
 
 
     void Start()

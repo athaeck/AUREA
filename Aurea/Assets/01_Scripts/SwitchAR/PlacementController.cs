@@ -22,11 +22,6 @@ public class PlacementController : MonoBehaviour
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
     }
-
-    // private void Start()
-    // {
-    //     target = Instantiate(prefab);
-    // }
     
     private void Update()
     {
