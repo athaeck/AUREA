@@ -42,7 +42,7 @@ public class EnterController : MonoBehaviour
     {
         collided = StateController.Instance.GetCollided();
         armode = Player.Instance.GetArMode();
-      //  armode = true;
+      // armode = true;
     }
 
     void Update()
