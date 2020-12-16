@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
             int aureaLevel = data.GetAureaLevel(squad[i]);
             GameObject aureaPrefab = gameController.GetAureaData(squad[i]).levels[aureaLevel - 1].prefab;
             Aurea aurea = Instantiate(aureaPrefab, spawnPoint.transform).GetComponent<Aurea>();
+            if(aurea)
+                Debug.Log("Found Aurea");
+            Debug.Log(aureaLevel);
             aurea.Init(aureaLevel, this);
             aureaInstances.Add(aurea);
             aurea.Died += AureaDied;

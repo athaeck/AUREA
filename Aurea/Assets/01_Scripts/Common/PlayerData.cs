@@ -26,6 +26,9 @@ public class PlayerData
     private int money = 0;
 
     [SerializeField]
+    private bool ar = true;
+
+    [SerializeField]
     private List<PlayerAureaData> playerAureaData = new List<PlayerAureaData>();
 
     [SerializeField]
@@ -77,13 +80,11 @@ public class PlayerData
     {
         return difficulty;
     }
-    public bool GetArMode()
+    public bool IsArOn() { return ar; }
+    public void SwitchARMode()
     {
-        return arMode;
-    }
-    public void SetArMode(bool b)
-    {
-        arMode = b;
+        ar = !ar;
+        StateManager.SavePlayer(this);
     }
     #endregion
 }
