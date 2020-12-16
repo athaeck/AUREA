@@ -32,10 +32,62 @@ public class IslandController : MonoBehaviour
     }
     #endregion
 
-    private Island activeIsland = Island.SkyIsland;
-    private SkyIslandController skyIsland = null;
-    private TempleController temple = null;
-    private FightController fight = null;
+    private SkyIslandController _skyIsland;
+    public SkyIslandController skyIsland
+    {
+        get
+        {
+            if (_skyIsland == null)
+                FindIslands();
+            return _skyIsland;
+        }
+        private set
+        {
+            _skyIsland = value;
+        }
+    }
+
+    private TempleController _temple;
+    public TempleController temple
+    {
+        get
+        {
+            if (_temple == null)
+                FindIslands();
+            return _temple;
+        }
+        private set
+        {
+            _temple = value;
+        }
+    }
+
+    private FightController _fight;
+    public FightController fight
+    {
+        get
+        {
+            if (_fight == null)
+                FindIslands();
+            return _fight;
+        }
+        private set
+        {
+            _fight = value;
+        }
+    }
+    private Island _activeIsland;
+    public Island activeIsland
+    {
+        get
+        {
+            return _activeIsland;
+        }
+        private set
+        {
+            _activeIsland = value;
+        }
+    }
 
     public void FindIslands()
     {
@@ -57,15 +109,15 @@ public class IslandController : MonoBehaviour
         FightController fightController = root.GetComponent<FightController>();
 
         if (skyIslandController)
-            skyIsland = skyIslandController;
+            _skyIsland = skyIslandController;
 
         if (templeController)
-            temple = templeController;
+            _temple = templeController;
 
         if (fightController)
-            fight = fightController;
+            _fight = fightController;
 
-        if (skyIsland && temple && fight)
+        if (_skyIsland && _temple && _fight)
             return;
 
         foreach (Transform child in root.transform)
@@ -76,7 +128,7 @@ public class IslandController : MonoBehaviour
 
     public void ChangeActiveIsland(Island _island)
     {
-        if (!skyIsland || !temple || !fight)
+        if (!_skyIsland || !_temple || !_fight)
             IslandController.Instance.FindIslands();
 
         switch (_island)

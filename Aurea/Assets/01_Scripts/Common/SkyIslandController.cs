@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkyIslandController : MonoBehaviour
 {
+
     [SerializeField]
     private GameObject spawnPlace = null;
 
@@ -33,6 +34,11 @@ public class SkyIslandController : MonoBehaviour
         Debug.Log("Reset SkyISland");
     }
 
+    public void TakeInput(Ray ray) {
+        Debug.Log("Got input: SkyIsland");
+
+    }
+
     private void Init()
     {
         character.transform.position = spawnPlace.transform.position;
@@ -41,4 +47,5 @@ public class SkyIslandController : MonoBehaviour
 
         character.GetComponent<MovementController>().Move(character.transform.position);
     }
+
 }

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class TempleController : MonoBehaviour
 {
-    public void ResetIsland() {
+    public void TakeInput(Ray ray) {
+        Debug.Log("Got input: Temple");
+    }
+    public void ResetIsland()
+    {
         Debug.Log("Reset Temple");
     }
 }
