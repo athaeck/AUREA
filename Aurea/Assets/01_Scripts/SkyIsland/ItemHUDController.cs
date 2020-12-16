@@ -17,7 +17,8 @@ public class ItemHUDController : MonoBehaviour
     [SerializeField]
     private GameObject hud = null;
 
-    public void SetTitle(string s)
+
+    private void SetTitle(string s)
     {
         if(title != null)
         {
@@ -25,7 +26,7 @@ public class ItemHUDController : MonoBehaviour
         }
     }
 
-    public void SetDescription(string s)
+    private void SetDescription(string s)
     {
         if(description != null)
         {
@@ -33,7 +34,7 @@ public class ItemHUDController : MonoBehaviour
         }
     }
 
-    public void SetPrice(string s)
+    private void SetPrice(string s)
     {
         if(price != null)
         {
@@ -41,12 +42,17 @@ public class ItemHUDController : MonoBehaviour
         }
     }
 
-    public void ActivateHUD(bool b)
+    private void ActivateHUD(bool b)
     {
         if(hud != null)
         {
             hud.SetActive(b);
         }
+    }
+
+    private void SetPosition(Transform position)
+    {
+        transform.position = position.position;
     }
 
     public void CloseHUD()
@@ -55,5 +61,13 @@ public class ItemHUDController : MonoBehaviour
         {
             hud.SetActive(false);
         }
+    }
+    public void Init(string t, string d, string p, bool b, Transform tr)
+    {
+        SetTitle(t);
+        SetDescription(d);
+        SetPrice(p);
+        ActivateHUD(b);
+        SetPosition(tr);
     }
 }

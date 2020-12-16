@@ -26,6 +26,9 @@ public class InputController : MonoBehaviour
 
     private bool collided = false;
 
+    [SerializeField]
+    private EnterController enterController = null;
+
 
     void Start()
     {
@@ -35,11 +38,11 @@ public class InputController : MonoBehaviour
     void FixedUpdate()
     {
         // // Bit shift the index of the layer (8) to get a bit mask
-        // int layerMask = 1 << 8;
+       //  int layerMask = 1 << 8;
 
         // // This would cast rays only against colliders in layer 8.
         // // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
-        // layerMask = ~layerMask;
+   //      layerMask = ~layerMask;
 
         //ReactiveProps();
         if (justClicked) { return; }
@@ -72,8 +75,8 @@ public class InputController : MonoBehaviour
 
         // if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask))
         // {
-        //     if (EventSystem.current.IsPointerOverGameObject())
-        //         return;
+         //   if (EventSystem.current.IsPointerOverGameObject())
+          //      return;
 
         //     Aurea hero = null;
         //     if (hit.collider.CompareTag("Aurea"))
@@ -83,6 +86,43 @@ public class InputController : MonoBehaviour
         //     }
         //    // target.Select(hero);
 
+       //     if(hit.collider.CompareTag("Inventory"))
+        //    {
+        //        Debug.Log("Open Inventory");
+        //        StartCoroutine(WaitBetweetClick());
+       //     }
+        //    if(staticmode == false)
+        //    {
+         //       if(hit.collider.CompareTag("Item"))
+          //      {
+          //          ItemData item = hit.collider.gameObject.GetComponent<ItemData>();
+         //          if(enterController !=null) enterController.Transfer(item,hit.collider.gameObject);
+        //        }
+       //     }
+        //    else
+      //      {
+      //          if(hit.collider.CompareTag("Walkable"))
+     //           {
+                   // MoveCharacter(hit);
+        //        }
+        //    }
+
+     //       if(collided == true)
+      //      { 
+      //         if(hit.collider.CompareTag("To-Gameground"))
+      //         {
+     //               IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
+      //         }
+     //          if(hit.collider.CompareTag("To-Competition"))
+     //          {
+     //               IslandController.Instance.ChangeActiveIsland(Island.ChickenFight);
+    //           }
+      //          if(hit.collider.CompareTag("Shop"))
+     //           {
+     //               enterController.EnterShop();
+     //           }
+    //        }
+  ////      }
         //     if (hit.collider.CompareTag("EndTurn"))
         //     {
         //         //target.ManuallyEndTurn();
@@ -113,7 +153,7 @@ public class InputController : MonoBehaviour
     //     {
     //         Vector3 movement = new Vector3(hit.point.x,hit.point.y,hit.point.z);
     //         character.Move(movement);
-    //     }
+      //   }
 
     IEnumerator WaitBetweetClick()
     {

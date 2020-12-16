@@ -27,6 +27,10 @@ public class SIHUDController : MonoBehaviour
                 StateController.Instance.SetCollided(true);
             }
         }
+        if(other.CompareTag("Shop"))
+        {
+           StateController.Instance.SetCollided(true);
+        }
 
     }
 
@@ -40,6 +44,10 @@ public class SIHUDController : MonoBehaviour
         if(other.CompareTag("To-Competition"))
         {
             ControlPortal(false);
+            StateController.Instance.SetCollided(false);
+        }
+        if(other.CompareTag("Shop"))
+        {
             StateController.Instance.SetCollided(false);
         }
 

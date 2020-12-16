@@ -15,6 +15,9 @@ TagManager:
   - Easy
   - Medium
   - Hard
+  - Shop
+  - Item
+  - Locked
   layers:
   - Default
   - TransparentFX
