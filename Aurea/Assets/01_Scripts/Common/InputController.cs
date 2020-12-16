@@ -38,11 +38,11 @@ public class InputController : MonoBehaviour
     void FixedUpdate()
     {
         // // Bit shift the index of the layer (8) to get a bit mask
-        // int layerMask = 1 << 8;
+         int layerMask = 1 << 8;
 
         // // This would cast rays only against colliders in layer 8.
         // // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
-        // layerMask = ~layerMask;
+         layerMask = ~layerMask;
 
         //ReactiveProps();
         if (justClicked) { return; }
@@ -73,10 +73,10 @@ public class InputController : MonoBehaviour
                 break;
         }
 
-        // if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask))
-        // {
-        //     if (EventSystem.current.IsPointerOverGameObject())
-        //         return;
+         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask))
+         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
 
         //     Aurea hero = null;
         //     if (hit.collider.CompareTag("Aurea"))
@@ -103,7 +103,7 @@ public class InputController : MonoBehaviour
             {
                 if(hit.collider.CompareTag("Walkable"))
                 {
-                    MoveCharacter(hit);
+                   // MoveCharacter(hit);
                 }
             }
 
