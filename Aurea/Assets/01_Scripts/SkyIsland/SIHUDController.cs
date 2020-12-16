@@ -16,16 +16,39 @@ public class SIHUDController : MonoBehaviour
             if(portalHUD != null)
             {
                 ControlPortal(true,"Durch dieses Portal gelangst du zum Arenakampf");
+                StateController.Instance.SetCollided(true);
             }
         }
-        
+        if(other.CompareTag("To-Competition"))
+        {
+            if(portalHUD != null)
+            {
+                ControlPortal(true,"Durch dieses Portal gelangst du zum Arenakampf");
+                StateController.Instance.SetCollided(true);
+            }
+        }
+        if(other.CompareTag("Shop"))
+        {
+           StateController.Instance.SetCollided(true);
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("To-Gameground"))
         {
-            ControlPortal(false,null);
+            ControlPortal(false);
+            StateController.Instance.SetCollided(false);
+        }
+        if(other.CompareTag("To-Competition"))
+        {
+            ControlPortal(false);
+            StateController.Instance.SetCollided(false);
+        }
+        if(other.CompareTag("Shop"))
+        {
+            StateController.Instance.SetCollided(false);
         }
 
     }
@@ -39,6 +62,10 @@ public class SIHUDController : MonoBehaviour
             PortalController pc = portalHUD.GetComponent<PortalController>();
             pc.SetHUD(difficulty,message);
         }
+    }
+    private void ControlPortal(bool state)
+    {
+        portalHUD.SetActive(state);
     }
     private void Update()
     {

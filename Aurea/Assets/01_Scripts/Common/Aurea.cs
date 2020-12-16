@@ -20,7 +20,7 @@ public class Aurea : MonoBehaviour
     private float lifePointsLeft = 0;
 
     public List<Modifier> modifier = new List<Modifier>();
-    public List<Item> activeItems = new List<Item>();
+    public List<ItemData> activeItems = new List<ItemData>();
 
     private PlayerController player = null;
     private Animator anim = null;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class ItemData : MonoBehaviour
 {
     private string title = null;
 
@@ -15,6 +15,18 @@ public class Item : MonoBehaviour
         title = _Title;
         description = _Description;
         price = _Price;
+    }
+    public string GetTitle()
+    {
+        return title;
+    }
+    public string GetDescription()
+    {
+        return description;
+    }
+    public string GetPrice()
+    {
+        return price.ToString();
     }
 
 }
