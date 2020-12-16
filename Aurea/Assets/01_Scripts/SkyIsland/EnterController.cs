@@ -40,7 +40,7 @@ public class EnterController : MonoBehaviour
 
     private void ReactiveProps()
     {
-        collided = StateController.Instance.GetCollided();
+        // collided = StateController.Instance.GetCollided();
      //   armode = Player.Instance.GetArMode();
       // armode = true;
     }
