@@ -69,7 +69,7 @@ public class SIHUDController : MonoBehaviour
     }
     private void Update()
     {
-        difficulty = Player._instance.GetDifficulty();
+        difficulty = Player.Instance.GetDifficulty();
     }
 
 }

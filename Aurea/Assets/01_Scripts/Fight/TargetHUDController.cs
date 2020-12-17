@@ -14,9 +14,14 @@ public class TargetHUDController : MonoBehaviour
 
     Aurea target = null;
 
+    private void Start()
+    {
+        follow = GetComponent<FollowTarget>();
+    }
+
     public void TakeTarget(Aurea aurea)
     {
-        if(target)
+        if (target)
             target.ChangedLifepoints -= UpdateUI;
 
         target = aurea;

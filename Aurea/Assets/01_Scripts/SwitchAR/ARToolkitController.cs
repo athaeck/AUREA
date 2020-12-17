@@ -53,7 +53,7 @@ public class ARToolkitController : MonoBehaviour
 
     public void ChangeSize()
     {
-        if (Player._instance.IsArOn())
+        if (Player.Instance.IsArOn())
         {
             Vector3 newSize = new Vector3(sizeSlider.value, sizeSlider.value, sizeSlider.value) * initARScaling;
             islands.transform.localScale = newSize;
@@ -62,14 +62,14 @@ public class ARToolkitController : MonoBehaviour
 
     public void ChangeDistance()
     {
-        if (Player._instance.IsArOn())
+        if (Player.Instance.IsArOn())
             placementController.distance = distanceSlider.value;
     }
 
     public void SwitchMode()
     {
-        Player._instance.SwitchARMode();
-        if (Player._instance.IsArOn())
+        Player.Instance.SwitchARMode();
+        if (Player.Instance.IsArOn())
         {
             islands.transform.localScale.Scale(Vector3.one * initARScaling);
             ChangeDistance();
@@ -97,7 +97,7 @@ public class ARToolkitController : MonoBehaviour
         loadingScreen.SetActive(true);
         InitView(true);
         yield return new WaitForSecondsRealtime(waitForSeconds);
-        InitView(Player._instance.IsArOn());
+        InitView(Player.Instance.IsArOn());
         islands.transform.position = Vector3.zero;
         loadingScreen.SetActive(false);
     }

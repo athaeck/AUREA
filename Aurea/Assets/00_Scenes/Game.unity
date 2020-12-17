@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -960,7 +960,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 112270294}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1964278949}
+        m_MethodName: UseSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &112270294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3205,6 +3216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 678002042}
+  ARcam: {fileID: 0}
 --- !u!114 &432728732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6378,6 +6390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 678002042}
+  ARcam: {fileID: 0}
 --- !u!114 &923781729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6715,6 +6728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 678002042}
+  ARcam: {fileID: 0}
 --- !u!114 &976505383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8668,7 +8682,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.706, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12353,6 +12367,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c7b611d88ea46b24aa4ef93471d63519,
+        type: 3}
+      propertyPath: m_TagString
+      value: EndTurn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b611d88ea46b24aa4ef93471d63519, type: 3}
 --- !u!4 &1338668353 stripped
@@ -13123,7 +13142,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1410116620}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1964278949}
+        m_MethodName: UseSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1410116620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14733,7 +14763,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1518948415}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1964278949}
+        m_MethodName: UseSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1518948415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15066,6 +15107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 678002042}
+  ARcam: {fileID: 0}
 --- !u!114 &1557924307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15267,7 +15309,9 @@ MonoBehaviour:
   - {fileID: 442564392}
   - {fileID: 1950486883}
   - {fileID: 1687313707}
+  fightCamera: {fileID: 1407506243}
   roundTime: 30
+  waitBetweenClicks: 0.5
 --- !u!114 &1588246681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15294,7 +15338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fe628ae8d1a3c4d9d1c126e6566ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1588246680}
   selectedParticles: {fileID: 1428737537}
   targetParticles: {fileID: 1047939963}
   turnObject: {fileID: 1338668362}
@@ -16412,6 +16455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 678002042}
+  ARcam: {fileID: 0}
 --- !u!114 &1729625928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17998,7 +18042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1964278948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18036,7 +18080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e1b555de04045459e57e47518514ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  follow: {fileID: 0}
+  follow: {fileID: 1964278950}
   firstSkillButton: {fileID: 2015233808}
   secondSkillButton: {fileID: 1532068032}
   thirdSkillButton: {fileID: 440254292}
@@ -18055,11 +18099,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 10, z: -10}
+  offset: {x: 0, y: 0, z: 0}
   lookatOffset: {x: 0, y: 1, z: 0}
   speed: 5
   follow: 1
-  lookat: 1
+  lookat: 0
   instantPosition: 0
 --- !u!114 &1964278951
 MonoBehaviour:
@@ -18133,7 +18177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b02cee85b98cca478bc652ca8036581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 678002042}
+  cam: {fileID: 1407506238}
+  ARcam: {fileID: 192633828}
 --- !u!1 &1969909455
 GameObject:
   m_ObjectHideFlags: 0
@@ -18341,6 +18386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 678002042}
+  ARcam: {fileID: 0}
 --- !u!1 &2010754631
 GameObject:
   m_ObjectHideFlags: 0
@@ -19270,7 +19316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c464711c57006e942be672fbe9f20ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  follow: {fileID: 0}
+  follow: {fileID: 2119251660}
   healthSlider: {fileID: 1407564983}
 --- !u!114 &2119251660
 MonoBehaviour:
@@ -19285,11 +19331,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 10, z: -10}
+  offset: {x: 0, y: 0, z: 0}
   lookatOffset: {x: 0, y: 1, z: 0}
   speed: 5
   follow: 1
-  lookat: 1
+  lookat: 0
   instantPosition: 0
 --- !u!114 &2119251661
 MonoBehaviour:
@@ -19303,7 +19349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b02cee85b98cca478bc652ca8036581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 678002042}
+  cam: {fileID: 1407506238}
+  ARcam: {fileID: 192633828}
 --- !u!4 &2123772762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d4f09dc9f1d40d54c8a5c8e325726da8,
@@ -19461,7 +19508,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2130487616}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1964278949}
+        m_MethodName: UseSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2130487616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20281,7 +20339,7 @@ GameObject:
   - component: {fileID: 7050020683754740953}
   m_Layer: 0
   m_Name: Inventory
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

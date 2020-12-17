@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     #region Singelton
     [SerializeField]
-    public static PlayerData _instance;
+    private static PlayerData _instance;
 
     [SerializeField]
     public static PlayerData Instance

@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System;
 using Random = UnityEngine.Random;
 
 public class FightController : MonoBehaviour
 {
-    
+
     public Action GameStarting;
     public Action GameLoaded;
     public Action GameEnded;
@@ -36,25 +37,63 @@ public class FightController : MonoBehaviour
     private List<GameObject> enemySpawnpoints = new List<GameObject>();
 
     [SerializeField]
+    private Camera fightCamera = null;
+
+    [SerializeField]
     private float roundTime = 30f;
+
+    [SerializeField]
+    private float waitBetweenClicks = 1f;
 
     private PlayerController activePlayer = null;
     private bool canInteract = true;
     private float timeLeft = 0;
     private bool timerStarted = false;
+    bool justClicked = false;
 
-    public void TakeInput(Ray ray) {
-        Debug.Log("Got input: Fight");
+    public void TakeInput(Touch touch)
+    {
+        if (justClicked) { return; }
+
+        Ray ray = fightCamera.ScreenPointToRay(touch.position);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            Aurea hero = null;
+            if (hit.collider.CompareTag("Aurea"))
+            {
+                hero = hit.collider.GetComponent<Aurea>();
+                StartCoroutine(WaitBetweetClick());
+            }
+            player.Select(hero);
+
+            if (hit.collider.CompareTag("EndTurn"))
+            {
+                player.ManuallyEndTurn();
+                StartCoroutine(WaitBetweetClick());
+            }
+
+            if (hit.collider.CompareTag("Inventory"))
+            {
+                Debug.Log("Open Inventar");
+                StartCoroutine(WaitBetweetClick());
+            }
+        }
     }
-    public void ResetIsland() {
+
+    public void ResetIsland()
+    {
         Debug.Log("Reset Fight");
         ResetFight?.Invoke();
         StartGame();
     }
-    
+
     private void Update()
     {
-        if(!timerStarted) { return; }
+        if (!timerStarted) { return; }
 
         timeLeft -= Time.deltaTime;
 
@@ -106,7 +145,7 @@ public class FightController : MonoBehaviour
 
         PlayerData data = player.GetData();
 
-        if(player == _player)
+        if (player == _player)
         {
             enemy.Won();
             data.AddLoseStatistics();
@@ -174,7 +213,7 @@ public class FightController : MonoBehaviour
 
     public AureaData GetAureaData(string name)
     {
-        foreach(AureaData data in aureaData.aureas)
+        foreach (AureaData data in aureaData.aureas)
         {
             if (data.NAME == name)
                 return data;
@@ -183,4 +222,11 @@ public class FightController : MonoBehaviour
         Debug.Log("Didnt found: " + name);
         return null;
     }
+    IEnumerator WaitBetweetClick()
+    {
+        justClicked = true;
+        yield return new WaitForSeconds(waitBetweenClicks);
+        justClicked = false;
+    }
+
 }

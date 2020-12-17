@@ -9,10 +9,14 @@ public class InputController : MonoBehaviour
     void FixedUpdate()
     {
         Ray ray;
+        
+        Touch touch = new Touch();
+        bool touched = false;
 
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
+            touched = true;
+            touch = Input.GetTouch(0);
             ray = Camera.main.ScreenPointToRay(touch.position);
         }
         else if (Input.GetMouseButton(0))
@@ -30,7 +34,8 @@ public class InputController : MonoBehaviour
                 IslandController.Instance.temple.TakeInput(ray);
                 break;
             case Island.ChickenFight:
-                IslandController.Instance.fight.TakeInput(ray);
+                if (touched)
+                    IslandController.Instance.fight.TakeInput(touch);
                 break;
         }
     }

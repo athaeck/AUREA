@@ -76,7 +76,7 @@ public class IslandController : MonoBehaviour
             _fight = value;
         }
     }
-    
+
     [SerializeField]
     private Island _activeIsland;
     public Island activeIsland
@@ -91,7 +91,8 @@ public class IslandController : MonoBehaviour
         }
     }
 
-    private void Start() {
+    private void Start()
+    {
         ChangeActiveIsland(activeIsland);
     }
 
