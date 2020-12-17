@@ -62,6 +62,8 @@ public class FightController : MonoBehaviour
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
+            Debug.Log(hit.transform.gameObject.layer);
+
             Aurea hero = null;
             if (hit.collider.CompareTag("Aurea"))
             {
