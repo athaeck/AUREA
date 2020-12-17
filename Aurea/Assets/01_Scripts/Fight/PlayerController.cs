@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<Aurea> aureaInstances = new List<Aurea>();
 
-    [SerializeField]
-    private GameController gameController = null;
+    // [SerializeField]
+    // private FightController gameController = null;
 
     [SerializeField]
     private int actionPointsLeft = 0;
@@ -48,11 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        if(!gameController)
-        {
-            Debug.LogError("No Game Controller available");
-            return;
-        }
+        IslandController.Instance.fight.ResetFight += ResetPlayer;
     }
 
     public void StartGame(List<GameObject> spawnPoints)
@@ -60,6 +56,10 @@ public class PlayerController : MonoBehaviour
         InstantiateSquad(spawnPoints);
 
         AddAP(actionPoints);
+    }
+
+    void ResetPlayer() {
+        Debug.Log("To DO Reeset Player");
     }
 
     void InstantiateSquad(List<GameObject> spawnPoints)
@@ -75,11 +75,8 @@ public class PlayerController : MonoBehaviour
             }
 
             int aureaLevel = data.GetAureaLevel(squad[i]);
-            GameObject aureaPrefab = gameController.GetAureaData(squad[i]).levels[aureaLevel - 1].prefab;
+            GameObject aureaPrefab = IslandController.Instance.fight.GetAureaData(squad[i]).levels[aureaLevel - 1].prefab;
             Aurea aurea = Instantiate(aureaPrefab, spawnPoint.transform).GetComponent<Aurea>();
-            if(aurea)
-                Debug.Log("Found Aurea");
-            Debug.Log(aureaLevel);
             aurea.Init(aureaLevel, this);
             aureaInstances.Add(aurea);
             aurea.Died += AureaDied;
@@ -102,10 +99,10 @@ public class PlayerController : MonoBehaviour
 
     public void ManuallyEndTurn()
     {
-        if (!isOnTurn || !gameController.CanInteract())
+        if (!isOnTurn || !IslandController.Instance.fight.CanInteract())
             return;
 
-        gameController.EndTurn();
+        IslandController.Instance.fight.EndTurn();
     }
 
     public void AureaDied(Aurea _aurea)
@@ -130,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
     public void Select(Aurea aurea)
     {
-        if (!aurea && gameController.CanInteract())
+        if (!aurea && IslandController.Instance.fight.CanInteract())
         {
             selected = null;
             target = null;
@@ -139,7 +136,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (!isOnTurn || !gameController.CanInteract() || !aurea.IsAlive()) { return; }
+        if (!isOnTurn || !IslandController.Instance.fight.CanInteract() || !aurea.IsAlive()) { return; }
 
 
         if (!selected && IsOwnAurea(aurea))
@@ -216,5 +213,5 @@ public class PlayerController : MonoBehaviour
     public bool IsOnTurn() { return isOnTurn; }
     public void SetData(PlayerData _data) { data = _data; }
     public PlayerData GetData() { return data; }
-    public GameController GetGameController() { return gameController; }
+    // public FightController GetGameController() { return gameController; }
 }

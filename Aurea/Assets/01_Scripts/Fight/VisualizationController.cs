@@ -5,7 +5,7 @@ using UnityEngine;
 public class VisualizationController : MonoBehaviour
 {
     [SerializeField]
-    private GameController controller = null;
+    private FightController controller = null;
 
     [SerializeField]
     private PositionController selectedParticles = null;

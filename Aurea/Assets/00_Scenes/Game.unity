@@ -1269,8 +1269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11291aef7fce8bc45a9b7df589719f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitBetweenClicks: 1
-  enterController: {fileID: 1882236567}
 --- !u!4 &148782237
 Transform:
   m_ObjectHideFlags: 0
@@ -14914,7 +14912,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1588246679}
   - component: {fileID: 1588246680}
-  - component: {fileID: 1588246681}
   - component: {fileID: 1588246682}
   m_Layer: 0
   m_Name: ChickenFight
@@ -14956,18 +14953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d28ae884939304dae1956ba4ba4bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1588246681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588246678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 989f5bfb390de7f4ab7124e64aa2e9d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   aureaData: {fileID: 11400000, guid: 1eddec29d9d5f6647a07f00853f6758c, type: 2}
   player: {fileID: 1813534615}
   enemy: {fileID: 2128198343}
@@ -14996,7 +14981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fe628ae8d1a3c4d9d1c126e6566ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1588246681}
+  controller: {fileID: 1588246680}
   selectedParticles: {fileID: 1428737537}
   targetParticles: {fileID: 1047939963}
   turnObject: {fileID: 1338668362}
@@ -16638,7 +16623,7 @@ MonoBehaviour:
   actionPoints: 15
   isOnTurn: 0
   aureaInstances: []
-  gameController: {fileID: 1588246681}
+  gameController: {fileID: 0}
   actionPointsLeft: 0
   actionPointsPerRound: 3
 --- !u!1001 &1845489958
@@ -19079,7 +19064,7 @@ MonoBehaviour:
   actionPoints: 15
   isOnTurn: 0
   aureaInstances: []
-  gameController: {fileID: 1588246681}
+  gameController: {fileID: 0}
   actionPointsLeft: 0
   actionPointsPerRound: 3
 --- !u!1 &2130487613

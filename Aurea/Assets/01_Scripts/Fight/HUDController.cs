@@ -5,7 +5,7 @@ using UnityEngine;
 public class HUDController : MonoBehaviour
 {
     [SerializeField]
-    private GameController controller = null;
+    private FightController controller = null;
 
     [SerializeField]
     private GameObject selectedHUD = null;

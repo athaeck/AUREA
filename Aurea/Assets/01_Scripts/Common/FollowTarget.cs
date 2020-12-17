@@ -26,7 +26,7 @@ public class FollowTarget : MonoBehaviour
     {
         if (!target)
         {
-            Debug.LogWarning("No Target");
+            // Debug.LogWarning("No Target");
             return;
         }
 
