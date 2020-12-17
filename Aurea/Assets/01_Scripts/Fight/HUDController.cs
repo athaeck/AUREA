@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HUDController : MonoBehaviour
 {
-    [SerializeField]
-    private FightController controller = null;
+    // [SerializeField]
+    // private FightController controller = null;
 
     [SerializeField]
     private GameObject selectedHUD = null;
@@ -22,7 +22,8 @@ public class HUDController : MonoBehaviour
     {
         selectedHUDController = selectedHUD.GetComponent<SelectedHUDController>();
         targetHUDController = targetHUD.GetComponent<TargetHUDController>();
-        controller.LoadedPlayer += HandleLoadPlayer;
+        IslandController.Instance.fight.LoadedPlayer += HandleLoadPlayer;
+        IslandController.Instance.fight.ResetFight += HandleSelectedReset;
     }
 
     private void HandleLoadPlayer(PlayerController playerLoaded)

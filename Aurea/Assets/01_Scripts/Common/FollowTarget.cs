@@ -17,6 +17,9 @@ public class FollowTarget : MonoBehaviour
     private float speed = 5f;
 
     [SerializeField]
+    private bool follow = true;
+
+    [SerializeField]
     private bool lookat = false;
 
     [SerializeField]
@@ -30,10 +33,14 @@ public class FollowTarget : MonoBehaviour
             return;
         }
 
-        if (instantPosition)
-            transform.position = target.position + offset;
-        else
-            transform.position = Vector3.Lerp(transform.position, target.position + offset, speed * Time.deltaTime);
+        if (follow)
+        {
+            if (instantPosition)
+                transform.position = target.position + offset;
+            else
+                transform.position = Vector3.Lerp(transform.position, target.position + offset, speed * Time.deltaTime);
+        }
+
 
         if (lookat)
             transform.LookAt(target.transform.position + lookatOffset);

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class VisualizationController : MonoBehaviour
 {
-    [SerializeField]
-    private FightController controller = null;
 
     [SerializeField]
     private PositionController selectedParticles = null;
@@ -38,12 +36,12 @@ public class VisualizationController : MonoBehaviour
 
     void Awake()
     {
-        controller.TurnChanged += ChangeTurn;
-        controller.LoadedPlayer += HandlePlayerLoad;
-        controller.LoadedEnemy += HandleEnemyLoad;
-        controller.StartedUsingSkill += HandleStartUsingSkill;
-        controller.EndedUsingSkill += HandleEndUsingSkill;
-        controller.GameEnded += ResettedSelections;
+        IslandController.Instance.fight.TurnChanged += ChangeTurn;
+        IslandController.Instance.fight.LoadedPlayer += HandlePlayerLoad;
+        IslandController.Instance.fight.LoadedEnemy += HandleEnemyLoad;
+        IslandController.Instance.fight.StartedUsingSkill += HandleStartUsingSkill;
+        IslandController.Instance.fight.EndedUsingSkill += HandleEndUsingSkill;
+        IslandController.Instance.fight.GameEnded += ResettedSelections;
     }
 
     void HandlePlayerLoad(PlayerController player)
