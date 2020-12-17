@@ -15323,6 +15323,7 @@ MonoBehaviour:
   fightCamera: {fileID: 1407506243}
   roundTime: 30
   waitBetweenClicks: 0.5
+  selectedRect: {fileID: 0}
 --- !u!114 &1588246681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18129,7 +18130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_BlockingObjects: 3
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -19268,7 +19269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_BlockingObjects: 3
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -19621,7 +19622,7 @@ GameObject:
   - component: {fileID: 1161226731192850652}
   m_Layer: 0
   m_Name: stein.024
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19694,7 +19695,7 @@ GameObject:
   - component: {fileID: 1312726093229962106}
   m_Layer: 0
   m_Name: Cube.002
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19727,7 +19728,7 @@ GameObject:
   - component: {fileID: 1383183497850614436}
   m_Layer: 0
   m_Name: stein.018
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19832,7 +19833,7 @@ GameObject:
   - component: {fileID: 3621680922214551131}
   m_Layer: 0
   m_Name: stein.019
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19865,7 +19866,7 @@ GameObject:
   - component: {fileID: 3680096600278290711}
   m_Layer: 0
   m_Name: stein.027
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19965,7 +19966,7 @@ GameObject:
   - component: {fileID: 4152862977586480602}
   m_Layer: 0
   m_Name: stein.026
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20114,7 +20115,7 @@ GameObject:
   - component: {fileID: 5424328841544788097}
   m_Layer: 0
   m_Name: stein.020
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20272,7 +20273,7 @@ GameObject:
   - component: {fileID: 6020131005623726349}
   m_Layer: 0
   m_Name: stein.023
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20385,7 +20386,7 @@ GameObject:
   - component: {fileID: 7212508382955846599}
   m_Layer: 0
   m_Name: stein.025
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20488,7 +20489,7 @@ GameObject:
   - component: {fileID: 7654516760070344654}
   m_Layer: 0
   m_Name: Hauptinselfbx
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20591,7 +20592,7 @@ GameObject:
   - component: {fileID: 7916121753082777899}
   m_Layer: 0
   m_Name: stein.022
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20785,7 +20786,7 @@ GameObject:
   - component: {fileID: 9190965470142272908}
   m_Layer: 0
   m_Name: Cube.033
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

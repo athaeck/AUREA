@@ -45,6 +45,9 @@ public class FightController : MonoBehaviour
     [SerializeField]
     private float waitBetweenClicks = 1f;
 
+    [SerializeField]
+    RectTransform selectedRect = null;
+
     private PlayerController activePlayer = null;
     private bool canInteract = true;
     private float timeLeft = 0;
@@ -57,12 +60,25 @@ public class FightController : MonoBehaviour
 
         Ray ray = fightCamera.ScreenPointToRay(touch.position);
 
+        // PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        // pointerData.position = touch.position;
+
+        // List<RaycastResult> res = new List<RaycastResult>();
+        // EventSystem.current.RaycastAll(pointerData, res);
+
+        // foreach(RaycastResult result in res) {
+        //     Debug.Log(result.gameObject.layer);
+        // }
+
+        // if(RectTransformUtility.RectangleContainsScreenPoint(selectedRect, fightCamera.ViewportToScreenPoint(Vector2.one / 2), fightCamera))
+        //     Debug.Log("Is in REct");
+
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
-            Debug.Log(hit.transform.gameObject.layer);
+            // Debug.Log(hit.collider.tag);
 
             Aurea hero = null;
             if (hit.collider.CompareTag("Aurea"))
