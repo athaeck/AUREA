@@ -74,13 +74,13 @@ public class ARToolkitController : MonoBehaviour
             islands.transform.localScale.Scale(Vector3.one * initARScaling);
             ChangeDistance();
             ChangeSize();
-            InitView(true);
+            CameraController.Instance.ChangeIsland(IslandController.Instance.activeIsland, true);
         }
         else
         {
             islands.transform.localScale = Vector3.one;
             islands.transform.position = Vector3.zero;
-            InitView(false);
+            CameraController.Instance.ChangeIsland(IslandController.Instance.activeIsland, false);
         }
 
     }
@@ -95,9 +95,11 @@ public class ARToolkitController : MonoBehaviour
     IEnumerator Starting()
     {
         loadingScreen.SetActive(true);
-        InitView(true);
+        CameraController.Instance.ChangeIsland(IslandController.Instance.activeIsland, true);
+        // InitView(true);
         yield return new WaitForSecondsRealtime(waitForSeconds);
-        InitView(Player.Instance.IsArOn());
+        CameraController.Instance.ChangeIsland(IslandController.Instance.activeIsland, Player.Instance.IsArOn());
+        // InitView(Player.Instance.IsArOn());
         islands.transform.position = Vector3.zero;
         loadingScreen.SetActive(false);
     }

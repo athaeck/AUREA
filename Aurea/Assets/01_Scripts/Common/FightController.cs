@@ -37,9 +37,6 @@ public class FightController : MonoBehaviour
     private List<GameObject> enemySpawnpoints = new List<GameObject>();
 
     [SerializeField]
-    private Camera fightCamera = null;
-
-    [SerializeField]
     private float roundTime = 30f;
 
     [SerializeField]
@@ -58,7 +55,7 @@ public class FightController : MonoBehaviour
     {
         if (justClicked) { return; }
 
-        Ray ray = fightCamera.ScreenPointToRay(touch.position);
+        Ray ray = CameraController.Instance.activeCamera.ScreenPointToRay(touch.position);
 
         // PointerEventData pointerData = new PointerEventData(EventSystem.current);
         // pointerData.position = touch.position;

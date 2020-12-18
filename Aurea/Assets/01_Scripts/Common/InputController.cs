@@ -17,11 +17,11 @@ public class InputController : MonoBehaviour
         {
             touched = true;
             touch = Input.GetTouch(0);
-            ray = Camera.main.ScreenPointToRay(touch.position);
+            ray = CameraController.Instance.activeCamera.ScreenPointToRay(touch.position);
         }
         else if (Input.GetMouseButton(0))
         {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            ray = CameraController.Instance.activeCamera.ScreenPointToRay(Input.mousePosition);
         }
         else { return; }
 
