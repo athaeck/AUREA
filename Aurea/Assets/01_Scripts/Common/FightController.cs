@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System;
 using Random = UnityEngine.Random;
@@ -37,13 +39,13 @@ public class FightController : MonoBehaviour
     private List<GameObject> enemySpawnpoints = new List<GameObject>();
 
     [SerializeField]
+    private SelectedHUDController selectedController = null;
+
+    [SerializeField]
     private float roundTime = 30f;
 
     [SerializeField]
     private float waitBetweenClicks = 1f;
-
-    [SerializeField]
-    RectTransform selectedRect = null;
 
     private PlayerController activePlayer = null;
     private bool canInteract = true;
@@ -57,25 +59,36 @@ public class FightController : MonoBehaviour
 
         Ray ray = CameraController.Instance.activeCamera.ScreenPointToRay(touch.position);
 
-        // PointerEventData pointerData = new PointerEventData(EventSystem.current);
-        // pointerData.position = touch.position;
-
-        // List<RaycastResult> res = new List<RaycastResult>();
-        // EventSystem.current.RaycastAll(pointerData, res);
-
-        // foreach(RaycastResult result in res) {
-        //     Debug.Log(result.gameObject.layer);
-        // }
-
-        // if(RectTransformUtility.RectangleContainsScreenPoint(selectedRect, fightCamera.ViewportToScreenPoint(Vector2.one / 2), fightCamera))
-        //     Debug.Log("Is in REct");
-
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
-            // Debug.Log(hit.collider.tag);
+            if (hit.collider.CompareTag("UI"))
+                return;
+
+            if (hit.collider.CompareTag("FirstSkill"))
+            {
+                selectedController.UseSkill(0);
+                return;
+            }
+            if (hit.collider.CompareTag("SecondSkill"))
+            {
+                selectedController.UseSkill(0);
+                return;
+            }
+            if (hit.collider.CompareTag("ThirdSkill"))
+            {
+                selectedController.UseSkill(0);
+                return;
+            }
+            if (hit.collider.CompareTag("FourthSkill"))
+            {
+                selectedController.UseSkill(0);
+                return;
+            }
+
+            Debug.Log(hit.collider.tag);
 
             Aurea hero = null;
             if (hit.collider.CompareTag("Aurea"))

@@ -891,9 +891,10 @@ GameObject:
   - component: {fileID: 112270295}
   - component: {fileID: 112270294}
   - component: {fileID: 112270293}
+  - component: {fileID: 112270296}
   m_Layer: 5
   m_Name: FourthSkillButton
-  m_TagString: Untagged
+  m_TagString: FourthSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1009,6 +1010,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112270291}
   m_CullTransparentMesh: 0
+--- !u!65 &112270296
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112270291}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 375, y: 75, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &136979351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5477,9 +5491,10 @@ GameObject:
   - component: {fileID: 794083417}
   - component: {fileID: 794083419}
   - component: {fileID: 794083418}
+  - component: {fileID: 794083420}
   m_Layer: 5
   m_Name: BackgroundImage
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5540,6 +5555,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794083416}
   m_CullTransparentMesh: 0
+--- !u!65 &794083420
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794083416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 500, y: 500, z: 1}
+  m_Center: {x: 0, y: 0, z: 5}
 --- !u!1 &805188420
 GameObject:
   m_ObjectHideFlags: 0
@@ -8682,7 +8710,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.706, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13084,9 +13112,10 @@ GameObject:
   - component: {fileID: 1410116621}
   - component: {fileID: 1410116620}
   - component: {fileID: 1410116619}
+  - component: {fileID: 1410116622}
   m_Layer: 5
   m_Name: ThirdSkillButton
-  m_TagString: Untagged
+  m_TagString: ThirdSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13202,6 +13231,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410116617}
   m_CullTransparentMesh: 0
+--- !u!65 &1410116622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410116617}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 375, y: 75, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1410640755
 GameObject:
   m_ObjectHideFlags: 0
@@ -14705,9 +14747,10 @@ GameObject:
   - component: {fileID: 1518948416}
   - component: {fileID: 1518948415}
   - component: {fileID: 1518948414}
+  - component: {fileID: 1518948417}
   m_Layer: 5
   m_Name: SecondSkillButton
-  m_TagString: Untagged
+  m_TagString: SecondSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14823,6 +14866,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518948412}
   m_CullTransparentMesh: 0
+--- !u!65 &1518948417
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518948412}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 375, y: 75, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1528889403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1593018759464829751, guid: c37443977bd99d54993c0077807f3400,
@@ -15320,9 +15376,9 @@ MonoBehaviour:
   - {fileID: 442564392}
   - {fileID: 1950486883}
   - {fileID: 1687313707}
+  selectedController: {fileID: 1964278949}
   roundTime: 30
   waitBetweenClicks: 0.5
-  selectedRect: {fileID: 0}
 --- !u!114 &1588246681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18102,7 +18158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1964278948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19499,9 +19555,10 @@ GameObject:
   - component: {fileID: 2130487617}
   - component: {fileID: 2130487616}
   - component: {fileID: 2130487615}
+  - component: {fileID: 2130487618}
   m_Layer: 5
   m_Name: FirstSkillButton
-  m_TagString: Untagged
+  m_TagString: FirstSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19617,6 +19674,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130487613}
   m_CullTransparentMesh: 0
+--- !u!65 &2130487618
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130487613}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 375, y: 75, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &308153062510002042
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20537,7 +20607,7 @@ GameObject:
   - component: {fileID: 7654516760070344654}
   m_Layer: 0
   m_Name: Hauptinselfbx
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
