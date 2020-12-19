@@ -64,59 +64,82 @@ public class FightController : MonoBehaviour
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
-            if (hit.collider.CompareTag("UI"))
-                return;
-
-            if (hit.collider.CompareTag("FirstSkill"))
-            {
-                selectedController.UseSkill(0);
-                return;
-            }
-            if (hit.collider.CompareTag("SecondSkill"))
-            {
-                selectedController.UseSkill(1);
-                return;
-            }
-            if (hit.collider.CompareTag("ThirdSkill"))
-            {
-                selectedController.UseSkill(2);
-                return;
-            }
-            if (hit.collider.CompareTag("FourthSkill"))
-            {
-                selectedController.UseSkill(3);
-                return;
-            }
-
-            Debug.Log(hit.collider.tag);
-
             Aurea hero = null;
             if (hit.collider.CompareTag("Aurea"))
             {
                 hero = hit.collider.GetComponent<Aurea>();
                 StartCoroutine(WaitBetweetClick());
             }
-            player.Select(hero);
+            activePlayer.Select(hero);
 
-            if (hit.collider.CompareTag("EndTurn"))
-            {
-                player.ManuallyEndTurn();
-                StartCoroutine(WaitBetweetClick());
-            }
 
-            if (hit.collider.CompareTag("Inventory"))
-            {
-                Debug.Log("Open Inventar");
-                StartCoroutine(WaitBetweetClick());
-            }
+            // if (hit.collider.CompareTag("UI"))
+            //     return;
+
+            // if (hit.collider.CompareTag("FirstSkill"))
+            // {
+            //     selectedController.UseSkill(0);
+            //     return;
+            // }
+            // if (hit.collider.CompareTag("SecondSkill"))
+            // {
+            //     selectedController.UseSkill(1);
+            //     return;
+            // }
+            // if (hit.collider.CompareTag("ThirdSkill"))
+            // {
+            //     selectedController.UseSkill(2);
+            //     return;
+            // }
+            // if (hit.collider.CompareTag("FourthSkill"))
+            // {
+            //     selectedController.UseSkill(3);
+            //     return;
+            // }
+
+            // Debug.Log(hit.collider.tag);
+
+            // Aurea hero = null;
+            // if (hit.collider.CompareTag("Aurea"))
+            // {
+            //     hero = hit.collider.GetComponent<Aurea>();
+            //     StartCoroutine(WaitBetweetClick());
+            // }
+            // player.Select(hero);
+
+            // if (hit.collider.CompareTag("EndTurn"))
+            // {
+            //     player.ManuallyEndTurn();
+            //     StartCoroutine(WaitBetweetClick());
+            // }
+
+            // if (hit.collider.CompareTag("Inventory"))
+            // {
+            //     Debug.Log("Open Inventar");
+            //     StartCoroutine(WaitBetweetClick());
+            // }
         }
     }
 
     public void ResetIsland()
     {
-        Debug.Log("Reset Fight");
+        ClearSpawnpoints();
         ResetFight?.Invoke();
         StartGame();
+    }
+
+    private void ClearSpawnpoints() {
+        foreach(GameObject obj in playerSpawnpoints) {
+            foreach(Transform child in obj.transform) {
+                Destroy(child.gameObject);
+            }
+        }
+
+        foreach(GameObject obj in enemySpawnpoints) {
+            foreach(Transform child in obj.transform) {
+                Destroy(child.gameObject);
+            }
+        }
     }
 
     private void Update()
@@ -164,7 +187,7 @@ public class FightController : MonoBehaviour
 
     public void EnemyDied(Aurea _aurea)
     {
-        player.ResetSelectedTarget();
+        // player.ResetSelectedTarget();
     }
 
     void EndGame(PlayerController _player)
@@ -215,7 +238,7 @@ public class FightController : MonoBehaviour
     }
     public void EndTurn()
     {
-        activePlayer.Select(null);
+        // activePlayer.Select(null);
         activePlayer.EndTurn();
 
         timerStarted = false;

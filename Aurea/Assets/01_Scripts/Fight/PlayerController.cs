@@ -58,7 +58,8 @@ public class PlayerController : MonoBehaviour
         AddAP(actionPoints);
     }
 
-    void ResetPlayer() {
+    void ResetPlayer()
+    {
         Debug.Log("To DO Reeset Player");
     }
 
@@ -108,7 +109,7 @@ public class PlayerController : MonoBehaviour
     public void AureaDied(Aurea _aurea)
     {
         AureaHasDied?.Invoke(_aurea);
-        foreach(Aurea aurea in aureaInstances)
+        foreach (Aurea aurea in aureaInstances)
         {
             if (aurea.IsAlive())
                 return;
@@ -118,66 +119,97 @@ public class PlayerController : MonoBehaviour
 
     public void Won()
     {
-        foreach(Aurea aurea in aureaInstances)
+        foreach (Aurea aurea in aureaInstances)
         {
             if (aurea.IsAlive())
                 aurea.GetComponent<Animator>().SetTrigger("Victory");
         }
     }
 
-    public void Select(Aurea aurea)
+    public void Select(Aurea _aurea)
     {
-        if (!aurea && IslandController.Instance.fight.CanInteract())
+        if (!_aurea)
         {
             selected = null;
-            target = null;
-            selectedSkill = null;
             ResetedSelection?.Invoke();
             return;
         }
 
-        if (!isOnTurn || !IslandController.Instance.fight.CanInteract() || !aurea.IsAlive()) { return; }
-
-
-        if (!selected && IsOwnAurea(aurea))
+        if (selected)
         {
-            selected = aurea;
-            SelectedAurea?.Invoke(selected);
+            selected.TakeTarget(_aurea);
         }
         else
         {
-            target = aurea;
-            SelectedTarget?.Invoke(target);
+            Debug.Log("Selected Aurea");
+            selected = _aurea;
+            SelectedAurea?.Invoke(selected);
         }
-
-        if (selectedSkill && target)
-            UseSkill();
     }
 
-    public void SelectSkill(Skill skill)
-    {
-        selectedSkill = skill;
+    // public void Select(Aurea aurea)
+    // {
+    //     if (!aurea && IslandController.Instance.fight.CanInteract())
+    //     {
+    //         selected = null;
+    //         target = null;
+    //         selectedSkill = null;
+    //         ResetedSelection?.Invoke();
+    //         return;
+    //     }
 
-        if (target)
-            UseSkill();
-    }
+    //     if (!isOnTurn || !IslandController.Instance.fight.CanInteract() || !aurea.IsAlive()) { return; }
 
-    private void UseSkill()
-    {
-        if (selectedSkill.GetCosts() >= actionPointsLeft)
-            return;
+    //     //Event Aurea Selected
 
-        selected.UseSkill(selectedSkill, target);
-        RemoveAP(selectedSkill.GetCosts());
 
-        selectedSkill = null;
-    }
+    //     if (!selected && IsOwnAurea(aurea))
+    //     {
+    //         Debug.Log("Selected");
+    //         selected = aurea;
+    //         SelectedAurea?.Invoke(selected);
+    //     }
+    //     else
+    //     {
+    //         if (!selectedSkill)
+    //         {
+    //             Select(null);
+    //             return;
+    //         }
+    //         selected.TakeTarget(aurea);
+    //         // target = aurea;
+    //         // SelectedTarget?.Invoke(target);
+    //     }
+
+    //     if (selectedSkill && target)
+    //         UseSkill();
+    // }
+
+    // public void SelectSkill(Skill skill)
+    // {
+    //     selectedSkill = skill;
+    //     selected.SelectSkill(skill);
+
+    //     // if (target)
+    //     //     UseSkill();
+    // }
+
+    // private void UseSkill()
+    // {
+    //     if (selectedSkill.GetCosts() >= actionPointsLeft)
+    //         return;
+
+    //     selected.UseSkill(selectedSkill, target);
+    //     RemoveAP(selectedSkill.GetCosts());
+
+    //     selectedSkill = null;
+    // }
     void AddAP(int amount)
     {
         actionPointsLeft = Mathf.Clamp(actionPointsLeft + amount, 0, actionPoints);
         ChangedAP?.Invoke(actionPointsLeft);
     }
-    
+
     public void RemoveAP(int amount)
     {
         actionPointsLeft = Mathf.Clamp(actionPointsLeft - amount, 0, actionPoints);
@@ -187,7 +219,7 @@ public class PlayerController : MonoBehaviour
     public int HeroesLeft()
     {
         int heros = 0;
-        foreach(Aurea hero in aureaInstances)
+        foreach (Aurea hero in aureaInstances)
         {
             heros += hero.IsAlive() ? 1 : 0;
         }
@@ -204,12 +236,12 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
-    public void ResetSelectedTarget()
-    {
-        target = null;
-        ResetTarget?.Invoke();
-    }
-    public Aurea GetSelected() { return selected; }
+    // public void ResetSelectedTarget()
+    // {
+    //     target = null;
+    //     ResetTarget?.Invoke();
+    // }
+    // public Aurea GetSelected() { return selected; }
     public bool IsOnTurn() { return isOnTurn; }
     public void SetData(PlayerData _data) { data = _data; }
     public PlayerData GetData() { return data; }

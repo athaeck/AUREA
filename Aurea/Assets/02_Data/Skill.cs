@@ -37,4 +37,9 @@ public abstract class Skill : ScriptableObject
     public SkillType GetSkillType() { return skillType; }
     public List<Modifier> GetModifier() { return modifier; }
 
+    public bool IsTargetValid(Aurea _aurea) {
+        //To DO
+        return true;
+    }
+
 }

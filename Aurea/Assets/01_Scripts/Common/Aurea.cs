@@ -24,6 +24,10 @@ public class Aurea : MonoBehaviour
 
     private PlayerController player = null;
     private Animator anim = null;
+    public Skill activeSkill
+    {
+        get; private set;
+    }
 
     public void Init(int initLevel, PlayerController aureaPlayer)
     {
@@ -31,21 +35,37 @@ public class Aurea : MonoBehaviour
         player = aureaPlayer;
         anim = GetComponent<Animator>();
         lifePointsLeft = data.levels[level - 1].lifePoints;
+        //Sag bescheid wenn irgend ein AUREA selected wurde
     }
 
-    public bool IsAlive() { return lifePointsLeft > 0; } 
-    public bool UseSkill(Skill skill, Aurea target)
+    public bool IsAlive() { return lifePointsLeft > 0; }
+
+    public void TakeTarget(Aurea _aurea)
     {
-        Damage dmg = GetDamage(target, skill);
-        if(skill.IsUsable(dmg))
-        {
-            StartAttack?.Invoke();
-            player.RemoveAP(skill.GetCosts());
-            skill.Use(dmg);
-            return true;
-        }
-        return false;
+        Debug.Log("Take Target");
     }
+    // public void SelectSkill(Skill _skill) {
+    //     activeSkill = _skill;
+    // }
+    // public bool UseSkill(Skill skill, Aurea target)
+    // {
+    //     Damage dmg = GetDamage(target, skill);
+    //     if(skill.IsUsable(dmg))
+    //     {
+    //         StartAttack?.Invoke();
+    //         player.RemoveAP(skill.GetCosts());
+    //         skill.Use(dmg);
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
+    // public void TakeTarget(Aurea _aurea) {
+    //     //ToDo
+    //     Debug.Log("To Do");
+    //     if(!activeSkill) return;
+
+    // }
 
     public void TakeDamage(Damage dmg)
     {
@@ -94,11 +114,13 @@ public class Aurea : MonoBehaviour
     public void SetLevel(int level) { this.level = level; }
     public float GetLifePointsMax() { return data.levels[level - 1].lifePoints; }
     public float GetLifePointsLeft() { return lifePointsLeft; }
-    public void SetLifePointsLeft(float amount) { 
+    public void SetLifePointsLeft(float amount)
+    {
         this.lifePointsLeft = amount;
         ChangedLifepoints?.Invoke();
     }
-    public void RemoveLifePoints(float amount) { 
+    public void RemoveLifePoints(float amount)
+    {
         this.lifePointsLeft -= amount;
         ChangedLifepoints?.Invoke();
     }
