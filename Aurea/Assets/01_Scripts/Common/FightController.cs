@@ -74,17 +74,17 @@ public class FightController : MonoBehaviour
             }
             if (hit.collider.CompareTag("SecondSkill"))
             {
-                selectedController.UseSkill(0);
+                selectedController.UseSkill(1);
                 return;
             }
             if (hit.collider.CompareTag("ThirdSkill"))
             {
-                selectedController.UseSkill(0);
+                selectedController.UseSkill(2);
                 return;
             }
             if (hit.collider.CompareTag("FourthSkill"))
             {
-                selectedController.UseSkill(0);
+                selectedController.UseSkill(3);
                 return;
             }
 
