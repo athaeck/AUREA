@@ -11,6 +11,7 @@ public class PortalController : MonoBehaviour
     [SerializeField]
     private Text message = null;
 
+
     public void SetHUD(Difficulty diff, string ms)
     {
         if(difficulty != null && message != null)

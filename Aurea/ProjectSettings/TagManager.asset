@@ -18,6 +18,7 @@ TagManager:
   - Shop
   - Item
   - Locked
+  - To-AureaSelect
   layers:
   - Default
   - TransparentFX

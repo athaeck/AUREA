@@ -7,6 +7,9 @@ public class SIHUDController : MonoBehaviour
     [SerializeField]
     private GameObject portalHUD = null;
 
+    [SerializeField]
+    private GameObject goToPosition = null;
+
     private Difficulty difficulty;
 
     private void OnTriggerEnter(Collider other)
