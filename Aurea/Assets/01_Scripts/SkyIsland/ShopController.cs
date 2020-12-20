@@ -74,7 +74,7 @@ public class ShopController : MonoBehaviour
         activeItem = item;
         string title = item.GetTitle();
         string description = item.GetDescription();
-        string price = item.GetPrice();
+        string price = item.GetPrice().ToString();
         if(itemHUDController != null)
         {
             itemHUDController.Init(title,description,price,true, gobject.transform);
@@ -90,7 +90,8 @@ public class ShopController : MonoBehaviour
     {
         if(activeItem != null)
         {
-            Debug.Log(activeItem.GetPrice());
+            Player.Instance.BuyItem(activeItem.GetPrice(),activeItem);
+            Debug.Log("Item buyed");
         }
     }
 }

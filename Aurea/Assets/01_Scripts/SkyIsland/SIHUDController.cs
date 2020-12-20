@@ -8,7 +8,7 @@ public class SIHUDController : MonoBehaviour
     private GameObject portalHUD = null;
 
     [SerializeField]
-    private GameObject goToPosition = null;
+    private SkyIslandController skyIslandController = null;
 
     private Difficulty difficulty;
 
@@ -18,8 +18,23 @@ public class SIHUDController : MonoBehaviour
         {
             if(portalHUD != null)
             {
-                ControlPortal(true,"Durch dieses Portal gelangst du zum Arenakampf");
-                StateController.Instance.SetCollided(true);
+                ControlPortal(true,"Durch dieses Portal gelangst du zum Playground");
+                if(skyIslandController != null)
+                {
+                    skyIslandController.SetCollided(true);
+                }
+            }
+        }
+        if(other.CompareTag("To-AureaSelect"))
+        {
+            if(portalHUD != null)
+            {
+                Debug.Log("ja");
+                ControlPortal(true,"Durch dieses Portal gelangst du zur Aurea Auswahl");
+                if(skyIslandController != null)
+                {
+                    skyIslandController.SetCollided(true);
+                }
             }
         }
         if(other.CompareTag("To-Competition"))
@@ -27,12 +42,25 @@ public class SIHUDController : MonoBehaviour
             if(portalHUD != null)
             {
                 ControlPortal(true,"Durch dieses Portal gelangst du zum Arenakampf");
-                StateController.Instance.SetCollided(true);
+                if(skyIslandController != null)
+                {
+                    skyIslandController.SetCollided(true);
+                }
             }
         }
         if(other.CompareTag("Shop"))
         {
-           StateController.Instance.SetCollided(true);
+            if(skyIslandController != null)
+            {
+                skyIslandController.SetCollided(true);
+            }
+        }
+        if(other.CompareTag("Inventory"))
+        {
+            if(skyIslandController != null)
+            {
+                skyIslandController.SetCollided(true);
+            }
         }
 
     }
@@ -42,16 +70,41 @@ public class SIHUDController : MonoBehaviour
         if(other.CompareTag("To-Gameground"))
         {
             ControlPortal(false);
-            StateController.Instance.SetCollided(false);
+            if(skyIslandController != null)
+            {
+                skyIslandController.SetCollided(false);
+            }
+        }
+        if(other.CompareTag("To-AureaSelect"))
+        {
+            Debug.Log("nein");
+            ControlPortal(false);
+            if(skyIslandController != null)
+            {
+                skyIslandController.SetCollided(false);
+            }
         }
         if(other.CompareTag("To-Competition"))
         {
             ControlPortal(false);
-            StateController.Instance.SetCollided(false);
+            if(skyIslandController != null)
+            {
+                skyIslandController.SetCollided(false);
+            }
         }
         if(other.CompareTag("Shop"))
         {
-            StateController.Instance.SetCollided(false);
+            if(skyIslandController != null)
+            {
+                skyIslandController.SetCollided(false);
+            }
+        }
+        if(other.CompareTag("Inventory"))
+        {
+            if(skyIslandController != null)
+            {
+                skyIslandController.SetCollided(false);
+            }
         }
 
     }
@@ -63,7 +116,7 @@ public class SIHUDController : MonoBehaviour
         {
             portalHUD.transform.position = transform.position;
             PortalController pc = portalHUD.GetComponent<PortalController>();
-            pc.SetHUD(difficulty,message);
+            pc.SetHUD(message);
         }
     }
     private void ControlPortal(bool state)

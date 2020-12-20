@@ -19,6 +19,7 @@ TagManager:
   - Item
   - Locked
   - To-AureaSelect
+  - Difficulty
   layers:
   - Default
   - TransparentFX
