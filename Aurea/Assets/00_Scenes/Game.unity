@@ -230,7 +230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &16201880
 Transform:
   m_ObjectHideFlags: 0
@@ -243,7 +243,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 246721098}
-  - {fileID: 1135983884}
   - {fileID: 770901021}
   - {fileID: 672075588}
   m_Father: {fileID: 546774860}
@@ -262,9 +261,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots: {fileID: 1182162065}
-  selectData: {fileID: 1279438375}
+  player: {fileID: 672075594}
   spiral: {fileID: 1182162067}
   aureaData: {fileID: 11400000, guid: 3524aa57df20ecf40ab06972ed1650b4, type: 2}
+  selectAureaHUD: {fileID: 1557924304}
+  viewAureaHUD: {fileID: 819869082}
+  buttonSelect: {fileID: 770901020}
 --- !u!1 &18868221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,7 +1792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d4f2cbc1031ac448075012dc59c799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeIsland: 0
+  _activeIsland: 1
 --- !u!4 &229417298
 Transform:
   m_ObjectHideFlags: 0
@@ -4383,7 +4385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 16201880}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &672075589
 MonoBehaviour:
@@ -4428,7 +4430,7 @@ CapsuleCollider:
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.000000059604645, y: -10, z: -0.00000008940697}
 --- !u!23 &672075592
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4783,7 +4785,7 @@ GameObject:
   - component: {fileID: 690195808}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5298,10 +5300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a574f750501c344adadd54a5d95e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectData: {fileID: 1279438375}
-  cam: {fileID: 1557924305}
+  cam: {fileID: 678002041}
   selectAureaHUD: {fileID: 1557924304}
   viewAureaHUD: {fileID: 819869082}
+  newpos: {x: 0, y: 5, z: 15}
 --- !u!4 &770901021
 Transform:
   m_ObjectHideFlags: 0
@@ -5316,7 +5318,7 @@ Transform:
   - {fileID: 1557924312}
   - {fileID: 819869084}
   m_Father: {fileID: 16201880}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &794083416
 GameObject:
@@ -7429,37 +7431,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1135983883
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1135983884}
-  m_Layer: 0
-  m_Name: ==== PlayerData ======
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1135983884
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135983883}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1279438374}
-  m_Father: {fileID: 16201880}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1148576492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1593018759464829751, guid: c37443977bd99d54993c0077807f3400,
@@ -8585,91 +8556,6 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 1921892541}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1279438373
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1279438374}
-  - component: {fileID: 1279438375}
-  m_Layer: 0
-  m_Name: Playerdata
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1279438374
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279438373}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1135983884}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1279438375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279438373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cc0ff9974e130b499ca968298a5b3c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    NAME: 
-    won: 0
-    lose: 0
-    draw: 0
-    crowns: 0
-    money: 0
-    ar: 1
-    playerAureaData:
-    - aureaName: Golem
-      aureaLevel: 2
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    - aureaName: 
-      aureaLevel: 0
-    squad: []
-    items: []
-    arMode: 1
 --- !u!1 &1290146362
 GameObject:
   m_ObjectHideFlags: 0
@@ -18667,7 +18553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2085040456
 Transform:
   m_ObjectHideFlags: 0

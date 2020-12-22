@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TempleController : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class TempleController : MonoBehaviour
     private GameObject slots = null;
 
     [SerializeField]
-    private TemplePlayerData selectData = null;
+    private Rigidbody player = null;
+
 
     private PlayerData data = null;
 
@@ -22,9 +24,20 @@ public class TempleController : MonoBehaviour
     [SerializeField]
     public AureaList aureaData = null;
 
+   [SerializeField]
+    private GameObject selectAureaHUD = null;
+
+    [SerializeField]
+    private GameObject viewAureaHUD = null;
+
+    [SerializeField]
+    private ButtonSelect buttonSelect = null;
+
+    private bool trigger = false;
+
     void Start()
     {
-        data = selectData.getPlayerData();
+        data = Player.Instance;
         CreateSpiral();
     }
 
@@ -60,7 +73,7 @@ public class TempleController : MonoBehaviour
                     Rigidbody rigid = aurea.gameObject.AddComponent<Rigidbody>();
                     rigid.useGravity = false;
                     SphereCollider collider = aurea.gameObject.AddComponent<SphereCollider>();
-                    collider.center = Vector3.zero; // the center must be in local coordinates
+                    collider.center = new Vector3(0, -10, 0);
                     collider.isTrigger = true;
                     collider.radius = 5.0f;
                     break;
@@ -78,8 +91,55 @@ public class TempleController : MonoBehaviour
     }
 
     public void TakeInput(Ray ray) {
-        Debug.Log("Got input: Temple");
+
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+                
+            Aurea hero = null;
+            if (trigger)
+            {
+                if (hit.collider.CompareTag("Aurea") && !viewAureaHUD.activeSelf)
+                {
+                    hero = hit.collider.GetComponent<Aurea>();
+                    buttonSelect.select(hero.GetName());
+                    selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(hero.transform);
+
+                    selectAureaHUD.SetActive(true);
+                }
+                else
+                {
+                    selectAureaHUD.SetActive(false);
+                }
+            }
+            if (hit.collider.CompareTag("Walkable"))
+            {
+                player.MovePosition(hit.point);
+            }
+        }       
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Aurea"))
+        {
+            trigger = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Aurea"))
+        {
+            trigger = false;
+            selectAureaHUD.SetActive(false);
+        }
+    }
+
+
+
     public void ResetIsland()
     {
         Debug.Log("Reset Temple");
