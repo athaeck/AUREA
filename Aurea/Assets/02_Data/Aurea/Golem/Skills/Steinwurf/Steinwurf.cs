@@ -21,10 +21,10 @@ public class Steinwurf : Skill
 
     public override bool IsUsable(Damage dmg)
     {
-        if (dmg.sender == dmg.target)
+        if (dmg.sender == dmg.targets[0])
             return false;
 
-        if (dmg.sender.GetPlayer() == dmg.target.GetPlayer())
+        if (dmg.sender.GetPlayer() == dmg.targets[0].GetPlayer())
             return false;
 
         return true;

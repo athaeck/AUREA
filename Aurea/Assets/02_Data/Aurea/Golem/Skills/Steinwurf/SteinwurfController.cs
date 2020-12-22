@@ -15,14 +15,14 @@ public class SteinwurfController : SkillController
         if (!isInUse)
             return;
 
-        transform.position = Vector3.Lerp(transform.position, information.target.transform.position, Time.deltaTime * flightSpeed);
+        transform.position = Vector3.Lerp(transform.position, information.targets[0].transform.position, Time.deltaTime * flightSpeed);
 
         hitTarget = CheckIfHitTarget();
 
         if (hitTarget)
         {
             base.EndAttack();
-            information.target.TakeDamage(information);
+            information.targets[0].TakeDamage(information);
             Destroy(this.gameObject);
         }
     }
@@ -38,7 +38,7 @@ public class SteinwurfController : SkillController
 
     bool CheckIfHitTarget()
     {
-        return (information.target.transform.position - transform.position).magnitude < 2f;
+        return (information.targets[0].transform.position - transform.position).magnitude < 2f;
     }
      IEnumerator WaitTillAttack()
     {

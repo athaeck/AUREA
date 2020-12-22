@@ -42,4 +42,8 @@ public abstract class Skill : ScriptableObject
         return true;
     }
 
+    public bool CheckTargets(List<Aurea> _targets) {
+        return true;
+    }
+
 }

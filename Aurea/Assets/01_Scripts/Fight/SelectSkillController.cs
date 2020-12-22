@@ -9,6 +9,9 @@ public class SelectSkillController : MonoBehaviour
     private PlayerController player = null;
 
     [SerializeField]
+    private Aurea selectedAurea = null;
+
+    [SerializeField]
     private GameObject selectedSkillCanvas = null;
 
     [SerializeField]
@@ -37,6 +40,7 @@ public class SelectSkillController : MonoBehaviour
     void InitView(Aurea _aurea)
     {
         selectedSkillCanvas.SetActive(true);
+        selectedAurea = _aurea;
         List<Skill> skills = _aurea.GetSkills();
 
         firstSkillText.text = skills[0].GetName();
@@ -47,7 +51,7 @@ public class SelectSkillController : MonoBehaviour
 
     public void UseSkill(int i)
     {
-        Debug.Log("Use Skill no: " + i);
+        selectedAurea.activeSkill = selectedAurea.GetSkills()[i];
         ResetView();
     }
 }

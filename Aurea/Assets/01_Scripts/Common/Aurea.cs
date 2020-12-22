@@ -24,10 +24,21 @@ public class Aurea : MonoBehaviour
 
     private PlayerController player = null;
     private Animator anim = null;
+    private Skill _activeSkill;
     public Skill activeSkill
     {
-        get; private set;
+        get
+        {
+            return _activeSkill;
+        }
+        set
+        {
+            _activeSkill = value;
+            _activeSkill.CheckTargets(targets);
+        }
     }
+
+    public List<Aurea> targets = new List<Aurea>();
 
     public void Init(int initLevel, PlayerController aureaPlayer)
     {
@@ -42,7 +53,37 @@ public class Aurea : MonoBehaviour
 
     public void TakeTarget(Aurea _aurea)
     {
-        Debug.Log("Take Target");
+        if (!activeSkill)
+        {
+            Debug.LogError("Selected Target but no skill active!");
+            return;
+        }
+
+        Debug.Log("Took Target and have skill active: " + activeSkill.name);
+
+        if (activeSkill.IsTargetValid(_aurea))
+        {
+            targets.Add(_aurea);
+
+            if (activeSkill.CheckTargets(targets))
+            {
+                UseSkill();
+            }
+        }
+    }
+
+    private bool UseSkill()
+    {
+        Debug.Log("Using SKill : " + activeSkill.name + "on n targets: " + targets.Count);
+        Damage dmg = GetDamage(targets, activeSkill);
+        if(activeSkill.IsUsable(dmg))
+        {
+            StartAttack?.Invoke();
+            player.RemoveAP(activeSkill.GetCosts());
+            activeSkill.Use(dmg);
+            return true;
+        }
+        return false;
     }
     // public void SelectSkill(Skill _skill) {
     //     activeSkill = _skill;
@@ -96,16 +137,16 @@ public class Aurea : MonoBehaviour
     public string GetDescription() { return data.DESCRIPTION; }
     public List<Skill> GetSkills() { return data.levels[level - 1].skills; }
     public PlayerController GetPlayer() { return player; }
-    public Damage GetDamage(Aurea target, Skill skill)
+    public Damage GetDamage(List<Aurea> _targets, Skill _skill)
     {
         Damage newDamage = new Damage
         {
             sender = this,
-            target = target,
-            skill = skill,
+            targets = _targets,
+            skill = _skill,
             physicalDamage = data.levels[level - 1].physicalDamage,
             magicalDamage = data.levels[level - 1].magicalDamage,
-            modifier = skill.GetModifier()
+            modifier = _skill.GetModifier()
         };
 
         return newDamage;

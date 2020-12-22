@@ -53,6 +53,14 @@ public class FightController : MonoBehaviour
     private bool timerStarted = false;
     bool justClicked = false;
 
+    public void TakeInput(Ray ray)
+    {
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
+        {
+            EvaluateInput(hit);
+        }
+    }
+
     public void TakeInput(Touch touch)
     {
         if (justClicked) { return; }
@@ -61,17 +69,7 @@ public class FightController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-
-            Aurea hero = null;
-            if (hit.collider.CompareTag("Aurea"))
-            {
-                hero = hit.collider.GetComponent<Aurea>();
-                StartCoroutine(WaitBetweetClick());
-            }
-            activePlayer.Select(hero);
-
+            EvaluateInput(hit);
 
             // if (hit.collider.CompareTag("UI"))
             //     return;
@@ -121,6 +119,23 @@ public class FightController : MonoBehaviour
         }
     }
 
+    private void EvaluateInput(RaycastHit hit)
+    {
+        if (justClicked) return;
+
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        Aurea hero = null;
+        if (hit.collider.CompareTag("Aurea"))
+        {
+            hero = hit.collider.GetComponent<Aurea>();
+            StartCoroutine(WaitBetweetClick());
+        }
+        activePlayer.Select(hero);
+
+        StartCoroutine(WaitBetweetClick());
+    }
+
     public void ResetIsland()
     {
         ClearSpawnpoints();
@@ -128,15 +143,20 @@ public class FightController : MonoBehaviour
         StartGame();
     }
 
-    private void ClearSpawnpoints() {
-        foreach(GameObject obj in playerSpawnpoints) {
-            foreach(Transform child in obj.transform) {
+    private void ClearSpawnpoints()
+    {
+        foreach (GameObject obj in playerSpawnpoints)
+        {
+            foreach (Transform child in obj.transform)
+            {
                 Destroy(child.gameObject);
             }
         }
 
-        foreach(GameObject obj in enemySpawnpoints) {
-            foreach(Transform child in obj.transform) {
+        foreach (GameObject obj in enemySpawnpoints)
+        {
+            foreach (Transform child in obj.transform)
+            {
                 Destroy(child.gameObject);
             }
         }

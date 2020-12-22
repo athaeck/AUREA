@@ -9,7 +9,7 @@ public class InputController : MonoBehaviour
     void FixedUpdate()
     {
         Ray ray;
-        
+
         Touch touch = new Touch();
         bool touched = false;
 
@@ -36,6 +36,8 @@ public class InputController : MonoBehaviour
             case Island.ChickenFight:
                 if (touched)
                     IslandController.Instance.fight.TakeInput(touch);
+                else
+                    IslandController.Instance.fight.TakeInput(ray);
                 break;
         }
     }
