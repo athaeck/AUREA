@@ -29,21 +29,14 @@ public abstract class Skill : ScriptableObject
     private List<Modifier> modifier = new List<Modifier>();
 
     public abstract void Use(Damage dmg);
-    public abstract bool IsUsable(Damage dmg);
+    // public abstract bool IsUsable(Damage dmg);
+    public abstract bool IsTargetValid(Aurea _aurea, Aurea _sender);
+    public abstract bool CheckTargets(List<Aurea> _targets, Aurea _sender);
     public string GetName() { return NAME; }
     public string GetDescription() { return DESCRIPTION; }
     public string GetID() { return ID; }
     public int GetCosts() { return costs; }
     public SkillType GetSkillType() { return skillType; }
     public List<Modifier> GetModifier() { return modifier; }
-
-    public bool IsTargetValid(Aurea _aurea) {
-        //To DO
-        return true;
-    }
-
-    public bool CheckTargets(List<Aurea> _targets) {
-        return true;
-    }
 
 }
