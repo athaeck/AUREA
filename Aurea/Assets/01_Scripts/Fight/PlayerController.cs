@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
 
     public void Won()
     {
+        Debug.Log("Won!");
         foreach (Aurea aurea in aureaInstances)
         {
             if (aurea.IsAlive())
@@ -130,7 +131,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_aurea)
         {
-            selected = null;
+            RemoveSelected();
             ResetedSelection?.Invoke();
             return;
         }
@@ -141,69 +142,17 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Selected Aurea");
             selected = _aurea;
+            selected.SkillCancled += RemoveSelected;
             SelectedAurea?.Invoke(selected);
         }
     }
+    public void RemoveSelected() {
+        if(!selected) return;
 
-    // public void Select(Aurea aurea)
-    // {
-    //     if (!aurea && IslandController.Instance.fight.CanInteract())
-    //     {
-    //         selected = null;
-    //         target = null;
-    //         selectedSkill = null;
-    //         ResetedSelection?.Invoke();
-    //         return;
-    //     }
-
-    //     if (!isOnTurn || !IslandController.Instance.fight.CanInteract() || !aurea.IsAlive()) { return; }
-
-    //     //Event Aurea Selected
-
-
-    //     if (!selected && IsOwnAurea(aurea))
-    //     {
-    //         Debug.Log("Selected");
-    //         selected = aurea;
-    //         SelectedAurea?.Invoke(selected);
-    //     }
-    //     else
-    //     {
-    //         if (!selectedSkill)
-    //         {
-    //             Select(null);
-    //             return;
-    //         }
-    //         selected.TakeTarget(aurea);
-    //         // target = aurea;
-    //         // SelectedTarget?.Invoke(target);
-    //     }
-
-    //     if (selectedSkill && target)
-    //         UseSkill();
-    // }
-
-    // public void SelectSkill(Skill skill)
-    // {
-    //     selectedSkill = skill;
-    //     selected.SelectSkill(skill);
-
-    //     // if (target)
-    //     //     UseSkill();
-    // }
-
-    // private void UseSkill()
-    // {
-    //     if (selectedSkill.GetCosts() >= actionPointsLeft)
-    //         return;
-
-    //     selected.UseSkill(selectedSkill, target);
-    //     RemoveAP(selectedSkill.GetCosts());
-
-    //     selectedSkill = null;
-    // }
+        selected.SkillCancled -= RemoveSelected;
+        selected = null;
+    }
     void AddAP(int amount)
     {
         actionPointsLeft = Mathf.Clamp(actionPointsLeft + amount, 0, actionPoints);
@@ -236,14 +185,9 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
-    // public void ResetSelectedTarget()
-    // {
-    //     target = null;
-    //     ResetTarget?.Invoke();
-    // }
-    // public Aurea GetSelected() { return selected; }
+    public void ResetAureaInstances() { aureaInstances = new List<Aurea>(); }
+    public List<Aurea> GetAureas() { return aureaInstances; }
     public bool IsOnTurn() { return isOnTurn; }
     public void SetData(PlayerData _data) { data = _data; }
     public PlayerData GetData() { return data; }
-    // public FightController GetGameController() { return gameController; }
 }

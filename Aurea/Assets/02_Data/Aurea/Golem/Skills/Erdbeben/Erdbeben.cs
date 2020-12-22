@@ -28,6 +28,6 @@ public class Erdbeben : Skill
 
     public override bool CheckTargets(List<Aurea> _targets, Aurea _sender)
     {
-        return false;
+        return true;
     }
 }

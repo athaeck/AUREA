@@ -152,6 +152,7 @@ public class FightController : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+        player.ResetAureaInstances();
 
         foreach (GameObject obj in enemySpawnpoints)
         {
@@ -160,6 +161,7 @@ public class FightController : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+        enemy.ResetAureaInstances();
     }
 
     private void Update()

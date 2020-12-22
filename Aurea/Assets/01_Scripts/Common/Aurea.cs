@@ -9,6 +9,7 @@ public class Aurea : MonoBehaviour
     public Action StartAttack;
     public Action ChangedLifepoints;
     public Action<Aurea> Died;
+    public Action SkillCancled;
 
     [SerializeField]
     private AureaData data = null;
@@ -34,7 +35,9 @@ public class Aurea : MonoBehaviour
         set
         {
             _activeSkill = value;
-            _activeSkill.CheckTargets(targets);
+
+            if (_activeSkill && _activeSkill.CheckTargets(targets, this))
+                UseSkill();
         }
     }
 
@@ -46,7 +49,6 @@ public class Aurea : MonoBehaviour
         player = aureaPlayer;
         anim = GetComponent<Animator>();
         lifePointsLeft = data.levels[level - 1].lifePoints;
-        //Sag bescheid wenn irgend ein AUREA selected wurde
     }
 
     public bool IsAlive() { return lifePointsLeft > 0; }
@@ -61,55 +63,38 @@ public class Aurea : MonoBehaviour
 
         Debug.Log("Took Target and have skill active: " + activeSkill.name);
 
-        if (activeSkill.IsTargetValid(_aurea))
+        if (activeSkill.IsTargetValid(_aurea, this))
         {
             targets.Add(_aurea);
 
-            if (activeSkill.CheckTargets(targets))
-            {
+            if (activeSkill.CheckTargets(targets, this))
                 UseSkill();
-            }
+            else
+                CancelSkill();
         }
+        else
+            CancelSkill();
     }
 
-    private bool UseSkill()
+    private void UseSkill()
     {
         Debug.Log("Using SKill : " + activeSkill.name + "on n targets: " + targets.Count);
         Damage dmg = GetDamage(targets, activeSkill);
-        if(activeSkill.IsUsable(dmg))
-        {
-            StartAttack?.Invoke();
-            player.RemoveAP(activeSkill.GetCosts());
-            activeSkill.Use(dmg);
-            return true;
-        }
-        return false;
+        StartAttack?.Invoke();
+        player.RemoveAP(activeSkill.GetCosts());
+        activeSkill.Use(dmg);
+        CancelSkill();
     }
-    // public void SelectSkill(Skill _skill) {
-    //     activeSkill = _skill;
-    // }
-    // public bool UseSkill(Skill skill, Aurea target)
-    // {
-    //     Damage dmg = GetDamage(target, skill);
-    //     if(skill.IsUsable(dmg))
-    //     {
-    //         StartAttack?.Invoke();
-    //         player.RemoveAP(skill.GetCosts());
-    //         skill.Use(dmg);
-    //         return true;
-    //     }
-    //     return false;
-    // }
 
-    // public void TakeTarget(Aurea _aurea) {
-    //     //ToDo
-    //     Debug.Log("To Do");
-    //     if(!activeSkill) return;
-
-    // }
-
+    private void CancelSkill()
+    {
+        targets = new List<Aurea>();
+        activeSkill = null;
+        SkillCancled?.Invoke();
+    }
     public void TakeDamage(Damage dmg)
     {
+        Debug.Log("Got hit " + this.name);
         switch (dmg.skill.GetSkillType())
         {
             case SkillType.MAGICAL:

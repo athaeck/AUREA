@@ -13,7 +13,7 @@ public enum Island
 public class IslandController : MonoBehaviour
 {
     #region Singleton
-    public static IslandController _instance;
+    private static IslandController _instance;
     public static IslandController Instance
     {
         get
