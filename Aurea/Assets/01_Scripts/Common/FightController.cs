@@ -39,9 +39,6 @@ public class FightController : MonoBehaviour
     private List<GameObject> enemySpawnpoints = new List<GameObject>();
 
     [SerializeField]
-    private SelectedHUDController selectedController = null;
-
-    [SerializeField]
     private float roundTime = 30f;
 
     [SerializeField]

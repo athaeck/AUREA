@@ -39,10 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int actionPointsPerRound = 3;
 
-
     private Aurea selected = null;
-    private Aurea target = null;
-    private Skill selectedSkill = null;
 
     void Start()
     {
