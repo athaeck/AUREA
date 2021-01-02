@@ -16314,6 +16314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1813534615}
+  selectedAurea: {fileID: 0}
   selectedSkillCanvas: {fileID: 975670322}
   firstSkillText: {fileID: 576147829}
   secondSkillText: {fileID: 816099451}
