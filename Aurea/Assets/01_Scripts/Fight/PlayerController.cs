@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
         {
             if (aurea.IsAlive()) //{
                 HasWon?.Invoke();
-                // aurea.GetComponent<Animator>().SetTrigger("Victory");
+            // aurea.GetComponent<Animator>().SetTrigger("Victory");
             // }
         }
     }
@@ -188,6 +188,7 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
+    public int GetAPLeft() { return actionPointsLeft; }
     public void ResetAureaInstances() { aureaInstances = new List<Aurea>(); }
     public List<Aurea> GetAureas() { return aureaInstances; }
     public bool IsOnTurn() { return isOnTurn; }
