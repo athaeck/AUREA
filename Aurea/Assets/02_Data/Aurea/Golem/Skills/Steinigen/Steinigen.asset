@@ -15,7 +15,7 @@ MonoBehaviour:
   NAME: Steinigen
   DESCRIPTION: Steinige deinen Gegner wenn er fast Tod ist
   ID: GOLSKI#004
-  costs: 1
+  costs: 5
   skillType: 0
   modifier: []
   physicalDamageMultiplier: 30

@@ -11,7 +11,7 @@ public class Aurea : MonoBehaviour
     public Action<Aurea> Died;
     public Action SkillCancled;
     public Action GotHit;
-    
+
 
     [SerializeField]
     private AureaData data = null;
@@ -35,7 +35,10 @@ public class Aurea : MonoBehaviour
         }
         set
         {
-            _activeSkill = value;
+            if (player.GetAPLeft() >= value.GetCosts()) 
+                _activeSkill = value;
+            else
+                _activeSkill = null;
 
             if (_activeSkill && _activeSkill.CheckTargets(targets, this))
                 UseSkill();

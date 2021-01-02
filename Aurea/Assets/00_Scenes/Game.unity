@@ -539,8 +539,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 67545896}
-  - component: {fileID: 67545897}
-  - component: {fileID: 67545898}
   m_Layer: 0
   m_Name: Crystals
   m_TagString: Untagged
@@ -577,47 +575,6 @@ Transform:
   m_Father: {fileID: 2128198342}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &67545897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67545895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38e0688bce44fa4f923771343745fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crystalParticles: []
---- !u!114 &67545898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67545895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38e0688bce44fa4f923771343745fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crystalParticles:
-  - {fileID: 1480211190}
-  - {fileID: 878772074}
-  - {fileID: 622504189}
-  - {fileID: 311955802}
-  - {fileID: 2095575599}
-  - {fileID: 1483738152}
-  - {fileID: 1845489960}
-  - {fileID: 1085407919}
-  - {fileID: 136979353}
-  - {fileID: 574849943}
-  - {fileID: 1541592180}
-  - {fileID: 1474284366}
-  - {fileID: 609103008}
-  - {fileID: 576517589}
-  - {fileID: 144191794}
 --- !u!1 &84600033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,8 +1447,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 192293932}
-  - component: {fileID: 192293933}
-  - component: {fileID: 192293934}
   m_Layer: 0
   m_Name: Crystals
   m_TagString: Untagged
@@ -1528,47 +1483,6 @@ Transform:
   m_Father: {fileID: 1813534614}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &192293933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192293931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38e0688bce44fa4f923771343745fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crystalParticles: []
---- !u!114 &192293934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192293931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38e0688bce44fa4f923771343745fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crystalParticles:
-  - {fileID: 1582118861}
-  - {fileID: 1148576494}
-  - {fileID: 865483474}
-  - {fileID: 1513378928}
-  - {fileID: 1399659093}
-  - {fileID: 454139729}
-  - {fileID: 1468147247}
-  - {fileID: 2016774987}
-  - {fileID: 929872301}
-  - {fileID: 1528889405}
-  - {fileID: 619379275}
-  - {fileID: 1148804093}
-  - {fileID: 165837012}
-  - {fileID: 1671638317}
-  - {fileID: 1238350884}
 --- !u!1 &192633823
 GameObject:
   m_ObjectHideFlags: 0
@@ -17968,6 +17882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813534614}
   - component: {fileID: 1813534615}
+  - component: {fileID: 1813534616}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -18033,6 +17948,34 @@ MonoBehaviour:
   - {fileID: 0}
   actionPointsLeft: 15
   actionPointsPerRound: 3
+--- !u!114 &1813534616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813534613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38e0688bce44fa4f923771343745fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystalParticles:
+  - {fileID: 1582118861}
+  - {fileID: 1148576494}
+  - {fileID: 865483474}
+  - {fileID: 1513378928}
+  - {fileID: 1399659093}
+  - {fileID: 454139729}
+  - {fileID: 1468147247}
+  - {fileID: 2016774987}
+  - {fileID: 929872301}
+  - {fileID: 1528889405}
+  - {fileID: 619379275}
+  - {fileID: 1148804093}
+  - {fileID: 165837012}
+  - {fileID: 1671638317}
+  - {fileID: 1238350884}
 --- !u!1001 &1845489958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20483,6 +20426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2128198342}
   - component: {fileID: 2128198343}
+  - component: {fileID: 2128198344}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -20548,6 +20492,34 @@ MonoBehaviour:
   - {fileID: 0}
   actionPointsLeft: 15
   actionPointsPerRound: 3
+--- !u!114 &2128198344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128198341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38e0688bce44fa4f923771343745fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystalParticles:
+  - {fileID: 1480211190}
+  - {fileID: 878772074}
+  - {fileID: 622504189}
+  - {fileID: 311955802}
+  - {fileID: 2095575599}
+  - {fileID: 1483738152}
+  - {fileID: 1845489960}
+  - {fileID: 1085407919}
+  - {fileID: 136979353}
+  - {fileID: 574849943}
+  - {fileID: 1541592180}
+  - {fileID: 1474284366}
+  - {fileID: 609103008}
+  - {fileID: 576517589}
+  - {fileID: 144191794}
 --- !u!1 &2130487613
 GameObject:
   m_ObjectHideFlags: 0

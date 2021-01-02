@@ -33,9 +33,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<Aurea> aureaInstances = new List<Aurea>();
 
-    // [SerializeField]
-    // private FightController gameController = null;
-
     [SerializeField]
     private int actionPointsLeft = 0;
 
