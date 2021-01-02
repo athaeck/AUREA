@@ -260,7 +260,6 @@ public class FightController : MonoBehaviour
     }
     public void EndTurn()
     {
-        // activePlayer.Select(null);
         activePlayer.EndTurn();
 
         timerStarted = false;
@@ -269,6 +268,7 @@ public class FightController : MonoBehaviour
 
     void NextTurn()
     {
+        Debug.Log("Start new Turn");
         StartTurn(activePlayer == player ? enemy : player);
     }
 

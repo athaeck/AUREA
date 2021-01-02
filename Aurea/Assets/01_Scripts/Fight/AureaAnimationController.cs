@@ -11,6 +11,7 @@ public class AureaAnimationController : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        aurea = GetComponent<Aurea>();
         aurea.StartAttack += Attack;
         aurea.GetPlayer().HasWon += Won;
         aurea.GotHit += GotHit;

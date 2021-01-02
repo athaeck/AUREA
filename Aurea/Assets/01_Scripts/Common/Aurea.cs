@@ -26,7 +26,6 @@ public class Aurea : MonoBehaviour
     public List<ItemData> activeItems = new List<ItemData>();
 
     private PlayerController player = null;
-    // private Animator anim = null;
     private Skill _activeSkill;
     public Skill activeSkill
     {
@@ -49,7 +48,6 @@ public class Aurea : MonoBehaviour
     {
         level = initLevel;
         player = aureaPlayer;
-        // anim = GetComponent<Animator>();
         lifePointsLeft = data.levels[level - 1].lifePoints;
     }
 
@@ -114,7 +112,6 @@ public class Aurea : MonoBehaviour
 
     public void Die()
     {
-        // anim.SetTrigger("Died");
         Died?.Invoke(this);
     }
 
