@@ -32,7 +32,7 @@ public class SteinernderSchlag : Skill
 
     public override bool CheckTargets(List<Aurea> _targets, Aurea _sender)
     {
-        if (_targets[0] && IsTargetValid(_targets[0], _sender))
+        if (_targets.Count > 0 && IsTargetValid(_targets[0], _sender))
             return true;
 
         return false;
