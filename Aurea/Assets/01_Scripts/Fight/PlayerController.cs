@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public Action ResetedSelection;
     public Action<PlayerController> GameOver;
     public Action<Aurea> AureaHasDied;
+    public Action HasWon;
 
     [SerializeField]
     public bool isPlayer = false;
@@ -122,8 +123,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Won!");
         foreach (Aurea aurea in aureaInstances)
         {
-            if (aurea.IsAlive())
-                aurea.GetComponent<Animator>().SetTrigger("Victory");
+            if (aurea.IsAlive()) //{
+                HasWon?.Invoke();
+                // aurea.GetComponent<Animator>().SetTrigger("Victory");
+            // }
         }
     }
 
@@ -140,15 +143,18 @@ public class PlayerController : MonoBehaviour
         {
             selected.TakeTarget(_aurea);
         }
-        else
+        else if (_aurea.GetPlayer() == this)
         {
             selected = _aurea;
             selected.SkillCancled += RemoveSelected;
             SelectedAurea?.Invoke(selected);
         }
     }
-    public void RemoveSelected() {
-        if(!selected) return;
+    public void RemoveSelected()
+    {
+        if (!selected) return;
+
+        Debug.Log("Remove Selected Aurea");
 
         selected.SkillCancled -= RemoveSelected;
         selected = null;

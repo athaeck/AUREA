@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+// [RequireComponent(typeof(Animator))]
 public class Aurea : MonoBehaviour
 {
     public Action StartAttack;
     public Action ChangedLifepoints;
     public Action<Aurea> Died;
     public Action SkillCancled;
+    public Action GotHit;
+    
 
     [SerializeField]
     private AureaData data = null;
@@ -24,7 +26,7 @@ public class Aurea : MonoBehaviour
     public List<ItemData> activeItems = new List<ItemData>();
 
     private PlayerController player = null;
-    private Animator anim = null;
+    // private Animator anim = null;
     private Skill _activeSkill;
     public Skill activeSkill
     {
@@ -47,7 +49,7 @@ public class Aurea : MonoBehaviour
     {
         level = initLevel;
         player = aureaPlayer;
-        anim = GetComponent<Animator>();
+        // anim = GetComponent<Animator>();
         lifePointsLeft = data.levels[level - 1].lifePoints;
     }
 
@@ -112,7 +114,7 @@ public class Aurea : MonoBehaviour
 
     public void Die()
     {
-        anim.SetTrigger("Died");
+        // anim.SetTrigger("Died");
         Died?.Invoke(this);
     }
 

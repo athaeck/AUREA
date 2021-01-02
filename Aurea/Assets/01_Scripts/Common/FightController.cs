@@ -63,7 +63,7 @@ public class FightController : MonoBehaviour
 
     public void TakeInput(Touch touch)
     {
-        if (justClicked) { return; }
+        if (justClicked || !player.IsOnTurn()) { return; }
 
         Ray ray = CameraController.Instance.activeCamera.ScreenPointToRay(touch.position);
 

@@ -8,7 +8,7 @@ public class ErdbebenController : SkillController
 
     public void TakeInformations(Damage dmg)
     {
-        dmg.sender.GetComponent<AnimationController>().Attack();
+        // dmg.sender.GetComponent<AnimationController>().Attack();
         information = dmg;
         base.StartAttack();
         StartCoroutine(WaitTillAttack());

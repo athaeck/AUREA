@@ -29,7 +29,7 @@ public class SteinwurfController : SkillController
 
     public void TakeInformations(Damage dmg)
     {
-        dmg.sender.GetComponent<AnimationController>().Attack();
+        // dmg.sender.GetComponent<AnimationController>().Attack();
         this.GetComponentInChildren<Renderer>().enabled = false;
         information = dmg;
         base.StartAttack();
