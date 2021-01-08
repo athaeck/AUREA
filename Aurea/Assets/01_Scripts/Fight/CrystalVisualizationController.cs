@@ -16,15 +16,12 @@ public class CrystalVisualizationController : MonoBehaviour
         ActiveCrystals(player.GetAPLeft());
         player.ChangedAP += ActiveCrystals;
     }
-    
+
     public void ActiveCrystals(int num)
     {
         for (int i = 0; i < crystalParticles.Count; i++)
         {
-            if (i < num)
-                crystalParticles[i].gameObject.SetActive(true);
-            else
-                crystalParticles[i].gameObject.SetActive(false);
+            crystalParticles[i].gameObject.SetActive(i < num);
         }
     }
 }
