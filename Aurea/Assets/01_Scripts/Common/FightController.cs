@@ -123,12 +123,15 @@ public class FightController : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
         Aurea hero = null;
+
         if (hit.collider.CompareTag("Aurea"))
-        {
             hero = hit.collider.GetComponent<Aurea>();
-            StartCoroutine(WaitBetweetClick());
-        }
+
         activePlayer.Select(hero);
+
+        if (hit.collider.CompareTag("EndTurn") && player.IsOnTurn())
+            player.ManuallyEndTurn();
+
 
         StartCoroutine(WaitBetweetClick());
     }

@@ -13,6 +13,7 @@ public class CrystalVisualizationController : MonoBehaviour
     private void Start()
     {
         player = GetComponent<PlayerController>();
+        ActiveCrystals(player.GetAPLeft());
         player.ChangedAP += ActiveCrystals;
     }
     
