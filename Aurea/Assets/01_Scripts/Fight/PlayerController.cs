@@ -91,6 +91,9 @@ public class PlayerController : MonoBehaviour
     {
         EndedTurn?.Invoke();
         isOnTurn = false;
+
+        if(selected) 
+            selected.CancelSkill();
     }
 
     public void ManuallyEndTurn()
@@ -117,10 +120,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Won!");
         foreach (Aurea aurea in aureaInstances)
         {
-            if (aurea.IsAlive()) //{
+            if (aurea.IsAlive())
                 HasWon?.Invoke();
-            // aurea.GetComponent<Animator>().SetTrigger("Victory");
-            // }
         }
     }
 

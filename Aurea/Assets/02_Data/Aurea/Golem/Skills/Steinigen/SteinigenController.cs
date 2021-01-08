@@ -32,7 +32,14 @@ public class SteinigenController : SkillController
         this.GetComponentInChildren<Renderer>().enabled = false;
         information = dmg;
         base.StartAttack();
-        StartCoroutine(WaitTillAttack());
+        if (Player.Instance.AnimationsOn())
+            StartCoroutine(WaitTillAttack());
+        else
+        {
+            base.EndAttack();
+            information.targets[0].TakeDamage(information);
+            Destroy(this.gameObject);
+        }
     }
 
     bool CheckIfHitTarget()

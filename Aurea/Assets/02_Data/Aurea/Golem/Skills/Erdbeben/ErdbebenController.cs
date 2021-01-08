@@ -10,7 +10,12 @@ public class ErdbebenController : SkillController
     {
         information = dmg;
         base.StartAttack();
-        StartCoroutine(WaitTillAttack());
+        if (Player.Instance.AnimationsOn())
+            StartCoroutine(WaitTillAttack());
+        else
+        {
+            DoDamage();
+        }
     }
     public void DoDamage()
     {
@@ -18,16 +23,17 @@ public class ErdbebenController : SkillController
 
         PlayerController player = IslandController.Instance.fight.GetPlayer();
         PlayerController enemy = IslandController.Instance.fight.GetEnemy();
-        
+
         List<Aurea> targets = new List<Aurea>();
 
-        if(player == information.sender) 
+        if (player == information.sender)
             targets = enemy.GetAureas();
         else
             targets = player.GetAureas();
 
-        foreach(Aurea target in targets) {
-            if(target.IsAlive())
+        foreach (Aurea target in targets)
+        {
+            if (target.IsAlive())
                 target.TakeDamage(information);
         }
 

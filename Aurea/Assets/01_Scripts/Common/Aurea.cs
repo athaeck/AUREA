@@ -89,7 +89,7 @@ public class Aurea : MonoBehaviour
         CancelSkill();
     }
 
-    private void CancelSkill()
+    public void CancelSkill()
     {
         targets = new List<Aurea>();
         activeSkill = null;
