@@ -37,8 +37,7 @@ public class TempleController : MonoBehaviour
 
     void Start()
     {
-        data = Player.Instance;
-        CreateSpiral();
+
     }
 
     public AureaData GetAureaData(string name)
@@ -85,8 +84,8 @@ public class TempleController : MonoBehaviour
                     Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i], aureaPrefab.transform.rotation, slots.transform).GetComponent<Aurea>();
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
                 }
-            }
 
+            }
         }
     }
 
@@ -142,6 +141,18 @@ public class TempleController : MonoBehaviour
 
     public void ResetIsland()
     {
+        Aurea[] all_aurea = null;
+        all_aurea = GameObject.FindObjectsOfType<Aurea>();
+
+        foreach (Aurea aurea in all_aurea)
+        {
+                Destroy(aurea.gameObject);
+            Debug.Log("yus");
+        }
+
+        data = Player.Instance;
+        CreateSpiral();
+
         Debug.Log("Reset Temple");
     }
 
