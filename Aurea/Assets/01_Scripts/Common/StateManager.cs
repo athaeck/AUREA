@@ -29,6 +29,7 @@ public static class StateManager
 
         formatter.Serialize(stream, data);
         stream.Close();
+        Debug.Log("Save - COMPLETED");
     }
 
     public static PlayerData CreateNewPlayerData()

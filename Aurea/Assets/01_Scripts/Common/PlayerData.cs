@@ -11,39 +11,36 @@ public class PlayerData
     public string NAME = "";
 
     [SerializeField]
-    private int won = 0;
+    public int won = 0;
 
     [SerializeField]
-    private int lose = 0;
+    public int lose = 0;
 
     [SerializeField]
-    private int draw = 0;
+    public int draw = 0;
 
     [SerializeField]
-    private int crowns = 0;
+    public int crowns = 0;
 
     [SerializeField]
-    private int money = 0;
+    public int money = 0;
 
     [SerializeField]
-    private bool ar = true;
+    public bool ar = true;
 
     [SerializeField]
-    private List<PlayerAureaData> playerAureaData = new List<PlayerAureaData>();
+    public List<PlayerAureaData> playerAureaData = new List<PlayerAureaData>();
 
     [SerializeField]
-    private List<string> squad = new List<string>();
+    public List<string> squad = new List<string>();
 
     [SerializeField]
-    private List<PlayerItemData> items = new List<PlayerItemData>();
+    public List<PlayerItemData> items = new List<PlayerItemData>();
 
-    private Difficulty difficulty;
-
-    [SerializeField]
-    private bool arMode = true;
+    public Difficulty difficulty;
 
     [SerializeField]
-    private bool animationsOn = true;
+    public bool animationsOn = true;
     #endregion
 
 

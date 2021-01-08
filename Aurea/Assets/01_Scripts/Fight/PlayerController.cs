@@ -64,11 +64,11 @@ public class PlayerController : MonoBehaviour
         List<string> squad = data.GetSquad();
         foreach (GameObject spawnPoint in spawnPoints)
         {
-            if (squad[i] == "" || squad[i] == null)
-            {
-                Debug.Log("More Spawnpoints than Aureas in Squad");
-                break;
-            }
+            // if (squad[i] == "" || squad[i] == null)
+            // {
+            //     Debug.Log("More Spawnpoints than Aureas in Squad");
+            //     break;
+            // }
 
             int aureaLevel = data.GetAureaLevel(squad[i]);
             GameObject aureaPrefab = IslandController.Instance.fight.GetAureaData(squad[i]).levels[aureaLevel - 1].prefab;

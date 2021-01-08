@@ -176,7 +176,7 @@ public class FightController : MonoBehaviour
         GameStarting?.Invoke();
 
         // Load PlayerData
-        // player.SetData(StateManager.LoadPlayer());
+        player.SetData(Player.Instance);
 
         //Load Enemy Data
 

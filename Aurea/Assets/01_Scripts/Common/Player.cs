@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
+[Serializable]
 public class Player : MonoBehaviour
 {
     #region Singelton
@@ -25,7 +27,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(Player.Instance);
+        Debug.Log(Player.Instance.NAME);
         DontDestroyOnLoad(this);
         SceneManager.LoadSceneAsync(GameSceneName);
     }
