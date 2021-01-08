@@ -35,7 +35,7 @@ public class Aurea : MonoBehaviour
         }
         set
         {
-            if (player.GetAPLeft() >= value.GetCosts()) 
+            if (value && player.GetAPLeft() >= value.GetCosts()) 
                 _activeSkill = value;
             else
                 _activeSkill = null;

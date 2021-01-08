@@ -9562,6 +9562,7 @@ MonoBehaviour:
     squad: []
     items: []
     arMode: 1
+    animationsOn: 1
 --- !u!1 &1290146362
 GameObject:
   m_ObjectHideFlags: 0
@@ -16023,7 +16024,6 @@ MonoBehaviour:
   - {fileID: 442564392}
   - {fileID: 1950486883}
   - {fileID: 1687313707}
-  selectedController: {fileID: 0}
   roundTime: 30
   waitBetweenClicks: 0.5
 --- !u!114 &1588246681
@@ -17938,6 +17938,7 @@ MonoBehaviour:
     - Golem
     items: []
     arMode: 1
+    animationsOn: 1
   actionPoints: 15
   isOnTurn: 1
   aureaInstances:
@@ -20482,6 +20483,7 @@ MonoBehaviour:
     - Golem
     items: []
     arMode: 1
+    animationsOn: 1
   actionPoints: 15
   isOnTurn: 0
   aureaInstances:

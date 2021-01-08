@@ -41,11 +41,15 @@ public class PlayerData
 
     [SerializeField]
     private bool arMode = true;
+
+    [SerializeField]
+    private bool animationsOn = true;
     #endregion
 
 
     #region Functions
-
+    public bool AnimationsOn() { return animationsOn; }
+    public void SetAnimations(bool _anim) { animationsOn = _anim; }
     public List<string> GetSquad() { return squad; }
     public List<PlayerAureaData> GetAurea() { return playerAureaData; }
     public void AddAurea(PlayerAureaData _aurea)
