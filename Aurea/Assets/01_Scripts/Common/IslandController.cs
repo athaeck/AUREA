@@ -32,10 +32,68 @@ public class IslandController : MonoBehaviour
     }
     #endregion
 
-    private Island activeIsland = Island.SkyIsland;
-    private SkyIslandController skyIsland = null;
-    private TempleController temple = null;
-    private FightController fight = null;
+    private SkyIslandController _skyIsland;
+    public SkyIslandController skyIsland
+    {
+        get
+        {
+            if (_skyIsland == null)
+                FindIslands();
+            return _skyIsland;
+        }
+        private set
+        {
+            _skyIsland = value;
+        }
+    }
+
+    private TempleController _temple;
+    public TempleController temple
+    {
+        get
+        {
+            if (_temple == null)
+                FindIslands();
+            return _temple;
+        }
+        private set
+        {
+            _temple = value;
+        }
+    }
+
+    private FightController _fight;
+    public FightController fight
+    {
+        get
+        {
+            if (_fight == null)
+                FindIslands();
+            return _fight;
+        }
+        private set
+        {
+            _fight = value;
+        }
+    }
+    
+    [SerializeField]
+    private Island _activeIsland;
+    public Island activeIsland
+    {
+        get
+        {
+            return _activeIsland;
+        }
+        private set
+        {
+            _activeIsland = value;
+        }
+    }
+
+    private void Start() {
+        ChangeActiveIsland(activeIsland);
+    }
 
     public void FindIslands()
     {
@@ -43,37 +101,40 @@ public class IslandController : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         scene.GetRootGameObjects(rootObjects);
 
-        foreach(GameObject rootObject in rootObjects) {
+        foreach (GameObject rootObject in rootObjects)
+        {
             IslandController.Instance.FindIslandsRecursive(rootObject);
         }
     }
 
-    void FindIslandsRecursive(GameObject root) {
+    void FindIslandsRecursive(GameObject root)
+    {
 
-            SkyIslandController skyIslandController = root.GetComponent<SkyIslandController>();
-            TempleController templeController = root.GetComponent<TempleController>();
-            FightController fightController = root.GetComponent<FightController>();
+        SkyIslandController skyIslandController = root.GetComponent<SkyIslandController>();
+        TempleController templeController = root.GetComponent<TempleController>();
+        FightController fightController = root.GetComponent<FightController>();
 
-            if (skyIslandController)
-                skyIsland = skyIslandController;
+        if (skyIslandController)
+            _skyIsland = skyIslandController;
 
-            if (templeController)
-                temple = templeController;
+        if (templeController)
+            _temple = templeController;
 
-            if (fightController)
-                fight = fightController;
+        if (fightController)
+            _fight = fightController;
 
-            if(skyIsland && temple && fight)
-                return;
-            
-            foreach(Transform child in root.transform) {
-                FindIslandsRecursive(child.gameObject);
-            }
+        if (_skyIsland && _temple && _fight)
+            return;
+
+        foreach (Transform child in root.transform)
+        {
+            FindIslandsRecursive(child.gameObject);
+        }
     }
 
     public void ChangeActiveIsland(Island _island)
     {
-        if(!skyIsland || !temple || !fight)
+        if (!_skyIsland || !_temple || !_fight)
             IslandController.Instance.FindIslands();
 
         switch (_island)
@@ -101,5 +162,18 @@ public class IslandController : MonoBehaviour
                 break;
         }
         activeIsland = _island;
+    }
+
+    public void OpenSkyIsland()
+    {
+        ChangeActiveIsland(Island.SkyIsland);
+    }
+    public void OpenTemple()
+    {
+        ChangeActiveIsland(Island.TempleOfDoom);
+    }
+    public void OpenFight()
+    {
+        ChangeActiveIsland(Island.ChickenFight);
     }
 }

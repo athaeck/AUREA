@@ -26,6 +26,9 @@ public class PlayerData
     private int money = 0;
 
     [SerializeField]
+    private bool ar = true;
+
+    [SerializeField]
     private List<PlayerAureaData> playerAureaData = new List<PlayerAureaData>();
 
     [SerializeField]
@@ -35,17 +38,22 @@ public class PlayerData
     private List<PlayerItemData> items = new List<PlayerItemData>();
 
     private Difficulty difficulty;
+
+    [SerializeField]
+    private bool arMode = true;
     #endregion
 
 
     #region Functions
 
     public List<string> GetSquad() { return squad; }
+    public List<PlayerAureaData> GetAurea() { return playerAureaData; }
     public void AddAurea(PlayerAureaData _aurea)
     {
         playerAureaData.Add(_aurea);
     }
     public void AddAureaToSquad(string _aurea) { squad.Add(_aurea); }
+    public void RemoveAureaToSquad(string _aurea) { squad.Remove(_aurea); }
     public int GetAureaLevel(string name)
     {
         foreach (PlayerAureaData data in playerAureaData)
@@ -73,6 +81,12 @@ public class PlayerData
     public Difficulty GetDifficulty()
     {
         return difficulty;
+    }
+    public bool IsArOn() { return ar; }
+    public void SwitchARMode()
+    {
+        ar = !ar;
+        StateManager.SavePlayer(this);
     }
     #endregion
 }
