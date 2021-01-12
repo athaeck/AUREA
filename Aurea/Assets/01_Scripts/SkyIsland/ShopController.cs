@@ -21,6 +21,9 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     private ItemHUDController itemHUDController = null;
 
+    [SerializeField]
+    private int maxItemCount = 5;
+
     private ItemData activeItem = null;
 
     private void Awake()
@@ -94,7 +97,7 @@ public class ShopController : MonoBehaviour
     {
         if(activeItem != null)
         {
-            if(Player.Instance.GetMoney() - activeItem.GetPrice() > 0)
+            if(Player.Instance.GetMoney() - activeItem.GetPrice() > 0 && Player.Instance.GetItems().Count <= maxItemCount)
              {
                 PlayerItemData item = new PlayerItemData();
                 item.amount = activeItem.GetPrice();
