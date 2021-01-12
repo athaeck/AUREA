@@ -7,11 +7,11 @@ public class SkillController : MonoBehaviour
     protected Damage information = null;
     public void StartAttack()
     {
-        information.sender.GetPlayer().GetGameController().StartUsingSkill();
+        IslandController.Instance.fight.StartUsingSkill();
     }
 
     public void EndAttack()
     {
-        information.sender.GetPlayer().GetGameController().EndUsingSkill();
+        IslandController.Instance.fight.EndUsingSkill();
     }
 }

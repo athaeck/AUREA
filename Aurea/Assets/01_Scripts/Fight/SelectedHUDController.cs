@@ -51,10 +51,10 @@ public class SelectedHUDController : MonoBehaviour
         healthSlider.value = health;
     }
 
-    public void UseSkill(int number)
-    {
-        Skill skillToUse = selected.GetSkills()[number];
-        selected.GetPlayer().SelectSkill(skillToUse);
-    }
+    // public void UseSkill(int number)
+    // {
+    //     Skill skillToUse = selected.GetSkills()[number];
+    //     selected.GetPlayer().SelectSkill(skillToUse);
+    // }
 
 }

@@ -13,7 +13,7 @@ public enum Island
 public class IslandController : MonoBehaviour
 {
     #region Singleton
-    public static IslandController _instance;
+    private static IslandController _instance;
     public static IslandController Instance
     {
         get
@@ -76,7 +76,7 @@ public class IslandController : MonoBehaviour
             _fight = value;
         }
     }
-    
+
     [SerializeField]
     private Island _activeIsland;
     public Island activeIsland
@@ -91,7 +91,8 @@ public class IslandController : MonoBehaviour
         }
     }
 
-    private void Start() {
+    private void Start()
+    {
         ChangeActiveIsland(activeIsland);
     }
 
@@ -162,6 +163,7 @@ public class IslandController : MonoBehaviour
                 break;
         }
         activeIsland = _island;
+        CameraController.Instance?.ChangeIsland(activeIsland, Player.Instance.IsArOn());
     }
 
     public void OpenSkyIsland()

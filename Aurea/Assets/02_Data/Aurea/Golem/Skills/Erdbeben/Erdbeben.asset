@@ -15,10 +15,9 @@ MonoBehaviour:
   NAME: Erdbeben
   DESCRIPTION: "Ersch\xFCttere den Boden"
   ID: GOLSKI#003
-  costs: 1
+  costs: 5
   skillType: 0
   modifier: []
   physicalDamageMultiplier: 30
   attackPrefab: {fileID: 8560728659125216114, guid: 64ae620918121c642a2135cc0d5d58e0,
     type: 3}
-  attackDelay: 1.8

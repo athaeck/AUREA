@@ -18,6 +18,11 @@ TagManager:
   - Shop
   - Item
   - Locked
+  - UI
+  - FirstSkill
+  - SecondSkill
+  - ThirdSkill
+  - FourthSkill
   layers:
   - Default
   - TransparentFX

@@ -21,14 +21,13 @@ public class Erdbeben : Skill
         controller.TakeInformations(dmg);
     }
 
-    public override bool IsUsable(Damage dmg)
+    public override bool IsTargetValid(Aurea _aurea, Aurea _sender)
     {
-        if (dmg.sender == dmg.target)
-            return false;
+        return true;
+    }
 
-        if (dmg.sender.GetPlayer() == dmg.target.GetPlayer())
-            return false;
-
+    public override bool CheckTargets(List<Aurea> _targets, Aurea _sender)
+    {
         return true;
     }
 }
