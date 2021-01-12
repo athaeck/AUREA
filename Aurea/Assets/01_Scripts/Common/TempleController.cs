@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-
+using UnityEngine.EventSystems;
+
 public class TempleController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject slots = null;
-
+    private GameObject slots = null;
+
     [SerializeField]
     private Rigidbody player = null;
 
@@ -22,17 +22,17 @@ public class TempleController : MonoBehaviour
     private int numberAurea;
 
     [SerializeField]
-    public AureaList aureaData = null;
-
-   [SerializeField]
-    private GameObject selectAureaHUD = null;
-
-    [SerializeField]
-    private GameObject viewAureaHUD = null;
-
-    [SerializeField]
-    private ButtonSelect buttonSelect = null;
-
+    public AureaList aureaData = null;
+
+   [SerializeField]
+    private GameObject selectAureaHUD = null;
+
+    [SerializeField]
+    private GameObject viewAureaHUD = null;
+
+    [SerializeField]
+    private ButtonSelect buttonSelect = null;
+
     private bool trigger = false;
 
     void Start()
@@ -82,72 +82,72 @@ public class TempleController : MonoBehaviour
                     aureaPrefab.tag = "Locked";
                     Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i], aureaPrefab.transform.rotation, slots.transform).GetComponent<Aurea>();
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
-                }
+                }
 
             }
         }
-    }
-
-    public void TakeInput(Ray ray) {
-
-        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
-        {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-                
-            Aurea hero = null;
-            if (trigger)
-            {
-                if (hit.collider.CompareTag("Aurea") && !viewAureaHUD.activeSelf)
-                {
-                    hero = hit.collider.GetComponent<Aurea>();
-                    buttonSelect.select(hero.GetName());
-                    selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(hero.transform);
-
-                    selectAureaHUD.SetActive(true);
-                }
-                else
-                {
-                    selectAureaHUD.SetActive(false);
-                }
-            }
-            if (hit.collider.CompareTag("Walkable"))
-            {
-                player.MovePosition(hit.point);
-            }
+    }
+
+    public void TakeInput(Ray ray) {
+
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+                
+            Aurea hero = null;
+            if (trigger)
+            {
+                if (hit.collider.CompareTag("Aurea") && !viewAureaHUD.activeSelf)
+                {
+                    hero = hit.collider.GetComponent<Aurea>();
+                    buttonSelect.select(hero.GetName());
+                    selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(hero.transform);
+
+                    selectAureaHUD.SetActive(true);
+                }
+                else
+                {
+                    selectAureaHUD.SetActive(false);
+                }
+            }
+            if (hit.collider.CompareTag("Walkable"))
+            {
+                player.MovePosition(hit.point);
+            }
         }       
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Aurea"))
-        {
-            trigger = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Aurea"))
-        {
-            trigger = false;
-            selectAureaHUD.SetActive(false);
-        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Aurea"))
+        {
+            trigger = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Aurea"))
+        {
+            trigger = false;
+            selectAureaHUD.SetActive(false);
+        }
     }
 
 
 
     public void ResetIsland()
-    {
-        Aurea[] all_aurea = null;
-        all_aurea = GameObject.FindObjectsOfType<Aurea>();
-
-        foreach (Aurea aurea in all_aurea)
-        {
-                DestroyImmediate(aurea.gameObject);
-        }
-
+    {
+        Aurea[] all_aurea = null;
+        all_aurea = GameObject.FindObjectsOfType<Aurea>();
+
+        foreach (Aurea aurea in all_aurea)
+        {
+                DestroyImmediate(aurea.gameObject);
+        }
+
         data = Player.Instance;
         CreateSpiral();
 

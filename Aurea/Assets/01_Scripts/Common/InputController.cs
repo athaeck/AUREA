@@ -19,13 +19,13 @@ public class InputController : MonoBehaviour
             touch = Input.GetTouch(0);
             ray = CameraController.Instance.activeCamera.ScreenPointToRay(touch.position);
         }
-        else if (Input.GetMouseButton(0))
+        else if(Input.GetMouseButton(0))
         {
             ray = CameraController.Instance.activeCamera.ScreenPointToRay(Input.mousePosition);
         }
         else { return; }
 
-        switch (IslandController.Instance.activeIsland)
+        switch(IslandController.Instance.activeIsland)
         {
             case Island.SkyIsland:
                 IslandController.Instance.skyIsland.TakeInput(ray);

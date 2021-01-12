@@ -75,6 +75,13 @@ public class PlayerData
     public int GetMoney() { return money; }
     public void AddMoney(int amount) { money += amount; }
 
+    public void BuyItem(int amount, PlayerItemData item)
+    {
+       
+        money -= amount; 
+        items.Add(item);
+    }
+
     public void SetDifficulty(Difficulty df)
     {
         difficulty = df;
@@ -88,6 +95,14 @@ public class PlayerData
     {
         ar = !ar;
         StateManager.SavePlayer(this);
+    }
+    public void AddItem(PlayerItemData item)
+    {
+        items.Add(item);
+    }
+    public List<PlayerItemData> GetItems()
+    {
+        return items;
     }
     #endregion
 }

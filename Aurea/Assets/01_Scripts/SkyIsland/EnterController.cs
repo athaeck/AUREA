@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnterController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class EnterController : MonoBehaviour
     private Camera cam = null;
 
     [SerializeField]
+    private SkyIslandController skyIslandController = null;
+
+    [SerializeField]
     private GameObject exitShopHud = null;
 
     private GameObject characterPosition = null;
@@ -20,10 +24,14 @@ public class EnterController : MonoBehaviour
     [SerializeField]
     private GameObject character = null;
 
+    [SerializeField]
+    private InventoryController inventoryController = null;
+
     private bool collided = false;
 
     private bool armode = true;
 
+    [SerializeField]
     private Transform safeCamPosition = null;
 
     private void Awake()
@@ -33,15 +41,17 @@ public class EnterController : MonoBehaviour
             shopCamPosition = shopController.GetCamPosition();
             characterPosition = shopController.GetCharacterPosition();
         }
-        ReactiveProps();
-        safeCamPosition = cam.transform;
+        if(skyIslandController != null)
+        {
+            ReactiveProps();
+        }
        
     }
 
     private void ReactiveProps()
     {
-        // collided = StateController.Instance.GetCollided();
-     //   armode = Player.Instance.GetArMode();
+        collided = skyIslandController.GetCollided();
+        armode = Player.Instance.IsArOn();
       // armode = true;
     }
 
@@ -53,9 +63,9 @@ public class EnterController : MonoBehaviour
     {
         if(armode == true)
         {
-            if(exitShopHud != null)
+            if(exitShopHud != null && skyIslandController != null)
             {
-                StateController.Instance.SetWalkable(false);
+                skyIslandController.SetStaticmode(true);
                 exitShopHud.SetActive(true);
                 cam.cullingMask = 1 << 9;
             }
@@ -65,9 +75,10 @@ public class EnterController : MonoBehaviour
             if(exitShopHud != null)
             {
                 exitShopHud.SetActive(true);
-                StateController.Instance.SetWalkable(false);
+                skyIslandController.SetStaticmode(true);
                 if(characterPosition != null && shopCamPosition != null && character != null)
                 {
+                    
                     cam.transform.position = shopCamPosition.transform.position;
                     cam.transform.rotation = shopCamPosition.transform.rotation;
                     character.transform.position = characterPosition.transform.position;
@@ -80,13 +91,30 @@ public class EnterController : MonoBehaviour
         if(shopController != null)   shopController.ActivateItemHUD(item,gobject);
      
     }
+
+    public void EnterInventory()
+    {
+        if(inventoryController != null)
+        {
+            inventoryController.InitInventory();
+        }
+    }
+
+    public void ExitInventory()
+    {
+        if(inventoryController != null)
+        {
+            inventoryController.Exit();
+        }
+    }
+
     public void ExitShop()
     {
         if(armode == true)
         {
             if(exitShopHud != null)
             {
-                StateController.Instance.SetWalkable(true);
+                skyIslandController.SetStaticmode(false);
                 exitShopHud.SetActive(false);
                 cam.cullingMask = LayerMask.NameToLayer("Everything");
             }
@@ -96,7 +124,12 @@ public class EnterController : MonoBehaviour
             if(exitShopHud != null)
             {
                 exitShopHud.SetActive(false);
-                StateController.Instance.SetWalkable(true);
+                skyIslandController.SetStaticmode(false);
+                if(shopController!= null)
+                {
+                    ItemHUDController ihc = shopController.GetItemHUDController();
+                    ihc.CloseHUD();
+                }
                 if(cam != null)
                 {
                     cam.transform.position = safeCamPosition.position;

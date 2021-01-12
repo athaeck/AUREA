@@ -24,9 +24,9 @@ public class ItemData : MonoBehaviour
     {
         return description;
     }
-    public string GetPrice()
+    public int GetPrice()
     {
-        return price.ToString();
+        return price;
     }
 
 }

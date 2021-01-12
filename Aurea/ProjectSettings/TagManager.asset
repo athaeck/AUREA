@@ -18,6 +18,8 @@ TagManager:
   - Shop
   - Item
   - Locked
+  - To-AureaSelect
+  - Difficulty
   - UI
   - FirstSkill
   - SecondSkill

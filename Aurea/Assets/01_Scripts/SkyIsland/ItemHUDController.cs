@@ -70,4 +70,5 @@ public class ItemHUDController : MonoBehaviour
         ActivateHUD(b);
         SetPosition(tr);
     }
+  
 }

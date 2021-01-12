@@ -21,6 +21,9 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     private ItemHUDController itemHUDController = null;
 
+    [SerializeField]
+    private int maxItemCount = 5;
+
     private ItemData activeItem = null;
 
     private void Awake()
@@ -74,7 +77,7 @@ public class ShopController : MonoBehaviour
         activeItem = item;
         string title = item.GetTitle();
         string description = item.GetDescription();
-        string price = item.GetPrice();
+        string price = item.GetPrice().ToString();
         if(itemHUDController != null)
         {
             itemHUDController.Init(title,description,price,true, gobject.transform);
@@ -86,11 +89,25 @@ public class ShopController : MonoBehaviour
     {
         return characterPosition;
     }
+    public ItemHUDController GetItemHUDController()
+    {
+        return itemHUDController;
+    }
     public void BuyItem()
     {
         if(activeItem != null)
         {
-            Debug.Log(activeItem.GetPrice());
+            if(Player.Instance.GetMoney() - activeItem.GetPrice() > 0 && Player.Instance.GetItems().Count <= maxItemCount)
+             {
+                PlayerItemData item = new PlayerItemData();
+                item.amount = activeItem.GetPrice();
+                item.name = activeItem.GetTitle();
+                Player.Instance.BuyItem(activeItem.GetPrice(),item);
+                itemHUDController.CloseHUD();
+           }
+          
+            
         }
     }
+ 
 }
