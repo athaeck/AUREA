@@ -105,10 +105,7 @@ public class ShopController : MonoBehaviour
                 Player.Instance.BuyItem(activeItem.GetPrice(),item);
                 itemHUDController.CloseHUD();
            }
-            else
-            {
-                Debug.Log("Not enough money");
-            }
+          
             
         }
     }
