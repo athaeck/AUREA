@@ -6,7 +6,7 @@ using UnityEngine;
 // [RequireComponent(typeof(Animator))]
 public class Aurea : MonoBehaviour
 {
-    public Action StartAttack;
+    public Action<Damage> StartAttack;
     public Action ChangedLifepoints;
     public Action<Aurea> Died;
     public Action SkillCancled;
@@ -83,7 +83,7 @@ public class Aurea : MonoBehaviour
     {
         Debug.Log("Using SKill : " + activeSkill.name + "on n targets: " + targets.Count);
         Damage dmg = GetDamage(targets, activeSkill);
-        StartAttack?.Invoke();
+        StartAttack?.Invoke(dmg);
         player.RemoveAP(activeSkill.GetCosts());
         activeSkill.Use(dmg);
         CancelSkill();

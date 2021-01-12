@@ -15,11 +15,11 @@ public class AureaAnimationController : MonoBehaviour
         anim = GetComponent<Animator>();
         aurea = GetComponent<Aurea>();
         aurea.StartAttack += Attack;
-        aurea.GetPlayer().HasWon += Won;
+        //aurea.GetPlayer().HasWon += Won;
         aurea.GotHit += GotHit;
     }
 
-    public void Attack()
+    public void Attack(Damage dmg)
     {
         anim.SetTrigger("Attack");
     }

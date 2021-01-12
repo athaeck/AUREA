@@ -52,6 +52,8 @@ public class FightController : MonoBehaviour
 
     public void TakeInput(Ray ray)
     {
+        if (justClicked || !player.IsOnTurn()) { return; }
+
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
         {
             EvaluateInput(hit);
@@ -60,67 +62,14 @@ public class FightController : MonoBehaviour
 
     public void TakeInput(Touch touch)
     {
-        if (justClicked || !player.IsOnTurn()) { return; }
-
         Ray ray = CameraController.Instance.activeCamera.ScreenPointToRay(touch.position);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
-        {
-            EvaluateInput(hit);
-
-            // if (hit.collider.CompareTag("UI"))
-            //     return;
-
-            // if (hit.collider.CompareTag("FirstSkill"))
-            // {
-            //     selectedController.UseSkill(0);
-            //     return;
-            // }
-            // if (hit.collider.CompareTag("SecondSkill"))
-            // {
-            //     selectedController.UseSkill(1);
-            //     return;
-            // }
-            // if (hit.collider.CompareTag("ThirdSkill"))
-            // {
-            //     selectedController.UseSkill(2);
-            //     return;
-            // }
-            // if (hit.collider.CompareTag("FourthSkill"))
-            // {
-            //     selectedController.UseSkill(3);
-            //     return;
-            // }
-
-            // Debug.Log(hit.collider.tag);
-
-            // Aurea hero = null;
-            // if (hit.collider.CompareTag("Aurea"))
-            // {
-            //     hero = hit.collider.GetComponent<Aurea>();
-            //     StartCoroutine(WaitBetweetClick());
-            // }
-            // player.Select(hero);
-
-            // if (hit.collider.CompareTag("EndTurn"))
-            // {
-            //     player.ManuallyEndTurn();
-            //     StartCoroutine(WaitBetweetClick());
-            // }
-
-            // if (hit.collider.CompareTag("Inventory"))
-            // {
-            //     Debug.Log("Open Inventar");
-            //     StartCoroutine(WaitBetweetClick());
-            // }
-        }
+        TakeInput(ray);
     }
 
     private void EvaluateInput(RaycastHit hit)
     {
-        if (justClicked) return;
-
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (justClicked || EventSystem.current.IsPointerOverGameObject()) return;
 
         Aurea hero = null;
 
@@ -182,7 +131,7 @@ public class FightController : MonoBehaviour
         player.SetData(Player.Instance);
 
         //Load Enemy Data
-
+        //Its HardCoded right now
 
         LoadedPlayer?.Invoke(player);
         player.StartGame(playerSpawnpoints);
