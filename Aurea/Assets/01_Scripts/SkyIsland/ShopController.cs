@@ -86,15 +86,28 @@ public class ShopController : MonoBehaviour
     {
         return characterPosition;
     }
+    public ItemHUDController GetItemHUDController()
+    {
+        return itemHUDController;
+    }
     public void BuyItem()
     {
         if(activeItem != null)
         {
-            PlayerItemData item = new PlayerItemData();
-            item.amount = activeItem.GetPrice();
-            item.name = activeItem.GetTitle();
-            Player.Instance.BuyItem(activeItem.GetPrice(),item);
-            Debug.Log("Item buyed");
+            if(Player.Instance.GetMoney() - activeItem.GetPrice() > 0)
+            {
+                PlayerItemData item = new PlayerItemData();
+                item.amount = activeItem.GetPrice();
+                item.name = activeItem.GetTitle();
+                Player.Instance.BuyItem(activeItem.GetPrice(),item);
+                itemHUDController.CloseHUD();
+            }
+            else
+            {
+                Debug.LogError("Not enough money");
+            }
+            
         }
     }
+ 
 }

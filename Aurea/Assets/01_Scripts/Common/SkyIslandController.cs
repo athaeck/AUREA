@@ -67,7 +67,6 @@ public class SkyIslandController : MonoBehaviour
              layerMask = ~layerMask;
         if(Physics.Raycast(ray,out RaycastHit hit,float.MaxValue,layerMask))
         {
-            Debug.Log(staticmode);
             if(EventSystem.current.IsPointerOverGameObject())
                return;
 

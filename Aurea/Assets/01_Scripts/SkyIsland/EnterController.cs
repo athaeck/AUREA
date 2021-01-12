@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnterController : MonoBehaviour
 {
@@ -23,10 +24,14 @@ public class EnterController : MonoBehaviour
     [SerializeField]
     private GameObject character = null;
 
+    [SerializeField]
+    private GameObject inventoryHUD = null;
+
     private bool collided = false;
 
     private bool armode = true;
 
+    [SerializeField]
     private Transform safeCamPosition = null;
 
     private void Awake()
@@ -40,7 +45,6 @@ public class EnterController : MonoBehaviour
         {
             ReactiveProps();
         }
-        safeCamPosition = cam.transform;
        
     }
 
@@ -61,7 +65,6 @@ public class EnterController : MonoBehaviour
         {
             if(exitShopHud != null && skyIslandController != null)
             {
-                //StateController.Instance.SetWalkable(false);
                 skyIslandController.SetStaticmode(true);
                 exitShopHud.SetActive(true);
                 cam.cullingMask = 1 << 9;
@@ -72,10 +75,10 @@ public class EnterController : MonoBehaviour
             if(exitShopHud != null)
             {
                 exitShopHud.SetActive(true);
-                // StateController.Instance.SetWalkable(false);
                 skyIslandController.SetStaticmode(true);
                 if(characterPosition != null && shopCamPosition != null && character != null)
                 {
+                    
                     cam.transform.position = shopCamPosition.transform.position;
                     cam.transform.rotation = shopCamPosition.transform.rotation;
                     character.transform.position = characterPosition.transform.position;
@@ -91,12 +94,19 @@ public class EnterController : MonoBehaviour
 
     public void EnterInventory()
     {
-
+        if(inventoryHUD != null)
+        {
+            inventoryHUD.transform.position = character.transform.position;
+            inventoryHUD.SetActive(true);
+        }
     }
 
     public void ExitInventory()
     {
-
+        if(inventoryHUD != null)
+        {
+            inventoryHUD.SetActive(false);
+        }
     }
 
     public void ExitShop()
@@ -105,7 +115,6 @@ public class EnterController : MonoBehaviour
         {
             if(exitShopHud != null)
             {
-                //StateController.Instance.SetWalkable(true);
                 skyIslandController.SetStaticmode(false);
                 exitShopHud.SetActive(false);
                 cam.cullingMask = LayerMask.NameToLayer("Everything");
@@ -116,8 +125,12 @@ public class EnterController : MonoBehaviour
             if(exitShopHud != null)
             {
                 exitShopHud.SetActive(false);
-                // StateController.Instance.SetWalkable(true);
                 skyIslandController.SetStaticmode(false);
+                if(shopController!= null)
+                {
+                    ItemHUDController ihc = shopController.GetItemHUDController();
+                    ihc.CloseHUD();
+                }
                 if(cam != null)
                 {
                     cam.transform.position = safeCamPosition.position;

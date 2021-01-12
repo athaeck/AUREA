@@ -76,10 +76,9 @@ public class PlayerData
 
     public void BuyItem(int amount, PlayerItemData item)
     {
+       
+        money -= amount; 
         items.Add(item);
-        Debug.Log("before: "+ money);
-        money -= amount;
-        Debug.Log("after: " + money);
     }
 
     public void SetDifficulty(Difficulty df)
