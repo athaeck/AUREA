@@ -107,7 +107,7 @@ public class ShopController : MonoBehaviour
            }
             else
             {
-                Debug.LogError("Not enough money");
+                Debug.Log("Not enough money");
             }
             
         }

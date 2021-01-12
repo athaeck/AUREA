@@ -29,7 +29,6 @@ public class SIHUDController : MonoBehaviour
         {
             if(portalHUD != null)
             {
-                Debug.Log("ja");
                 ControlPortal(true,"Durch dieses Portal gelangst du zur Aurea Auswahl");
                 if(skyIslandController != null)
                 {
@@ -77,7 +76,6 @@ public class SIHUDController : MonoBehaviour
         }
         if(other.CompareTag("To-AureaSelect"))
         {
-            Debug.Log("nein");
             ControlPortal(false);
             if(skyIslandController != null)
             {
