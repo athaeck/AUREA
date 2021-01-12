@@ -87,7 +87,6 @@ public class FightController : MonoBehaviour
 
     public void ResetIsland()
     {
-        ClearSpawnpoints();
         ResetFight?.Invoke();
         StartGame();
     }

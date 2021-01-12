@@ -55,7 +55,10 @@ public class PlayerController : MonoBehaviour
 
     void ResetPlayer()
     {
-        Debug.Log("To DO Reeset Player");
+        foreach (Aurea aurea in aureaInstances)
+        {
+            DestroyImmediate(aurea.gameObject);
+        }
     }
 
     void InstantiateSquad(List<GameObject> spawnPoints)
@@ -92,7 +95,7 @@ public class PlayerController : MonoBehaviour
         EndedTurn?.Invoke();
         isOnTurn = false;
 
-        if(selected) 
+        if (selected)
             selected.CancelSkill();
     }
 
