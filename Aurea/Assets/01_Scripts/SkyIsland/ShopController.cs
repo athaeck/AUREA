@@ -90,7 +90,10 @@ public class ShopController : MonoBehaviour
     {
         if(activeItem != null)
         {
-            Player.Instance.BuyItem(activeItem.GetPrice(),activeItem);
+            PlayerItemData item = new PlayerItemData();
+            item.amount = activeItem.GetPrice();
+            item.name = activeItem.GetTitle();
+            Player.Instance.BuyItem(activeItem.GetPrice(),item);
             Debug.Log("Item buyed");
         }
     }

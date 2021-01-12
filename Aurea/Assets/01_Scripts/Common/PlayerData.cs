@@ -35,7 +35,7 @@ public class PlayerData
     private List<string> squad = new List<string>();
 
     [SerializeField]
-    private List<ItemData> items = new List<ItemData>();
+    private List<PlayerItemData> items = new List<PlayerItemData>();
 
     private Difficulty difficulty;
 
@@ -74,7 +74,7 @@ public class PlayerData
     public int GetMoney() { return money; }
     public void AddMoney(int amount) { money += amount; }
 
-    public void BuyItem(int amount, ItemData item)
+    public void BuyItem(int amount, PlayerItemData item)
     {
         items.Add(item);
         Debug.Log("before: "+ money);
@@ -96,11 +96,11 @@ public class PlayerData
         ar = !ar;
         StateManager.SavePlayer(this);
     }
-    public void AddItem(ItemData item)
+    public void AddItem(PlayerItemData item)
     {
         items.Add(item);
     }
-    public List<ItemData> GetItems()
+    public List<PlayerItemData> GetItems()
     {
         return items;
     }
