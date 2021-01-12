@@ -25,7 +25,7 @@ public class EnterController : MonoBehaviour
     private GameObject character = null;
 
     [SerializeField]
-    private GameObject inventoryHUD = null;
+    private InventoryController inventoryController = null;
 
     private bool collided = false;
 
@@ -94,18 +94,17 @@ public class EnterController : MonoBehaviour
 
     public void EnterInventory()
     {
-        if(inventoryHUD != null)
+        if(inventoryController != null)
         {
-            inventoryHUD.transform.position = character.transform.position;
-            inventoryHUD.SetActive(true);
+            inventoryController.InitInventory();
         }
     }
 
     public void ExitInventory()
     {
-        if(inventoryHUD != null)
+        if(inventoryController != null)
         {
-            inventoryHUD.SetActive(false);
+            inventoryController.Exit();
         }
     }
 

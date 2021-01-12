@@ -95,13 +95,13 @@ public class ShopController : MonoBehaviour
         if(activeItem != null)
         {
             if(Player.Instance.GetMoney() - activeItem.GetPrice() > 0)
-            {
+             {
                 PlayerItemData item = new PlayerItemData();
                 item.amount = activeItem.GetPrice();
                 item.name = activeItem.GetTitle();
                 Player.Instance.BuyItem(activeItem.GetPrice(),item);
                 itemHUDController.CloseHUD();
-            }
+           }
             else
             {
                 Debug.LogError("Not enough money");

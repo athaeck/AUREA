@@ -10,19 +10,30 @@ public class InventoryController : MonoBehaviour
     [SerializeField]
     private List<GameObject> itemSpawnPlaces = new List<GameObject>();
 
-    private void Start()
+    [SerializeField]
+    private GameObject inventoryHUD = null;
+
+    public void InitInventory()
     {
         SetItems();
-        Debug.Log("Hud startet"); 
-        ownedItems = Player.Instance.GetItems();
-        Debug.Log("got items from data");
+    } 
+    public void Exit()
+    {
+        if(inventoryHUD != null)
+        {
+            inventoryHUD.SetActive(false);
+        }
     }
     private void Update()
     {
-       
+       ownedItems = Player.Instance.GetItems();
     }
     private void SetItems()
     {
+        if(inventoryHUD != null)
+        {
+            inventoryHUD.SetActive(true);
+        }
         int i = 0;
         Text buttonText;
         foreach(GameObject spawnPlace in itemSpawnPlaces)
@@ -39,10 +50,6 @@ public class InventoryController : MonoBehaviour
                 buttonText = spawnPlace.GetComponentInChildren<Text>();
                 buttonText.text = "";
             }
-
-
-
-
             i++;
         }
     }
@@ -50,5 +57,4 @@ public class InventoryController : MonoBehaviour
     {
         
     }
-
 }
