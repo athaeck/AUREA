@@ -6,11 +6,9 @@ using UnityEngine.UI;
 
 public class ButtonSelect : MonoBehaviour
 {
-    [SerializeField]
-    private TemplePlayerData selectData = null;
 
     [SerializeField]
-    private FollowTarget cam = null;
+    private Camera cam = null;
 
     [SerializeField]
     private GameObject selectAureaHUD = null;
@@ -19,6 +17,13 @@ public class ButtonSelect : MonoBehaviour
     private GameObject viewAureaHUD = null;
 
     private string selectedAurea = null;
+
+    private Vector3 oldpos = new Vector3(0, 0, 0);
+    private Quaternion oldrot = new Quaternion();
+
+    [SerializeField]
+    private Vector3 newpos = new Vector3(0, 0, 0);
+
 
     private bool team = true;
 
@@ -32,7 +37,7 @@ public class ButtonSelect : MonoBehaviour
 
     public void select(string aureaName)
     {
-        data = selectData.getPlayerData();
+        data = Player.Instance;
         selectedAurea = aureaName;
         List<string> squad = data.GetSquad();
         if (squad.Count == 0)
@@ -64,15 +69,16 @@ public class ButtonSelect : MonoBehaviour
         if (team)
         {
             data.RemoveAureaToSquad(selectedAurea);
-            selectData.setPlayerData(data);
             select(selectedAurea);
         }
-        else
-        {
-            
+        else if(data.GetSquad().Count < 5)
+        { 
             data.AddAureaToSquad(selectedAurea);
-            selectData.setPlayerData(data);
             select(selectedAurea);
+        }
+        foreach (var item in data.GetSquad())
+        {
+            Debug.Log(item.ToString());
         }
     }
 
@@ -100,9 +106,15 @@ public class ButtonSelect : MonoBehaviour
                     viewAureaHUD.GetComponent<ViewAurea>().HUDtext(g.GetComponent<Aurea>());
                     viewAureaHUD.SetActive(true);
                     position = g.transform.position;
-                    g.transform.localScale = new Vector3(2, 2, 2);
+                    g.transform.localScale = g.transform.localScale * 2;
                     g.transform.position = new Vector3(0,1,0);
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, -10));
+
+                    oldpos = cam.transform.position;
+                    oldrot = cam.transform.rotation;
+
+                    cam.transform.position = newpos;
+                    cam.transform.LookAt(g.transform.position);
                 }
             }
         }
@@ -131,6 +143,9 @@ public class ButtonSelect : MonoBehaviour
                     g.transform.localScale = new Vector3(1, 1, 1);
                     g.transform.position = position;
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, 0));
+
+                    cam.transform.position = oldpos;
+                    cam.transform.rotation = oldrot;
                 }
             }
         }
