@@ -146,7 +146,7 @@ public class TempleController : MonoBehaviour
 
         foreach (Aurea aurea in all_aurea)
         {
-                Destroy(aurea.gameObject);
+                DestroyImmediate(aurea.gameObject);
             Debug.Log("yus");
         }
 
