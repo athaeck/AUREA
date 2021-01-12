@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 368ff9578dfde1043a8cc2ab298adb09
+guid: 03d7e1f26e13f1042885f1169d6f7917
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
@@ -14,7 +14,7 @@ ModelImporter:
     second: Inkubus|Shader NodetreeAction.001
   externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
