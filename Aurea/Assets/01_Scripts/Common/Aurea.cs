@@ -9,6 +9,8 @@ public class Aurea : MonoBehaviour
     public Action<Damage> StartAttack;
     public Action ChangedLifepoints;
     public Action<Aurea> Died;
+    public Action<Aurea> Selected;
+    public Action<List<Aurea>> ChangedTargets;
     public Action SkillCancled;
     public Action GotHit;
 
@@ -35,8 +37,11 @@ public class Aurea : MonoBehaviour
         }
         set
         {
-            if (value && player.GetAPLeft() >= value.GetCosts()) 
+            if (value && player.GetAPLeft() >= value.GetCosts())
+            {
                 _activeSkill = value;
+                Selected?.Invoke(this);
+            }
             else
                 _activeSkill = null;
 
@@ -66,9 +71,25 @@ public class Aurea : MonoBehaviour
 
         Debug.Log("Took Target and have skill active: " + activeSkill.name);
 
+        foreach (Aurea target in targets)
+        {
+            if (target == _aurea)
+            {
+                targets.Remove(_aurea);
+                ChangedTargets?.Invoke(targets);
+
+                if (targets.Count <= 0)
+                {
+                    CancelSkill();
+                }
+                return;
+            }
+        }
+
         if (activeSkill.IsTargetValid(_aurea, this))
         {
             targets.Add(_aurea);
+            ChangedTargets?.Invoke(targets);
 
             if (activeSkill.CheckTargets(targets, this))
                 UseSkill();

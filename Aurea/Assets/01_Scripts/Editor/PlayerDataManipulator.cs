@@ -28,6 +28,7 @@ public class PlayerDataManipulator : EditorWindow
         playerData.money = EditorGUILayout.IntField("Money", playerData.money);
         playerData.ar = EditorGUILayout.Toggle("AR on", playerData.ar);
         playerData.difficulty = (Difficulty)EditorGUILayout.EnumPopup("Schwierigkeit", playerData.difficulty);
+        playerData.animationsOn = EditorGUILayout.Toggle("Animations on", playerData.animationsOn);
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
         EditorGUILayout.Space(20);
