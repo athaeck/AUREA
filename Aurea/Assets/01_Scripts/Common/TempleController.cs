@@ -65,12 +65,11 @@ public class TempleController : MonoBehaviour
             {
                 if (aureaData.aureas[i].NAME == CapturedAurea[j].aureaName)
                 {
+                    Debug.Log("spawn Aurea");
                     int aureaLevel = data.GetAureaLevel(CapturedAurea[j].aureaName);
                     GameObject aureaPrefab = GetAureaData(CapturedAurea[j].aureaName).levels[aureaLevel - 1].prefab;
                     Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i], aureaPrefab.transform.rotation, slots.transform).GetComponent<Aurea>();
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
-                    Rigidbody rigid = aurea.gameObject.AddComponent<Rigidbody>();
-                    rigid.useGravity = false;
                     SphereCollider collider = aurea.gameObject.AddComponent<SphereCollider>();
                     collider.center = new Vector3(0, -10, 0);
                     collider.isTrigger = true;

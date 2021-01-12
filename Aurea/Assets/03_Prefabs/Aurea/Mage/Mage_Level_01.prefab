@@ -131,3 +131,4 @@ MonoBehaviour:
   lifePointsLeft: 0
   modifier: []
   activeItems: []
+  targets: []
