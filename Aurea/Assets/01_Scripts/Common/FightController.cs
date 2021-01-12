@@ -149,7 +149,7 @@ public class FightController : MonoBehaviour
         {
             foreach (Transform child in obj.transform)
             {
-                Destroy(child.gameObject);
+                DestroyImmediate(child.gameObject);
             }
         }
         player.ResetAureaInstances();
@@ -158,7 +158,7 @@ public class FightController : MonoBehaviour
         {
             foreach (Transform child in obj.transform)
             {
-                Destroy(child.gameObject);
+                DestroyImmediate(child.gameObject);
             }
         }
         enemy.ResetAureaInstances();

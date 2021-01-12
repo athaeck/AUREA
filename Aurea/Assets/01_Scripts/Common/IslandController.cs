@@ -163,7 +163,7 @@ public class IslandController : MonoBehaviour
                 break;
         }
         activeIsland = _island;
-        CameraController.Instance.ChangeIsland(activeIsland, Player.Instance.IsArOn());
+        CameraController.Instance?.ChangeIsland(activeIsland, Player.Instance.IsArOn());
     }
 
     public void OpenSkyIsland()

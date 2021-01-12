@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
         get
         {
             if (!_instance)
-                Debug.LogError("No Instance found");
+                Debug.Log("No Instance of CameraController found");
             return _instance;
         }
     }
