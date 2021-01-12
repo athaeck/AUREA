@@ -78,10 +78,12 @@ public class EnterController : MonoBehaviour
                 skyIslandController.SetStaticmode(true);
                 if(characterPosition != null && shopCamPosition != null && character != null)
                 {
-                    
+                    FollowTarget followTarget = cam.GetComponent<FollowTarget>();
+                    followTarget.TakeTarget(null);
                     cam.transform.position = shopCamPosition.transform.position;
                     cam.transform.rotation = shopCamPosition.transform.rotation;
                     character.transform.position = characterPosition.transform.position;
+                   
                 }
             }
         }
@@ -132,8 +134,8 @@ public class EnterController : MonoBehaviour
                 }
                 if(cam != null)
                 {
-                    cam.transform.position = safeCamPosition.position;
-                    cam.transform.rotation = safeCamPosition.rotation;
+                    FollowTarget followTarget = cam.GetComponent<FollowTarget>();
+                    followTarget.TakeTarget(character.transform);
                 }
             }
         }
