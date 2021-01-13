@@ -20,77 +20,77 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BLUE_TTO_GREY
-    second: {fileID: 2100000, guid: 822d41852ab354f4eac2ebe2610a9fe9, type: 2}
+    second: {fileID: 2100000, guid: 8bdcbb844fe65384d84d219219eb1bf2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Blue
-    second: {fileID: 2100000, guid: 4ecf37da0323ed14db4ce3215b6fdf14, type: 2}
+    second: {fileID: 2100000, guid: 25de54216f986104fafa3c92a03d8238, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Horn_dunkel_blau
-    second: {fileID: 2100000, guid: fd45c62dc6ae11543be3fbb3cef70df4, type: 2}
+    second: {fileID: 2100000, guid: e0276fc4abb605243ae622b4e61b3acb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: aiStandardSurface15
-    second: {fileID: 2100000, guid: d8c343b67690d2643bafd8ce82a0d96d, type: 2}
+    second: {fileID: 2100000, guid: 4e2211b1bc178894d99aa257fa34aad3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: aiStandardSurface16
-    second: {fileID: 2100000, guid: f556402698e1b5b4f92e68ce1739f37d, type: 2}
+    second: {fileID: 2100000, guid: d82e265c41fdf794f99388b612eb9b7c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: aiStandardSurface18
-    second: {fileID: 2100000, guid: c2743edf86ab53f49b46fa4da404e7c8, type: 2}
+    second: {fileID: 2100000, guid: 57c2f8676cb9c3749b2c101e25a5355d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: aiStandardSurface22
-    second: {fileID: 2100000, guid: 9676df7f7a47c344190a6672a9c3c3ff, type: 2}
+    second: {fileID: 2100000, guid: 6d740bda7325d2f41931d34e2dc9571c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: bauch
-    second: {fileID: 2100000, guid: f79af0ca5bbcb6641b51983f6b54b395, type: 2}
+    second: {fileID: 2100000, guid: 8bc3d50a599048f44a29d27a4fa0e2bf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: between_blue
-    second: {fileID: 2100000, guid: ffb19217487654248aa28978b2936e3b, type: 2}
+    second: {fileID: 2100000, guid: 4d69df2ff432f0b46ab82cd212a3adb5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: between_blue_light
-    second: {fileID: 2100000, guid: f16ef7e9ff6cb2442bb2f831a5d5c833, type: 2}
+    second: {fileID: 2100000, guid: ee0b246a15a6f044ebf413e14977f1e9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: eye_orange
-    second: {fileID: 2100000, guid: b7ba34745e489144a941fce6a4ee54e2, type: 2}
+    second: {fileID: 2100000, guid: 3eba47a6e8f388449bd8b650c1214f77, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: horn_blue
-    second: {fileID: 2100000, guid: db771321c5386e841a75aa0585362fc8, type: 2}
+    second: {fileID: 2100000, guid: 4e6f33f5a3a98a54695f115119d4c79c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: e919cd17d2027084a9a730474e8274d7, type: 2}
+    second: {fileID: 2100000, guid: 7c413bab0d2e52d498b025c19fa2cf3e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: red
-    second: {fileID: 2100000, guid: 6622412e831413a48affde61ac211a0c, type: 2}
+    second: {fileID: 2100000, guid: f74f8dcf0094736429b0797d7b3fad7c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: white
-    second: {fileID: 2100000, guid: a6a0198091bb9454b9846fa7201e0c5f, type: 2}
+    second: {fileID: 2100000, guid: 8cdfd656c87d7324e8f32f1fb3133eb9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -117,7 +117,123 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Dragon_01_idle
+      takeName: Dragon_01_idle
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Dragon_01_GetHit
+      takeName: Dragon_01_GetHit
+      internalID: 0
+      firstFrame: 80
+      lastFrame: 109
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dragon_01_Attack
+      takeName: Dragon_01_Attack
+      internalID: 0
+      firstFrame: 109
+      lastFrame: 244
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dragon_01_Death
+      takeName: Dragon_01_Death
+      internalID: 0
+      firstFrame: 258
+      lastFrame: 346
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
