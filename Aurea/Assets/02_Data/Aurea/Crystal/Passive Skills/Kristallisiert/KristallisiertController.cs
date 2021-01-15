@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KristallReserveController : SkillController
+public class KristallisiertController : SkillController
 {
     bool isInUse = false;
     bool hitTarget = false;

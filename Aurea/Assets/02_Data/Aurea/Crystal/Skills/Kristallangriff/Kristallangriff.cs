@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kristallangriff : MonoBehaviour
+
+[CreateAssetMenu(fileName = "Kristallangriff", menuName = "Skills/Crystal/Kristallangriff")]
+public class Kristallangriff : Skill
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private float physicalDamageMultiplier = 1.3f;
+
+    [SerializeField]
+    private GameObject attackPrefab = null;
+
+    //[SerializeField]
+    //private float attackDelay = 1.8f;
+    public override void Use(Damage dmg)
     {
-        
+        dmg.physicalDamage *= physicalDamageMultiplier;
+        GameObject attack = Instantiate(attackPrefab, dmg.sender.transform);
+        ErdbebenController controller = attack.GetComponent<ErdbebenController>();
+        controller.TakeInformations(dmg);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool IsTargetValid(Aurea _aurea, Aurea _sender)
     {
-        
+        return true;
+    }
+
+    public override bool CheckTargets(List<Aurea> _targets, Aurea _sender)
+    {
+        return true;
     }
 }

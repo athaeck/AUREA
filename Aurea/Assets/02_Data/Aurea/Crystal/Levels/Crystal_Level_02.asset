@@ -18,6 +18,11 @@ MonoBehaviour:
   physicalDefense: 50
   magicalDamage: 50
   magicalDefense: 0
-  skills: []
-  passiveSkills: []
-  prefab: {fileID: 0}
+  skills:
+  - {fileID: 11400000, guid: b841adeeaba5c6944bbdfb302b1a04a7, type: 2}
+  - {fileID: 11400000, guid: fba532766a2b79e4699dc323725bfa8f, type: 2}
+  - {fileID: 11400000, guid: babfc31e65162834cbc9a19f800b157b, type: 2}
+  - {fileID: 11400000, guid: c09ab6dc571238649868d19652c4663e, type: 2}
+  passiveSkills:
+  - {fileID: 11400000, guid: 466c5b0c2ffdc3247b629bde5866bd16, type: 2}
+  prefab: {fileID: 5294269516292921911, guid: 16558ec384bbd1342b63092d2d785766, type: 3}

@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19585434542e6c74eb79adf982b6384e, type: 3}
-  m_Name: AureaList
+  m_Script: {fileID: 11500000, guid: 6a4077d7e4b5ea741957f6d4ee90700f, type: 3}
+  m_Name: KristallSplitter
   m_EditorClassIdentifier: 
-  aureas:
-  - {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
-  - {fileID: 11400000, guid: 19c7f4a9a2e97cd40af0ec83e12d3d20, type: 2}
+  NAME: Kristall Splitter
+  DESCRIPTION: 
+  ID: 
+  costs: 0
+  skillType: 0
+  modifier: []
+  physicalDamageMultiplier: 1.3
+  attackPrefab: {fileID: 0}

@@ -44,7 +44,8 @@ public class ParticleVisualizer : MonoBehaviour
         {
             if (!instantiatedParticles.ContainsKey(aurea))
             {
-                ParticleSystem newTarget = Instantiate(targetParticles, aurea.transform);
+                ParticleSystem newTarget = Instantiate(targetParticles);
+                newTarget.transform.position = aurea.transform.position;
                 instantiatedParticles.Add(aurea, newTarget);
             }
         }

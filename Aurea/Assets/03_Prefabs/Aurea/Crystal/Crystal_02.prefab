@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 19c7f4a9a2e97cd40af0ec83e12d3d20, type: 2}
-  level: 0
+  level: 2
   lifePointsLeft: 0
   modifier: []
   activeItems: []
@@ -131,22 +131,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5e1056c6f4cdae34abe057cd939003ca,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e1056c6f4cdae34abe057cd939003ca,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e1056c6f4cdae34abe057cd939003ca,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5e1056c6f4cdae34abe057cd939003ca,
         type: 3}
       propertyPath: m_Name
       value: Crystal_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e1056c6f4cdae34abe057cd939003ca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Aurea
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e1056c6f4cdae34abe057cd939003ca, type: 3}

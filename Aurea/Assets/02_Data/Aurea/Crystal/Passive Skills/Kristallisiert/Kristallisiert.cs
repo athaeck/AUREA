@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "KristallSplitter", menuName = "Skills/Crystal/KristallSplitter")]
-public class KristallSplitter : Skill
+[CreateAssetMenu(fileName = "Kristallisiert", menuName = "Skills/Crystal/Kristallisiert")]
+public class Kristallisiert : Skill
 {
     [SerializeField]
     private float physicalDamageMultiplier = 1.3f;

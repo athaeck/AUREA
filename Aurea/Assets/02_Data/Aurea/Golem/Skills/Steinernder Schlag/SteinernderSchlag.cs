@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SteinernderSchlag", menuName = "Data/Golem/SteinernderSchlag")]
+[CreateAssetMenu(fileName = "SteinernderSchlag", menuName = "Skills/Golem/SteinernderSchlag")]
 public class SteinernderSchlag : Skill
 {
     [SerializeField]

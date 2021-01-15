@@ -14,6 +14,6 @@ public class AureaLevel : ScriptableObject
     public float magicalDamage;
     public float magicalDefense;
     public List<Skill> skills;
-    public List<PassiveSkill> passiveSkills;
+    public List<Skill> passiveSkills;
     public GameObject prefab;
 }

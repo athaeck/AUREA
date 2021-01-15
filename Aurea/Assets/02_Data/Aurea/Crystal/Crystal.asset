@@ -15,4 +15,7 @@ MonoBehaviour:
   NAME: Crystal
   ID: CRYS#0001
   DESCRIPTION: Shard Spirit
-  levels: []
+  levels:
+  - {fileID: 11400000, guid: bbccf9ab638ecd64195e9456a0d6f02d, type: 2}
+  - {fileID: 11400000, guid: db37c5a0f54b19c49aeb280d347b2bc9, type: 2}
+  - {fileID: 11400000, guid: dba65ccebbaad644f953d336c59cfa66, type: 2}
