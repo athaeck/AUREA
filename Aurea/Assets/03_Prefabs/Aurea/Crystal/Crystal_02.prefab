@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 19c7f4a9a2e97cd40af0ec83e12d3d20, type: 2}
   level: 0
   lifePointsLeft: 0
   modifier: []

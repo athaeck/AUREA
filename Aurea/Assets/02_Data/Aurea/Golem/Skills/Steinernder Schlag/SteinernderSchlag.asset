@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NAME: SteinernderSchlag
   DESCRIPTION: "Ein m\xE4chtiger Schlag aus Steinen"
-  ID: GOLSKI#001
+  ID: GOLSKI#004
   costs: 5
   skillType: 0
   modifier: []
