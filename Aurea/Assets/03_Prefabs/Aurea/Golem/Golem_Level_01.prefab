@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: -4668991422249762889}
   - component: {fileID: -179899165692686118}
   - component: {fileID: 2578356375372433768}
+  - component: {fileID: 5222448965710087272}
   m_Layer: 0
   m_Name: Golem_Level_01
   m_TagString: Aurea
@@ -346,6 +347,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5222448965710087272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821775644498230501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff7392b6f2324743b6eb768918bbb54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePopup: {fileID: 2815029468477176992, guid: 414febcb4133aac488d92f537b8cb8a3,
+    type: 3}
 --- !u!1 &2560924810180233006
 GameObject:
   m_ObjectHideFlags: 0

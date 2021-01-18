@@ -9,6 +9,7 @@ public class Aurea : MonoBehaviour
     public Action<Damage> StartAttack;
     public Action<Damage> BeforeGettingHit;
     public Action<Damage> AfterGettingHit;
+    public Action<int> TookDamage;
     public Action ChangedLifepoints;
     public Action<Aurea> Died;
     public Action<Aurea> Selected;
@@ -197,6 +198,7 @@ public class Aurea : MonoBehaviour
     {
         Debug.Log("Attack amount: " + amount);
         this.lifePointsLeft -= amount;
+        TookDamage?.Invoke(Mathf.FloorToInt(amount));
         ChangedLifepoints?.Invoke();
     }
     public float GetMagicalDamage() { return data.levels[level - 1].magicalDamage; }
