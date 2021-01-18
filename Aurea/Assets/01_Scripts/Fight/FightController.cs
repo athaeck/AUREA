@@ -39,14 +39,14 @@ public class FightController : MonoBehaviour
     private List<GameObject> enemySpawnpoints = new List<GameObject>();
 
     [SerializeField]
-    private float roundTime = 30f;
+    public float roundTime = 30f;
 
     [SerializeField]
     private float waitBetweenClicks = 1f;
 
-    private PlayerController activePlayer = null;
+    public PlayerController activePlayer = null;
     private bool canInteract = true;
-    private float timeLeft = 0;
+    public float timeLeft = 0;
     private bool timerStarted = false;
     bool justClicked = false;
 
