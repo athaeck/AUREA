@@ -18,6 +18,8 @@ public static class StateManager
             stream.Close();
             return data;
         }
+
+        Debug.Log("Load - LOADED PLAYER COMPLETED");
         return CreateNewPlayerData();
     }
 
@@ -29,6 +31,8 @@ public static class StateManager
 
         formatter.Serialize(stream, data);
         stream.Close();
+
+        Player.RealodPlayerData();
         Debug.Log("Save - COMPLETED");
     }
 
@@ -46,12 +50,15 @@ public static class StateManager
             newData.AddAureaToSquad("Golem");
         }
         SavePlayer(newData);
+
+        Debug.Log("Create - CREATED NEW PLAYER COMPLETED");
         return newData;
     }
 
     public static bool DeletePlayerData()
     {
         //TODO
+        Debug.Log("Delete - DELETION OF PLAYER DATA COMPLETED");
         return false;
     }
 }

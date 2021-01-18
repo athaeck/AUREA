@@ -87,29 +87,9 @@ public class FightController : MonoBehaviour
 
     public void ResetIsland()
     {
+        LoadData();
         ResetFight?.Invoke();
         StartGame();
-    }
-
-    private void ClearSpawnpoints()
-    {
-        foreach (GameObject obj in playerSpawnpoints)
-        {
-            foreach (Transform child in obj.transform)
-            {
-                DestroyImmediate(child.gameObject);
-            }
-        }
-        player.ResetAureaInstances();
-
-        foreach (GameObject obj in enemySpawnpoints)
-        {
-            foreach (Transform child in obj.transform)
-            {
-                DestroyImmediate(child.gameObject);
-            }
-        }
-        enemy.ResetAureaInstances();
     }
 
     private void Update()
@@ -126,16 +106,9 @@ public class FightController : MonoBehaviour
     {
         GameStarting?.Invoke();
 
-        // Load PlayerData
-        player.SetData(Player.Instance);
+        LoadData();
 
-        //Load Enemy Data
-        //Its HardCoded right now
-
-        LoadedPlayer?.Invoke(player);
         player.StartGame(playerSpawnpoints);
-
-        LoadedEnemy?.Invoke(player);
         enemy.StartGame(enemySpawnpoints);
 
         player.GameOver += EndGame;
@@ -148,6 +121,17 @@ public class FightController : MonoBehaviour
 
         StartTurn(startPlayerNumber % 2 == 0 ? player : enemy);
         GameLoaded?.Invoke();
+    }
+
+    void LoadData()
+    {
+        // Load PlayerData
+        player.SetData(Player.Instance);
+        LoadedPlayer?.Invoke(player);
+
+        //Load Enemy Data
+        //Its HardCoded right now
+        LoadedEnemy?.Invoke(player);
     }
 
     int FlipCoin()

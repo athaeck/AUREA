@@ -25,6 +25,11 @@ public class Player : MonoBehaviour
 
     public string GameSceneName = "Game";
 
+    public static void RealodPlayerData()
+    {
+        _instance = StateManager.LoadPlayer();
+    }
+
     void Start()
     {
         Debug.Log(Player.Instance.NAME);

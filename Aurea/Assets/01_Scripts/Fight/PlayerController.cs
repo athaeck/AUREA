@@ -57,8 +57,10 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Aurea aurea in aureaInstances)
         {
-            DestroyImmediate(aurea.gameObject);
+            if(aurea != null)
+                DestroyImmediate(aurea.gameObject);
         }
+        aureaInstances = new List<Aurea>();
     }
 
     void InstantiateSquad(List<GameObject> spawnPoints)
