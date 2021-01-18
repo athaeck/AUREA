@@ -34,7 +34,7 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Selected(Aurea _aurea)
     {
-        ParticleSystem newSelected = Instantiate(selectedParticles, _aurea.transform);
+        ParticleSystem newSelected = Instantiate(selectedParticles, _aurea.transform.position, Quaternion.identity);
         instantiatedParticles.Add(_aurea, newSelected);
     }
 
@@ -44,8 +44,7 @@ public class ParticleVisualizer : MonoBehaviour
         {
             if (!instantiatedParticles.ContainsKey(aurea))
             {
-                ParticleSystem newTarget = Instantiate(targetParticles);
-                newTarget.transform.position = aurea.transform.position;
+                ParticleSystem newTarget = Instantiate(targetParticles, aurea.transform.position, Quaternion.identity);
                 instantiatedParticles.Add(aurea, newTarget);
             }
         }
