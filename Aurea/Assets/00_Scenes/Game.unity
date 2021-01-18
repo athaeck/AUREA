@@ -59284,5 +59284,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal
       objectReference: {fileID: 0}
+    - target: {fileID: 5628468706220679025, guid: ab1e394c38a0a4d4a96c405acbb8d285,
+        type: 3}
+      propertyPath: m_TagString
+      value: EndTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015888450765715581, guid: ab1e394c38a0a4d4a96c405acbb8d285,
+        type: 3}
+      propertyPath: m_TagString
+      value: EndTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8550476645846470211, guid: ab1e394c38a0a4d4a96c405acbb8d285,
+        type: 3}
+      propertyPath: m_TagString
+      value: EndTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613252120998004648, guid: ab1e394c38a0a4d4a96c405acbb8d285,
+        type: 3}
+      propertyPath: m_TagString
+      value: EndTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166781755501305263, guid: ab1e394c38a0a4d4a96c405acbb8d285,
+        type: 3}
+      propertyPath: m_TagString
+      value: EndTurn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab1e394c38a0a4d4a96c405acbb8d285, type: 3}

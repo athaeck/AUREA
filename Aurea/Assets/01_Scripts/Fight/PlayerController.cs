@@ -69,17 +69,9 @@ public class PlayerController : MonoBehaviour
         List<string> squad = data.GetSquad();
         foreach (GameObject spawnPoint in spawnPoints)
         {
-            // if (squad[i] == "" || squad[i] == null)
-            // {
-            //     Debug.Log("More Spawnpoints than Aureas in Squad");
-            //     break;
-            // }
-
             int aureaLevel = data.GetAureaLevel(squad[i]);
             GameObject aureaPrefab = IslandController.Instance.fight.GetAureaData(squad[i]).levels[aureaLevel - 1].prefab;
             Aurea aurea = Instantiate(aureaPrefab, spawnPoint.transform).GetComponent<Aurea>();
-            // aurea.transform.position = spawnPoint.transform.position;
-            // aurea.transform.localScale = aureaPrefab.transform.localScale;
             aurea.Init(aureaLevel, this);
             aureaInstances.Add(aurea);
             aurea.Died += AureaDied;

@@ -7,6 +7,8 @@ using UnityEngine;
 public class Aurea : MonoBehaviour
 {
     public Action<Damage> StartAttack;
+    public Action<Damage> BeforeGettingHit;
+    public Action<Damage> AfterGettingHit;
     public Action ChangedLifepoints;
     public Action<Aurea> Died;
     public Action<Aurea> Selected;
@@ -114,22 +116,40 @@ public class Aurea : MonoBehaviour
         activeSkill = null;
         SkillCancled?.Invoke();
     }
-    public void TakeDamage(Damage dmg)
+    public void TakeDamage(Damage _dmg)
     {
         Debug.Log("Got hit " + this.name);
-        switch (dmg.skill.GetSkillType())
+        BeforeGettingHit?.Invoke(_dmg);
+
+        switch (_dmg.skill.GetSkillType())
         {
             case SkillType.MAGICAL:
-                RemoveLifePoints(dmg.magicalDamage * data.levels[level - 1].magicalDefense);
+                RemoveLifePoints(_dmg.magicalDamage * data.levels[level - 1].magicalDefense);
                 break;
             case SkillType.PHYSICAL:
             default:
-                RemoveLifePoints(dmg.physicalDamage * data.levels[level - 1].physicalDefense);
+                RemoveLifePoints(_dmg.physicalDamage * data.levels[level - 1].physicalDefense);
                 break;
         }
 
         if (lifePointsLeft <= 0)
+        {
             Die();
+            return;
+        }
+
+        foreach (string modifier in _dmg.modifier)
+        {
+            System.Type modifierScript = System.Type.GetType(modifier);
+            Component component = GetComponent(modifierScript);
+
+            if (component)
+                Destroy(component);
+
+            gameObject.AddComponent(modifierScript);
+        }
+
+        AfterGettingHit?.Invoke(_dmg);
     }
 
     public void Die()
@@ -183,5 +203,6 @@ public class Aurea : MonoBehaviour
     public float GetMagicalDefence() { return data.levels[level - 1].magicalDefense; }
     public float GetPhysicalDamage() { return data.levels[level - 1].physicalDamage; }
     public float GetPhysicalDefence() { return data.levels[level - 1].physicalDefense; }
+    public AureaData GetAureaData() { return data; }
     #endregion
 }
