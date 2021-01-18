@@ -8,6 +8,7 @@ public class Damage
     public List<Aurea> targets = null;
     public float physicalDamage = 0;
     public float magicalDamage = 0;
-    public List<Modifier> modifier = new List<Modifier>();
+    public List<string> modifier = new List<string>();
+    public float attackDelay = 0;
     public Skill skill;
 }

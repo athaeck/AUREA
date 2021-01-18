@@ -15,8 +15,10 @@ MonoBehaviour:
   NAME: Kristallangriff
   DESCRIPTION: 
   ID: 
-  costs: 0
+  costs: 1
   skillType: 0
-  modifier: []
-  physicalDamageMultiplier: 1.3
-  attackPrefab: {fileID: 0}
+  modifier:
+  - Shard
+  physicalDamageMultiplier: 0.2
+  attackDelay: 2
+  animation: {fileID: 11400000, guid: 3d961501c94b8584fa8f0faa09753ab0, type: 2}

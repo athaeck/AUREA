@@ -24,7 +24,7 @@ public class Aurea : MonoBehaviour
     [SerializeField]
     private float lifePointsLeft = 0;
 
-    public List<Modifier> modifier = new List<Modifier>();
+    public List<Component> modifier = new List<Component>();
     public List<ItemData> activeItems = new List<ItemData>();
 
     private PlayerController player = null;
@@ -93,8 +93,6 @@ public class Aurea : MonoBehaviour
 
             if (activeSkill.CheckTargets(targets, this))
                 UseSkill();
-            else
-                CancelSkill();
         }
         else
             CancelSkill();
@@ -122,11 +120,11 @@ public class Aurea : MonoBehaviour
         switch (dmg.skill.GetSkillType())
         {
             case SkillType.MAGICAL:
-                RemoveLifePoints(dmg.magicalDamage - data.levels[level - 1].magicalDamage);
+                RemoveLifePoints(dmg.magicalDamage * data.levels[level - 1].magicalDefense);
                 break;
             case SkillType.PHYSICAL:
             default:
-                RemoveLifePoints(dmg.physicalDamage - data.levels[level - 1].physicalDefense);
+                RemoveLifePoints(dmg.physicalDamage * data.levels[level - 1].physicalDefense);
                 break;
         }
 
@@ -137,6 +135,13 @@ public class Aurea : MonoBehaviour
     public void Die()
     {
         Died?.Invoke(this);
+    }
+
+    IEnumerator WaitTillApplyDamage(float _attackDelay)
+    {
+        Debug.Log("Im here");
+        yield return new WaitForSeconds(_attackDelay);
+        Debug.Log("Now im here");
     }
 
     #region Getter, Setter
@@ -170,10 +175,10 @@ public class Aurea : MonoBehaviour
     }
     public void RemoveLifePoints(float amount)
     {
+        Debug.Log("Attack amount: " + amount);
         this.lifePointsLeft -= amount;
         ChangedLifepoints?.Invoke();
     }
-
     public float GetMagicalDamage() { return data.levels[level - 1].magicalDamage; }
     public float GetMagicalDefence() { return data.levels[level - 1].magicalDefense; }
     public float GetPhysicalDamage() { return data.levels[level - 1].physicalDamage; }

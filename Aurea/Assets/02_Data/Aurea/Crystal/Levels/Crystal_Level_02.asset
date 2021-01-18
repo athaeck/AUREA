@@ -15,9 +15,9 @@ MonoBehaviour:
   level: 2
   lifePoints: 1300
   physicalDamage: 220
-  physicalDefense: 50
+  physicalDefense: 0.5
   magicalDamage: 50
-  magicalDefense: 0
+  magicalDefense: 1
   skills:
   - {fileID: 11400000, guid: b841adeeaba5c6944bbdfb302b1a04a7, type: 2}
   - {fileID: 11400000, guid: fba532766a2b79e4699dc323725bfa8f, type: 2}

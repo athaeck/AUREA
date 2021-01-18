@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class Modifier : MonoBehaviour
+public class Modifier : Component
 {
     [SerializeField]
     private string NAME = "";

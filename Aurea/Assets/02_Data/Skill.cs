@@ -11,22 +11,22 @@ public enum SkillType
 public abstract class Skill : ScriptableObject
 {
     [SerializeField]
-    private string NAME = "";
+    protected string NAME = "";
 
     [SerializeField]
-    private string DESCRIPTION = "";
+    protected string DESCRIPTION = "";
 
     [SerializeField]
-    private string ID = "";
+    protected string ID = "";
 
     [SerializeField]
-    private int costs = 0;
+    protected int costs = 0;
 
     [SerializeField]
-    private SkillType skillType = SkillType.PHYSICAL;
+    protected SkillType skillType = SkillType.PHYSICAL;
 
     [SerializeField]
-    private List<Modifier> modifier = new List<Modifier>();
+    protected List<string> modifier = new List<string>();
 
     public abstract void Use(Damage dmg);
     public abstract bool IsTargetValid(Aurea _aurea, Aurea _sender);
@@ -36,6 +36,6 @@ public abstract class Skill : ScriptableObject
     public string GetID() { return ID; }
     public int GetCosts() { return costs; }
     public SkillType GetSkillType() { return skillType; }
-    public List<Modifier> GetModifier() { return modifier; }
+    public List<string> GetModifier() { return modifier; }
 
 }
