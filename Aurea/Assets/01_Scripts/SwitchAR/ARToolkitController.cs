@@ -42,7 +42,7 @@ public class ARToolkitController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Starting());
+        //StartCoroutine(Starting());
     }
 
     public void ToggleToolkit()
