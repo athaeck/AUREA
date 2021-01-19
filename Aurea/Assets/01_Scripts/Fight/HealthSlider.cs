@@ -20,6 +20,10 @@ public class HealthSlider : MonoBehaviour
             return;
         }
 
+        if(IslandController.Instance.activeIsland != Island.ChickenFight) {
+            Destroy(gameObject);
+        }
+
         aurea.ChangedLifepoints += UpdateLife;
     }
 
