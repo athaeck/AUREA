@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class AttackAnimationController : ScriptableObject
 {
-    public abstract void StartAnimation();
+    public abstract void StartAnimation(Damage _dmg);
 }

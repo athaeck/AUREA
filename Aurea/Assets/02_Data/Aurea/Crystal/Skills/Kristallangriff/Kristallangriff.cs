@@ -15,23 +15,20 @@ public class Kristallangriff : Skill
     [SerializeField]
     private AttackAnimationController animation = null;
 
-    public override void Use(Damage dmg)
+    public override void Use(Damage _dmg)
     {
-        dmg.modifier = this.modifier;
-        dmg.physicalDamage *= physicalDamageMultiplier;
-        dmg.attackDelay = attackDelay;
+        _dmg.modifier = this.modifier;
+        _dmg.physicalDamage *= physicalDamageMultiplier;
+        _dmg.attackDelay = attackDelay;
 
         if (Player.Instance.AnimationsOn() && animation)
-            animation.StartAnimation();
+            animation.StartAnimation(_dmg);
 
 
-        foreach (Aurea target in dmg.targets)
+        foreach (Aurea target in _dmg.targets)
         {
-            target.TakeDamage(dmg);
+            target.TakeDamage(_dmg);
         }
-        // GameObject attack = Instantiate(attackPrefab, dmg.sender.transform);
-        // KristallangriffController controller = attack.GetComponent<KristallangriffController>();
-        // controller.TakeInformations(dmg);
     }
 
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)
