@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-
+using UnityEngine.EventSystems;
+
+
+
 public class TempleController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject slots = null;
-
+    private GameObject slots = null;
+
+
+
     [SerializeField]
     private GameObject player = null;
 
@@ -22,17 +26,28 @@ public class TempleController : MonoBehaviour
     private int numberAurea;
 
     [SerializeField]
-    public AureaList aureaData = null;
-
-   [SerializeField]
-    private GameObject selectAureaHUD = null;
-
-    [SerializeField]
-    private GameObject viewAureaHUD = null;
-
-    [SerializeField]
-    private ButtonSelect buttonSelect = null;
-
+    public AureaList aureaData = null;
+
+
+
+   [SerializeField]
+
+    private GameObject selectAureaHUD = null;
+
+
+
+    [SerializeField]
+
+    private GameObject viewAureaHUD = null;
+
+
+
+    [SerializeField]
+
+    private ButtonSelect buttonSelect = null;
+
+
+
     private bool trigger = false;
 
     void Start()
@@ -70,10 +85,10 @@ public class TempleController : MonoBehaviour
                     GameObject aureaPrefab = GetAureaData(CapturedAurea[j].aureaName).levels[aureaLevel - 1].prefab;
                     Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i], aureaPrefab.transform.rotation, slots.transform).GetComponent<Aurea>();
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
-                    SphereCollider collider = aurea.gameObject.AddComponent<SphereCollider>();
-                    collider.center = new Vector3(0, -10, 0);
-                    collider.isTrigger = true;
-                    collider.radius = 5.0f;
+                    // SphereCollider collider = aurea.gameObject.AddComponent<SphereCollider>();
+                    // collider.center = new Vector3(0, -10, 0);
+                    // collider.isTrigger = true;
+                    // collider.radius = 5.0f;
                     break;
                 }
                 if (aureaData.aureas[i].NAME != CapturedAurea[j].aureaName && j == CapturedAurea.Count - 1)
@@ -82,19 +97,24 @@ public class TempleController : MonoBehaviour
                     aureaPrefab.tag = "Locked";
                     Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i], aureaPrefab.transform.rotation, slots.transform).GetComponent<Aurea>();
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
-                }
+                }
+
 
             }
         }
-    }
-
-    public void TakeInput(Ray ray) {
+    }
+
+
+
+    public void TakeInput(Ray ray) {
+
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
-            } 
+            } 
+
             Aurea hero = null;
             if (trigger)
             {
@@ -106,7 +126,8 @@ public class TempleController : MonoBehaviour
                     buttonSelect.select(hero.GetName());
                     selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(hero.transform);
                     selectAureaHUD.SetActive(true);
-                }
+                }
+
             }
             else
             {

@@ -14,17 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aureas:
   - {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
-  - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
+  - {fileID: 11400000, guid: 19c7f4a9a2e97cd40af0ec83e12d3d20, type: 2}
   - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
   - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
   - {fileID: 11400000, guid: 7dd33cf456b76c845af76d7d8632ad35, type: 2}
