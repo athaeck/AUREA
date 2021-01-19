@@ -76,10 +76,6 @@ public class ButtonSelect : MonoBehaviour
             data.AddAureaToSquad(selectedAurea);
             select(selectedAurea);
         }
-        foreach (var item in data.GetSquad())
-        {
-            Debug.Log(item.ToString());
-        }
     }
 
     public void View()
@@ -110,11 +106,7 @@ public class ButtonSelect : MonoBehaviour
                     g.transform.position = new Vector3(0,1,0);
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, -10));
 
-                    oldpos = cam.transform.position;
-                    oldrot = cam.transform.rotation;
-
-                    cam.transform.position = newpos;
-                    cam.transform.LookAt(g.transform.position);
+                    cam.GetComponent<FollowTarget>().TakeTarget(g.transform);
                 }
             }
         }
@@ -128,6 +120,7 @@ public class ButtonSelect : MonoBehaviour
             if (g.tag == "Player")
             {
                 g.SetActive(true);
+                cam.GetComponent<FollowTarget>().TakeTarget(g.transform);
             }
             if (g.tag == "Aurea" || g.tag == "Locked")
             {
@@ -143,9 +136,6 @@ public class ButtonSelect : MonoBehaviour
                     g.transform.localScale = new Vector3(1, 1, 1);
                     g.transform.position = position;
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, 0));
-
-                    cam.transform.position = oldpos;
-                    cam.transform.rotation = oldrot;
                 }
             }
         }
