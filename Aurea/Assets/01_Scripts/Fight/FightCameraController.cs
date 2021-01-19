@@ -36,23 +36,23 @@ public class FightCameraController : MonoBehaviour
         switch (position)
         {
             case CameraPosition.Top:
-                if (_type == InputType.DownSwipe)
+                if (_type == InputType.UpSwipe)
                     position = CameraPosition.LowerTop;
                 break;
             case CameraPosition.LowerTop:
-                if (_type == InputType.UpSwipe)
-                    position = CameraPosition.Top;
                 if (_type == InputType.DownSwipe)
+                    position = CameraPosition.Top;
+                if (_type == InputType.UpSwipe)
                     position = CameraPosition.Aurea;
                 break;
             case CameraPosition.Aurea:
-                if (_type == InputType.UpSwipe)
+                if (_type == InputType.DownSwipe)
                     position = CameraPosition.LowerTop;
-                if (_type == InputType.RightSwipe) {
+                if (_type == InputType.LeftSwipe) {
                     activeAurea++;
                     activeAurea = Mathf.Clamp(activeAurea, 0, aureaPositions.Count - 1);
                 }
-                if (_type == InputType.LeftSwipe) {
+                if (_type == InputType.RightSwipe) {
                     activeAurea--;
                     activeAurea = Mathf.Clamp(activeAurea, 0, aureaPositions.Count - 1);
                 }

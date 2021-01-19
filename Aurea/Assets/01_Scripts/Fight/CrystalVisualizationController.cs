@@ -6,7 +6,13 @@ using UnityEngine;
 public class CrystalVisualizationController : MonoBehaviour
 {
     [SerializeField]
-    private List<ParticleSystem> crystalParticles = new List<ParticleSystem>();
+    private List<GameObject> crystals = new List<GameObject>();
+
+    [SerializeField]
+    private Material activeMaterial = null;
+
+    [SerializeField]
+    private Material inactiveMaterial = null;
 
     private PlayerController player = null;
 
@@ -19,9 +25,9 @@ public class CrystalVisualizationController : MonoBehaviour
 
     public void ActiveCrystals(int num)
     {
-        for (int i = 0; i < crystalParticles.Count; i++)
+        for (int i = 0; i < crystals.Count; i++)
         {
-            crystalParticles[i].gameObject.SetActive(i < num);
+            crystals[i].GetComponent<MeshRenderer>().material = i < num ? activeMaterial : inactiveMaterial;
         }
     }
 }
