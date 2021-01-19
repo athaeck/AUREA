@@ -27,6 +27,9 @@ public class FightController : MonoBehaviour
     public AureaList aureaData = null;
 
     [SerializeField]
+    public FightCameraController camController = null;
+
+    [SerializeField]
     private PlayerController player = null;
 
     [SerializeField]
@@ -49,6 +52,7 @@ public class FightController : MonoBehaviour
     public float timeLeft = 0;
     private bool timerStarted = false;
     bool justClicked = false;
+    bool gameEnded = false;
 
     public void TakeInput(Ray ray)
     {
@@ -88,13 +92,14 @@ public class FightController : MonoBehaviour
     public void ResetIsland()
     {
         LoadData();
+        gameEnded = false;
         ResetFight?.Invoke();
         StartGame();
     }
 
     private void Update()
     {
-        if (!timerStarted) { return; }
+        if (!timerStarted || gameEnded) { return; }
 
         timeLeft -= Time.deltaTime;
 
@@ -147,6 +152,7 @@ public class FightController : MonoBehaviour
     void EndGame(PlayerController _player)
     {
         canInteract = false;
+        gameEnded = true;
 
         PlayerData data = player.GetData();
 
