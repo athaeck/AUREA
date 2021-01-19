@@ -20,82 +20,82 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BLUE_TTO_GREY
-    second: {fileID: 2100000, guid: 8bdcbb844fe65384d84d219219eb1bf2, type: 2}
+    second: {fileID: 2100000, guid: a38dcad90b7ffe04ab1248f5a23a9b7e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Blue
-    second: {fileID: 2100000, guid: 25de54216f986104fafa3c92a03d8238, type: 2}
+    second: {fileID: 2100000, guid: c805df8f3d397e84d840965db6c4e66e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Horn_dunkel_blau
-    second: {fileID: 2100000, guid: e0276fc4abb605243ae622b4e61b3acb, type: 2}
+    second: {fileID: 2100000, guid: 814084c8f20b4494aa10590e811e12cc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: aiStandardSurface15
-    second: {fileID: 2100000, guid: 4e2211b1bc178894d99aa257fa34aad3, type: 2}
+    second: {fileID: 2100000, guid: 6f83168ac952b4a4cb75e3f77d5ab03f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: aiStandardSurface16
-    second: {fileID: 2100000, guid: d82e265c41fdf794f99388b612eb9b7c, type: 2}
+    second: {fileID: 2100000, guid: aa566ae68fd2db9498865a2322c43652, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: aiStandardSurface18
-    second: {fileID: 2100000, guid: 57c2f8676cb9c3749b2c101e25a5355d, type: 2}
+    second: {fileID: 2100000, guid: 1e24cf72caef3244596a96979cfdd0eb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: aiStandardSurface22
-    second: {fileID: 2100000, guid: 6d740bda7325d2f41931d34e2dc9571c, type: 2}
+    second: {fileID: 2100000, guid: a89814b4e7222434bb3a2f7e5bfc6afc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: bauch
-    second: {fileID: 2100000, guid: 8bc3d50a599048f44a29d27a4fa0e2bf, type: 2}
+    second: {fileID: 2100000, guid: 7799f7367ecf5874b853bac9a03ab34b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: between_blue
-    second: {fileID: 2100000, guid: 4d69df2ff432f0b46ab82cd212a3adb5, type: 2}
+    second: {fileID: 2100000, guid: 1ddef910d42eff44aae5091bd93fe7cf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: between_blue_light
-    second: {fileID: 2100000, guid: ee0b246a15a6f044ebf413e14977f1e9, type: 2}
+    second: {fileID: 2100000, guid: cd4901c68dbe05f49ae6ea30e37e7d88, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: eye_orange
-    second: {fileID: 2100000, guid: 3eba47a6e8f388449bd8b650c1214f77, type: 2}
+    second: {fileID: 2100000, guid: 38b4dde69efe7814ca16c3d50d719652, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: horn_blue
-    second: {fileID: 2100000, guid: 4e6f33f5a3a98a54695f115119d4c79c, type: 2}
+    second: {fileID: 2100000, guid: f3a767429b76b74478f531ca464f8527, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: 7c413bab0d2e52d498b025c19fa2cf3e, type: 2}
+    second: {fileID: 2100000, guid: e08e69f6fe893644db572129591e1863, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: red
-    second: {fileID: 2100000, guid: f74f8dcf0094736429b0797d7b3fad7c, type: 2}
+    second: {fileID: 2100000, guid: 55adf167cc273ad4ebea171bf3eee1db, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: white
-    second: {fileID: 2100000, guid: 8cdfd656c87d7324e8f32f1fb3133eb9, type: 2}
+    second: {fileID: 2100000, guid: 4455364e4f40f8f469bf5e742e63fc8a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
