@@ -32127,9 +32127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db41d16472cda14ebcf6eeffd208b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedParticles: {fileID: 3694119304271053518, guid: 5e066d12c943e2d47ba3ca44efe6f045,
+  selectedParticles: {fileID: 2666598012521002106, guid: 0e3a436241096004d9dd88e3bbdf9aa3,
     type: 3}
-  targetParticles: {fileID: 7626584206560200936, guid: bb6309a4b44679d4dbbfd217fce86610,
+  targetParticles: {fileID: 6653911715653880113, guid: ed9d53d166d7e024699576e247e01105,
     type: 3}
 --- !u!1 &854972850
 GameObject:

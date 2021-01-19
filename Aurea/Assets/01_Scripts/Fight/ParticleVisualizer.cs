@@ -8,13 +8,13 @@ public class ParticleVisualizer : MonoBehaviour
     FightController fightController = null;
 
     [SerializeField]
-    ParticleSystem selectedParticles = null;
+    GameObject selectedParticles = null;
 
     [SerializeField]
-    ParticleSystem targetParticles = null;
+    GameObject targetParticles = null;
 
     [SerializeField]
-    Dictionary<Aurea, ParticleSystem> instantiatedParticles = new Dictionary<Aurea, ParticleSystem>();
+    Dictionary<Aurea, GameObject> instantiatedParticles = new Dictionary<Aurea, GameObject>();
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Selected(Aurea _aurea)
     {
-        ParticleSystem newSelected = Instantiate(selectedParticles, _aurea.transform.position, Quaternion.identity);
+        GameObject newSelected = Instantiate(selectedParticles, _aurea.transform.position, Quaternion.identity);
         instantiatedParticles.Add(_aurea, newSelected);
     }
 
@@ -44,7 +44,7 @@ public class ParticleVisualizer : MonoBehaviour
         {
             if (!instantiatedParticles.ContainsKey(aurea))
             {
-                ParticleSystem newTarget = Instantiate(targetParticles, aurea.transform.position, Quaternion.identity);
+                GameObject newTarget = Instantiate(targetParticles, aurea.transform.position, Quaternion.identity);
                 instantiatedParticles.Add(aurea, newTarget);
             }
         }
@@ -52,10 +52,10 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Cancel()
     {
-        foreach (KeyValuePair<Aurea, ParticleSystem> keyValue in instantiatedParticles)
+        foreach (KeyValuePair<Aurea, GameObject> keyValue in instantiatedParticles)
         {
             Destroy(keyValue.Value);
         }
-        instantiatedParticles = new Dictionary<Aurea, ParticleSystem>();
+        instantiatedParticles = new Dictionary<Aurea, GameObject>();
     }
 }
