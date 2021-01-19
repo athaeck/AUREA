@@ -6,7 +6,24 @@ using UnityEngine;
 public class Kristallisiert : MonoBehaviour
 {
     Aurea aurea = null;
-    void Start() {
+    int splitter = 0;
+    int neededSplitter = 5;
+    void Start()
+    {
         aurea = GetComponent<Aurea>();
+        aurea.StartAttack += AddShardSplitter;
+    }
+
+    void AddShardSplitter(Damage _dmg)
+    {
+        splitter++;
+
+        if (splitter >= neededSplitter)
+            StartSplitterAttack();
+    }
+
+    void StartSplitterAttack()
+    {
+        Debug.Log("Start Attack");
     }
 }
