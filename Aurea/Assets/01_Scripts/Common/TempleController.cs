@@ -9,7 +9,7 @@ public class TempleController : MonoBehaviour
     private GameObject slots = null;
 
     [SerializeField]
-    private Rigidbody player = null;
+    private GameObject player = null;
 
 
     private PlayerData data = null;
@@ -89,70 +89,57 @@ public class TempleController : MonoBehaviour
     }
 
     public void TakeInput(Ray ray) {
-
-        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
-        {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-                
-            Aurea hero = null;
-            if (trigger)
-            {
-                if (hit.collider.CompareTag("Aurea") && !viewAureaHUD.activeSelf)
-                {
-                    hero = hit.collider.GetComponent<Aurea>();
-                    buttonSelect.select(hero.GetName());
-                    selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(hero.transform);
-
-                    selectAureaHUD.SetActive(true);
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            } 
+            Aurea hero = null;
+            if (trigger)
+            {
+                Debug.Log(hit.collider.tag);
+                if (hit.collider.CompareTag("Aurea") && !viewAureaHUD.activeSelf)
+                {
+                    Debug.Log("aurea");
+                    hero = hit.collider.GetComponent<Aurea>();
+                    buttonSelect.select(hero.GetName());
+                    selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(hero.transform);
+                    selectAureaHUD.SetActive(true);
                 }
-                else
-                {
-                    selectAureaHUD.SetActive(false);
-                }
-            }
-            if (hit.collider.CompareTag("Walkable"))
-            {
-                player.MovePosition(hit.point);
-            }
+            }
+            else
+            {
+                selectAureaHUD.SetActive(false);
+            }
+            if (hit.collider.CompareTag("Walkable"))
+            {
+                Debug.Log("hit");
+                Vector3 movement = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+
+                MovementController c = player.GetComponent<MovementController>();
+                c.Move(movement);
+            }
         }       
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Aurea"))
-        {
-            trigger = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Aurea"))
-        {
-            trigger = false;
-            selectAureaHUD.SetActive(false);
-        }
     }
 
-
-
     public void ResetIsland()
-    {
-        Aurea[] all_aurea = null;
-        all_aurea = GameObject.FindObjectsOfType<Aurea>();
-
-        foreach (Aurea aurea in all_aurea)
-        {
-                DestroyImmediate(aurea.gameObject);
-        }
-
+    {
+        Aurea[] all_aurea = null;
+        all_aurea = GameObject.FindObjectsOfType<Aurea>();
+        foreach (Aurea aurea in all_aurea)
+        {
+                DestroyImmediate(aurea.gameObject);
+        }
         data = Player.Instance;
         CreateSpiral();
 
         Debug.Log("Reset Temple");
     }
-
+    
+    public void SetTrigger(bool newtrigger)
+    {
+        trigger = newtrigger;
+    }
 
 }
