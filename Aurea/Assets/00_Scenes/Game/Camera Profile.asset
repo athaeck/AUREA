@@ -42,10 +42,10 @@ MonoBehaviour:
     m_Value: 0
   dirtTexture:
     m_OverrideState: 0
-    m_Value: {fileID: 0}
+    m_Value: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
   dirtIntensity:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 0.33
     min: 0
 --- !u!114 &11400000
 MonoBehaviour:
