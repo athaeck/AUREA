@@ -30,7 +30,7 @@ public class SkyIslandController : MonoBehaviour
 
     private void Start()
     {
-        if(spawnPlace != null && character != null)
+        if (spawnPlace != null && character != null)
         {
             Init();
         }
@@ -58,68 +58,71 @@ public class SkyIslandController : MonoBehaviour
     }
 
 
-    public void ResetIsland() {
+    public void ResetIsland()
+    {
         Init();
     }
 
-    public void TakeInput(Ray ray) {
-         int layerMask = 1 << 8;
-             layerMask = ~layerMask;
-        if(Physics.Raycast(ray,out RaycastHit hit,float.MaxValue,layerMask))
+    public void TakeInput(Ray ray)
+    {
+        int layerMask = 1 << 8;
+        layerMask = ~layerMask;
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask))
         {
-            if(EventSystem.current.IsPointerOverGameObject())
-               return;
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
 
-            if(staticmode == true)
+            if (staticmode == true)
             {
-                if(hit.collider.CompareTag("Item"))
+                if (hit.collider.CompareTag("Item"))
                 {
                     ItemData item = hit.collider.gameObject.GetComponent<ItemData>();
-                    if(enterController != null) enterController.Transfer(item,hit.collider.gameObject);
+                    if (enterController != null) enterController.Transfer(item, hit.collider.gameObject);
                 }
             }
             else
             {
-                if(hit.collider.CompareTag("Walkable"))
+                if (hit.collider.CompareTag("Walkable"))
                 {
-                    Vector3 movement = new Vector3(hit.point.x,hit.point.y,hit.point.z);
+                    Vector3 newDestination = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
-                    MovementController c = character.GetComponent<MovementController>();
-                    c.Move(movement);
+                    MovementController player = character.GetComponent<MovementController>();
+                    player.destination = newDestination;
                 }
             }
 
-            if(collided == true)
+            if (collided == true)
             {
-                if(hit.collider.CompareTag("To-Gameground"))
+                if (hit.collider.CompareTag("To-Gameground"))
                 {
                     IslandController.Instance.OpenFight();
                 }
-                if(hit.collider.CompareTag("To-Competition"))
+                if (hit.collider.CompareTag("To-Competition"))
                 {
                     IslandController.Instance.OpenFight();
                 }
-                if(hit.collider.CompareTag("To-AureaSelect"))
+                if (hit.collider.CompareTag("To-AureaSelect"))
                 {
-                    if(goToPosition != null)
+                    if (goToPosition != null)
                     {
                         MovementController c = character.GetComponent<MovementController>();
-                        Vector3 movement = new Vector3(goToPosition.transform.position.x,goToPosition.transform.position.y,goToPosition.transform.position.z);
-                        c.Move(movement);
+                        Vector3 movement = new Vector3(goToPosition.transform.position.x, goToPosition.transform.position.y, goToPosition.transform.position.z);
+                        c.destination = movement;
                         IslandController.Instance.OpenTemple();
                     }
                 }
-                if(hit.collider.CompareTag("Shop"))
+                if (hit.collider.CompareTag("Shop"))
                 {
                     enterController.EnterShop();
                 }
-                if(hit.collider.CompareTag("Inventory"))
+                if (hit.collider.CompareTag("Inventory"))
                 {
                     enterController.EnterInventory();
                 }
             }
-            if(hit.collider.CompareTag("Difficulty")){
-                if(difficultyController != null)
+            if (hit.collider.CompareTag("Difficulty"))
+            {
+                if (difficultyController != null)
                 {
                     difficultyController.SetDifficulty();
                 }
@@ -134,7 +137,7 @@ public class SkyIslandController : MonoBehaviour
 
         //cam.transform.position = spawnPlace.transform.position;
 
-        character.GetComponent<MovementController>().Move(character.transform.position);
+        // character.GetComponent<MovementController>().Move(character.transform.position);
 
         Player.Instance.AddMoney(100);
     }
