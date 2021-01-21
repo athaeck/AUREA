@@ -9,7 +9,22 @@ ModelImporter:
   - first:
       74: -1422011007694221501
     second: Armature|ArmatureAction.001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: holz
+    second: {fileID: 2100000, guid: 6df45282df883d74f9b029a4f122d9ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metall
+    second: {fileID: 2100000, guid: 46eab15865821f54f898c223bebee1c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "schl\xFCsselloch"
+    second: {fileID: 2100000, guid: c272d5fce2240f449b22f6295f80f50c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

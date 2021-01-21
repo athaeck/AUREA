@@ -3,7 +3,17 @@ guid: 192030592184e2945bb22ce738ae85bc
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Braun
+    second: {fileID: 2100000, guid: 3f82a5978b1e29047b615bdcb9932123, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Gr\xFCn"
+    second: {fileID: 2100000, guid: c8cd6b27086624a4b9985396d3132161, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

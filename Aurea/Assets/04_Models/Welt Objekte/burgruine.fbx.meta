@@ -3,7 +3,27 @@ guid: f732a4e6ede05344c8772756bc45c147
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 3e56fc40ee80f6f44a9d3bbecdeabefb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: holz
+    second: {fileID: 2100000, guid: 1eef27a0c6d524a499ce1b9bd71c27ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mittlerer stein
+    second: {fileID: 2100000, guid: 142740904d0f83d459fee90490f99bf9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steinchen
+    second: {fileID: 2100000, guid: 8b00aba038167b74491da195800cb903, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

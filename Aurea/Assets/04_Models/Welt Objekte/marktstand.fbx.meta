@@ -3,7 +3,47 @@ guid: 24a8a5b3440fde944b91087d456c75b7
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz.001
+    second: {fileID: 2100000, guid: e9a761de7182ad3439b5d623a2540dfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz.002
+    second: {fileID: 2100000, guid: 89f87116c8c7583428834ae03b80cc86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall
+    second: {fileID: 2100000, guid: 893e000de57b46748abad7670cf0f523, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: holz
+    second: {fileID: 2100000, guid: 3182fc610ccf72047b9fa168b74c419e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: holz 2
+    second: {fileID: 2100000, guid: 6537cb6a1bd5e304b95ecb12e231f929, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rot
+    second: {fileID: 2100000, guid: 51df713b878fc794f9af23f0ab72f63e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "wei\xDF"
+    second: {fileID: 2100000, guid: d845d41b16cf1c74eab2fd7c2d9b2371, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "wei\xDF.001"
+    second: {fileID: 2100000, guid: a0c4c7f518d6e9b4abf7003c420a0498, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

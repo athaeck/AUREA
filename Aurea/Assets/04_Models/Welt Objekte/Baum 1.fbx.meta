@@ -3,7 +3,17 @@ guid: 52078a52550e7c54f81c16446f3fc01b
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Gr\xFCn"
+    second: {fileID: 2100000, guid: e698ff4ea8bbf5c40b1a4965020d5856, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stamm
+    second: {fileID: 2100000, guid: 81c825ad070cffa4d91a5310e2e5d656, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

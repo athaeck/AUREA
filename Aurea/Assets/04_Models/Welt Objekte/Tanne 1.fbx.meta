@@ -3,7 +3,17 @@ guid: 79b84ab4fcf6555408972c54fd6ed58b
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Baumstamm
+    second: {fileID: 2100000, guid: a869d892cb8e7b643945dd13a95f7fdf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "gr\xFCn"
+    second: {fileID: 2100000, guid: a18724b6c53eda344b89d42dc89b7368, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
