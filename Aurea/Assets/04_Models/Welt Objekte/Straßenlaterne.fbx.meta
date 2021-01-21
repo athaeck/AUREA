@@ -3,7 +3,27 @@ guid: f10a2ab7da6daf54fa4e7dfbb3d3feaa
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beige
+    second: {fileID: 2100000, guid: e7b0166521961104fbc7b4db6c7ab1d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Braun
+    second: {fileID: 2100000, guid: 6ad64d3d6b780974c91cc7927d67270f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grau
+    second: {fileID: 2100000, guid: b64005cb76bc68f4a9ca553ebaf18378, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Schwarz
+    second: {fileID: 2100000, guid: f7c971feec109bc45ba1ca2e5f7f53f6, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
