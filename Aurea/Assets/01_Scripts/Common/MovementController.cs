@@ -13,6 +13,9 @@ public class MovementController : MonoBehaviour
     [Range(0, 175), SerializeField]
     private float rotationSpeed = 175;
 
+    [SerializeField]
+    private float rotationThreshold = 1f;
+
 
     private void Awake()
     {
@@ -25,8 +28,12 @@ public class MovementController : MonoBehaviour
         Vector3 dir = (destination - transform.position).normalized * speed * Time.deltaTime;
         controller.Move(dir);
 
-        Vector3 newRot = Vector3.Slerp(transform.position + transform.forward, destination, rotationSpeed * Time.deltaTime);
-        transform.LookAt(newRot);
+        if ((destination - transform.position).magnitude > rotationThreshold)
+        {
+            Vector3 newRot = Vector3.Slerp(transform.position + transform.forward, destination, rotationSpeed * Time.deltaTime);
+            transform.LookAt(newRot);
+        }
+
 
     }
     public float GetSpeed() { return speed; }

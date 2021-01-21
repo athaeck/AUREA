@@ -133,7 +133,8 @@ public class SkyIslandController : MonoBehaviour
 
     private void Init()
     {
-        character.transform.position = spawnPlace.transform.position;
+        MovementController movementController = character.GetComponent<MovementController>();
+        movementController.destination = spawnPlace.transform.position;
 
         //cam.transform.position = spawnPlace.transform.position;
 

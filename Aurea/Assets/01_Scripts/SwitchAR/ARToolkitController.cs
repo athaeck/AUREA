@@ -38,6 +38,9 @@ public class ARToolkitController : MonoBehaviour
     [SerializeField]
     private float initARScaling = 0.01f;
 
+    [SerializeField]
+    private List<GameObject> objectsToTurnOff = new List<GameObject>();
+
     bool toolkitOpen = false;
 
     private void Start()
@@ -75,14 +78,21 @@ public class ARToolkitController : MonoBehaviour
             ChangeDistance();
             ChangeSize();
             CameraController.Instance.ChangeIsland(IslandController.Instance.activeIsland, true);
+            SetObjectsActive(false);
         }
         else
         {
             islands.transform.localScale = Vector3.one;
             islands.transform.position = Vector3.zero;
             CameraController.Instance.ChangeIsland(IslandController.Instance.activeIsland, false);
+            SetObjectsActive(true);
         }
+    }
 
+    void SetObjectsActive(bool _active){
+        foreach(GameObject obj in objectsToTurnOff) {
+            obj.SetActive(_active);
+        }
     }
 
     public void InitView(bool _arOn)
