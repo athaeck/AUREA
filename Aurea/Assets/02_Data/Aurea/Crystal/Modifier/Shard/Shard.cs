@@ -13,20 +13,19 @@ public class Shard : MonoBehaviour
     {
         aurea = GetComponent<Aurea>();
         aurea.BeforeGettingHit += CheckGettingHit;
-        aurea.AfterGettingHit += CheckAfterHit;
         aurea.GetPlayer().StartedTurn += NewTurn;
     }
 
     void CheckGettingHit(Damage _dmg)
     {
-        Debug.Log("About to Compare");
         if (_dmg.sender.GetAureaData().NAME == "Crystal")
             _dmg.physicalDamage *= dmgMultiplier;
     }
 
-    void CheckAfterHit(Damage _dmg) {
-        if (_dmg.sender.GetAureaData().NAME == "Crystal")
-            _dmg.physicalDamage *= (1 / dmgMultiplier);
+    public void Kill() {
+        aurea.BeforeGettingHit -= CheckGettingHit;
+        aurea.GetPlayer().StartedTurn -= NewTurn;
+        DestroyImmediate(this);
     }
 
     void NewTurn()
@@ -34,7 +33,7 @@ public class Shard : MonoBehaviour
         activeRounds--;
 
         if(activeRounds <= 0)
-            Destroy(this);
+            DestroyImmediate(this);
     }
 
 }

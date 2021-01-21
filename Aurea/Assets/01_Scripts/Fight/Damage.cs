@@ -11,4 +11,17 @@ public class Damage
     public List<string> modifier = new List<string>();
     public float attackDelay = 0;
     public Skill skill;
+
+    public Damage Copy() {
+        Damage copy = new Damage();
+        copy.sender = sender;
+        copy.targets = targets;
+        copy.physicalDamage = physicalDamage;
+        copy.magicalDamage = magicalDamage;
+        copy.modifier = modifier;
+        copy.attackDelay = attackDelay;
+        copy.skill = skill;
+
+        return copy;
+    }
 }

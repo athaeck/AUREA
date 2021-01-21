@@ -27,7 +27,8 @@ public class Kristallangriff : Skill
 
         foreach (Aurea target in _dmg.targets)
         {
-            target.TakeDamage(_dmg);
+            Damage dmg = _dmg.Copy();
+            target.TakeDamage(dmg);
         }
     }
 
@@ -49,6 +50,4 @@ public class Kristallangriff : Skill
 
         return false;
     }
-
-
 }

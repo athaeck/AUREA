@@ -14,11 +14,7 @@ public class HealthSlider : MonoBehaviour
 
     private void Start()
     {
-        if (!aurea)
-        {
-            Debug.Log("No Aurea");
-            return;
-        }
+        if (!aurea) return;
 
         if(IslandController.Instance.activeIsland != Island.ChickenFight) {
             DestroyImmediate(gameObject);

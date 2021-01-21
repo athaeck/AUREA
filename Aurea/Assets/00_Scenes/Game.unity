@@ -3345,6 +3345,7 @@ MonoBehaviour:
   lifePointsLeft: 0
   modifier: []
   activeItems: []
+  player: {fileID: 0}
   targets: []
 --- !u!114 &215473502
 MonoBehaviour:
@@ -9111,7 +9112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &537005011
 Transform:
   m_ObjectHideFlags: 0
@@ -9578,6 +9579,7 @@ MonoBehaviour:
   lifePointsLeft: 0
   modifier: []
   activeItems: []
+  player: {fileID: 0}
   targets: []
 --- !u!95 &560729196
 Animator:
@@ -11814,6 +11816,7 @@ MonoBehaviour:
   lifePointsLeft: 0
   modifier: []
   activeItems: []
+  player: {fileID: 0}
   targets: []
 --- !u!95 &656028283
 Animator:
@@ -14127,6 +14130,7 @@ MonoBehaviour:
   lifePointsLeft: 0
   modifier: []
   activeItems: []
+  player: {fileID: 0}
   targets: []
 --- !u!95 &736755084
 Animator:
@@ -16165,20 +16169,20 @@ MonoBehaviour:
   data:
     NAME: Aionix
     won: 0
-    lose: 10
+    lose: 11
     draw: 0
     crowns: 0
-    money: 0
+    money: 6700
     ar: 0
     playerAureaData:
     - aureaName: Golem
-      aureaLevel: 2
+      aureaLevel: 1
     - aureaName: Crystal
       aureaLevel: 1
     squad:
-    - Golem
     - Crystal
     - Golem
+    - Crystal
     items: []
     difficulty: 0
     animationsOn: 1
@@ -17240,7 +17244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &843181881
 Transform:
   m_ObjectHideFlags: 0
@@ -17505,7 +17509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &854972851
 Transform:
   m_ObjectHideFlags: 0
@@ -25119,7 +25123,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -26472,7 +26476,7 @@ MonoBehaviour:
   - {fileID: 2020325359}
   followTarget: {fileID: 1278161624}
   position: 1
-  activeAurea: 2
+  activeAurea: 1
 --- !u!114 &1278161628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27223,7 +27227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d4f2cbc1031ac448075012dc59c799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeIsland: 0
+  _activeIsland: 2
 --- !u!4 &1302402216
 Transform:
   m_ObjectHideFlags: 0
@@ -36321,6 +36325,7 @@ MonoBehaviour:
   lifePointsLeft: 0
   modifier: []
   activeItems: []
+  player: {fileID: 0}
   targets: []
 --- !u!114 &1658066544
 MonoBehaviour:

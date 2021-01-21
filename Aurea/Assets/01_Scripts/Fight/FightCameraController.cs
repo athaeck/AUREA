@@ -26,7 +26,7 @@ public class FightCameraController : MonoBehaviour
     CameraPosition position = CameraPosition.LowerTop;
 
     [SerializeField]
-    int activeAurea = 2;
+    int activeAurea = 1;
     public void TakeInput(InputType _type)
     {
         if (Player.Instance.IsArOn()) return;

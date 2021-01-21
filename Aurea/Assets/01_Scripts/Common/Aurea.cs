@@ -30,6 +30,7 @@ public class Aurea : MonoBehaviour
     public List<Component> modifier = new List<Component>();
     public List<ItemData> activeItems = new List<ItemData>();
 
+    [SerializeField]
     private PlayerController player = null;
     private Skill _activeSkill;
     public Skill activeSkill
@@ -145,7 +146,7 @@ public class Aurea : MonoBehaviour
             Component component = GetComponent(modifierScript);
 
             if (component)
-                Destroy(component);
+                component.SendMessage("Kill");
 
             gameObject.AddComponent(modifierScript);
         }
@@ -196,7 +197,6 @@ public class Aurea : MonoBehaviour
     }
     public void RemoveLifePoints(float amount)
     {
-        Debug.Log("Attack amount: " + amount);
         this.lifePointsLeft -= amount;
         TookDamage?.Invoke(Mathf.FloorToInt(amount));
         ChangedLifepoints?.Invoke();

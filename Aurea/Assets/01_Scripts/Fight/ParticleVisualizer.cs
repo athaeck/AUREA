@@ -16,7 +16,10 @@ public class ParticleVisualizer : MonoBehaviour
     [SerializeField]
     Dictionary<Aurea, GameObject> instantiatedParticles = new Dictionary<Aurea, GameObject>();
 
-    private void Start()
+    [SerializeField]
+    float killInTime = 2f;
+
+    private void Awake()
     {
         fightController = GetComponent<FightController>();
         fightController.GameLoaded += AddEventListener;
@@ -34,7 +37,7 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Selected(Aurea _aurea)
     {
-        GameObject newSelected = Instantiate(selectedParticles, _aurea.transform.position, Quaternion.identity);
+        GameObject newSelected = Instantiate(selectedParticles, _aurea.transform.parent);
         instantiatedParticles.Add(_aurea, newSelected);
     }
 
@@ -44,7 +47,7 @@ public class ParticleVisualizer : MonoBehaviour
         {
             if (!instantiatedParticles.ContainsKey(aurea))
             {
-                GameObject newTarget = Instantiate(targetParticles, aurea.transform.position, Quaternion.identity);
+                GameObject newTarget = Instantiate(targetParticles, aurea.transform.parent);
                 instantiatedParticles.Add(aurea, newTarget);
             }
         }
@@ -52,10 +55,32 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Cancel()
     {
-        foreach (KeyValuePair<Aurea, GameObject> keyValue in instantiatedParticles)
+        if (Player.Instance.animationsOn)
         {
-            Destroy(keyValue.Value);
+            List<GameObject> objects = new List<GameObject>();
+            foreach (KeyValuePair<Aurea, GameObject> keyValue in instantiatedParticles)
+            {
+                objects.Add(keyValue.Value);
+            }
+            StartCoroutine(CancelIn(objects, killInTime));
+        }
+        else
+        {
+            foreach (KeyValuePair<Aurea, GameObject> keyValue in instantiatedParticles)
+            {
+                Destroy(keyValue.Value);
+            }
         }
         instantiatedParticles = new Dictionary<Aurea, GameObject>();
+    }
+
+    IEnumerator CancelIn(List<GameObject> _particles, float _time)
+    {
+        yield return new WaitForSeconds(_time);
+
+        foreach (GameObject _obj in _particles)
+        {
+            Destroy(_obj);
+        }
     }
 }
