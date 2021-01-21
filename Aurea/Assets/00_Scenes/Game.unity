@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 105639656f7023949ab74c27fc7714be,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -27989,50 +27989,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1597878810}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1327759783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327759779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 447449908826d0649abf051a60a539fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portalHUD: {fileID: 2128036222}
-  skyIslandController: {fileID: 537005012}
---- !u!136 &1327759786
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327759779}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
---- !u!54 &1327759787
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327759779}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1330031557
 GameObject:
   m_ObjectHideFlags: 0
@@ -34824,34 +34780,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 537005011}
     m_Modifications:
-    - target: {fileID: 230938134040084, guid: fac07d6540f8f1b40b7dde381df6792c, type: 3}
-      propertyPath: freezeX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 230938134040084, guid: fac07d6540f8f1b40b7dde381df6792c, type: 3}
-      propertyPath: freezeZ
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559079038477965473, guid: fac07d6540f8f1b40b7dde381df6792c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2882705181392698956, guid: fac07d6540f8f1b40b7dde381df6792c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2882705181392698956, guid: fac07d6540f8f1b40b7dde381df6792c,
-        type: 3}
-      propertyPath: gravitation
-      value: -9.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 2882705181392698956, guid: fac07d6540f8f1b40b7dde381df6792c,
-        type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
+    - target: {fileID: 1327759783, guid: fac07d6540f8f1b40b7dde381df6792c, type: 3}
+      propertyPath: portalHUD
+      value: 
+      objectReference: {fileID: 2128036222}
+    - target: {fileID: 1327759783, guid: fac07d6540f8f1b40b7dde381df6792c, type: 3}
+      propertyPath: skyIslandController
+      value: 
+      objectReference: {fileID: 537005012}
     - target: {fileID: 3535497394088452370, guid: fac07d6540f8f1b40b7dde381df6792c,
         type: 3}
       propertyPath: m_Name
@@ -34912,9 +34848,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1837565326170967275, guid: fac07d6540f8f1b40b7dde381df6792c, type: 3}
-    - {fileID: 1559079038477965473, guid: fac07d6540f8f1b40b7dde381df6792c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac07d6540f8f1b40b7dde381df6792c, type: 3}
 --- !u!1001 &1603347097
 PrefabInstance:
