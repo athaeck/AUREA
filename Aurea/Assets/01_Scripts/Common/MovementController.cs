@@ -8,16 +8,16 @@ public class MovementController : MonoBehaviour
 {
     Animator anim = null;
     Rigidbody rb = null;
-    public Vector3 destination { get; set; }
 
     [SerializeField]
     private float speed = 12f;
 
+    [SerializeField]
+    private float arSpeedMultiplier = 0.15f;
+
     [Range(0, 175), SerializeField]
     private float rotationSpeed = 175;
 
-    [SerializeField]
-    private float threshold = 1f;
 
     [SerializeField]
     private float gravity = -9.81f;
@@ -25,42 +25,38 @@ public class MovementController : MonoBehaviour
     [SerializeField]
     private float raycastDistance = 1f;
 
-
+    Vector3 lastPostition = Vector3.zero;
+    int counter = 3;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        destination = transform.position;
+        lastPostition = transform.position;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if ((destination - transform.position).magnitude > threshold)
+        if (counter <= 0)
         {
-            Vector3 dir = (destination - transform.position).normalized * speed * Time.deltaTime;
-
-            if (!isGrounded())
-                rb.AddForce(transform.up * gravity, ForceMode.Acceleration);
-
-            rb.MovePosition(transform.position + dir);
-
-            Vector3 newRot = Vector3.Slerp(transform.position + transform.forward, destination, rotationSpeed * Time.deltaTime);
-            transform.LookAt(newRot);
-
-            float animSpeed = Remap(dir.magnitude, 0, 0.1f, 0, 1);
-            anim.SetFloat("Speed", animSpeed);
-        } else {
-            destination = transform.position;
             anim.SetFloat("Speed", 0);
         }
+        else
+        {
+            anim.SetFloat("Speed", 1);
+        }
 
+        counter--;
+
+        lastPostition = transform.position;
         rb.angularVelocity = Vector3.zero;
     }
 
     bool isGrounded()
     {
-        if(Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, raycastDistance)) {
-            if(hit.collider.CompareTag("Walkable")) {
+        if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, raycastDistance))
+        {
+            if (hit.collider.CompareTag("Walkable"))
+            {
                 return true;
             }
         }
@@ -68,6 +64,24 @@ public class MovementController : MonoBehaviour
         return false;
     }
     public float GetSpeed() { return speed; }
+
+    public void Move(Vector3 _direction)
+    {
+        Vector3 newDir = (_direction - transform.position).normalized;
+        Vector3 newPos = Vector3.zero;
+
+        if (Player.Instance.IsArOn()) 
+            newPos = Vector3.Lerp(transform.position, transform.position + newDir, speed * Time.deltaTime * arSpeedMultiplier);
+        else 
+            newPos = Vector3.Lerp(transform.position, transform.position + newDir, speed * Time.deltaTime);
+
+        rb.MovePosition(newPos);
+
+        Quaternion targetRotation = Quaternion.LookRotation(_direction - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        counter = 5;
+    }
 
     float Remap(float value, float from1, float to1, float from2, float to2)
     {

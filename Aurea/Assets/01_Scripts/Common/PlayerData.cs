@@ -77,8 +77,8 @@ public class PlayerData
 
     public void BuyItem(int amount, PlayerItemData item)
     {
-       
-        money -= amount; 
+
+        money -= amount;
         items.Add(item);
     }
 

@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CollisionInteractable {
+    None,
+    Shop,
+    Inventory,
+    Fight,
+    Select,
+    Competition
+}
+
 public class SIHUDController : MonoBehaviour
 {
     [SerializeField]
@@ -21,7 +30,7 @@ public class SIHUDController : MonoBehaviour
                 ControlPortal(true,"Durch dieses Portal gelangst du zum Playground");
                 if(skyIslandController != null)
                 {
-                    skyIslandController.SetCollided(true);
+                    skyIslandController.SetCollided(true, CollisionInteractable.Fight);
                 }
             }
         }
@@ -32,7 +41,7 @@ public class SIHUDController : MonoBehaviour
                 ControlPortal(true,"Durch dieses Portal gelangst du zur Aurea Auswahl");
                 if(skyIslandController != null)
                 {
-                    skyIslandController.SetCollided(true);
+                    skyIslandController.SetCollided(true, CollisionInteractable.Select);
                 }
             }
         }
@@ -43,7 +52,7 @@ public class SIHUDController : MonoBehaviour
                 ControlPortal(true,"Durch dieses Portal gelangst du zum Arenakampf");
                 if(skyIslandController != null)
                 {
-                    skyIslandController.SetCollided(true);
+                    skyIslandController.SetCollided(true, CollisionInteractable.Competition);
                 }
             }
         }
@@ -51,14 +60,14 @@ public class SIHUDController : MonoBehaviour
         {
             if(skyIslandController != null)
             {
-                skyIslandController.SetCollided(true);
+                skyIslandController.SetCollided(true, CollisionInteractable.Shop);
             }
         }
         if(other.CompareTag("Inventory"))
         {
             if(skyIslandController != null)
             {
-                skyIslandController.SetCollided(true);
+                skyIslandController.SetCollided(true, CollisionInteractable.Inventory);
             }
         }
 
@@ -71,7 +80,7 @@ public class SIHUDController : MonoBehaviour
             ControlPortal(false);
             if(skyIslandController != null)
             {
-                skyIslandController.SetCollided(false);
+                skyIslandController.RemoveCollision();
             }
         }
         if(other.CompareTag("To-AureaSelect"))
@@ -79,7 +88,7 @@ public class SIHUDController : MonoBehaviour
             ControlPortal(false);
             if(skyIslandController != null)
             {
-                skyIslandController.SetCollided(false);
+                skyIslandController.RemoveCollision();
             }
         }
         if(other.CompareTag("To-Competition"))
@@ -87,21 +96,21 @@ public class SIHUDController : MonoBehaviour
             ControlPortal(false);
             if(skyIslandController != null)
             {
-                skyIslandController.SetCollided(false);
+                skyIslandController.RemoveCollision();
             }
         }
         if(other.CompareTag("Shop"))
         {
             if(skyIslandController != null)
             {
-                skyIslandController.SetCollided(false);
+                skyIslandController.RemoveCollision();
             }
         }
         if(other.CompareTag("Inventory"))
         {
             if(skyIslandController != null)
             {
-                skyIslandController.SetCollided(false);
+                skyIslandController.RemoveCollision();
             }
         }
 

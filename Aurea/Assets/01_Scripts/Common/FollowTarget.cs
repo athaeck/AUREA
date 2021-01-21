@@ -23,6 +23,9 @@ public class FollowTarget : MonoBehaviour
     private bool lookat = false;
 
     [SerializeField]
+    private float lookatSpeed = 2f;
+
+    [SerializeField]
     private bool instantPosition = false;
 
     void FixedUpdate()
@@ -43,7 +46,10 @@ public class FollowTarget : MonoBehaviour
 
 
         if (lookat)
-            transform.LookAt(target.transform.position + lookatOffset);
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lookatSpeed * Time.deltaTime);
+        }
     }
 
     public void TakeTarget(Transform newTarget)

@@ -45,6 +45,9 @@ public class ARToolkitController : MonoBehaviour
 
     private void Start()
     {
+        Init();
+        // SwitchMode();
+        // SwitchMode();
         //StartCoroutine(Starting());
     }
 
@@ -72,6 +75,10 @@ public class ARToolkitController : MonoBehaviour
     public void SwitchMode()
     {
         Player.Instance.SwitchARMode();
+        Init();
+    }
+    public void Init()
+    {
         if (Player.Instance.IsArOn())
         {
             islands.transform.localScale.Scale(Vector3.one * initARScaling);
@@ -91,8 +98,10 @@ public class ARToolkitController : MonoBehaviour
         }
     }
 
-    void SetObjectsActive(bool _active){
-        foreach(GameObject obj in objectsToTurnOff) {
+    void SetObjectsActive(bool _active)
+    {
+        foreach (GameObject obj in objectsToTurnOff)
+        {
             obj.SetActive(_active);
         }
     }

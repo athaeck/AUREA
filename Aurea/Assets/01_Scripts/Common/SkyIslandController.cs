@@ -26,6 +26,7 @@ public class SkyIslandController : MonoBehaviour
 
     private bool collided = false;
 
+    private CollisionInteractable collidedWith = CollisionInteractable.None;
 
 
     private void Start()
@@ -40,10 +41,18 @@ public class SkyIslandController : MonoBehaviour
 
     }
 
-    public void SetCollided(bool b)
+    public void SetCollided(bool b, CollisionInteractable _collision)
     {
         collided = b;
+        collidedWith = _collision;
     }
+
+    public void RemoveCollision()
+    {
+        collided = false;
+        collidedWith = CollisionInteractable.None;
+    }
+
     public void SetStaticmode(bool b)
     {
         staticmode = b;
@@ -52,6 +61,12 @@ public class SkyIslandController : MonoBehaviour
     {
         return collided;
     }
+
+    public CollisionInteractable GetCollidedWith()
+    {
+        return collidedWith;
+    }
+
     public bool GetStaticMode()
     {
         return staticmode;
@@ -67,10 +82,12 @@ public class SkyIslandController : MonoBehaviour
     {
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
+        bool actionExecuted = false;
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
 
             if (staticmode == true)
             {
@@ -78,46 +95,42 @@ public class SkyIslandController : MonoBehaviour
                 {
                     ItemData item = hit.collider.gameObject.GetComponent<ItemData>();
                     if (enterController != null) enterController.Transfer(item, hit.collider.gameObject);
-                }
-            }
-            else
-            {
-                if (hit.collider.CompareTag("Walkable"))
-                {
-                    Vector3 newDestination = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-
-                    MovementController player = character.GetComponent<MovementController>();
-                    player.destination = newDestination;
+                    actionExecuted = true;
                 }
             }
 
             if (collided == true)
             {
-                if (hit.collider.CompareTag("To-Gameground"))
+                if (hit.collider.CompareTag("To-Gameground") && collidedWith == CollisionInteractable.Fight)
                 {
                     IslandController.Instance.OpenFight();
+                    actionExecuted = true;
                 }
-                if (hit.collider.CompareTag("To-Competition"))
+                if (hit.collider.CompareTag("To-Competition") && collidedWith == CollisionInteractable.Competition)
                 {
                     IslandController.Instance.OpenFight();
+                    actionExecuted = true;
                 }
-                if (hit.collider.CompareTag("To-AureaSelect"))
+                if (hit.collider.CompareTag("To-AureaSelect") && collidedWith == CollisionInteractable.Select)
                 {
                     if (goToPosition != null)
                     {
-                        MovementController c = character.GetComponent<MovementController>();
-                        Vector3 movement = new Vector3(goToPosition.transform.position.x, goToPosition.transform.position.y, goToPosition.transform.position.z);
-                        c.destination = movement;
+                        // MovementController c = character.GetComponent<MovementController>();
+                        // Vector3 movement = new Vector3(goToPosition.transform.position.x, goToPosition.transform.position.y, goToPosition.transform.position.z);
+                        // c.destination = movement;
                         IslandController.Instance.OpenTemple();
+                        actionExecuted = true;
                     }
                 }
-                if (hit.collider.CompareTag("Shop"))
+                if (hit.collider.CompareTag("Shop") && collidedWith == CollisionInteractable.Shop)
                 {
                     enterController.EnterShop();
+                    actionExecuted = true;
                 }
-                if (hit.collider.CompareTag("Inventory"))
+                if (hit.collider.CompareTag("Inventory") && collidedWith == CollisionInteractable.Inventory)
                 {
                     enterController.EnterInventory();
+                    actionExecuted = true;
                 }
             }
             if (hit.collider.CompareTag("Difficulty"))
@@ -125,14 +138,28 @@ public class SkyIslandController : MonoBehaviour
                 if (difficultyController != null)
                 {
                     difficultyController.SetDifficulty();
+                    actionExecuted = true;
                 }
+            }
+        }
+
+        if (!actionExecuted && !staticmode)
+        {
+            Plane hitPlane = new Plane(Vector3.up, character.transform.position);
+
+            if (hitPlane.Raycast(ray, out float distance))
+            {
+                Vector3 direction = ray.GetPoint(distance);
+
+                MovementController player = character.GetComponent<MovementController>();
+                player.Move(direction);
             }
         }
     }
 
-    public void ResetPlayerPosition() {
+    public void ResetPlayerPosition()
+    {
         MovementController movementController = character.GetComponent<MovementController>();
-        movementController.destination = spawnPlace.transform.position;
         character.transform.position = spawnPlace.transform.position;
     }
 

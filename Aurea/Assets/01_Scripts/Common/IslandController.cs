@@ -91,7 +91,7 @@ public class IslandController : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         ChangeActiveIsland(activeIsland);
     }

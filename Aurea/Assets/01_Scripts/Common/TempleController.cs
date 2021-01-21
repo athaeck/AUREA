@@ -139,7 +139,7 @@ public class TempleController : MonoBehaviour
                 Vector3 movement = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
                 MovementController c = player.GetComponent<MovementController>();
-                c.destination = movement;
+                c.Move(movement);
             }
         }       
     }
