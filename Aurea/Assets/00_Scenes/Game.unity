@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 105639656f7023949ab74c27fc7714be,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9531,7 +9531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &537005011
 Transform:
   m_ObjectHideFlags: 0
@@ -17880,7 +17880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &843181881
 Transform:
   m_ObjectHideFlags: 0
@@ -25848,7 +25848,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -27952,7 +27952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d4f2cbc1031ac448075012dc59c799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeIsland: 2
+  _activeIsland: 0
 --- !u!4 &1302402216
 Transform:
   m_ObjectHideFlags: 0
@@ -35729,17 +35729,17 @@ PrefabInstance:
     - target: {fileID: 4205038830459714472, guid: fac07d6540f8f1b40b7dde381df6792c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.71
+      value: 7.332
       objectReference: {fileID: 0}
     - target: {fileID: 4205038830459714472, guid: fac07d6540f8f1b40b7dde381df6792c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.78
+      value: -1.915
       objectReference: {fileID: 0}
     - target: {fileID: 4205038830459714472, guid: fac07d6540f8f1b40b7dde381df6792c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.82
+      value: 3.899
       objectReference: {fileID: 0}
     - target: {fileID: 4205038830459714472, guid: fac07d6540f8f1b40b7dde381df6792c,
         type: 3}
