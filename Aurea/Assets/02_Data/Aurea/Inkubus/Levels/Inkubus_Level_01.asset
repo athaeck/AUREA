@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02faa10734122ce4c910850c7e2f32de, type: 3}
+  m_Name: Inkubus_Level_01
+  m_EditorClassIdentifier: 
+  level: 1
+  lifePoints: 1300
+  physicalDamage: 30
+  physicalDefense: 0.5
+  magicalDamage: 140
+  magicalDefense: 0.5
+  skills:
+  - {fileID: 11400000, guid: 4f589f1b097e366499e241a59138f0b6, type: 2}
+  - {fileID: 11400000, guid: d6e3cc14f6108e145b3e46824ec4a2c0, type: 2}
+  - {fileID: 11400000, guid: d18084c08971d394f9f21378edd7f85a, type: 2}
+  - {fileID: 11400000, guid: 5db77ab79abb8e3439498e40451e5082, type: 2}
+  passiveSkills: []
+  prefab: {fileID: 4710830566866656502, guid: b87430cf9b510b240b824c938124def3, type: 3}

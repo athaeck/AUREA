@@ -71,8 +71,10 @@ public class PlayerController : MonoBehaviour
         foreach (GameObject spawnPoint in spawnPoints)
         {
             int aureaLevel = data.GetAureaLevel(squad[i]);
-            GameObject aureaPrefab = IslandController.Instance.fight.GetAureaData(squad[i]).levels[aureaLevel - 1].prefab;
+            AureaData aureaData =  IslandController.Instance.fight.GetAureaData(squad[i]);
+            GameObject aureaPrefab = aureaData.levels[aureaLevel - 1].prefab;
             Aurea aurea = Instantiate(aureaPrefab, spawnPoint.transform).GetComponent<Aurea>();
+            aurea.transform.localPosition = new Vector3(0, aureaData.instantiateAtheight, 0);
             aurea.Init(aureaLevel, this);
             aureaInstances.Add(aurea);
             aurea.Died += AureaDied;
