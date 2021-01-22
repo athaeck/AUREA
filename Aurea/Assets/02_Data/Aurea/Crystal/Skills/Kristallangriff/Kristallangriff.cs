@@ -17,7 +17,6 @@ public class Kristallangriff : Skill
 
     public override void Use(Damage _dmg)
     {
-        _dmg.modifier = this.modifier;
         _dmg.physicalDamage *= physicalDamageMultiplier;
         _dmg.attackDelay = attackDelay;
 
@@ -45,7 +44,7 @@ public class Kristallangriff : Skill
 
     public override bool CheckTargets(List<Aurea> _targets, Aurea _sender)
     {
-        if (_targets.Count > 1 && IsTargetValid(_targets[0], _sender) && IsTargetValid(_targets[1], _sender))
+        if (_targets.Count > 0 && IsTargetValid(_targets[0], _sender))
             return true;
 
         return false;

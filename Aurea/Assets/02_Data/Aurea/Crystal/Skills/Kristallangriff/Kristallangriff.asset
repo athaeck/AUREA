@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Kristallangriff
   m_EditorClassIdentifier: 
   NAME: Kristallangriff
-  DESCRIPTION: 
+  DESCRIPTION: "Verursacht 80% Physischen oder Magischen Schaden. Abh\xE4mgig vom
+    geringeren Verteidigungswertes des Gegners"
   ID: 
-  costs: 1
+  costs: 3
   skillType: 0
-  modifier:
-  - Shard
-  physicalDamageMultiplier: 0.2
+  modifier: []
+  physicalDamageMultiplier: 0.8
   attackDelay: 2
   animation: {fileID: 11400000, guid: 3d961501c94b8584fa8f0faa09753ab0, type: 2}

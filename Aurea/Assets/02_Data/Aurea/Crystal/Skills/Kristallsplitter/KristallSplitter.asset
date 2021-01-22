@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: KristallSplitter
   m_EditorClassIdentifier: 
   NAME: Kristall Splitter
-  DESCRIPTION: 
+  DESCRIPTION: "Verursacht 20% Physischen Schaden auf 2 Gegner und erh\xF6ht den
+    Schaden auf Sie f\xFCr 3 Runden um 50%"
   ID: 
-  costs: 0
+  costs: 1
   skillType: 0
-  modifier: []
-  physicalDamageMultiplier: 1.3
-  attackPrefab: {fileID: 0}
+  modifier:
+  - ShardSplitter
+  physicalDamageMultiplier: 0.2
+  attackDelay: 2
+  animation: {fileID: 0}

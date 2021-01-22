@@ -24,6 +24,6 @@ public class Kristallisiert : MonoBehaviour
 
     void StartSplitterAttack()
     {
-        Debug.Log("Start Attack");
+        Debug.Log("Start Splitter Attack");
     }
 }

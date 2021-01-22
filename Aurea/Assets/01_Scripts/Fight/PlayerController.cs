@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Action<Aurea> SelectedTarget;
     public Action ResetTarget;
     public Action ResetedSelection;
+    public Action AbortedSkill;
     public Action<PlayerController> GameOver;
     public Action<Aurea> AureaHasDied;
     public Action HasWon;
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (Aurea aurea in aureaInstances)
         {
-            if(aurea != null)
+            if (aurea != null)
                 DestroyImmediate(aurea.gameObject);
         }
         aureaInstances = new List<Aurea>();
@@ -93,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
         if (selected)
             selected.CancelSkill();
-        
+
         ResetedSelection?.Invoke();
     }
 
@@ -130,7 +131,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!_aurea)
         {
-            RemoveSelected();
+            if (selected)
+                selected.CancelSkill();
+            
+            AbortedSkill?.Invoke();
             return;
         }
 
@@ -149,9 +153,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!selected) return;
 
-        
+
         selected.SkillCancled -= RemoveSelected;
-        selected.CancelSkill();
+        // selected.CancelSkill();
 
         selected = null;
         // ResetedSelection?.Invoke();

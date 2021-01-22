@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Aurea))]
-public class Shard : MonoBehaviour
+public class ShardSplitter : MonoBehaviour
 {
     Aurea aurea = null;
     float dmgMultiplier = 1.5f;

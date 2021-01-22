@@ -73,6 +73,7 @@ public class FightController : MonoBehaviour
 
     private void EvaluateInput(RaycastHit hit)
     {
+        Debug.Log("Evaluate Input");
         if (justClicked || EventSystem.current.IsPointerOverGameObject()) return;
 
         Aurea hero = null;

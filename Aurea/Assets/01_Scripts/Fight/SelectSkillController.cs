@@ -51,6 +51,7 @@ public class SelectSkillController : MonoBehaviour
     {
         player.SelectedAurea += InitView;
         player.ResetedSelection += ResetView;
+        player.AbortedSkill += ResetView;
     }
 
     private void ResetView()
@@ -69,16 +70,16 @@ public class SelectSkillController : MonoBehaviour
         firstSkillCosts.text = skills[0].GetCosts().ToString();
 
         secondSkillText.text = skills[1].GetName();
-        secondSkillDescription.text = skills[0].GetDescription();
-        secondSkillCosts.text = skills[0].GetCosts().ToString();
+        secondSkillDescription.text = skills[1].GetDescription();
+        secondSkillCosts.text = skills[1].GetCosts().ToString();
 
         thirdSkillText.text = skills[2].GetName();
-        thirdSkillDescription.text = skills[0].GetDescription();
-        thirdSkillCosts.text = skills[0].GetCosts().ToString();
+        thirdSkillDescription.text = skills[2].GetDescription();
+        thirdSkillCosts.text = skills[2].GetCosts().ToString();
 
         forthSkillText.text = skills[3].GetName();
-        forthSkillDescription.text = skills[0].GetDescription();
-        forthSkillCosts.text = skills[0].GetCosts().ToString();
+        forthSkillDescription.text = skills[3].GetDescription();
+        forthSkillCosts.text = skills[3].GetCosts().ToString();
     }
 
     public void UseSkill(int i)

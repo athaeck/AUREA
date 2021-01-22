@@ -45,9 +45,11 @@ public class Aurea : MonoBehaviour
             {
                 _activeSkill = value;
                 Selected?.Invoke(this);
+                Debug.Log("Selected Skill");
             }
-            else
-                _activeSkill = null;
+            else {
+                CancelSkill();
+            }
 
             if (_activeSkill && _activeSkill.CheckTargets(targets, this))
                 UseSkill();
@@ -67,6 +69,9 @@ public class Aurea : MonoBehaviour
 
     public void TakeTarget(Aurea _aurea)
     {
+        if(!_aurea) {
+            Debug.Log("Aurea is null");
+        }
         if (!activeSkill)
         {
             Debug.LogError("Selected Target but no skill active!");
@@ -81,6 +86,7 @@ public class Aurea : MonoBehaviour
             {
                 targets.Remove(_aurea);
                 ChangedTargets?.Invoke(targets);
+                Debug.Log("Changed Targets");
 
                 if (targets.Count <= 0)
                 {
@@ -94,6 +100,7 @@ public class Aurea : MonoBehaviour
         {
             targets.Add(_aurea);
             ChangedTargets?.Invoke(targets);
+            Debug.Log("Changed Targets");
 
             if (activeSkill.CheckTargets(targets, this))
                 UseSkill();
@@ -115,13 +122,15 @@ public class Aurea : MonoBehaviour
     public void CancelSkill()
     {
         targets = new List<Aurea>();
-        activeSkill = null;
+        _activeSkill = null;
         SkillCancled?.Invoke();
+        Debug.Log("Skill Cancled");
     }
     public void TakeDamage(Damage _dmg)
     {
         Debug.Log("Got hit " + this.name);
         BeforeGettingHit?.Invoke(_dmg);
+        Debug.Log("Before Getting Hit");
 
         switch (_dmg.skill.GetSkillType())
         {
@@ -152,6 +161,7 @@ public class Aurea : MonoBehaviour
         }
 
         AfterGettingHit?.Invoke(_dmg);
+        Debug.Log("After Getting Hit");
     }
 
     public void Die()
