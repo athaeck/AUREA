@@ -132,7 +132,7 @@ public class Aurea : MonoBehaviour
         BeforeGettingHit?.Invoke(_dmg);
         Debug.Log("Before Getting Hit");
 
-        switch (_dmg.skill.GetSkillType())
+        switch (_dmg.skillType)
         {
             case SkillType.MAGICAL:
                 RemoveLifePoints(_dmg.magicalDamage * data.levels[level - 1].magicalDefense);
@@ -191,7 +191,22 @@ public class Aurea : MonoBehaviour
             skill = _skill,
             physicalDamage = data.levels[level - 1].physicalDamage,
             magicalDamage = data.levels[level - 1].magicalDamage,
+            skillType = _skill.GetSkillType(),
             modifier = _skill.GetModifier()
+        };
+
+        return newDamage;
+    }
+    public Damage GetDamage() {
+        Damage newDamage = new Damage
+        {
+            sender = this,
+            targets = new List<Aurea>(),
+            skill = null,
+            physicalDamage = data.levels[level - 1].physicalDamage,
+            magicalDamage = data.levels[level - 1].magicalDamage,
+            skillType = SkillType.PHYSICAL,
+            modifier = new List<string>()
         };
 
         return newDamage;

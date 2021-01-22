@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Sperrfeuer
   m_EditorClassIdentifier: 
   NAME: Sperrfeuer
-  DESCRIPTION: 
+  DESCRIPTION: "Verringert deine Lebenspunkte auf 1 und f\xFCgt 15 Shardsplitter
+    hinzu"
   ID: 
   costs: 0
   skillType: 0
   modifier: []
-  physicalDamageMultiplier: 1.3
-  attackPrefab: {fileID: 0}
+  amountOfAddedSplitter: 14
+  lifePointsLeft: 1

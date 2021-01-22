@@ -7,7 +7,7 @@ using UnityEngine;
 public class Kristallangriff : Skill
 {
     [SerializeField]
-    private float physicalDamageMultiplier = 1.3f;
+    private float damageMultiplier = 1.3f;
 
     [SerializeField]
     private float attackDelay = 2f;
@@ -17,7 +17,17 @@ public class Kristallangriff : Skill
 
     public override void Use(Damage _dmg)
     {
-        _dmg.physicalDamage *= physicalDamageMultiplier;
+        if (_dmg.targets[0].GetMagicalDefence() < _dmg.targets[0].GetPhysicalDefence())
+        {
+            _dmg.magicalDamage = _dmg.physicalDamage * damageMultiplier;
+            _dmg.skillType = SkillType.MAGICAL;
+        }
+        else
+        {
+            _dmg.physicalDamage *= damageMultiplier;
+            _dmg.skillType = SkillType.PHYSICAL;
+        }
+
         _dmg.attackDelay = attackDelay;
 
         if (Player.Instance.AnimationsOn() && animation)

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: KristallReserve
   m_EditorClassIdentifier: 
   NAME: Kristallreserve
-  DESCRIPTION: 
+  DESCRIPTION: "F\xFCgt 2 Shardsplitter hinzu"
   ID: 
-  costs: 0
+  costs: 1
   skillType: 0
   modifier: []
   physicalDamageMultiplier: 1.3

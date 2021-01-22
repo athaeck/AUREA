@@ -7,19 +7,23 @@ using UnityEngine;
 public class Sperrfeuer : Skill
 {
     [SerializeField]
-    private float physicalDamageMultiplier = 1.3f;
+    int amountOfAddedSplitter = 9;
 
     [SerializeField]
-    private GameObject attackPrefab = null;
+    int lifePointsLeft = 1;
 
-    //[SerializeField]
-    //private float attackDelay = 1.8f;
     public override void Use(Damage dmg)
     {
-        dmg.physicalDamage *= physicalDamageMultiplier;
-        GameObject attack = Instantiate(attackPrefab, dmg.sender.transform);
-        ErdbebenController controller = attack.GetComponent<ErdbebenController>();
-        controller.TakeInformations(dmg);
+        dmg.sender.SetLifePointsLeft(lifePointsLeft);
+        Kristallisiert kristallisiert = dmg.sender.gameObject.GetComponent<Kristallisiert>();
+
+        if(kristallisiert) {
+            kristallisiert.AddSplitter(amountOfAddedSplitter);
+        }
+        // dmg.physicalDamage *= physicalDamageMultiplier;
+        // GameObject attack = Instantiate(attackPrefab, dmg.sender.transform);
+        // ErdbebenController controller = attack.GetComponent<ErdbebenController>();
+        // controller.TakeInformations(dmg);
     }
 
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)

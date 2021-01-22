@@ -16,7 +16,7 @@ MonoBehaviour:
   lifePoints: 1200
   physicalDamage: 200
   physicalDefense: 0.4
-  magicalDamage: 40
+  magicalDamage: 0
   magicalDefense: 1
   skills:
   - {fileID: 11400000, guid: b841adeeaba5c6944bbdfb302b1a04a7, type: 2}
@@ -24,5 +24,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: babfc31e65162834cbc9a19f800b157b, type: 2}
   - {fileID: 11400000, guid: c09ab6dc571238649868d19652c4663e, type: 2}
   passiveSkills:
-  - {fileID: 11400000, guid: 466c5b0c2ffdc3247b629bde5866bd16, type: 2}
+  - {fileID: 0}
   prefab: {fileID: 564295025074327881, guid: b2cf1d5e22bde46499f7140fe093978e, type: 3}

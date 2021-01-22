@@ -7,19 +7,19 @@ using UnityEngine;
 public class KristallReserve : Skill
 {
     [SerializeField]
-    private float physicalDamageMultiplier = 1.3f;
+    int amountOfAddedSplitter = 1;
 
-    [SerializeField]
-    private GameObject attackPrefab = null;
-
-    //[SerializeField]
-    //private float attackDelay = 1.8f;
     public override void Use(Damage dmg)
     {
-        dmg.physicalDamage *= physicalDamageMultiplier;
-        GameObject attack = Instantiate(attackPrefab, dmg.sender.transform);
-        ErdbebenController controller = attack.GetComponent<ErdbebenController>();
-        controller.TakeInformations(dmg);
+        Kristallisiert kristallisiert = dmg.sender.gameObject.GetComponent<Kristallisiert>();
+
+        if(kristallisiert) {
+            kristallisiert.AddSplitter(amountOfAddedSplitter);
+        }
+        // dmg.physicalDamage *= physicalDamageMultiplier;
+        // GameObject attack = Instantiate(attackPrefab, dmg.sender.transform);
+        // ErdbebenController controller = attack.GetComponent<ErdbebenController>();
+        // controller.TakeInformations(dmg);
     }
 
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)
