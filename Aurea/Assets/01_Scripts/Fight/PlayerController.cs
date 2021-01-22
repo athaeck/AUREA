@@ -129,11 +129,14 @@ public class PlayerController : MonoBehaviour
 
     public void Select(Aurea _aurea)
     {
+        if (_aurea && !_aurea.IsAlive())
+            return;
+
         if (!_aurea)
         {
             if (selected)
                 selected.CancelSkill();
-            
+
             AbortedSkill?.Invoke();
             return;
         }

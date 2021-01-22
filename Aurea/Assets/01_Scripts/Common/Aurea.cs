@@ -166,6 +166,7 @@ public class Aurea : MonoBehaviour
 
     public void Die()
     {
+        Debug.Log("Died " + name);
         Died?.Invoke(this);
     }
 
@@ -217,6 +218,7 @@ public class Aurea : MonoBehaviour
     public float GetLifePointsLeft() { return lifePointsLeft; }
     public void SetLifePointsLeft(float amount)
     {
+        TookDamage?.Invoke((int)(lifePointsLeft - amount));
         this.lifePointsLeft = amount;
         ChangedLifepoints?.Invoke();
     }

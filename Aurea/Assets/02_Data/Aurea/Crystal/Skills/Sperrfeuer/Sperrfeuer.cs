@@ -14,10 +14,17 @@ public class Sperrfeuer : Skill
 
     public override void Use(Damage dmg)
     {
-        dmg.sender.SetLifePointsLeft(lifePointsLeft);
+        if (dmg.sender.GetLifePointsLeft() == lifePointsLeft) {
+            dmg.sender.SetLifePointsLeft(0);
+            dmg.sender.Die();
+        }
+        else
+            dmg.sender.SetLifePointsLeft(lifePointsLeft);
+
         Kristallisiert kristallisiert = dmg.sender.gameObject.GetComponent<Kristallisiert>();
 
-        if(kristallisiert) {
+        if (kristallisiert)
+        {
             kristallisiert.AddSplitter(amountOfAddedSplitter);
         }
         // dmg.physicalDamage *= physicalDamageMultiplier;

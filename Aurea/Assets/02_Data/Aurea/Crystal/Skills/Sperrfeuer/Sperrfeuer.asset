@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NAME: Sperrfeuer
   DESCRIPTION: "Verringert deine Lebenspunkte auf 1 und f\xFCgt 15 Shardsplitter
-    hinzu"
+    hinzu. T\xF6tet dich wenn du nur noch 1 Lebenspunkt besitzt"
   ID: 
   costs: 0
   skillType: 0
