@@ -6,38 +6,20 @@ using UnityEngine;
 public class Amnesia : Skill
 {
     [SerializeField]
-    private float damageMultiplier = 1.3f;
-
-    [SerializeField]
-    private float attackDelay = 2f;
+    private string amnesiaSkill = "AmnesiaModifier";
 
     [SerializeField]
     private AttackAnimationController animation = null;
 
     public override void Use(Damage _dmg)
     {
-        if (_dmg.targets[0].GetMagicalDefence() < _dmg.targets[0].GetPhysicalDefence())
-        {
-            _dmg.magicalDamage = _dmg.physicalDamage * damageMultiplier;
-            _dmg.skillType = SkillType.MAGICAL;
-        }
-        else
-        {
-            _dmg.physicalDamage *= damageMultiplier;
-            _dmg.skillType = SkillType.PHYSICAL;
-        }
+        System.Type modifierScript = System.Type.GetType(amnesiaSkill);
+        Component component = _dmg.targets[0].gameObject.GetComponent(modifierScript);
 
-        _dmg.attackDelay = attackDelay;
+        if (component)
+            component.SendMessage("Kill");
 
-        if (Player.Instance.AnimationsOn() && animation)
-            animation.StartAnimation(_dmg);
-
-
-        foreach (Aurea target in _dmg.targets)
-        {
-            Damage dmg = _dmg.Copy();
-            target.TakeDamage(dmg);
-        }
+        _dmg.targets[0].gameObject.AddComponent(modifierScript);
     }
 
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)

@@ -27,8 +27,8 @@ public class Schlafenszeit : Skill
         if (_aurea == _sender)
             return false;
 
-        // if (_aurea.GetPlayer() == _sender.GetPlayer())
-        //     return false;
+        if (_aurea.GetPlayer() == _sender.GetPlayer())
+            return false;
 
         return true;
     }

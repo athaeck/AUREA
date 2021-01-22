@@ -74,7 +74,7 @@ public class Aurea : MonoBehaviour
         }
         if (!activeSkill)
         {
-            Debug.LogError("Selected Target but no skill active!");
+            Debug.Log("Selected Target but no skill active!");
             return;
         }
 

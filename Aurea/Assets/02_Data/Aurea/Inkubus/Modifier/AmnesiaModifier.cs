@@ -3,40 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Aurea))]
-public class Sleeping : MonoBehaviour
+public class AmnesiaModifier : MonoBehaviour
 {
-    int sleepRandomFor = 3;
-    Aurea aurea = null;
-
     [SerializeField]
+    float damageMultiplier = 0.3f;
+    int doDamageForRounds = 5;
+    Aurea aurea = null;
     int roundsLeft = 0;
 
     void Start()
     {
         aurea = GetComponent<Aurea>();
-        roundsLeft = UnityEngine.Random.Range(0, sleepRandomFor);
-        aurea.GetPlayer().SelectedAurea += BlockAurea;
+        roundsLeft = doDamageForRounds;
         aurea.GetPlayer().StartedTurn += NewTurn;
-    }
-
-    void BlockAurea(Aurea _aurea)
-    {
-        if (aurea == _aurea)
-        {
-            aurea.GetPlayer().Select(null);
-        }
     }
 
     void NewTurn()
     {
-        roundsLeft--;
+        Damage dmg = aurea.GetDamage();
+        dmg.physicalDamage *= damageMultiplier;
+        aurea.TakeDamage(dmg);
         if (roundsLeft <= 0)
             Kill();
     }
 
     public void Kill()
     {
-        aurea.GetPlayer().SelectedAurea -= BlockAurea;
         aurea.GetPlayer().StartedTurn -= NewTurn;
         DestroyImmediate(this);
     }

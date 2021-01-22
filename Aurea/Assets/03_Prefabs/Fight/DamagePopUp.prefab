@@ -192,6 +192,8 @@ MonoBehaviour:
   moveYSpeed: 3
   lifetime: 1
   disappearSpeed: 1
+  damageColor: {r: 1, g: 0.48271224, b: 0, a: 1}
+  healthColor: {r: 0.14404595, g: 0.7830189, b: 0.23874146, a: 1}
 --- !u!114 &2803191843642021983
 MonoBehaviour:
   m_ObjectHideFlags: 0

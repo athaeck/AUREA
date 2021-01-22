@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Aurea))]
-public class Sleeping : MonoBehaviour
+public class HealthSleeping : MonoBehaviour
 {
-    int sleepRandomFor = 3;
     Aurea aurea = null;
-
-    [SerializeField]
-    int roundsLeft = 0;
 
     void Start()
     {
         aurea = GetComponent<Aurea>();
-        roundsLeft = UnityEngine.Random.Range(0, sleepRandomFor);
         aurea.GetPlayer().SelectedAurea += BlockAurea;
         aurea.GetPlayer().StartedTurn += NewTurn;
     }
@@ -29,9 +24,7 @@ public class Sleeping : MonoBehaviour
 
     void NewTurn()
     {
-        roundsLeft--;
-        if (roundsLeft <= 0)
-            Kill();
+        Kill();
     }
 
     public void Kill()

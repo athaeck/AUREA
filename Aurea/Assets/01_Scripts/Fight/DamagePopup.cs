@@ -14,6 +14,12 @@ public class DamagePopup : MonoBehaviour
     [SerializeField]
     private float disappearSpeed = 3f;
 
+    [SerializeField]
+    private Color damageColor = Color.red;
+
+    [SerializeField]
+    private Color healthColor = Color.green;
+
     private TextMeshPro textMesh = null;
     private Color textColor = Color.black;
 
@@ -22,7 +28,12 @@ public class DamagePopup : MonoBehaviour
     }
 
     public void Setup(int _dmg) {
-        textMesh.SetText(_dmg.ToString());
+        if(_dmg < 0) {
+            textMesh.color = healthColor;
+        }else {
+            textMesh.color = damageColor;
+        }
+        textMesh.SetText((-_dmg).ToString());
         textColor = textMesh.color;
     }
 
