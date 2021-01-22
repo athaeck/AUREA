@@ -18,13 +18,34 @@ public class SelectSkillController : MonoBehaviour
     private Text firstSkillText = null;
 
     [SerializeField]
+    private Text firstSkillDescription = null;
+
+    [SerializeField]
+    private Text firstSkillCosts = null;
+
+    [SerializeField]
     private Text secondSkillText = null;
+    [SerializeField]
+    private Text secondSkillDescription = null;
+
+    [SerializeField]
+    private Text secondSkillCosts = null;
 
     [SerializeField]
     private Text thirdSkillText = null;
+    [SerializeField]
+    private Text thirdSkillDescription = null;
+
+    [SerializeField]
+    private Text thirdSkillCosts = null;
 
     [SerializeField]
     private Text forthSkillText = null;
+    [SerializeField]
+    private Text forthSkillDescription = null;
+
+    [SerializeField]
+    private Text forthSkillCosts = null;
 
     private void Start()
     {
@@ -44,9 +65,20 @@ public class SelectSkillController : MonoBehaviour
         List<Skill> skills = _aurea.GetSkills();
 
         firstSkillText.text = skills[0].GetName();
+        firstSkillDescription.text = skills[0].GetDescription();
+        firstSkillCosts.text = skills[0].GetCosts().ToString();
+
         secondSkillText.text = skills[1].GetName();
+        secondSkillDescription.text = skills[0].GetDescription();
+        secondSkillCosts.text = skills[0].GetCosts().ToString();
+
         thirdSkillText.text = skills[2].GetName();
+        thirdSkillDescription.text = skills[0].GetDescription();
+        thirdSkillCosts.text = skills[0].GetCosts().ToString();
+
         forthSkillText.text = skills[3].GetName();
+        forthSkillDescription.text = skills[0].GetDescription();
+        forthSkillCosts.text = skills[0].GetCosts().ToString();
     }
 
     public void UseSkill(int i)

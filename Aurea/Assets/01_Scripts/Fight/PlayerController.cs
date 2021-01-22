@@ -93,6 +93,8 @@ public class PlayerController : MonoBehaviour
 
         if (selected)
             selected.CancelSkill();
+        
+        ResetedSelection?.Invoke();
     }
 
     public void ManuallyEndTurn()
@@ -129,7 +131,6 @@ public class PlayerController : MonoBehaviour
         if (!_aurea)
         {
             RemoveSelected();
-            ResetedSelection?.Invoke();
             return;
         }
 
@@ -148,10 +149,12 @@ public class PlayerController : MonoBehaviour
     {
         if (!selected) return;
 
-        Debug.Log("Remove Selected Aurea");
-
+        
         selected.SkillCancled -= RemoveSelected;
+        selected.CancelSkill();
+
         selected = null;
+        // ResetedSelection?.Invoke();
     }
     void AddAP(int amount)
     {

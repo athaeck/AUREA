@@ -57,30 +57,34 @@ public class ParticleVisualizer : MonoBehaviour
     {
         if (Player.Instance.animationsOn)
         {
-            List<GameObject> objects = new List<GameObject>();
+            List<RuneAnimations> objects = new List<RuneAnimations>();
             foreach (KeyValuePair<Aurea, GameObject> keyValue in instantiatedParticles)
             {
-                objects.Add(keyValue.Value);
+                RuneAnimations runeAnimtaions = keyValue.Value.GetComponent<RuneAnimations>();
+                objects.Add(runeAnimtaions);
             }
+
             StartCoroutine(CancelIn(objects, killInTime));
         }
         else
         {
             foreach (KeyValuePair<Aurea, GameObject> keyValue in instantiatedParticles)
             {
-                Destroy(keyValue.Value);
+                RuneAnimations runeAnimations = keyValue.Value.GetComponent<RuneAnimations>();
+                runeAnimations.turnOff = true;
+                runeAnimations.alpha = 0;
             }
         }
         instantiatedParticles = new Dictionary<Aurea, GameObject>();
     }
 
-    IEnumerator CancelIn(List<GameObject> _particles, float _time)
+    IEnumerator CancelIn(List<RuneAnimations> _animations, float _time)
     {
         yield return new WaitForSeconds(_time);
 
-        foreach (GameObject _obj in _particles)
+        foreach (RuneAnimations rune in _animations)
         {
-            Destroy(_obj);
+            rune.turnOff = true;
         }
     }
 }
