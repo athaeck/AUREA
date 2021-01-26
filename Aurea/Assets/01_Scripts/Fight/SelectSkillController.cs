@@ -85,6 +85,7 @@ public class SelectSkillController : MonoBehaviour
     public void UseSkill(int i)
     {
         selectedAurea.activeSkill = selectedAurea.GetSkills()[i];
+        IslandController.Instance.fight.JustSelectedSkill();
         ResetView();
     }
 }
