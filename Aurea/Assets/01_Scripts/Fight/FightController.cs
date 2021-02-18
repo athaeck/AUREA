@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System;
@@ -45,13 +46,20 @@ public class FightController : MonoBehaviour
     public float roundTime = 30f;
 
     [SerializeField]
-    private float waitBetweenClicks = 1f;
+    private float waitBetweenClicks = 1.5f;
+
+    [SerializeField]
+    private GameObject gameOverScreen = null;
+
+    [SerializeField]
+    private Text gameOverText = null;
 
     public PlayerController activePlayer = null;
     private bool canInteract = true;
     public float timeLeft = 0;
     private bool timerStarted = false;
     bool justClicked = false;
+    bool justSelectedSkill = false;
     bool gameEnded = false;
 
     public void TakeInput(Ray ray)
@@ -71,10 +79,21 @@ public class FightController : MonoBehaviour
         TakeInput(ray);
     }
 
+    public void JustSelectedSkill()
+    {
+        StartCoroutine(WaitBetweetClickSelectedSkill());
+    }
+
     private void EvaluateInput(RaycastHit hit)
     {
         Debug.Log("Evaluate Input");
-        if (justClicked || EventSystem.current.IsPointerOverGameObject()) return;
+        if (justClicked || justSelectedSkill) return;
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            StartCoroutine(WaitBetweetClick());
+            return;
+        }
 
         Aurea hero = null;
 
@@ -111,6 +130,8 @@ public class FightController : MonoBehaviour
     void StartGame()
     {
         GameStarting?.Invoke();
+
+        gameOverScreen.SetActive(false);
 
         LoadData();
 
@@ -159,17 +180,21 @@ public class FightController : MonoBehaviour
 
         if (player == _player)
         {
+            gameOverText.text = "You lose!";
             enemy.Won();
             data.AddLoseStatistics();
         }
         else
         {
+            gameOverText.text = "You won!";
             player.Won();
             data.AddWonStatistics();
         }
 
         player.SetData(data);
         StateManager.SavePlayer(data);
+
+        gameOverScreen.SetActive(true);
 
         GameEnded?.Invoke();
     }
@@ -241,4 +266,10 @@ public class FightController : MonoBehaviour
         justClicked = false;
     }
 
+    IEnumerator WaitBetweetClickSelectedSkill()
+    {
+        justSelectedSkill = true;
+        yield return new WaitForSeconds(waitBetweenClicks);
+        justSelectedSkill = false;
+    }
 }

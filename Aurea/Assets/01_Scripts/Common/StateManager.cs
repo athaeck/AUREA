@@ -41,14 +41,25 @@ public static class StateManager
         PlayerData newData = new PlayerData();
         newData.NAME = "Player";
 
-        for (int i = 0; i < 5; i++)
-        {
-            PlayerAureaData newAurea = new PlayerAureaData();
-            newAurea.aureaName = "Golem";
-            newAurea.aureaLevel = 2;
-            newData.AddAurea(newAurea);
-            newData.AddAureaToSquad("Golem");
-        }
+        PlayerAureaData golem = new PlayerAureaData();
+        golem.aureaName = "Golem";
+        golem.aureaLevel = 1;
+        newData.AddAurea(golem);
+        newData.AddAureaToSquad("Golem");
+
+        PlayerAureaData inkubus = new PlayerAureaData();
+        inkubus.aureaName = "Inkubus";
+        inkubus.aureaLevel = 1;
+        newData.AddAurea(inkubus);
+        newData.AddAureaToSquad("Inkubus");
+
+        PlayerAureaData crystal = new PlayerAureaData();
+        crystal.aureaName = "Crystal";
+        crystal.aureaLevel = 1;
+        newData.AddAurea(crystal);
+        newData.AddAureaToSquad("Crystal");
+
+
         SavePlayer(newData);
 
         Debug.Log("Create - CREATED NEW PLAYER COMPLETED");

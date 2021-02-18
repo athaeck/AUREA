@@ -216,7 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 5078521202571259947}
-  turnOnSpeed: 0.5
-  turnOutSpeed: 0.5
+  turnOnSpeed: 1
+  turnOutSpeed: 1
+  waitTillDie: 5
   turnOff: 0
   alpha: 0

@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
             aurea.Init(aureaLevel, this);
             aureaInstances.Add(aurea);
             aurea.Died += AureaDied;
+            
 
             i++;
         }

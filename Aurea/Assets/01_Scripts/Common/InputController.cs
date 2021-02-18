@@ -23,6 +23,10 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
+        if(EventSystem.current.IsPointerOverGameObject()) {
+            return;
+        }
+
         switch (IslandController.Instance.activeIsland)
         {
             case Island.SkyIsland:
