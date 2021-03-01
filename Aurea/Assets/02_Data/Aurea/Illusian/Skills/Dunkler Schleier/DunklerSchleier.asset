@@ -18,4 +18,5 @@ MonoBehaviour:
   ID: 
   costs: 2
   skillType: 1
-  modifier: []
+  modifier:
+  - Schleier

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alptraum
   m_EditorClassIdentifier: 
   NAME: Alptraum
-  DESCRIPTION: "Schlafenede Aurea erhalten 200% Physischen Schaden und verb\xFCndete
+  DESCRIPTION: "Schlafenede Aurea erhalten 200% Magischen  Schaden und verb\xFCndete
     Aurea werden geweckt und erhalten eine Heilung von 20%"
   ID: 
   costs: 7
@@ -22,5 +22,5 @@ MonoBehaviour:
   sleepingSkill: Sleeping
   amnesiaSkill: HealthSleeping
   healMultiplier: 0.05
-  damageMultiplier: 5
+  damageMultiplier: 2
   animation: {fileID: 0}
