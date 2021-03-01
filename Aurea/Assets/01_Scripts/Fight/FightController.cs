@@ -111,10 +111,25 @@ public class FightController : MonoBehaviour
 
     public void ResetIsland()
     {
+        ClearSlots();
         LoadData();
         gameEnded = false;
         ResetFight?.Invoke();
         StartGame();
+    }
+
+    public void ClearSlots()
+    {
+        foreach(GameObject slot in playerSpawnpoints) {
+            foreach(Transform child in slot.transform) {
+                DestroyImmediate(child.gameObject);
+            }   
+        }
+        foreach(GameObject slot in enemySpawnpoints) {
+            foreach(Transform child in slot.transform) {
+                DestroyImmediate(child.gameObject);
+            }   
+        }
     }
 
     private void Update()

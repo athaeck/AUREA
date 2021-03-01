@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c793968e6ad7804083cb65cedb344fb, type: 3}
-  m_Name: Illusian
+  m_Script: {fileID: 11500000, guid: 76d384332a80db64a9b85284d16be79c, type: 3}
+  m_Name: "Schattenw\xFCrgegriff"
   m_EditorClassIdentifier: 
-  NAME: Illusian
+  NAME: "Schatten W\xFCrgegriff"
+  DESCRIPTION: "Beschw\xF6rt eine dunkle Hand welche das Ziel erw\xFCrgt. Verursacht
+    100% Magischen Schaden"
   ID: 
-  DESCRIPTION: 
-  instantiateAtheight: 0.5
-  levels:
-  - {fileID: 11400000, guid: f8c81320983594a428074b4e4dad5dce, type: 2}
+  costs: 0
+  skillType: 1
+  modifier: []

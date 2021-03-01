@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Alptraum", menuName = "Skills/Illusian/Transfusion")]
+[CreateAssetMenu(fileName = "Transfusion", menuName = "Skills/Illusian/Transfusion")]
 public class Transfusion : Skill
 {
     public override bool IsTargetValid(Aurea _target, Aurea _sender) {

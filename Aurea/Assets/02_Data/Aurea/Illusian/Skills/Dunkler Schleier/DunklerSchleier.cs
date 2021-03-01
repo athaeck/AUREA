@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Alptraum", menuName = "Skills/Illusian/Dunkler Schleier")]
+[CreateAssetMenu(fileName = "DunklerSchleier", menuName = "Skills/Illusian/Dunkler Schleier")]
 public class DunklerSchleier : Skill
 {
     public override bool IsTargetValid(Aurea _target, Aurea _sender) {

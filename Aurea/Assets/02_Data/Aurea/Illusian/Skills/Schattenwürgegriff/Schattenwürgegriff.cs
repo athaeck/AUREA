@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Alptraum", menuName = "Skills/Illusian/Schattenwürgegriff")]
+[CreateAssetMenu(fileName = "Schattenwürgegriff", menuName = "Skills/Illusian/Schattenwürgegriff")]
 public class Schattenwürgegriff : Skill
 {
     public override bool IsTargetValid(Aurea _target, Aurea _sender) {

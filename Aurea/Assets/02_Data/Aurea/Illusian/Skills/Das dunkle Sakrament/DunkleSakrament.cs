@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Alptraum", menuName = "Skills/Illusian/Das dunkle Sakrament")]
+[CreateAssetMenu(fileName = "DasDunkleSakrament", menuName = "Skills/Illusian/Das dunkle Sakrament")]
 public class DunkleSakrament : Skill
 {
     public override bool IsTargetValid(Aurea _target, Aurea _sender) {
