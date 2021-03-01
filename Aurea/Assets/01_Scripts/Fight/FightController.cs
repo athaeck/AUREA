@@ -112,6 +112,8 @@ public class FightController : MonoBehaviour
     public void ResetIsland()
     {
         ClearSlots();
+        player.ResetAureaInstances();
+        enemy.ResetAureaInstances();
         LoadData();
         gameEnded = false;
         ResetFight?.Invoke();

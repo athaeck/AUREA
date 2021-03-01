@@ -14447,9 +14447,11 @@ MonoBehaviour:
     playerAureaData:
     - aureaName: Golem
       aureaLevel: 1
+    - aureaName: Crystal
+      aureaLevel: 1
     squad:
     - Golem
-    - Golem
+    - Crystal
     - Golem
     items: []
     difficulty: 0
