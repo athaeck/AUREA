@@ -15,9 +15,9 @@ MonoBehaviour:
   NAME: Steinwurf
   DESCRIPTION: Wirf einen Stein auf deinen Gegner
   ID: GOLSKI#002
-  costs: 5
+  costs: 4
   skillType: 0
   modifier: []
-  physicalDamageMultiplier: 30
-  attackPrefab: {fileID: 8560728659125216114, guid: 2fcce5f89637cc142b1d81cef037a6b3,
-    type: 3}
+  animation: {fileID: 0}
+  attackDelay: 1.8
+  physicalDamageMultiplier: 1.2

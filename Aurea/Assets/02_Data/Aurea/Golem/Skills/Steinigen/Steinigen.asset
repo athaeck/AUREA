@@ -18,6 +18,6 @@ MonoBehaviour:
   costs: 5
   skillType: 0
   modifier: []
-  physicalDamageMultiplier: 30
-  attackPrefab: {fileID: 8560728659125216114, guid: 8a526dc0fd7a4eb4db4418213c6b876d,
-    type: 3}
+  animation: {fileID: 0}
+  attackDelay: 1.8
+  physicalDamageMultiplier: 1.5
