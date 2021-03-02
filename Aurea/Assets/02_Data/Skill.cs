@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum SkillType
 {
@@ -10,6 +11,7 @@ public enum SkillType
 
 public abstract class Skill : ScriptableObject
 {
+
     [SerializeField]
     protected string NAME = "";
 
@@ -28,7 +30,13 @@ public abstract class Skill : ScriptableObject
     [SerializeField]
     protected List<string> modifier = new List<string>();
 
-    public abstract void Use(Damage dmg);
+    [SerializeField]
+    protected AttackAnimationController animation = null;
+
+    [SerializeField]
+    protected float attackDelay = 1.8f;
+
+    public abstract void Use(Damage _dmg);
     public abstract bool IsTargetValid(Aurea _aurea, Aurea _sender);
     public abstract bool CheckTargets(List<Aurea> _targets, Aurea _sender);
     public string GetName() { return NAME; }
@@ -38,4 +46,23 @@ public abstract class Skill : ScriptableObject
     public SkillType GetSkillType() { return skillType; }
     public List<string> GetModifier() { return modifier; }
 
+    protected List<Aurea> GetEnemyAurea(Damage _dmg)
+    {
+        PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
+        PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
+
+        foreach (Aurea _aurea in controllerPlayer.GetAureas())
+        {
+            if (_aurea == _dmg.sender)
+                return controllerEnemy.GetAureas();
+        }
+
+        foreach (Aurea _aurea in controllerEnemy.GetAureas())
+        {
+            if (_aurea == _dmg.sender)
+                return controllerPlayer.GetAureas();
+        }
+
+        return new List<Aurea>();
+    }
 }

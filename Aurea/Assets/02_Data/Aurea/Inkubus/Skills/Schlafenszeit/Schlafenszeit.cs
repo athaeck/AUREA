@@ -8,9 +8,6 @@ public class Schlafenszeit : Skill
     [SerializeField]
     private string sleepingSkill = "Sleeping";
 
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
     public override void Use(Damage _dmg)
     {
         System.Type modifierScript = System.Type.GetType(sleepingSkill);

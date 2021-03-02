@@ -8,15 +8,17 @@ public class SteinernderSchlag : Skill
     [SerializeField]
     private float physicalDamageMultiplier = 1.3f;
 
-    [SerializeField]
-    private GameObject attackPrefab = null;
-
-    public override void Use(Damage dmg)
+    public override void Use(Damage _dmg)
     {
-        dmg.physicalDamage *= physicalDamageMultiplier;
-        GameObject attack = Instantiate(attackPrefab, dmg.sender.transform);
-        SteinernderSchlagController controller = attack.GetComponent<SteinernderSchlagController>();
-        controller.TakeInformations(dmg);
+        _dmg.physicalDamage *= physicalDamageMultiplier;
+
+        if (Player.Instance.AnimationsOn() && animation)
+            animation.StartAnimation(_dmg);
+
+        foreach (Aurea aurea in _dmg.targets)
+        {
+            aurea.TakeDamage(_dmg.Copy());
+        }
     }
 
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)

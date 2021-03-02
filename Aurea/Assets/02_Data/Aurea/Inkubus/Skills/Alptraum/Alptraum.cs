@@ -15,10 +15,7 @@ public class Alptraum : Skill
     private float healMultiplier = 0.05f;
 
     [SerializeField]
-    private float damage = 5f;
-
-    [SerializeField]
-    private AttackAnimationController animation = null;
+    private float damageMultiplier = 5f;
 
     public override void Use(Damage _dmg)
     {
@@ -30,8 +27,11 @@ public class Alptraum : Skill
             System.Type modifierScript = System.Type.GetType(sleepingSkill);
             Component component = enemy.gameObject.GetComponent(modifierScript);
 
-            if (component)
-                enemy.TakeDamage(_dmg.sender.GetDamage());
+            if (component) {
+                Damage dmg = _dmg.Copy();
+                dmg.magicalDamage *= damageMultiplier;
+                enemy.TakeDamage(dmg);
+            }
         }
 
         foreach (Aurea aurea in playerAurea)
@@ -54,25 +54,7 @@ public class Alptraum : Skill
         }
     }
 
-    List<Aurea> GetEnemyAurea(Damage _dmg)
-    {
-        PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
-        PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
-
-        foreach (Aurea _aurea in controllerPlayer.GetAureas())
-        {
-            if (_aurea == _dmg.sender)
-                return controllerEnemy.GetAureas();
-        }
-
-        foreach (Aurea _aurea in controllerEnemy.GetAureas())
-        {
-            if (_aurea == _dmg.sender)
-                return controllerPlayer.GetAureas();
-        }
-
-        return new List<Aurea>();
-    }
+    
 
 
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)
@@ -82,6 +64,9 @@ public class Alptraum : Skill
 
     public override bool CheckTargets(List<Aurea> _targets, Aurea _sender)
     {
+        // if (_targets.Count > 0 && IsTargetValid(_targets[0], _sender))
+        //     return true;
+
         return true;
     }
 }

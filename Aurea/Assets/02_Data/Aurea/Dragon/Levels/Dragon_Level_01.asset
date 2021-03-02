@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02faa10734122ce4c910850c7e2f32de, type: 3}
+  m_Name: Dragon_Level_01
+  m_EditorClassIdentifier: 
+  level: 1
+  lifePoints: 1500
+  physicalDamage: 0
+  physicalDefense: 0.5
+  magicalDamage: 185
+  magicalDefense: 0.85
+  skills:
+  - {fileID: 11400000, guid: 3fe80f9d8b24d0d4f8e4e91d6b08570b, type: 2}
+  - {fileID: 11400000, guid: 5d41a460466f3464b8591fe5abaf5edd, type: 2}
+  - {fileID: 11400000, guid: f801e7cd195ea4c4b97dbba88c9bf270, type: 2}
+  - {fileID: 11400000, guid: f070f14f67f44f648a1b7aa527963cbc, type: 2}
+  passiveSkills: []
+  prefab: {fileID: 5024927445217818710, guid: 18591c6e149725c4cb96c2a956beaac0, type: 3}

@@ -15,9 +15,9 @@ MonoBehaviour:
   NAME: SteinernderSchlag
   DESCRIPTION: "Ein m\xE4chtiger Schlag aus Steinen"
   ID: GOLSKI#004
-  costs: 5
+  costs: 3
   skillType: 0
   modifier: []
-  physicalDamageMultiplier: 30
-  attackPrefab: {fileID: 8560728659125216114, guid: a82d3feed1d54de4d9dd1db9ea4a7fd5,
-    type: 3}
+  animation: {fileID: 0}
+  attackDelay: 1.8
+  physicalDamageMultiplier: 0.5

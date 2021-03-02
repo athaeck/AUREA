@@ -8,9 +8,6 @@ public class Amnesia : Skill
     [SerializeField]
     private string amnesiaSkill = "AmnesiaModifier";
 
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
     public override void Use(Damage _dmg)
     {
         System.Type modifierScript = System.Type.GetType(amnesiaSkill);

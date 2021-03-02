@@ -9,12 +9,6 @@ public class Kristallangriff : Skill
     [SerializeField]
     private float damageMultiplier = 1.3f;
 
-    [SerializeField]
-    private float attackDelay = 2f;
-
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
     public override void Use(Damage _dmg)
     {
         if (_dmg.targets[0].GetMagicalDefence() < _dmg.targets[0].GetPhysicalDefence())
@@ -46,8 +40,8 @@ public class Kristallangriff : Skill
         if (_aurea == _sender)
             return false;
 
-        if (_aurea.GetPlayer() == _sender.GetPlayer())
-            return false;
+        // if (_aurea.GetPlayer() == _sender.GetPlayer())
+        //     return false;
 
         return true;
     }

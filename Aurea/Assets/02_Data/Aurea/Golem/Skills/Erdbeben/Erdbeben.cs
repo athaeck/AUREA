@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "Erdbeben", menuName = "Skills/Golem/Erdbeben")]
 public class Erdbeben : Skill
@@ -8,19 +9,20 @@ public class Erdbeben : Skill
     [SerializeField]
     private float physicalDamageMultiplier = 1.3f;
 
-    [SerializeField]
-    private GameObject attackPrefab = null;
-
-    //[SerializeField]
-    //private float attackDelay = 1.8f;
-    public override void Use(Damage dmg)
+    public override void Use(Damage _dmg)
     {
-        dmg.physicalDamage *= physicalDamageMultiplier;
-        GameObject attack = Instantiate(attackPrefab, dmg.sender.transform);
-        ErdbebenController controller = attack.GetComponent<ErdbebenController>();
-        controller.TakeInformations(dmg);
-    }
+        _dmg.physicalDamage *= physicalDamageMultiplier;
 
+        if (Player.Instance.AnimationsOn() && animation)
+            animation.StartAnimation(_dmg);
+
+        List<Aurea> enemys = GetEnemyAurea(_dmg);
+
+        foreach (Aurea aurea in enemys)
+        {
+            aurea.TakeDamage(_dmg.Copy());
+        }
+    }
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)
     {
         return true;
