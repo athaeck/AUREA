@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac352ca99a2f50418b6c406ab3178c3, type: 3}
   m_Name: Feuerball
   m_EditorClassIdentifier: 
-  NAME: 
-  DESCRIPTION: 
+  NAME: Feuerball
+  DESCRIPTION: "Schie\xDFt einen Feuerball auf einen Gegner und verursacht 80% magischen
+    Schaden"
   ID: 
-  costs: 0
-  skillType: 0
+  costs: 2
+  skillType: 1
   modifier: []
   animation: {fileID: 0}
   attackDelay: 1.8
-  magicDamageMultiplier: 1
+  magicDamageMultiplier: 0.8

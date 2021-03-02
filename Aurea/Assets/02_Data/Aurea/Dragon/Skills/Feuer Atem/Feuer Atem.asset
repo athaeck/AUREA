@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d826a061144f244fb3ceded3a2c40fe, type: 3}
   m_Name: Feuer Atem
   m_EditorClassIdentifier: 
-  NAME: 
-  DESCRIPTION: 
+  NAME: Feuer Atem
+  DESCRIPTION: "Ein m\xE4chtiger Feuer Atem welcher die Heilungen und Schilde der
+    Gegner um 20% schw\xE4cht und 60% magischen Schaden verursacht"
   ID: 
-  costs: 0
-  skillType: 0
+  costs: 3
+  skillType: 1
   modifier: []
   animation: {fileID: 0}
   attackDelay: 1.8
-  magicDamageMultiplier: 1
+  magicDamageMultiplier: 0.6

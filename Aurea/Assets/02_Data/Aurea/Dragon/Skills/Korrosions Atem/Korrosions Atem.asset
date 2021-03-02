@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce5ee71c7d603d4c9675a33c5ca1eeb, type: 3}
   m_Name: Korrosions Atem
   m_EditorClassIdentifier: 
-  NAME: 
-  DESCRIPTION: 
+  NAME: Korrosions Atem
+  DESCRIPTION: Reduziert die magische Verteidigung eines Gegners um 20%
   ID: 
-  costs: 0
-  skillType: 0
+  costs: 3
+  skillType: 1
   modifier: []
   animation: {fileID: 0}
   attackDelay: 1.8
