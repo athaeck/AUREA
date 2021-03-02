@@ -9,7 +9,7 @@ public class TemplePlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Aurea"))
+        if (other.CompareTag("Podest"))
         {
             tc.SetTrigger(true);
         }
@@ -17,7 +17,7 @@ public class TemplePlayer : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Aurea"))
+        if (other.CompareTag("Podest"))
         {
             tc.SetTrigger(false);
             

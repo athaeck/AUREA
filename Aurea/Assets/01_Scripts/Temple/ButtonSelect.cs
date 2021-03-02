@@ -24,6 +24,7 @@ public class ButtonSelect : MonoBehaviour
     [SerializeField]
     private Vector3 newpos = new Vector3(0, 0, 0);
 
+    private GameObject parent = null;
 
     private bool team = true;
 
@@ -84,11 +85,11 @@ public class ButtonSelect : MonoBehaviour
 
         foreach (GameObject g in all_Objs)
         {
-            if (g.tag == "Player")
+            if (g.tag == "Player" || g.tag == "Podest")
             {
                 g.SetActive(false);
             }
-            if (g.tag == "Aurea" || g.tag == "Locked")
+            if (g.tag == "Aurea" || g.tag == "Locked" )
             {
                 selectAureaHUD.SetActive(false);
                 if (g.GetComponent<Aurea>().GetName() != selectedAurea)
@@ -97,6 +98,8 @@ public class ButtonSelect : MonoBehaviour
                 }
                 else
                 {
+                    parent = g.transform.parent.gameObject;
+                    g.transform.parent = g.transform.parent.transform.parent;
                     viewAureaHUD.GetComponent<ViewAurea>().HUDtext(g.GetComponent<Aurea>());
                     viewAureaHUD.SetActive(true);
                     viewAureaHUD.GetComponent<ViewAurea>().HUDtext(g.GetComponent<Aurea>());
@@ -122,6 +125,10 @@ public class ButtonSelect : MonoBehaviour
                 g.SetActive(true);
                 cam.GetComponent<FollowTarget>().TakeTarget(g.transform);
             }
+            if (g.tag == "Podest")
+            {
+                g.SetActive(true);
+            }
             if (g.tag == "Aurea" || g.tag == "Locked")
             {
                 selectAureaHUD.SetActive(false);
@@ -132,6 +139,7 @@ public class ButtonSelect : MonoBehaviour
                 }
                 else
                 {
+                    g.transform.parent = parent.transform;
                     viewAureaHUD.SetActive(false);
                     g.transform.localScale = new Vector3(1, 1, 1);
                     g.transform.position = position;

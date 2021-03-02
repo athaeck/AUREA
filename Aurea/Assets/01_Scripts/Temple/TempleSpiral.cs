@@ -68,5 +68,4 @@ public  class TempleSpiral : MonoBehaviour
         
         return points;
     }
-
 }

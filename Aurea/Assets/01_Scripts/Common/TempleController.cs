@@ -19,9 +19,15 @@ public class TempleController : MonoBehaviour
     private PlayerData data = null;
 
     [SerializeField]
-    private TempleSpiral spiral = null;
+    private GameObject layout = null;
+
+    [SerializeField]
+    private int layoutstyle = 0;
 
     private Vector3[] spawnPoint = null;
+
+    [SerializeField]
+    private GameObject slotPrefab = null;
 
     private int numberAurea;
 
@@ -72,30 +78,37 @@ public class TempleController : MonoBehaviour
         List<PlayerAureaData> CapturedAurea = data.GetAurea();
         numberAurea = aureaData.aureas.Count;
 
-
-        spawnPoint = spiral.Setpoints(numberAurea);
+        switch (layoutstyle)
+        {
+            case 0:
+                spawnPoint = layout.GetComponent<TempleSpiral>().Setpoints(numberAurea);
+                break;
+            case 1:
+                spawnPoint = layout.GetComponent<TempleCircle>().Setpoints(numberAurea);
+                break;
+            default:
+                spawnPoint = layout.GetComponent<TempleSpiral>().Setpoints(numberAurea);
+                break;
+        }
         for (int i = 0; i < numberAurea; i++)
         {
             for (int j = 0; j < CapturedAurea.Count; j++)
             {
                 if (aureaData.aureas[i].NAME == CapturedAurea[j].aureaName)
                 {
-                    Debug.Log("spawn Aurea");
                     int aureaLevel = data.GetAureaLevel(CapturedAurea[j].aureaName);
                     GameObject aureaPrefab = GetAureaData(CapturedAurea[j].aureaName).levels[aureaLevel - 1].prefab;
-                    Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i], aureaPrefab.transform.rotation, slots.transform).GetComponent<Aurea>();
+                    GameObject podest = Instantiate(slotPrefab, spawnPoint[i], slotPrefab.transform.rotation, slots.transform);
+                    Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i] + new Vector3(0, 1.58f, 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
-                    // SphereCollider collider = aurea.gameObject.AddComponent<SphereCollider>();
-                    // collider.center = new Vector3(0, -10, 0);
-                    // collider.isTrigger = true;
-                    // collider.radius = 5.0f;
                     break;
                 }
                 if (aureaData.aureas[i].NAME != CapturedAurea[j].aureaName && j == CapturedAurea.Count - 1)
                 {
                     GameObject aureaPrefab = aureaData.aureas[i].levels[0].prefab;
-                    aureaPrefab.tag = "Locked";
-                    Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i], aureaPrefab.transform.rotation, slots.transform).GetComponent<Aurea>();
+                    GameObject podest = Instantiate(slotPrefab, spawnPoint[i] , slotPrefab.transform.rotation, slots.transform);
+                    Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i] + new Vector3(0, 1.58f, 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
+                    aurea.tag = "Locked";
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
                 }
 
@@ -121,7 +134,6 @@ public class TempleController : MonoBehaviour
                 Debug.Log(hit.collider.tag);
                 if (hit.collider.CompareTag("Aurea") && !viewAureaHUD.activeSelf)
                 {
-                    Debug.Log("aurea");
                     hero = hit.collider.GetComponent<Aurea>();
                     buttonSelect.select(hero.GetName());
                     selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(hero.transform);
@@ -135,9 +147,7 @@ public class TempleController : MonoBehaviour
             }
             if (hit.collider.CompareTag("Walkable"))
             {
-                Debug.Log("hit");
                 Vector3 movement = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-
                 MovementController c = player.GetComponent<MovementController>();
                 c.Move(movement);
             }
@@ -146,13 +156,14 @@ public class TempleController : MonoBehaviour
 
     public void ResetIsland()
     {
-        Aurea[] all_aurea = null;
-        all_aurea = GameObject.FindObjectsOfType<Aurea>();
-        foreach (Aurea aurea in all_aurea)
+        GameObject[] all_slots = null;
+        all_slots = GameObject.FindGameObjectsWithTag("Podest");
+        foreach (GameObject slots in all_slots)
         {
-                DestroyImmediate(aurea.gameObject);
+                DestroyImmediate(slots);
         }
         data = Player.Instance;
+
         CreateSpiral();
 
         Debug.Log("Reset Temple");

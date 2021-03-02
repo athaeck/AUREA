@@ -25,6 +25,7 @@ TagManager:
   - SecondSkill
   - ThirdSkill
   - FourthSkill
+  - Podest
   layers:
   - Default
   - TransparentFX
