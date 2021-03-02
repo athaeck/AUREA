@@ -5,24 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DasDunkleSakrament", menuName = "Skills/Illusian/Das dunkle Sakrament")]
 public class DunkleSakrament : Skill
 {
-    [SerializeField]
-    private float attackDelay = 2f;
-
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
     public override void Use(Damage _dmg)
     {
         if (Player.Instance.AnimationsOn() && animation)
             animation.StartAnimation(_dmg);
-
-
-        // foreach (Aurea target in _dmg.targets)
-        // {
-        //     Damage dmg = _dmg.Copy();
-        //     dmg.magicalDamage = dmg.targets[]
-        //     target.TakeDamage(dmg);
-        // }
 
         for(int i = 0; i < _dmg.targets.Count; i++) {
             Damage dmg = _dmg.Copy();

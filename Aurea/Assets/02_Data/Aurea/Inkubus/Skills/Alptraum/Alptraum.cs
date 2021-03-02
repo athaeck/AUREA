@@ -17,9 +17,6 @@ public class Alptraum : Skill
     [SerializeField]
     private float damageMultiplier = 5f;
 
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
     public override void Use(Damage _dmg)
     {
         List<Aurea> enemyAurea = GetEnemyAurea(_dmg);
@@ -57,25 +54,7 @@ public class Alptraum : Skill
         }
     }
 
-    List<Aurea> GetEnemyAurea(Damage _dmg)
-    {
-        PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
-        PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
-
-        foreach (Aurea _aurea in controllerPlayer.GetAureas())
-        {
-            if (_aurea == _dmg.sender)
-                return controllerEnemy.GetAureas();
-        }
-
-        foreach (Aurea _aurea in controllerEnemy.GetAureas())
-        {
-            if (_aurea == _dmg.sender)
-                return controllerPlayer.GetAureas();
-        }
-
-        return new List<Aurea>();
-    }
+    
 
 
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)

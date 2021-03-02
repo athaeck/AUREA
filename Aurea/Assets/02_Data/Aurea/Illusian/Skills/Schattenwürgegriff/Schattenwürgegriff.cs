@@ -8,19 +8,12 @@ public class Schattenwürgegriff : Skill
     [SerializeField]
     private float magicDamageMultiplier = 1f;
 
-    [SerializeField]
-    private float attackDelay = 2f;
-
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
     public override void Use(Damage _dmg) {
         _dmg.physicalDamage *= magicDamageMultiplier;
         _dmg.attackDelay = attackDelay;
 
         if (Player.Instance.AnimationsOn() && animation)
             animation.StartAnimation(_dmg);
-
 
         foreach (Aurea target in _dmg.targets)
         {

@@ -11,12 +11,6 @@ public class Transfusion : Skill
     [SerializeField]
     private float healthMultiplier = 0.5f;
 
-    [SerializeField]
-    private float attackDelay = 2f;
-
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
     public override void Use(Damage _dmg) {
         _dmg.magicalDamage *= magicDamageMultiplier;
         _dmg.attackDelay = attackDelay;

@@ -10,10 +10,7 @@ public class Kraftschlaf : Skill
 
     [SerializeField]
     private float healthMultiplier = 0.5f;
-
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
+    
     public override void Use(Damage _dmg)
     {
         System.Type modifierScript = System.Type.GetType(amnesiaSkill);

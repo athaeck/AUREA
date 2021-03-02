@@ -9,12 +9,6 @@ public class KristallSplitter : Skill
     [SerializeField]
     private float physicalDamageMultiplier = 1.3f;
 
-    [SerializeField]
-    private float attackDelay = 2f;
-
-    [SerializeField]
-    private AttackAnimationController animation = null;
-
     public override void Use(Damage _dmg)
     {
         _dmg.modifier = this.modifier;
