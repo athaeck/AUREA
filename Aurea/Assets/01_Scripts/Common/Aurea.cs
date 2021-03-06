@@ -10,6 +10,7 @@ public class Aurea : MonoBehaviour
     public Action<Damage> BeforeGettingHit;
     public Action<Damage> AfterGettingHit;
     public Action<int> TookDamage;
+    public Action<float> BeforeChangeLifepoints;
     public Action ChangedLifepoints;
     public Action<Aurea> Died;
     public Action<Aurea> Selected;
@@ -216,16 +217,17 @@ public class Aurea : MonoBehaviour
     public void SetLevel(int level) { this.level = level; }
     public float GetLifePointsMax() { return data.levels[level - 1].lifePoints; }
     public float GetLifePointsLeft() { return lifePointsLeft; }
-    public void SetLifePointsLeft(float amount)
+    public void SetLifePointsLeft(float _amount)
     {
-        TookDamage?.Invoke((int)(lifePointsLeft - amount));
-        this.lifePointsLeft = amount;
+        TookDamage?.Invoke((int)(lifePointsLeft - _amount));
+        this.lifePointsLeft = _amount;
         ChangedLifepoints?.Invoke();
     }
-    public void RemoveLifePoints(float amount)
+    public void RemoveLifePoints(float _amount)
     {
-        this.lifePointsLeft -= amount;
-        TookDamage?.Invoke(Mathf.FloorToInt(amount));
+        BeforeChangeLifepoints?.Invoke(Mathf.Floor(_amount));
+        this.lifePointsLeft -= _amount;
+        TookDamage?.Invoke(Mathf.FloorToInt(_amount));
         ChangedLifepoints?.Invoke();
     }
     public float GetMagicalDamage() { return data.levels[level - 1].magicalDamage; }

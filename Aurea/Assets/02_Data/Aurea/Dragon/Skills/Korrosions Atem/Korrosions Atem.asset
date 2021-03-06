@@ -17,7 +17,8 @@ MonoBehaviour:
   ID: 
   costs: 3
   skillType: 1
-  modifier: []
+  modifier:
+  - Korrosion
   animation: {fileID: 0}
   attackDelay: 1.8
   magicDamageMultiplier: 1
