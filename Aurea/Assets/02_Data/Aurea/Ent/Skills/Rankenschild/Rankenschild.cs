@@ -5,12 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Rankenschild", menuName = "Skills/Ent/Rankenschild")]
 public class Rankenschild : Skill
 {
-    [SerializeField]
-    private float magicDamageMultiplier = 1f;
-
     public override void Use(Damage _dmg) {
         
-        _dmg.physicalDamage *= magicDamageMultiplier;
+        _dmg.physicalDamage = 0;
+        _dmg.magicalDamage = 0;
         _dmg.attackDelay = attackDelay;
 
         if (Player.Instance.AnimationsOn() && animation)

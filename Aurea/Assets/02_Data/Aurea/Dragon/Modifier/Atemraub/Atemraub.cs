@@ -38,6 +38,7 @@ public class Atemraub : MonoBehaviour
     public void Kill()
     {
         aurea.BeforeChangeLifepoints -= CheckIfIsHeal;
+        aurea.GetPlayer().StartedTurn -= NewTurn;
         DestroyImmediate(this);
     }
     

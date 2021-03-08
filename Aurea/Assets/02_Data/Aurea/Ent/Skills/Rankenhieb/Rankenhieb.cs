@@ -6,11 +6,11 @@ using UnityEngine;
 public class Rankenhieb : Skill
 {
     [SerializeField]
-    private float magicDamageMultiplier = 1f;
+    private float damageMultiplier = 1f;
 
     public override void Use(Damage _dmg) {
         
-        _dmg.physicalDamage *= magicDamageMultiplier;
+        _dmg.physicalDamage *= damageMultiplier;
         _dmg.attackDelay = attackDelay;
 
         if (Player.Instance.AnimationsOn() && animation)
@@ -23,8 +23,8 @@ public class Rankenhieb : Skill
         }
     }
     public override bool IsTargetValid(Aurea _target, Aurea _sender) {
-        // if (_target.GetPlayer() == _sender.GetPlayer())
-        //     return false;
+        if (_target.GetPlayer() == _sender.GetPlayer())
+            return false;
 
         return true;
     }

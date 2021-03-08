@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc587ce699edae45bf1ca36e80f6961, type: 3}
   m_Name: VerspottendeBaumkrone
   m_EditorClassIdentifier: 
-  NAME: 
-  DESCRIPTION: 
+  NAME: Verspottende Baumkrone
+  DESCRIPTION: "Lenkt in der n\xE4chsten Runde alle eingehende Angriffe auf sich
+    selbst"
   ID: 
-  costs: 0
+  costs: 5
   skillType: 0
-  modifier: []
+  modifier:
+  - Baumkrone
   animation: {fileID: 0}
   attackDelay: 1.8
   magicDamageMultiplier: 1
