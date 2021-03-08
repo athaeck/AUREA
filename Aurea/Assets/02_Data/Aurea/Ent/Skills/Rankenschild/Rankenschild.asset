@@ -15,10 +15,9 @@ MonoBehaviour:
   NAME: Rankenschild
   DESCRIPTION: "Sch\xFCtz sich selbst f\xFCr 3 Runden gegen 20% des aktuellen Lebens"
   ID: 
-  costs: 0
+  costs: 2
   skillType: 0
   modifier:
   - Schild
   animation: {fileID: 0}
   attackDelay: 1.8
-  magicDamageMultiplier: 1
