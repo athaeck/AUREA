@@ -9,6 +9,7 @@ public class FeuerAtem : Skill
     private float magicDamageMultiplier = 1f;
 
     public override void Use(Damage _dmg) {
+        
         _dmg.physicalDamage *= magicDamageMultiplier;
         _dmg.attackDelay = attackDelay;
 
@@ -22,8 +23,8 @@ public class FeuerAtem : Skill
         }
     }
     public override bool IsTargetValid(Aurea _target, Aurea _sender) {
-        if (_target.GetPlayer() == _sender.GetPlayer())
-            return false;
+        // if (_target.GetPlayer() == _sender.GetPlayer())
+        //     return false;
 
         return true;
     }

@@ -9,16 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce5ee71c7d603d4c9675a33c5ca1eeb, type: 3}
-  m_Name: Korrosions Atem
+  m_Script: {fileID: 11500000, guid: d977d9b29035988489efccbcacae4182, type: 3}
+  m_Name: Rankenschild
   m_EditorClassIdentifier: 
-  NAME: Korrosions Atem
-  DESCRIPTION: Reduziert die magische Verteidigung eines Gegners um 20%
+  NAME: Rankenschild
+  DESCRIPTION: "Sch\xFCtz sich selbst f\xFCr 3 Runden gegen 20% des aktuellen Lebens"
   ID: 
-  costs: 3
-  skillType: 1
+  costs: 2
+  skillType: 0
   modifier:
-  - Korrosion
+  - Schild
   animation: {fileID: 0}
   attackDelay: 1.8
-  magicDamageMultiplier: 1

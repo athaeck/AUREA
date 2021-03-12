@@ -9,16 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce5ee71c7d603d4c9675a33c5ca1eeb, type: 3}
-  m_Name: Korrosions Atem
+  m_Script: {fileID: 11500000, guid: edc587ce699edae45bf1ca36e80f6961, type: 3}
+  m_Name: VerspottendeBaumkrone
   m_EditorClassIdentifier: 
-  NAME: Korrosions Atem
-  DESCRIPTION: Reduziert die magische Verteidigung eines Gegners um 20%
+  NAME: Verspottende Baumkrone
+  DESCRIPTION: "Lenkt in der n\xE4chsten Runde alle eingehende Angriffe auf sich
+    selbst"
   ID: 
-  costs: 3
-  skillType: 1
+  costs: 5
+  skillType: 0
   modifier:
-  - Korrosion
+  - Baumkrone
   animation: {fileID: 0}
   attackDelay: 1.8
   magicDamageMultiplier: 1
