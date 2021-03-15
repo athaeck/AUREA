@@ -16,28 +16,18 @@ public class DunkleSakrament : Skill
             dmg.targets[i].TakeDamage(dmg);
         }
     }
-    public override bool IsTargetValid(Aurea _target, Aurea _sender)
-    {
+    public override bool IsTargetValid(Aurea _target, Aurea _sender) {
+        if (_target.GetPlayer() == _sender.GetPlayer())
+            return false;
+
         return true;
     }
 
-    public override bool CheckTargets(List<Aurea> _targets, Aurea _sender)
-    {
-        if (_targets.Count < 2)
-            return false;
+    public override bool CheckTargets(List<Aurea> _targets, Aurea _sender) {
+        if (_targets.Count > 0 && IsTargetValid(_targets[0], _sender))
+            return true;
 
-        bool ownAurea = false;
-        bool enemyAurea = false;
-
-        foreach (Aurea target in _targets)
-        {
-            if (target.GetPlayer() == _sender.GetPlayer())
-                ownAurea = true;
-            else
-                enemyAurea = true;
-        }
-
-        return ownAurea && enemyAurea ? true : false;
+        return false;
     }
 
 
