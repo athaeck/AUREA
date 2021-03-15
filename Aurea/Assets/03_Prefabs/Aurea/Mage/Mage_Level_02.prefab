@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2605022096816056760}
   m_Layer: 0
   m_Name: Mage_Level_02
-  m_TagString: Untagged
+  m_TagString: Aurea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,3 +131,5 @@ MonoBehaviour:
   lifePointsLeft: 0
   modifier: []
   activeItems: []
+  player: {fileID: 0}
+  targets: []
