@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ent
   m_EditorClassIdentifier: 
   NAME: Ent
-  ID: 
+  ID: 3
   DESCRIPTION: 
   instantiateAtheight: 2
   levels:

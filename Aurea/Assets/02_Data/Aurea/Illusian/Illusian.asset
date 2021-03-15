@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Illusian
   m_EditorClassIdentifier: 
   NAME: Illusian
-  ID: 
+  ID: 5
   DESCRIPTION: 
   instantiateAtheight: 0.5
   levels:

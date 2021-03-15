@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Inkubus
   m_EditorClassIdentifier: 
   NAME: Inkubus
-  ID: 
+  ID: 6
   DESCRIPTION: 
+  instantiateAtheight: 2
   levels:
   - {fileID: 11400000, guid: aee17bf7dcebe16458f1ae6f08d376a5, type: 2}

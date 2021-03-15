@@ -24,6 +24,11 @@ public class FightController : MonoBehaviour
     public Action<PlayerController> LoadedPlayer;
     public Action<PlayerController> LoadedEnemy;
 
+    [Header("Machine Learning")]
+    [SerializeField] private bool training = false;
+
+    [Header("Game Stuff")]
+
     [SerializeField]
     public AureaList aureaData = null;
 
@@ -35,6 +40,8 @@ public class FightController : MonoBehaviour
 
     [SerializeField]
     private PlayerController enemy = null;
+    [SerializeField]
+    private AgentController enemyAgent = null;
 
     [SerializeField]
     private List<GameObject> playerSpawnpoints = new List<GameObject>();
@@ -64,7 +71,7 @@ public class FightController : MonoBehaviour
 
     public void TakeInput(Ray ray)
     {
-        if (justClicked || !player.IsOnTurn()) { return; }
+        if (justClicked || !player.IsOnTurn() || gameEnded) { return; }
 
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
         {
@@ -81,17 +88,17 @@ public class FightController : MonoBehaviour
 
     public void JustSelectedSkill()
     {
-        StartCoroutine(WaitBetweetClickSelectedSkill());
+        StartCoroutine(WaitBetweenClickSelectedSkill());
     }
 
     private void EvaluateInput(RaycastHit hit)
     {
         Debug.Log("Evaluate Input");
-        if (justClicked || justSelectedSkill) return;
+        if (justClicked || justSelectedSkill || gameEnded) return;
 
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            StartCoroutine(WaitBetweetClick());
+            StartCoroutine(WaitBetweenClick());
             return;
         }
 
@@ -106,7 +113,23 @@ public class FightController : MonoBehaviour
             player.ManuallyEndTurn();
 
 
-        StartCoroutine(WaitBetweetClick());
+        StartCoroutine(WaitBetweenClick());
+    }
+
+    public void TakeAgentInput(AgentInput _input)
+    {
+
+        if (_input.endTurn)
+        {
+            activePlayer.ManuallyEndTurn();
+        }
+        else
+        {
+            activePlayer.Select(_input.selected);
+            _input.selected.activeSkill = _input.selected.GetSkills()[_input.skill];
+            activePlayer.Select(_input.target);
+            enemyAgent.GetDecision();
+        }
     }
 
     public void ResetIsland()
@@ -122,21 +145,25 @@ public class FightController : MonoBehaviour
 
     public void ClearSlots()
     {
-        foreach(GameObject slot in playerSpawnpoints) {
-            foreach(Transform child in slot.transform) {
+        foreach (GameObject slot in playerSpawnpoints)
+        {
+            foreach (Transform child in slot.transform)
+            {
                 DestroyImmediate(child.gameObject);
-            }   
+            }
         }
-        foreach(GameObject slot in enemySpawnpoints) {
-            foreach(Transform child in slot.transform) {
+        foreach (GameObject slot in enemySpawnpoints)
+        {
+            foreach (Transform child in slot.transform)
+            {
                 DestroyImmediate(child.gameObject);
-            }   
+            }
         }
     }
 
     private void Update()
     {
-        if (!timerStarted || gameEnded) { return; }
+        if (!timerStarted || gameEnded || training) { return; }
 
         timeLeft -= Time.deltaTime;
 
@@ -160,8 +187,9 @@ public class FightController : MonoBehaviour
         enemy.AureaHasDied += EnemyDied;
 
         int startPlayerNumber = FlipCoin();
-
-        startPlayerNumber = 0;
+        
+        if (!training)
+            startPlayerNumber = 0;
 
         StartTurn(startPlayerNumber % 2 == 0 ? player : enemy);
         GameLoaded?.Invoke();
@@ -211,9 +239,13 @@ public class FightController : MonoBehaviour
         player.SetData(data);
         StateManager.SavePlayer(data);
 
-        gameOverScreen.SetActive(true);
+        if (!training)
+            gameOverScreen.SetActive(true);
 
         GameEnded?.Invoke();
+
+        if (training)
+            ResetIsland();
     }
 
     void StartTurn(PlayerController player)
@@ -276,14 +308,14 @@ public class FightController : MonoBehaviour
         Debug.Log("Didnt found: " + name);
         return null;
     }
-    IEnumerator WaitBetweetClick()
+    IEnumerator WaitBetweenClick()
     {
         justClicked = true;
         yield return new WaitForSeconds(waitBetweenClicks);
         justClicked = false;
     }
 
-    IEnumerator WaitBetweetClickSelectedSkill()
+    IEnumerator WaitBetweenClickSelectedSkill()
     {
         justSelectedSkill = true;
         yield return new WaitForSeconds(waitBetweenClicks);
