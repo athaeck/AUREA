@@ -26,6 +26,7 @@ TagManager:
   - ThirdSkill
   - FourthSkill
   - Podest
+  - To-SkyIsland
   layers:
   - Default
   - TransparentFX

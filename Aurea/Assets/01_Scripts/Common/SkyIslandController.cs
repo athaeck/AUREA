@@ -22,6 +22,9 @@ public class SkyIslandController : MonoBehaviour
     [SerializeField]
     private DifficultyController difficultyController = null;
 
+    [SerializeField]
+    private List<GameObject> AtStartDisabledHuds = null;
+
     private bool staticmode = false;
 
     private bool collided = false;
@@ -168,11 +171,24 @@ public class SkyIslandController : MonoBehaviour
     {
         ResetPlayerPosition();
 
+        DisabledHudsAtStart();
+
         //cam.transform.position = spawnPlace.transform.position;
 
         // character.GetComponent<MovementController>().Move(character.transform.position);
 
         Player.Instance.AddMoney(100);
+    }
+    private void DisabledHudsAtStart()
+    {
+        foreach(GameObject hud in AtStartDisabledHuds)
+        {
+            hud.SetActive(false);
+        }
+        if(enterController != null)
+        {
+            enterController.ExitShop();
+        }
     }
 
 }
