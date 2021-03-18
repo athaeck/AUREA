@@ -632,6 +632,7 @@ MonoBehaviour:
   aureaData: {fileID: 11400000, guid: 3524aa57df20ecf40ab06972ed1650b4, type: 2}
   selectAureaHUD: {fileID: 36467882}
   viewAureaHUD: {fileID: 1362644323}
+  teleportHUD: {fileID: 0}
   buttonSelect: {fileID: 341847166}
 --- !u!1 &27219016 stripped
 GameObject:
