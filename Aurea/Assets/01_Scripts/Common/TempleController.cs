@@ -46,6 +46,10 @@ public class TempleController : MonoBehaviour
 
     private GameObject viewAureaHUD = null;
 
+    [SerializeField]
+
+    private GameObject teleportHUD = null;
+
 
 
     [SerializeField]
@@ -54,7 +58,9 @@ public class TempleController : MonoBehaviour
 
 
 
-    private bool trigger = false;
+    private bool trigger;
+
+    private GameObject hitpodest;
 
     void Start()
     {
@@ -100,7 +106,18 @@ public class TempleController : MonoBehaviour
                     GameObject aureaPrefab = GetAureaData(CapturedAurea[j].aureaName).levels[aureaLevel - 1].prefab;
                     GameObject podest = Instantiate(slotPrefab, spawnPoint[i], slotPrefab.transform.rotation, slots.transform);
                     Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i] + new Vector3(0, 1.58f, 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
+                    GameObject boxcollider = new GameObject("BoxCollider");
+                    boxcollider.transform.parent = podest.transform;
+                    boxcollider.transform.position = spawnPoint[i];
+                    boxcollider.AddComponent<BoxCollider>();
+                    boxcollider.layer = 2;
+                    boxcollider.tag = "Podest";
+                    boxcollider.GetComponent<BoxCollider>().isTrigger = true;
+                    boxcollider.GetComponent<BoxCollider>().size = new Vector3(3, 3, 3);
+                    Destroy(aurea.GetComponent<BoxCollider>());
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
+
+
                     break;
                 }
                 if (aureaData.aureas[i].NAME != CapturedAurea[j].aureaName && j == CapturedAurea.Count - 1)
@@ -109,6 +126,7 @@ public class TempleController : MonoBehaviour
                     GameObject podest = Instantiate(slotPrefab, spawnPoint[i] , slotPrefab.transform.rotation, slots.transform);
                     Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i] + new Vector3(0, 1.58f, 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
                     aurea.tag = "Locked";
+                    Destroy(aurea.GetComponent<BoxCollider>());
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
                 }
 
@@ -128,17 +146,13 @@ public class TempleController : MonoBehaviour
                 return;
             } 
 
-            Aurea hero = null;
+            Aurea aurea = null;
             if (trigger)
             {
-                Debug.Log(hit.collider.tag);
-                if (hit.collider.CompareTag("Aurea") && !viewAureaHUD.activeSelf)
-                {
-                    hero = hit.collider.GetComponent<Aurea>();
-                    buttonSelect.select(hero.GetName());
-                    selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(hero.transform);
-                    selectAureaHUD.SetActive(true);
-                }
+                aurea = hitpodest.transform.parent.gameObject.transform.GetComponentInChildren<Aurea>();
+                buttonSelect.select(aurea.GetName());
+                selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(aurea.transform);
+                selectAureaHUD.SetActive(true);
 
             }
             else
@@ -169,9 +183,22 @@ public class TempleController : MonoBehaviour
         Debug.Log("Reset Temple");
     }
     
-    public void SetTrigger(bool newtrigger)
+    public void SetTrigger(bool newtrigger, GameObject newhitpodest)
     {
         trigger = newtrigger;
+        hitpodest = newhitpodest;
+    }
+
+    public void teleport(bool trigger)
+    {
+        if (trigger)
+        {
+            teleportHUD.SetActive(true);
+        }
+        else
+        {
+            teleportHUD.SetActive(false);
+        }
     }
 
 }

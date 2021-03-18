@@ -11,7 +11,11 @@ public class TemplePlayer : MonoBehaviour
     {
         if (other.CompareTag("Podest"))
         {
-            tc.SetTrigger(true);
+            tc.SetTrigger(true,other.gameObject);
+        }
+        if (other.CompareTag("To-SkyIsland"))
+        {
+            tc.teleport(true);
         }
     }
 
@@ -19,8 +23,12 @@ public class TemplePlayer : MonoBehaviour
     {
         if (other.CompareTag("Podest"))
         {
-            tc.SetTrigger(false);
+            tc.SetTrigger(false, null);
             
+        }
+        if (other.CompareTag("To-SkyIsland"))
+        {
+            tc.teleport(false);
         }
     }
 }

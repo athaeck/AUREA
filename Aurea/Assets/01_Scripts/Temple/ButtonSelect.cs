@@ -131,7 +131,6 @@ public class ButtonSelect : MonoBehaviour
             }
             if (g.tag == "Aurea" || g.tag == "Locked")
             {
-                selectAureaHUD.SetActive(false);
                 if (g.GetComponent<Aurea>().GetName() != selectedAurea)
                 {
                     
@@ -141,11 +140,17 @@ public class ButtonSelect : MonoBehaviour
                 {
                     g.transform.parent = parent.transform;
                     viewAureaHUD.SetActive(false);
+                    selectAureaHUD.SetActive(true);
                     g.transform.localScale = new Vector3(1, 1, 1);
                     g.transform.position = position;
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, 0));
                 }
             }
         }
+    }
+    
+    public void teleport()
+    {
+        IslandController.Instance.OpenSkyIsland();
     }
 }
