@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: DasDunkleSakrament
   m_EditorClassIdentifier: 
   NAME: Das dunkle Sakrament
-  DESCRIPTION: "Opfert sich selbst oder einen befreundeten Aurea um einen Gegner
-    sofort zu t\xF6ten"
+  DESCRIPTION: "Opfert sich selbst um einen Gegner sofort zu t\xF6ten"
   ID: 
   costs: 6
   skillType: 1
   modifier: []
+  animation: {fileID: 0}
+  attackDelay: 1.8

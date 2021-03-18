@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Golem
   m_EditorClassIdentifier: 
   NAME: Golem
-  ID: GOL#001
+  ID: 4
   DESCRIPTION: A Fucking mighty Golem
   instantiateAtheight: 0
   levels:

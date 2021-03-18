@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crystal
   m_EditorClassIdentifier: 
   NAME: Crystal
-  ID: CRYS#0001
+  ID: 1
   DESCRIPTION: Shard Spirit
   instantiateAtheight: -0.5
   levels:

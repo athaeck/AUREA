@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerData data = null;
 
+
     [SerializeField]
     private int actionPoints = 15;
 

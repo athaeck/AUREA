@@ -14416,6 +14416,8 @@ GameObject:
   - component: {fileID: 569588396}
   - component: {fileID: 569588394}
   - component: {fileID: 569588395}
+  - component: {fileID: 569588397}
+  - component: {fileID: 569588398}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -14512,6 +14514,50 @@ Transform:
   m_Father: {fileID: 843181881}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &569588397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569588393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 14
+    NumStackedVectorObservations: 10
+    VectorActionSize: 03000000040000000600000002000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: Enemy
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
+--- !u!114 &569588398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569588393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9130dccede44fef4cb81fc4a55d499b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 200
+  controller: {fileID: 843181883}
+  player: {fileID: 569588394}
 --- !u!1 &571284693
 GameObject:
   m_ObjectHideFlags: 0
@@ -24313,10 +24359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d28ae884939304dae1956ba4ba4bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  training: 1
   aureaData: {fileID: 11400000, guid: 1eddec29d9d5f6647a07f00853f6758c, type: 2}
   camController: {fileID: 1278161627}
   player: {fileID: 810910034}
   enemy: {fileID: 569588394}
+  enemyAgent: {fileID: 569588398}
   playerSpawnpoints:
   - {fileID: 280490773}
   - {fileID: 1770410747}
