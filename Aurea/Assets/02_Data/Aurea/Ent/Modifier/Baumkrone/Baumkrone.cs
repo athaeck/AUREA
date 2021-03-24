@@ -16,7 +16,8 @@ public class Baumkrone : MonoBehaviour
         aurea = GetComponent<Aurea>();
         aurea.GetPlayer().StartedTurn += NewTurn;
         enemyAurea = GetEnemyAurea();
-        foreach(Aurea enemy in enemyAurea) {
+        foreach (Aurea enemy in enemyAurea)
+        {
             enemy.StartAttack += BlockAttack;
         }
     }
@@ -36,10 +37,12 @@ public class Baumkrone : MonoBehaviour
 
     public void Kill()
     {
-        foreach(Aurea enemy in enemyAurea) {
+        foreach (Aurea enemy in enemyAurea)
+        {
             enemy.StartAttack -= BlockAttack;
         }
-        aurea.GetPlayer().StartedTurn -= NewTurn;
+        if (aurea != null && aurea.GetPlayer() != null)
+            aurea.GetPlayer().StartedTurn -= NewTurn;
         DestroyImmediate(this);
     }
 

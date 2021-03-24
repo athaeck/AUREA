@@ -626,7 +626,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots: {fileID: 2086759171}
   player: {fileID: 1337007721}
-  spiral: {fileID: 2086759173}
+  layout: {fileID: 0}
+  layoutstyle: 0
+  slotPrefab: {fileID: 0}
   aureaData: {fileID: 11400000, guid: 3524aa57df20ecf40ab06972ed1650b4, type: 2}
   selectAureaHUD: {fileID: 36467882}
   viewAureaHUD: {fileID: 1362644323}
@@ -14453,13 +14455,19 @@ MonoBehaviour:
       aureaLevel: 1
     - aureaName: Inkubus
       aureaLevel: 1
+    - aureaName: Illusian
+      aureaLevel: 1
+    - aureaName: Dragon
+      aureaLevel: 1
+    - aureaName: Ent
+      aureaLevel: 1
     squad:
     - Golem
     - Crystal
     - Inkubus
     items: []
     difficulty: 0
-    animationsOn: 1
+    animationsOn: 0
   actionPoints: 15
   isOnTurn: 0
   aureaInstances:
@@ -14529,13 +14537,13 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 14
     NumStackedVectorObservations: 10
-    VectorActionSize: 03000000040000000600000002000000
+    VectorActionSize: 03000000060000000400000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: Enemy
+  m_BehaviorName: EnemyAgent
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -14555,7 +14563,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 200
+  MaxStep: 0
   controller: {fileID: 843181883}
   player: {fileID: 569588394}
 --- !u!1 &571284693
@@ -23113,6 +23121,7 @@ GameObject:
   - component: {fileID: 810910036}
   - component: {fileID: 810910034}
   - component: {fileID: 810910035}
+  - component: {fileID: 810910037}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -23154,7 +23163,7 @@ MonoBehaviour:
     - Crystal
     items: []
     difficulty: 0
-    animationsOn: 1
+    animationsOn: 0
   actionPoints: 15
   isOnTurn: 1
   aureaInstances:
@@ -23209,6 +23218,20 @@ Transform:
   m_Father: {fileID: 843181881}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &810910037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810910033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b08390622398243b62c93b7a57f32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 843181883}
+  player: {fileID: 810910034}
 --- !u!1 &811904426
 GameObject:
   m_ObjectHideFlags: 0
@@ -24363,6 +24386,7 @@ MonoBehaviour:
   aureaData: {fileID: 11400000, guid: 1eddec29d9d5f6647a07f00853f6758c, type: 2}
   camController: {fileID: 1278161627}
   player: {fileID: 810910034}
+  randomPlayer: {fileID: 810910037}
   enemy: {fileID: 569588394}
   enemyAgent: {fileID: 569588398}
   playerSpawnpoints:
@@ -24373,12 +24397,13 @@ MonoBehaviour:
   - {fileID: 467613851}
   - {fileID: 108618006}
   - {fileID: 309223033}
-  roundTime: 30
+  roundTime: 10
   waitBetweenClicks: 0.5
   gameOverScreen: {fileID: 151961327}
   gameOverText: {fileID: 732172718}
   activePlayer: {fileID: 810910034}
   timeLeft: 30
+  firstStart: 1
 --- !u!114 &843181884
 MonoBehaviour:
   m_ObjectHideFlags: 0

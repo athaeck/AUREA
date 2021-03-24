@@ -53,7 +53,8 @@ public class Schleier : MonoBehaviour
 
     public void Kill()
     {
-        aurea.BeforeGettingHit -= CheckGettingHit;
+        if (aurea)
+            aurea.BeforeGettingHit -= CheckGettingHit;
         DestroyImmediate(this);
     }
 }

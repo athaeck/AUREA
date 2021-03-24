@@ -54,7 +54,8 @@ public class Schild : MonoBehaviour
 
     public void Kill()
     {
-        aurea.BeforeGettingHit -= Shield;
+        if (aurea)
+            aurea.BeforeGettingHit -= Shield;
         DestroyImmediate(this);
     }
 }

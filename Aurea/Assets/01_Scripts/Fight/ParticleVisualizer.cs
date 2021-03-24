@@ -27,6 +27,7 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void AddEventListener()
     {
+        if (fightController.training) return;
         foreach (Aurea aurea in fightController.GetPlayer().GetAureas())
         {
             aurea.Selected += Selected;
@@ -37,12 +38,16 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Selected(Aurea _aurea)
     {
+        if (fightController.training) return;
         GameObject newSelected = Instantiate(selectedParticles, _aurea.transform.parent);
+        if (instantiatedParticles.ContainsKey(_aurea))
+            return;
         instantiatedParticles.Add(_aurea, newSelected);
     }
 
     private void ChangedTargets(List<Aurea> _aureas)
     {
+        if (fightController.training) return;
         foreach (Aurea aurea in _aureas)
         {
             if (!instantiatedParticles.ContainsKey(aurea))
@@ -55,13 +60,17 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Cancel()
     {
+        if (fightController.training) return;
         if (Player.Instance.animationsOn)
         {
             List<RuneAnimations> objects = new List<RuneAnimations>();
             foreach (KeyValuePair<Aurea, GameObject> keyValue in instantiatedParticles)
             {
-                RuneAnimations runeAnimtaions = keyValue.Value.GetComponent<RuneAnimations>();
-                objects.Add(runeAnimtaions);
+                if (keyValue.Value != null)
+                {
+                    RuneAnimations runeAnimtaions = keyValue.Value.GetComponent<RuneAnimations>();
+                    objects.Add(runeAnimtaions);
+                }
             }
 
             StartCoroutine(CancelIn(objects, killInTime));

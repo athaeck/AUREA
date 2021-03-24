@@ -15,8 +15,10 @@ public class FeuerAtem : Skill
 
         if (Player.Instance.AnimationsOn() && animation)
             animation.StartAnimation(_dmg);
+        
+        List<Aurea> targetList = new List<Aurea>(_dmg.targets);
 
-        foreach (Aurea target in _dmg.targets)
+        foreach (Aurea target in targetList)
         {
             Damage dmg = _dmg.Copy();
             target.TakeDamage(dmg);

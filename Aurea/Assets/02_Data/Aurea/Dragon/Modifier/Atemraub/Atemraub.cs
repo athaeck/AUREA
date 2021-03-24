@@ -26,9 +26,10 @@ public class Atemraub : MonoBehaviour
             Kill();
     }
 
-    void CheckIfIsHeal(float _amount) {
+    void CheckIfIsHeal(float _amount)
+    {
 
-        if(_amount > 0) return;
+        if (_amount > 0) return;
 
         float dampAmount = -_amount * healthDampAmount;
         float lifePointsLeft = aurea.GetLifePointsLeft();
@@ -37,9 +38,13 @@ public class Atemraub : MonoBehaviour
 
     public void Kill()
     {
-        aurea.BeforeChangeLifepoints -= CheckIfIsHeal;
-        aurea.GetPlayer().StartedTurn -= NewTurn;
+        if (aurea != null)
+        {
+            aurea.BeforeChangeLifepoints -= CheckIfIsHeal;
+            if (aurea.GetPlayer() != null)
+                aurea.GetPlayer().StartedTurn -= NewTurn;
+        }
         DestroyImmediate(this);
     }
-    
+
 }

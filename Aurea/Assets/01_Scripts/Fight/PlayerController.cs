@@ -50,9 +50,24 @@ public class PlayerController : MonoBehaviour
 
     public void StartGame(List<GameObject> spawnPoints)
     {
+        if (IslandController.Instance.fight.training)
+            CreateRandomSquad();
+
         InstantiateSquad(spawnPoints);
 
         AddAP(actionPoints);
+    }
+    public void CreateRandomSquad()
+    {
+        List<string> newsquad = new List<string>();
+        while (newsquad.Count != 3)
+        {
+            int rnd = UnityEngine.Random.Range(0, 3);
+            if(newsquad.Contains(data.playerAureaData[rnd].aureaName))
+                continue;
+            newsquad.Add(data.playerAureaData[rnd].aureaName);
+        }
+        data.SetSquad(newsquad);
     }
 
     void ResetPlayer()
@@ -72,14 +87,14 @@ public class PlayerController : MonoBehaviour
         foreach (GameObject spawnPoint in spawnPoints)
         {
             int aureaLevel = data.GetAureaLevel(squad[i]);
-            AureaData aureaData =  IslandController.Instance.fight.GetAureaData(squad[i]);
+            AureaData aureaData = IslandController.Instance.fight.GetAureaData(squad[i]);
             GameObject aureaPrefab = aureaData.levels[aureaLevel - 1].prefab;
             Aurea aurea = Instantiate(aureaPrefab, spawnPoint.transform).GetComponent<Aurea>();
             aurea.transform.localPosition = new Vector3(0, aureaData.instantiateAtheight, 0);
             aurea.Init(aureaLevel, this);
             aureaInstances.Add(aurea);
             aurea.Died += AureaDied;
-            
+
 
             i++;
         }
@@ -104,6 +119,7 @@ public class PlayerController : MonoBehaviour
 
     public void ManuallyEndTurn()
     {
+        // Debug.Log("Manually end Turn on " + gameObject.name + " is " + !isOnTurn + " and " + !IslandController.Instance.fight.CanInteract());
         if (!isOnTurn || !IslandController.Instance.fight.CanInteract())
             return;
 
@@ -123,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
     public void Won()
     {
-        Debug.Log("Won!");
+        // Debug.Log("Won!");
         foreach (Aurea aurea in aureaInstances)
         {
             if (aurea.IsAlive())
@@ -147,6 +163,7 @@ public class PlayerController : MonoBehaviour
 
         if (selected)
         {
+            // Debug.Log("Selected aurea: " + _aurea.name);
             selected.TakeTarget(_aurea);
         }
         else if (_aurea.GetPlayer() == this)

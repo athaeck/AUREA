@@ -32,7 +32,7 @@ public class Kristallisiert : MonoBehaviour
         List<Aurea> aureaList = GetEnemyAurea();
         if (aureaList.Count <= 0)
         {
-            Debug.Log("Didnt found enemy Aurea");
+            // Debug.Log("Didnt found enemy Aurea");
             return;
         }
 

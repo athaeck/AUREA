@@ -34,8 +34,12 @@ public class Rinde : MonoBehaviour
 
     public void Kill()
     {
-        aurea.BeforeGettingHit -= Shield;
-        aurea.GetPlayer().StartedTurn -= NewTurn;
+        if (aurea)
+        {
+            aurea.BeforeGettingHit -= Shield;
+            if (aurea.GetPlayer())
+                aurea.GetPlayer().StartedTurn -= NewTurn;
+        }
         DestroyImmediate(this);
     }
 }

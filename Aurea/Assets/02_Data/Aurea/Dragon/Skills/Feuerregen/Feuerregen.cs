@@ -16,7 +16,7 @@ public class Feuerregen : Skill
         _dmg.physicalDamage *= magicDamageMultiplier;
         _dmg.attackDelay = attackDelay;
 
-        List<Aurea> enemyAurea = GetEnemyAurea(_dmg);
+        List<Aurea> enemyAurea = new List<Aurea>(GetEnemyAurea(_dmg));
 
         for (int i = 0; i < amountOfFireballs; i++)
         {
@@ -31,7 +31,8 @@ public class Feuerregen : Skill
                 animation.StartAnimation(dmg);
             else
             {
-                dmg.targets[0].TakeDamage(dmg);
+                if (dmg.targets[0] != null)
+                    dmg.targets[0].TakeDamage(dmg);
             }
         }
     }
