@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         IslandController.Instance.fight.ResetFight += ResetPlayer;
+        SetData(Player.Instance);
     }
 
     public void StartGame(List<GameObject> spawnPoints)
