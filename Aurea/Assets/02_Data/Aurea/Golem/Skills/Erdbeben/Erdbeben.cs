@@ -20,7 +20,8 @@ public class Erdbeben : Skill
 
         foreach (Aurea aurea in enemys)
         {
-            aurea.TakeDamage(_dmg.Copy());
+            if (aurea != null)
+                aurea.TakeDamage(_dmg.Copy());
         }
     }
     public override bool IsTargetValid(Aurea _aurea, Aurea _sender)

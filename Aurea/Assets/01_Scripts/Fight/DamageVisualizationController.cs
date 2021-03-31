@@ -10,12 +10,15 @@ public class DamageVisualizationController : MonoBehaviour
     Aurea aurea = null;
     void Start()
     {
+        if (IslandController.Instance.fight.training) return;
         aurea = GetComponent<Aurea>();
+        
         aurea.TookDamage += GotHit;
     }
 
     void GotHit(int _dmg)
     {
+        if (IslandController.Instance.fight.training) return;
         if (!Player.Instance.AnimationsOn())
             return;
 

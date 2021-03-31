@@ -18,8 +18,8 @@ public class Transfusion : Skill
         if (Player.Instance.AnimationsOn() && animation)
             animation.StartAnimation(_dmg);
 
-
-        foreach (Aurea target in _dmg.targets)
+        List<Aurea> targetList = new List<Aurea>(_dmg.targets);
+        foreach (Aurea target in targetList)
         {
             Damage dmg = _dmg.Copy();
             target.TakeDamage(dmg);

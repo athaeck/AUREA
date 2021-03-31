@@ -7,6 +7,6 @@ public class KristallangriffAnimation : AttackAnimationController
 {
     public override void StartAnimation(Damage _dmg)
     {
-        Debug.Log("Start Animation Kristallangriff");
+        // Debug.Log("Start Animation Kristallangriff");
     }
 }

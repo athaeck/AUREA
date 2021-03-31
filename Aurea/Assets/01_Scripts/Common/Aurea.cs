@@ -46,7 +46,7 @@ public class Aurea : MonoBehaviour
             {
                 _activeSkill = value;
                 Selected?.Invoke(this);
-                Debug.Log("Selected Skill");
+                // Debug.Log("Selected Skill");
             }
             else {
                 CancelSkill();
@@ -71,15 +71,15 @@ public class Aurea : MonoBehaviour
     public void TakeTarget(Aurea _aurea)
     {
         if(!_aurea) {
-            Debug.Log("Aurea is null");
+            // Debug.Log("Aurea is null");
         }
         if (!activeSkill)
         {
-            Debug.Log("Selected Target but no skill active!");
+            // Debug.Log("Selected Target but no skill active!");
             return;
         }
 
-        Debug.Log("Took Target and have skill active: " + activeSkill.name);
+        // Debug.Log("Took Target and have skill active: " + activeSkill.name);
 
         foreach (Aurea target in targets)
         {
@@ -87,7 +87,7 @@ public class Aurea : MonoBehaviour
             {
                 targets.Remove(_aurea);
                 ChangedTargets?.Invoke(targets);
-                Debug.Log("Changed Targets");
+                // Debug.Log("Changed Targets");
 
                 if (targets.Count <= 0)
                 {
@@ -101,7 +101,7 @@ public class Aurea : MonoBehaviour
         {
             targets.Add(_aurea);
             ChangedTargets?.Invoke(targets);
-            Debug.Log("Changed Targets");
+            // Debug.Log("Changed Targets");
 
             if (activeSkill.CheckTargets(targets, this))
                 UseSkill();
@@ -112,7 +112,7 @@ public class Aurea : MonoBehaviour
 
     private void UseSkill()
     {
-        Debug.Log("Using SKill : " + activeSkill.name + "on n targets: " + targets.Count);
+        // Debug.Log("Using SKill : " + activeSkill.name + "on n targets: " + targets.Count);
         Damage dmg = GetDamage(targets, activeSkill);
         StartAttack?.Invoke(dmg);
         player.RemoveAP(activeSkill.GetCosts());
@@ -125,13 +125,13 @@ public class Aurea : MonoBehaviour
         targets = new List<Aurea>();
         _activeSkill = null;
         SkillCancled?.Invoke();
-        Debug.Log("Skill Cancled");
+        // Debug.Log("Skill Cancled");
     }
     public void TakeDamage(Damage _dmg)
     {
-        Debug.Log("Got hit " + this.name);
+        // Debug.Log("Got hit " + this.name);
         BeforeGettingHit?.Invoke(_dmg);
-        Debug.Log("Before Getting Hit");
+        // Debug.Log("Before Getting Hit");
 
         switch (_dmg.skillType)
         {
@@ -162,20 +162,20 @@ public class Aurea : MonoBehaviour
         }
 
         AfterGettingHit?.Invoke(_dmg);
-        Debug.Log("After Getting Hit");
+        // Debug.Log("After Getting Hit");
     }
 
     public void Die()
     {
-        Debug.Log("Died " + name);
+        // Debug.Log("Died " + name);
         Died?.Invoke(this);
     }
 
     IEnumerator WaitTillApplyDamage(float _attackDelay)
     {
-        Debug.Log("Im here");
+        // Debug.Log("Im here");
         yield return new WaitForSeconds(_attackDelay);
-        Debug.Log("Now im here");
+        // Debug.Log("Now im here");
     }
 
     #region Getter, Setter
@@ -221,6 +221,7 @@ public class Aurea : MonoBehaviour
     {
         TookDamage?.Invoke((int)(lifePointsLeft - _amount));
         this.lifePointsLeft = _amount;
+        this.lifePointsLeft = Mathf.Clamp(this.lifePointsLeft, 0, this.data.levels[0].lifePoints);
         ChangedLifepoints?.Invoke();
     }
     public void RemoveLifePoints(float _amount)

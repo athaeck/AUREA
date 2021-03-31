@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System;
 using Random = UnityEngine.Random;
+using Unity.MLAgents;
 
 public class FightController : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class FightController : MonoBehaviour
     public Action<PlayerController> LoadedEnemy;
 
     [Header("Machine Learning")]
-    [SerializeField] private bool training = false;
+    [SerializeField] public bool training = false;
 
     [Header("Game Stuff")]
 
@@ -37,6 +38,8 @@ public class FightController : MonoBehaviour
 
     [SerializeField]
     private PlayerController player = null;
+    [SerializeField]
+    private RandomPlayerController randomPlayer = null;
 
     [SerializeField]
     private PlayerController enemy = null;
@@ -45,9 +48,13 @@ public class FightController : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> playerSpawnpoints = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> playerCrystals = new List<GameObject>();
 
     [SerializeField]
     private List<GameObject> enemySpawnpoints = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> enemyCrystals = new List<GameObject>();
 
     [SerializeField]
     public float roundTime = 30f;
@@ -68,6 +75,12 @@ public class FightController : MonoBehaviour
     bool justClicked = false;
     bool justSelectedSkill = false;
     bool gameEnded = false;
+    public bool firstStart = true;
+
+    private void Start()
+    {
+        // Academy.Instance.AutomaticSteppingEnabled = false;
+    }
 
     public void TakeInput(Ray ray)
     {
@@ -118,7 +131,6 @@ public class FightController : MonoBehaviour
 
     public void TakeAgentInput(AgentInput _input)
     {
-
         if (_input.endTurn)
         {
             activePlayer.ManuallyEndTurn();
@@ -128,7 +140,11 @@ public class FightController : MonoBehaviour
             activePlayer.Select(_input.selected);
             _input.selected.activeSkill = _input.selected.GetSkills()[_input.skill];
             activePlayer.Select(_input.target);
-            enemyAgent.GetDecision();
+
+            if (activePlayer.gameObject.name == "Player")
+                randomPlayer.GetDecision();
+            else
+                enemyAgent.GetDecision();
         }
     }
 
@@ -149,21 +165,21 @@ public class FightController : MonoBehaviour
         {
             foreach (Transform child in slot.transform)
             {
-                DestroyImmediate(child.gameObject);
+                Destroy(child.gameObject);
             }
         }
         foreach (GameObject slot in enemySpawnpoints)
         {
             foreach (Transform child in slot.transform)
             {
-                DestroyImmediate(child.gameObject);
+                Destroy(child.gameObject);
             }
         }
     }
 
     private void Update()
     {
-        if (!timerStarted || gameEnded || training) { return; }
+        if (!timerStarted || gameEnded) { return; }
 
         timeLeft -= Time.deltaTime;
 
@@ -182,15 +198,20 @@ public class FightController : MonoBehaviour
         player.StartGame(playerSpawnpoints);
         enemy.StartGame(enemySpawnpoints);
 
-        player.GameOver += EndGame;
-        enemy.GameOver += EndGame;
-        enemy.AureaHasDied += EnemyDied;
+        if (firstStart)
+        {
+            firstStart = false;
+            player.GameOver += EndGame;
+            enemy.GameOver += EndGame;
+            enemy.AureaHasDied += EnemyDied;
+        }
 
         int startPlayerNumber = FlipCoin();
-        
+
         if (!training)
             startPlayerNumber = 0;
 
+        canInteract = true;
         StartTurn(startPlayerNumber % 2 == 0 ? player : enemy);
         GameLoaded?.Invoke();
     }
@@ -222,22 +243,38 @@ public class FightController : MonoBehaviour
         gameEnded = true;
 
         PlayerData data = player.GetData();
+        PlayerData enemyData = enemy.GetData();
 
         if (player == _player)
         {
             gameOverText.text = "You lose!";
             enemy.Won();
             data.AddLoseStatistics();
+            enemyData.AddWonStatistics();
+            if (training)
+            {
+                enemyAgent.AddReward(10f);
+                enemyAgent.EndEpisode();
+            }
         }
         else
         {
             gameOverText.text = "You won!";
             player.Won();
             data.AddWonStatistics();
+            enemyData.AddLoseStatistics();
+            if (training)
+            {
+                enemyAgent.AddReward(-1f);
+                enemyAgent.EndEpisode();
+            }
         }
 
         player.SetData(data);
-        StateManager.SavePlayer(data);
+        enemy.SetData(enemyData);
+
+        if (!training)
+            StateManager.SavePlayer(data);
 
         if (!training)
             gameOverScreen.SetActive(true);
@@ -262,6 +299,7 @@ public class FightController : MonoBehaviour
 
     public void StartUsingSkill()
     {
+        // if (!training)
         canInteract = false;
         StartedUsingSkill?.Invoke();
     }
@@ -270,6 +308,8 @@ public class FightController : MonoBehaviour
     {
         canInteract = true;
         EndedUsingSkill?.Invoke();
+        // Academy.Instance.EnvironmentStep();
+        // Debug.Log("Skill");
     }
     public void EndTurn()
     {
@@ -281,7 +321,7 @@ public class FightController : MonoBehaviour
 
     void NextTurn()
     {
-        Debug.Log("Start new Turn");
+        // Debug.Log("Start new Turn");
         StartTurn(activePlayer == player ? enemy : player);
     }
 
@@ -305,7 +345,7 @@ public class FightController : MonoBehaviour
                 return data;
         }
 
-        Debug.Log("Didnt found: " + name);
+        // Debug.Log("Didnt found: " + name);
         return null;
     }
     IEnumerator WaitBetweenClick()

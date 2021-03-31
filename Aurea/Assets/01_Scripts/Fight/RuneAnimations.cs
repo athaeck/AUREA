@@ -53,7 +53,7 @@ public class RuneAnimations : MonoBehaviour
                     StartCoroutine(WaitTillDie());
                 }
                 else
-                    Destroy(this.gameObject);
+                    DestroyImmediate(this.gameObject);
             }
         }
     }
@@ -61,6 +61,6 @@ public class RuneAnimations : MonoBehaviour
     IEnumerator WaitTillDie()
     {
         yield return new WaitForSeconds(waitTillDie);
-        Destroy(this.gameObject);
+        DestroyImmediate(this.gameObject);
     }
 }

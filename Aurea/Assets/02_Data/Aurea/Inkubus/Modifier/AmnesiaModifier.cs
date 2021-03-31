@@ -29,7 +29,8 @@ public class AmnesiaModifier : MonoBehaviour
 
     public void Kill()
     {
-        aurea.GetPlayer().StartedTurn -= NewTurn;
+        if (aurea)
+            aurea.GetPlayer().StartedTurn -= NewTurn;
         DestroyImmediate(this);
     }
 }

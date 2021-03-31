@@ -16,7 +16,8 @@ public class HealthSlider : MonoBehaviour
     {
         if (!aurea) return;
 
-        if(IslandController.Instance.activeIsland != Island.ChickenFight) {
+        if (IslandController.Instance.activeIsland != Island.ChickenFight)
+        {
             DestroyImmediate(gameObject);
         }
 
@@ -25,6 +26,11 @@ public class HealthSlider : MonoBehaviour
 
     void UpdateLife()
     {
+        if (!greenSprite || !orangeSprite || !redSprite || !aurea || !fillImage || !fillSlider)
+        {
+            Destroy(this);
+            return;
+        }
         float fillAmount = aurea.GetLifePointsLeft() / aurea.GetLifePointsMax();
         fillSlider.value = fillAmount;
 

@@ -22,9 +22,13 @@ public class ShardSplitter : MonoBehaviour
             _dmg.physicalDamage *= dmgMultiplier;
     }
 
-    public void Kill() {
-        aurea.BeforeGettingHit -= CheckGettingHit;
-        aurea.GetPlayer().StartedTurn -= NewTurn;
+    public void Kill()
+    {
+        if (aurea)
+        {
+            aurea.BeforeGettingHit -= CheckGettingHit;
+            aurea.GetPlayer().StartedTurn -= NewTurn;
+        }
         DestroyImmediate(this);
     }
 
@@ -32,7 +36,7 @@ public class ShardSplitter : MonoBehaviour
     {
         activeRounds--;
 
-        if(activeRounds <= 0)
+        if (activeRounds <= 0)
             DestroyImmediate(this);
     }
 

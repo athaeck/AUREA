@@ -29,8 +29,12 @@ public class HealthSleeping : MonoBehaviour
 
     public void Kill()
     {
-        aurea.GetPlayer().SelectedAurea -= BlockAurea;
-        aurea.GetPlayer().StartedTurn -= NewTurn;
+
+        if (aurea)
+        {
+            aurea.GetPlayer().SelectedAurea -= BlockAurea;
+            aurea.GetPlayer().StartedTurn -= NewTurn;
+        }
         DestroyImmediate(this);
     }
 }

@@ -34,7 +34,12 @@ public class Korrosion : MonoBehaviour
 
     public void Kill()
     {
-        aurea.BeforeGettingHit -= ApplyDamage;
+        if (aurea)
+        {
+            aurea.BeforeGettingHit -= ApplyDamage;
+            
+        }
+        
         DestroyImmediate(this);
     }
 }

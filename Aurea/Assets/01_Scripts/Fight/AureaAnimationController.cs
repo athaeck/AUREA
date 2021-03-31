@@ -11,6 +11,7 @@ public class AureaAnimationController : MonoBehaviour
     private void Start()
     {
         if(IslandController.Instance.activeIsland != Island.ChickenFight) return;
+        if (IslandController.Instance.fight.training) return;
 
         anim = GetComponent<Animator>();
         aurea = GetComponent<Aurea>();
