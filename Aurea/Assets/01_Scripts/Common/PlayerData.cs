@@ -48,7 +48,7 @@ public class PlayerData
     public bool AnimationsOn() { return animationsOn; }
     public void SetAnimations(bool _anim) { animationsOn = _anim; }
     public List<string> GetSquad() { return squad; }
-    public void SetSquad(List<string> _spuad) { squad = _spuad; }
+    public void SetSquad(List<string> _squad) { squad = _squad; }
     public List<PlayerAureaData> GetAurea() { return playerAureaData; }
     public void AddAurea(PlayerAureaData _aurea)
     {

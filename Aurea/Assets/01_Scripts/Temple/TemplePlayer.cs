@@ -9,26 +9,34 @@ public class TemplePlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Podest"))
+        if (other.CompareTag("Watch"))
         {
-            tc.SetTrigger(true,other.gameObject);
+            tc.WatchTrigger(true,other.gameObject);
         }
         if (other.CompareTag("To-SkyIsland"))
         {
             tc.teleport(true);
         }
+        if (other.CompareTag("Unlock"))
+        {
+            tc.UnlockTrigger(true, other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Podest"))
+        if (other.CompareTag("Watch"))
         {
-            tc.SetTrigger(false, null);
+            tc.WatchTrigger(false, null);
             
         }
         if (other.CompareTag("To-SkyIsland"))
         {
             tc.teleport(false);
+        }
+        if (other.CompareTag("Unlock"))
+        {
+            tc.UnlockTrigger(false, other.gameObject);
         }
     }
 }
