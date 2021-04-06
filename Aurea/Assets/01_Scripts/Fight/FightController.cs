@@ -48,9 +48,13 @@ public class FightController : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> playerSpawnpoints = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> playerCrystals = new List<GameObject>();
 
     [SerializeField]
     private List<GameObject> enemySpawnpoints = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> enemyCrystals = new List<GameObject>();
 
     [SerializeField]
     public float roundTime = 30f;

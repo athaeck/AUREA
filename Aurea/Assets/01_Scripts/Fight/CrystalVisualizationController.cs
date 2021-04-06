@@ -16,8 +16,9 @@ public class CrystalVisualizationController : MonoBehaviour
 
     private PlayerController player = null;
 
-    private void Start()
+    private void TakeCrystals(List<GameObject> _crystals)
     {
+        crystals = _crystals;
         player = GetComponent<PlayerController>();
         ActiveCrystals(player.GetAPLeft());
         player.ChangedAP += ActiveCrystals;
