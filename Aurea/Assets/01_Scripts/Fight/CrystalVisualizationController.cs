@@ -16,7 +16,7 @@ public class CrystalVisualizationController : MonoBehaviour
 
     private PlayerController player = null;
 
-    private void TakeCrystals(List<GameObject> _crystals)
+    public void TakeCrystals(List<GameObject> _crystals)
     {
         crystals = _crystals;
         player = GetComponent<PlayerController>();

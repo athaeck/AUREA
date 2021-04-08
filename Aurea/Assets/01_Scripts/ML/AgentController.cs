@@ -92,7 +92,7 @@ public class AgentController : Agent
 
         // Debug.Log(input.endTurn);
 
-        controller.TakeAgentInput(input);
+        // controller.TakeAgentInput(input);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

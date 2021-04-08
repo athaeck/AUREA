@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MLAPI;
+using MLAPI.NetworkedVar;
 
 // [RequireComponent(typeof(Animator))]
 public class Aurea : MonoBehaviour
