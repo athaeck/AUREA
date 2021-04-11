@@ -76,10 +76,7 @@ MonoBehaviour:
     animationsOn: 1
   actionPoints: 15
   isOnTurn: 1
-  aureaInstances:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  aureaInstances: []
   actionPointsLeft: 15
   actionPointsPerRound: 3
 --- !u!114 &6551685484489547212
@@ -94,22 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38e0688bce44fa4f923771343745fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crystals:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  crystals: []
   activeMaterial: {fileID: 2100000, guid: acc15836b930be149836e6bede707197, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: 8a8f6cb2c25085c43a4454f440f49ada, type: 2}
 --- !u!114 &5909603766651514319

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,8 +8,11 @@ using UnityEngine.EventSystems;
 using System;
 using Random = UnityEngine.Random;
 using Unity.MLAgents;
+using MLAPI;
+using MLAPI.NetworkedVar;
+using MLAPI.Messaging;
 
-public class FightController : MonoBehaviour
+public class FightController : NetworkedBehaviour
 {
 
     public Action GameStarting;
@@ -25,6 +28,8 @@ public class FightController : MonoBehaviour
     public Action<PlayerController> LoadedPlayer;
     public Action<PlayerController> LoadedEnemy;
 
+    public NetworkedVar<PlayerController> p;
+
     [Header("Machine Learning")]
     [SerializeField] public bool training = false;
 
@@ -38,13 +43,13 @@ public class FightController : MonoBehaviour
 
     [SerializeField]
     private PlayerController player = null;
-    [SerializeField]
-    private RandomPlayerController randomPlayer = null;
+    // [SerializeField]
+    // private RandomPlayerController randomPlayer = null;
 
     [SerializeField]
     private PlayerController enemy = null;
-    [SerializeField]
-    private AgentController enemyAgent = null;
+    // [SerializeField]
+    // private AgentController enemyAgent = null;
 
     [SerializeField]
     private List<GameObject> playerSpawnpoints = new List<GameObject>();
@@ -68,6 +73,9 @@ public class FightController : MonoBehaviour
     [SerializeField]
     private Text gameOverText = null;
 
+    [SerializeField]
+    private SelectSkillController skillController = null;
+
     public PlayerController activePlayer = null;
     private bool canInteract = true;
     public float timeLeft = 0;
@@ -82,101 +90,16 @@ public class FightController : MonoBehaviour
         // Academy.Instance.AutomaticSteppingEnabled = false;
     }
 
-    public void TakeInput(Ray ray)
-    {
-        if (justClicked || !player.IsOnTurn() || gameEnded) { return; }
-
-        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
-        {
-            EvaluateInput(hit);
-        }
-    }
-
-    public void TakeInput(Touch touch)
-    {
-        Ray ray = CameraController.Instance.activeCamera.ScreenPointToRay(touch.position);
-
-        TakeInput(ray);
-    }
-
-    public void JustSelectedSkill()
-    {
-        StartCoroutine(WaitBetweenClickSelectedSkill());
-    }
-
-    private void EvaluateInput(RaycastHit hit)
-    {
-        Debug.Log("Evaluate Input");
-        if (justClicked || justSelectedSkill || gameEnded) return;
-
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            StartCoroutine(WaitBetweenClick());
-            return;
-        }
-
-        Aurea hero = null;
-
-        if (hit.collider.CompareTag("Aurea"))
-            hero = hit.collider.GetComponent<Aurea>();
-
-        activePlayer.Select(hero);
-
-        if (hit.collider.CompareTag("EndTurn") && player.IsOnTurn())
-            player.ManuallyEndTurn();
-
-
-        StartCoroutine(WaitBetweenClick());
-    }
-
-    public void TakeAgentInput(AgentInput _input)
-    {
-        if (_input.endTurn)
-        {
-            activePlayer.ManuallyEndTurn();
-        }
-        else
-        {
-            activePlayer.Select(_input.selected);
-            _input.selected.activeSkill = _input.selected.GetSkills()[_input.skill];
-            activePlayer.Select(_input.target);
-
-            if (activePlayer.gameObject.name == "Player")
-                randomPlayer.GetDecision();
-            else
-                enemyAgent.GetDecision();
-        }
-    }
-
     public void ResetIsland()
     {
-        ClearSlots();
-        player.ResetAureaInstances();
-        enemy.ResetAureaInstances();
-        LoadData();
+        // ClearSlots();
+        // player.ResetAureaInstances();
+        // enemy.ResetAureaInstances();
+        // LoadData();
         gameEnded = false;
         ResetFight?.Invoke();
-        StartGame();
+        // StartGame();
     }
-
-    public void ClearSlots()
-    {
-        foreach (GameObject slot in playerSpawnpoints)
-        {
-            foreach (Transform child in slot.transform)
-            {
-                Destroy(child.gameObject);
-            }
-        }
-        foreach (GameObject slot in enemySpawnpoints)
-        {
-            foreach (Transform child in slot.transform)
-            {
-                Destroy(child.gameObject);
-            }
-        }
-    }
-
     private void Update()
     {
         if (!timerStarted || gameEnded) { return; }
@@ -193,7 +116,7 @@ public class FightController : MonoBehaviour
 
         gameOverScreen.SetActive(false);
 
-        LoadData();
+        // LoadData();
 
         player.StartGame(playerSpawnpoints);
         enemy.StartGame(enemySpawnpoints);
@@ -214,6 +137,121 @@ public class FightController : MonoBehaviour
         canInteract = true;
         StartTurn(startPlayerNumber % 2 == 0 ? player : enemy);
         GameLoaded?.Invoke();
+    }
+
+    public void Register(PlayerController _player)
+    {
+        if (!player)
+        {
+            player = _player;
+            skillController.TakePlayer(player);
+            player.GetComponent<CrystalVisualizationController>()?.TakeCrystals(playerCrystals);
+        }
+        else if (!enemy)
+        {
+            enemy = _player;
+            enemy.GetComponent<CrystalVisualizationController>()?.TakeCrystals(enemyCrystals);
+        }
+        else
+        {
+            Debug.LogError("More Players than 2!");
+        }
+
+        if (player && enemy)
+            StartGame();
+    }
+
+    public void StartHost()
+    {
+    }
+
+    public void TakeInput(Ray _ray)
+    {
+        if (justClicked || !player.IsOnTurn() || gameEnded) { return; }
+
+        if (Physics.Raycast(_ray, out RaycastHit hit, float.MaxValue))
+        {
+            EvaluateInput(hit);
+        }
+    }
+
+    public void TakeInput(Touch _touch)
+    {
+        Ray ray = CameraController.Instance.activeCamera.ScreenPointToRay(_touch.position);
+
+        TakeInput(ray);
+    }
+
+    public void JustSelectedSkill()
+    {
+        StartCoroutine(WaitBetweenClickSelectedSkill());
+    }
+
+    private void EvaluateInput(RaycastHit _hit)
+    {
+        if (justClicked || justSelectedSkill || gameEnded) return;
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            StartCoroutine(WaitBetweenClick());
+            return;
+        }
+
+        Aurea hero = null;
+
+        if (_hit.collider.CompareTag("Aurea"))
+            hero = _hit.collider.GetComponent<Aurea>();
+
+        // InvokeServerRpc(activePlayer.Select);
+        activePlayer.Select(hero);
+        // if(NetworkingManager.Singleton.IsHost) {
+        //     // InvokeClientRpc(activePlayer.SelectClientRpc);
+        //     activePlayer.SelectClientRpc();
+        // }else {
+        //     activePlayer.SelectServerRpc();
+        // }
+
+        if (_hit.collider.CompareTag("EndTurn") && player.IsOnTurn())
+            player.ManuallyEndTurn();
+
+        StartCoroutine(WaitBetweenClick());
+    }
+
+    // public void TakeAgentInput(AgentInput _input)
+    // {
+    //     if (_input.endTurn)
+    //     {
+    //         activePlayer.ManuallyEndTurn();
+    //     }
+    //     else
+    //     {
+    //         activePlayer.Select(_input.selected);
+    //         _input.selected.activeSkill = _input.selected.GetSkills()[_input.skill];
+    //         activePlayer.Select(_input.target);
+
+    //         if (activePlayer.gameObject.name == "Player")
+    //             randomPlayer.GetDecision();
+    //         else
+    //             enemyAgent.GetDecision();
+    //     }
+    // }
+
+    public void ClearSlots()
+    {
+        foreach (GameObject slot in playerSpawnpoints)
+        {
+            foreach (Transform child in slot.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        foreach (GameObject slot in enemySpawnpoints)
+        {
+            foreach (Transform child in slot.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 
     void LoadData()
@@ -251,11 +289,11 @@ public class FightController : MonoBehaviour
             enemy.Won();
             data.AddLoseStatistics();
             enemyData.AddWonStatistics();
-            if (training)
-            {
-                enemyAgent.AddReward(10f);
-                enemyAgent.EndEpisode();
-            }
+            // if (training)
+            // {
+            //     enemyAgent.AddReward(10f);
+            //     enemyAgent.EndEpisode();
+            // }
         }
         else
         {
@@ -263,11 +301,11 @@ public class FightController : MonoBehaviour
             player.Won();
             data.AddWonStatistics();
             enemyData.AddLoseStatistics();
-            if (training)
-            {
-                enemyAgent.AddReward(-1f);
-                enemyAgent.EndEpisode();
-            }
+            // if (training)
+            // {
+            //     enemyAgent.AddReward(-1f);
+            //     enemyAgent.EndEpisode();
+            // }
         }
 
         player.SetData(data);
@@ -285,16 +323,16 @@ public class FightController : MonoBehaviour
             ResetIsland();
     }
 
-    void StartTurn(PlayerController player)
+    void StartTurn(PlayerController _player)
     {
-        activePlayer = player;
+        activePlayer = _player;
 
-        player.StartTurn();
+        _player.StartTurn();
 
         timerStarted = true;
         timeLeft = roundTime;
 
-        TurnChanged?.Invoke(player);
+        TurnChanged?.Invoke(_player);
     }
 
     public void StartUsingSkill()
@@ -337,11 +375,11 @@ public class FightController : MonoBehaviour
 
     public PlayerController GetEnemy() { return enemy; }
 
-    public AureaData GetAureaData(string name)
+    public AureaData GetAureaData(string _name)
     {
         foreach (AureaData data in aureaData.aureas)
         {
-            if (data.NAME == name)
+            if (data.NAME == _name)
                 return data;
         }
 

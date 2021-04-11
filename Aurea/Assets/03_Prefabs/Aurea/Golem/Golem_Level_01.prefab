@@ -116,6 +116,7 @@ MonoBehaviour:
   lifePointsLeft: 0
   modifier: []
   activeItems: []
+  player: {fileID: 0}
   targets: []
 --- !u!95 &-4668991422249762889
 Animator:

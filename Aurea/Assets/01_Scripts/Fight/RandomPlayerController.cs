@@ -49,7 +49,7 @@ public class RandomPlayerController : MonoBehaviour
         bool endTurn = Random.Range(0, 2) == 0;
         input.endTurn = endTurn;
 
-        controller.TakeAgentInput(input);
+        // controller.TakeAgentInput(input);
     }
     private List<Aurea> GetEnemyAurea(PlayerController _player)
     {

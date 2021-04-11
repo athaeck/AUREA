@@ -23,7 +23,8 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        if(EventSystem.current.IsPointerOverGameObject()) {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
             return;
         }
 
@@ -73,6 +74,11 @@ public class InputController : MonoBehaviour
                     }
                     break;
             }
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            Ray ray = CameraController.Instance.activeCamera.ScreenPointToRay(Input.mousePosition);
+            IslandController.Instance.fight.TakeInput(ray);
         }
     }
 
