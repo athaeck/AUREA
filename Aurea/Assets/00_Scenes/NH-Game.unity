@@ -39504,9 +39504,7 @@ MonoBehaviour:
   aureaData: {fileID: 11400000, guid: 1eddec29d9d5f6647a07f00853f6758c, type: 2}
   camController: {fileID: 1278161627}
   player: {fileID: 810910034}
-  randomPlayer: {fileID: 0}
   enemy: {fileID: 569588394}
-  enemyAgent: {fileID: 0}
   playerSpawnpoints:
   - {fileID: 280490773}
   - {fileID: 1770410747}
@@ -39551,6 +39549,7 @@ MonoBehaviour:
   waitBetweenClicks: 0.5
   gameOverScreen: {fileID: 151961327}
   gameOverText: {fileID: 732172718}
+  skillController: {fileID: 0}
   activePlayer: {fileID: 810910034}
   timeLeft: 10
   firstStart: 0
