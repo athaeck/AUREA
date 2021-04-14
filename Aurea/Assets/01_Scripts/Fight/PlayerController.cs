@@ -2,8 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MLAPI;
+using MLAPI.Messaging;
+using MLAPI.NetworkedVar;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkedBehaviour
 {
     public Action StartedTurn;
     public Action EndedTurn;
@@ -41,12 +44,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int actionPointsPerRound = 3;
 
+    // private NetworkedVar<Aurea> selected = new NetworkedVar<Aurea>(new NetworkedVarSettings() {
+    //     ReadPermission = NetworkedVarPermission.Everyone,
+    //     WritePermission = NetworkedVarPermission.E
+    // })
     private Aurea selected = null;
 
     void Start()
     {
+        isPlayer = GetComponent<NetworkedObject>().IsLocalPlayer;
+
         IslandController.Instance.fight.ResetFight += ResetPlayer;
         SetData(Player.Instance);
+        IslandController.Instance.fight.Register(this);
     }
 
     public void StartGame(List<GameObject> spawnPoints)
@@ -64,7 +74,7 @@ public class PlayerController : MonoBehaviour
         while (newsquad.Count != 3)
         {
             int rnd = UnityEngine.Random.Range(0, 3);
-            if(newsquad.Contains(data.playerAureaData[rnd].aureaName))
+            if (newsquad.Contains(data.playerAureaData[rnd].aureaName))
                 continue;
             newsquad.Add(data.playerAureaData[rnd].aureaName);
         }
@@ -118,6 +128,7 @@ public class PlayerController : MonoBehaviour
         ResetedSelection?.Invoke();
     }
 
+    [ServerRPC]
     public void ManuallyEndTurn()
     {
         // Debug.Log("Manually end Turn on " + gameObject.name + " is " + !isOnTurn + " and " + !IslandController.Instance.fight.CanInteract());
@@ -148,10 +159,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Print(string _val) {
+        Debug.Log(_val);
+    }
+
     public void Select(Aurea _aurea)
     {
+        // InvokeServerRpc("SelectServerRpc");
+        // if(NetworkingManager.Singleton.IsHost) {
+        //     // InvokeClientRpc("SelectClientRpc");
+
+        //     // SelectClientRpc();
+        //     // SelectServerRpc();
+        // }
+
         if (_aurea && !_aurea.IsAlive())
             return;
+
+
 
         if (!_aurea)
         {
@@ -174,6 +199,19 @@ public class PlayerController : MonoBehaviour
             SelectedAurea?.Invoke(selected);
         }
     }
+
+    [ServerRPC]
+    public void SelectServerRpc()
+    {
+        Debug.Log("Got a ServerRPC");
+    }
+
+    [ClientRPC]
+    public void SelectClientRpc()
+    {
+        Debug.Log("Got a ClientRPC");
+    }
+
     public void RemoveSelected()
     {
         if (!selected) return;

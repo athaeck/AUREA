@@ -47,8 +47,9 @@ public class SelectSkillController : MonoBehaviour
     [SerializeField]
     private Text forthSkillCosts = null;
 
-    private void Start()
+    public void TakePlayer(PlayerController _player)
     {
+        player = _player;
         player.SelectedAurea += InitView;
         player.ResetedSelection += ResetView;
         player.AbortedSkill += ResetView;
