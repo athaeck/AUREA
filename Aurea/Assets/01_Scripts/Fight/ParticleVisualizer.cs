@@ -27,18 +27,19 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void AddEventListener()
     {
-        if (fightController.training) return;
-        foreach (Aurea aurea in fightController.GetPlayer().GetAureas())
+        foreach (PlayerController player in fightController.players)
         {
-            aurea.Selected += Selected;
-            aurea.ChangedTargets += ChangedTargets;
-            aurea.SkillCancled += Cancel;
+            foreach (Aurea aurea in player.GetAureas())
+            {
+                aurea.Selected += Selected;
+                aurea.ChangedTargets += ChangedTargets;
+                aurea.SkillCancled += Cancel;
+            }
         }
     }
 
     private void Selected(Aurea _aurea)
     {
-        if (fightController.training) return;
         GameObject newSelected = Instantiate(selectedParticles, _aurea.transform.parent);
         if (instantiatedParticles.ContainsKey(_aurea))
             return;
@@ -47,7 +48,6 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void ChangedTargets(List<Aurea> _aureas)
     {
-        if (fightController.training) return;
         foreach (Aurea aurea in _aureas)
         {
             if (!instantiatedParticles.ContainsKey(aurea))
@@ -60,7 +60,6 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Cancel()
     {
-        if (fightController.training) return;
         if (Player.Instance.animationsOn)
         {
             List<RuneAnimations> objects = new List<RuneAnimations>();
