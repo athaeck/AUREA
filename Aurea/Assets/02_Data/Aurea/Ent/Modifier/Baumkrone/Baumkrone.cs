@@ -48,21 +48,36 @@ public class Baumkrone : MonoBehaviour
 
     private List<Aurea> GetEnemyAurea()
     {
-        PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
-        PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
+        List<PlayerController> players = IslandController.Instance.fight.players;
 
-        foreach (Aurea _aurea in controllerPlayer.GetAureas())
+        PlayerController controllerPlayer = null;
+        PlayerController controllerEnemy = null;
+
+        foreach (PlayerController player in players)
         {
-            if (_aurea == aurea)
-                return controllerEnemy.GetAureas();
+            if (player.view.Owner.IsLocal)
+                controllerPlayer = player;
+            else
+                controllerEnemy = player;
         }
 
-        foreach (Aurea _aurea in controllerEnemy.GetAureas())
-        {
-            if (_aurea == aurea)
-                return controllerPlayer.GetAureas();
-        }
+        return controllerEnemy.GetAureas();
 
-        return new List<Aurea>();
+        // PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
+        // PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
+
+        // foreach (Aurea _aurea in controllerPlayer.GetAureas())
+        // {
+        //     if (_aurea == aurea)
+        //         return controllerEnemy.GetAureas();
+        // }
+
+        // foreach (Aurea _aurea in controllerEnemy.GetAureas())
+        // {
+        //     if (_aurea == aurea)
+        //         return controllerPlayer.GetAureas();
+        // }
+
+        // return new List<Aurea>();
     }
 }

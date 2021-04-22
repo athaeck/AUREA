@@ -132,12 +132,18 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             // aurea.Init(aureaLevel, this);
             aurea.view.RPC("Init", RpcTarget.AllBuffered, aureaLevel, this.view.ViewID);
-            aureaInstances.Add(aurea);
+            view.RPC("AddAurea", RpcTarget.AllBuffered, aurea.view.ViewID);
 
             aurea.Died += AureaDied;
 
             i++;
         }
+    }
+
+    [PunRPC]
+    public void AddAurea(int _viewID) {
+        Aurea aurea = PhotonView.Find(_viewID).gameObject.GetComponent<Aurea>();
+        aureaInstances.Add(aurea);
     }
 
     [PunRPC]

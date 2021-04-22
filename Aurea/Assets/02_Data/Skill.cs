@@ -48,8 +48,29 @@ public abstract class Skill : ScriptableObject
 
     protected List<Aurea> GetEnemyAurea(Damage _dmg)
     {
-        PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
-        PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
+        List<PlayerController> players = IslandController.Instance.fight.players;
+
+        PlayerController controllerPlayer = null;
+        PlayerController controllerEnemy = null;
+
+        foreach (PlayerController player in players)
+        {
+            if (player.view.Owner.IsLocal)
+                controllerPlayer = player;
+            else
+                controllerEnemy = player;
+        }
+
+        return controllerEnemy.GetAureas();
+
+
+        // PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
+        // PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
+
+        if(controllerPlayer == null || controllerEnemy == null) {
+            Debug.LogError("Didint found player or enemy");
+            return null;
+        }
 
         foreach (Aurea _aurea in controllerPlayer.GetAureas())
         {
@@ -63,6 +84,7 @@ public abstract class Skill : ScriptableObject
                 return controllerPlayer.GetAureas();
         }
 
+        Debug.Log("No Aurea found");
         return new List<Aurea>();
     }
 }

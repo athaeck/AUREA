@@ -17,9 +17,12 @@ public class Erdbeben : Skill
             animation.StartAnimation(_dmg);
 
         List<Aurea> enemys = GetEnemyAurea(_dmg);
+        Debug.Log("Here1: " + enemys.Count);
 
         foreach (Aurea aurea in enemys)
         {
+            Debug.Log("Here");
+            Debug.Log("Aurea is: " + aurea);
             if (aurea != null)
                 aurea.TakeDamage(_dmg.Copy());
         }
