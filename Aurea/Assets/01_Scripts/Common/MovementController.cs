@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,9 @@ public class MovementController : MonoBehaviour
 {
     Animator anim = null;
     Rigidbody rb = null;
+
+    [SerializeField]
+    private PlacementController placementController = null;
 
     [SerializeField]
     private float speed = 12f;
@@ -36,19 +39,22 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
-        if (counter <= 0)
+        if (placementController.GetLock() || !Player.Instance.IsArOn())
         {
-            anim.SetFloat("Speed", 0);
-        }
-        else
-        {
-            anim.SetFloat("Speed", 1);
-        }
+            if (counter <= 0)
+            {
+                anim.SetFloat("Speed", 0);
+            }
+            else
+            {
+                anim.SetFloat("Speed", 1);
+            }
 
-        counter--;
+            counter--;
 
-        lastPostition = transform.position;
-        rb.angularVelocity = Vector3.zero;
+            lastPostition = transform.position;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 
     bool isGrounded()
@@ -67,20 +73,23 @@ public class MovementController : MonoBehaviour
 
     public void Move(Vector3 _direction)
     {
-        Vector3 newDir = (_direction - transform.position).normalized;
-        Vector3 newPos = Vector3.zero;
+        if (placementController.GetLock() || !Player.Instance.IsArOn())
+        {
+            Vector3 newDir = (_direction - transform.position).normalized;
+            Vector3 newPos = Vector3.zero;
 
-        if (Player.Instance.IsArOn()) 
-            newPos = Vector3.Lerp(transform.position, transform.position + newDir, speed * Time.deltaTime * arSpeedMultiplier);
-        else 
-            newPos = Vector3.Lerp(transform.position, transform.position + newDir, speed * Time.deltaTime);
+            if (Player.Instance.IsArOn())
+                newPos = Vector3.Lerp(transform.position, transform.position + newDir, speed * Time.deltaTime * arSpeedMultiplier);
+            else
+                newPos = Vector3.Lerp(transform.position, transform.position + newDir, speed * Time.deltaTime);
 
-        rb.MovePosition(newPos);
+            rb.MovePosition(newPos);
 
-        Quaternion targetRotation = Quaternion.LookRotation(_direction - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(_direction - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        counter = 5;
+            counter = 5;
+        }
     }
 
     float Remap(float value, float from1, float to1, float from2, float to2)

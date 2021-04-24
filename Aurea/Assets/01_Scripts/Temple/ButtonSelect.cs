@@ -111,7 +111,7 @@ public class ButtonSelect : MonoBehaviour
                     viewAureaHUD.SetActive(true);
                     position = g.transform.position;
                     g.transform.localScale = g.transform.localScale * 2;
-                    g.transform.position = new Vector3(0,1,0);
+                    g.transform.position = new Vector3(0,1 + g.GetComponent<Aurea>().GetAureaData().instantiateAtheight * 2,0);
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, -10));
 
                     cam.GetComponent<FollowTarget>().TakeTarget(g.transform);

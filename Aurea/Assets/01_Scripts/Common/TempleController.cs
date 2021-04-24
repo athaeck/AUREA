@@ -237,6 +237,7 @@ public class TempleController : MonoBehaviour
         data = Player.Instance;
         slots.transform.localScale = Vector3.one;
         CreateSpiral();
+        FindObjectOfType<AudioController>().Play("Background");
 
 
 
