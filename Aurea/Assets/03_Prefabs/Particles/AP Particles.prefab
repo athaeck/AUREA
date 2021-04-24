@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1053250295962324969, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b5ce934ee73af744991b6aadec217443, type: 2}
+    - target: {fileID: 1053250295962324969, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b5ce934ee73af744991b6aadec217443, type: 2}
     - target: {fileID: 1088220975888163319, guid: e50e6e9f51421a242905dcf09a6fd490,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
