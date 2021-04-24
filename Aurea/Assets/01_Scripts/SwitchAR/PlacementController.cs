@@ -88,4 +88,9 @@ public class PlacementController : MonoBehaviour
     public void ChangeLock() {
         isLocked = !isLocked;
     }
+
+    public bool GetLock()
+    {
+        return isLocked;
+    }
 }

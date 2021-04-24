@@ -1,16 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
 
 public class TempleController : MonoBehaviour
 {
+    #region Singleton
+    private static TempleController _instance;
+    public static TempleController Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<TempleController>();
+                if (_instance == null)
+                {
+                    GameObject container = new GameObject();
+                    container.AddComponent<TempleController>();
+                }
+            }
+            return _instance;
+        }
+    }
+    #endregion
+
     [SerializeField]
     private GameObject slots = null;
 
-
+    [SerializeField]
+    private GameObject islands = null;
 
     [SerializeField]
     private GameObject player = null;
@@ -34,13 +55,13 @@ public class TempleController : MonoBehaviour
     [SerializeField]
     public AureaList aureaData = null;
 
-
-
    [SerializeField]
 
     private GameObject selectAureaHUD = null;
 
+    [SerializeField]
 
+    private GameObject unlockHUD = null;
 
     [SerializeField]
 
@@ -58,7 +79,9 @@ public class TempleController : MonoBehaviour
 
 
 
-    private bool trigger;
+    private bool watchTrigger;
+
+    private bool unlockTrigger;
 
     private GameObject hitpodest;
 
@@ -102,19 +125,22 @@ public class TempleController : MonoBehaviour
             {
                 if (aureaData.aureas[i].NAME == CapturedAurea[j].aureaName)
                 {
+
                     int aureaLevel = data.GetAureaLevel(CapturedAurea[j].aureaName);
                     GameObject aureaPrefab = GetAureaData(CapturedAurea[j].aureaName).levels[aureaLevel - 1].prefab;
                     GameObject podest = Instantiate(slotPrefab, spawnPoint[i], slotPrefab.transform.rotation, slots.transform);
-                    Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i] + new Vector3(0, 1.58f, 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
+                    podest.transform.localScale = new Vector3(podest.transform.localScale.x / islands.transform.localScale.x, podest.transform.localScale.y / islands.transform.localScale.y, podest.transform.localScale.z / islands.transform.localScale.z);
+                    Aurea aurea = Instantiate(aureaPrefab, podest.transform.position + new Vector3(0, (podest.GetComponent<MeshRenderer>().bounds.size.y + aureaData.aureas[i].instantiateAtheight), 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
                     GameObject boxcollider = new GameObject("BoxCollider");
                     boxcollider.transform.parent = podest.transform;
                     boxcollider.transform.position = spawnPoint[i];
                     boxcollider.AddComponent<BoxCollider>();
                     boxcollider.layer = 2;
-                    boxcollider.tag = "Podest";
+                    boxcollider.tag = "Watch";
                     boxcollider.GetComponent<BoxCollider>().isTrigger = true;
                     boxcollider.GetComponent<BoxCollider>().size = new Vector3(3, 3, 3);
-                    Destroy(aurea.GetComponent<BoxCollider>());
+                    boxcollider.transform.localScale = new Vector3(1, 1, 1);
+                    DestroyImmediate(aurea.GetComponent<BoxCollider>());
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
 
 
@@ -123,16 +149,25 @@ public class TempleController : MonoBehaviour
                 if (aureaData.aureas[i].NAME != CapturedAurea[j].aureaName && j == CapturedAurea.Count - 1)
                 {
                     GameObject aureaPrefab = aureaData.aureas[i].levels[0].prefab;
-                    GameObject podest = Instantiate(slotPrefab, spawnPoint[i] , slotPrefab.transform.rotation, slots.transform);
-                    Aurea aurea = Instantiate(aureaPrefab, spawnPoint[i] + new Vector3(0, 1.58f, 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
+                    GameObject podest = Instantiate(slotPrefab, spawnPoint[i], slotPrefab.transform.rotation, slots.transform);
+                    podest.transform.localScale = new Vector3(podest.transform.localScale.x / islands.transform.localScale.x, podest.transform.localScale.y / islands.transform.localScale.y, podest.transform.localScale.z / islands.transform.localScale.z);
+                    Aurea aurea = Instantiate(aureaPrefab, podest.transform.position + new Vector3(0,(podest.GetComponent<MeshRenderer>().bounds.size.y + aureaData.aureas[i].instantiateAtheight), 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
                     aurea.tag = "Locked";
-                    Destroy(aurea.GetComponent<BoxCollider>());
+                    GameObject boxcollider = new GameObject("BoxCollider");
+                    boxcollider.transform.parent = podest.transform;
+                    boxcollider.transform.position = spawnPoint[i];
+                    boxcollider.AddComponent<BoxCollider>();
+                    boxcollider.layer = 2;
+                    boxcollider.tag = "Unlock";
+                    boxcollider.GetComponent<BoxCollider>().isTrigger = true;
+                    boxcollider.GetComponent<BoxCollider>().size = new Vector3(3, 3, 3);
+                    boxcollider.transform.localScale = new Vector3(1, 1, 1);
+                    DestroyImmediate(aurea.GetComponent<BoxCollider>());
                     aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
-                }
-
-
+                }              
             }
         }
+        slots.transform.localScale = islands.transform.localScale;
     }
 
 
@@ -147,11 +182,10 @@ public class TempleController : MonoBehaviour
             } 
 
             Aurea aurea = null;
-            if (trigger)
+            if (watchTrigger)
             {
                 aurea = hitpodest.transform.parent.gameObject.transform.GetComponentInChildren<Aurea>();
                 buttonSelect.select(aurea.GetName());
-                selectAureaHUD.GetComponent<FollowTarget>().TakeTarget(aurea.transform);
                 selectAureaHUD.SetActive(true);
 
             }
@@ -159,6 +193,30 @@ public class TempleController : MonoBehaviour
             {
                 selectAureaHUD.SetActive(false);
             }
+
+
+            if (unlockTrigger)
+            {
+                aurea = hitpodest.transform.parent.gameObject.transform.GetComponentInChildren<Aurea>();
+                unlockHUD.SetActive(true);
+                buttonSelect.SelectedAurea(aurea.gameObject);
+                if(data.GetMoney() <= 50)
+                {
+                    unlockHUD.GetComponentInChildren<Button>().interactable = false;
+                    unlockHUD.GetComponentInChildren<Text>().text = "You need 50 Coins";
+                }
+                else
+                {
+                    unlockHUD.GetComponentInChildren<Button>().interactable = true;
+                    unlockHUD.GetComponentInChildren<Text>().text = "Entsperren";
+                }
+
+            }
+            else
+            {
+                unlockHUD.SetActive(false);
+            }
+
             if (hit.collider.CompareTag("Walkable"))
             {
                 Vector3 movement = new Vector3(hit.point.x, hit.point.y, hit.point.z);
@@ -177,15 +235,24 @@ public class TempleController : MonoBehaviour
                 DestroyImmediate(slots);
         }
         data = Player.Instance;
-
+        slots.transform.localScale = Vector3.one;
         CreateSpiral();
+        FindObjectOfType<AudioController>().Play("Background");
+
+
 
         Debug.Log("Reset Temple");
     }
     
-    public void SetTrigger(bool newtrigger, GameObject newhitpodest)
+    public void WatchTrigger(bool newtrigger, GameObject newhitpodest)
     {
-        trigger = newtrigger;
+        watchTrigger = newtrigger;
+        hitpodest = newhitpodest;
+    }
+
+    public void UnlockTrigger(bool newtrigger, GameObject newhitpodest)
+    {
+        unlockTrigger = newtrigger;
         hitpodest = newhitpodest;
     }
 

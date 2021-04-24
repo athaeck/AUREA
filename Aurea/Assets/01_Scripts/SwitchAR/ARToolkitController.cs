@@ -87,6 +87,7 @@ public class ARToolkitController : MonoBehaviour
             CameraController.Instance.ChangeIsland(IslandController.Instance.activeIsland, true);
             SetObjectsActive(false);
             IslandController.Instance.skyIsland.ResetPlayerPosition();
+            IslandController.Instance.temple.ResetIsland();
         }
         else
         {
@@ -95,6 +96,7 @@ public class ARToolkitController : MonoBehaviour
             CameraController.Instance.ChangeIsland(IslandController.Instance.activeIsland, false);
             SetObjectsActive(true);
             IslandController.Instance.skyIsland.ResetPlayerPosition();
+            IslandController.Instance.temple.ResetIsland();
         }
     }
 

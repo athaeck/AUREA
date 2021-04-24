@@ -16,7 +16,10 @@ public class ButtonSelect : MonoBehaviour
     [SerializeField]
     private GameObject viewAureaHUD = null;
 
-    private string selectedAurea = null;
+    [SerializeField]
+    private GameObject unlockHUD = null;
+
+    public string selectedAurea = null;
 
     private Vector3 oldpos = new Vector3(0, 0, 0);
     private Quaternion oldrot = new Quaternion();
@@ -27,6 +30,8 @@ public class ButtonSelect : MonoBehaviour
     private GameObject parent = null;
 
     private bool team = true;
+
+    private GameObject aurea;
 
     private PlayerData data = null;
 
@@ -106,7 +111,7 @@ public class ButtonSelect : MonoBehaviour
                     viewAureaHUD.SetActive(true);
                     position = g.transform.position;
                     g.transform.localScale = g.transform.localScale * 2;
-                    g.transform.position = new Vector3(0,1,0);
+                    g.transform.position = new Vector3(0,1 + g.GetComponent<Aurea>().GetAureaData().instantiateAtheight * 2,0);
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, -10));
 
                     cam.GetComponent<FollowTarget>().TakeTarget(g.transform);
@@ -149,8 +154,37 @@ public class ButtonSelect : MonoBehaviour
         }
     }
     
-    public void teleport()
+    public void Teleport()
     {
         IslandController.Instance.OpenSkyIsland();
+    }
+
+    public void Unlock()
+    {
+        data = Player.Instance;
+        data.AddMoney(-50);
+        PlayerAureaData aureaData = new PlayerAureaData();
+        aureaData.aureaName = aurea.GetComponent<Aurea>().GetName();
+        aureaData.aureaLevel = 1;
+        data.AddAurea(aureaData);
+        aurea.tag = "Aurea";
+        Destroy(aurea.transform.parent.GetComponentInChildren<BoxCollider>().gameObject);
+        unlockHUD.SetActive(false);
+        GameObject boxcollider = new GameObject("BoxCollider");
+        boxcollider.transform.parent = aurea.transform.parent.transform;
+        boxcollider.transform.position = aurea.transform.parent.transform.position;
+        boxcollider.AddComponent<BoxCollider>();
+        boxcollider.layer = 2;
+        boxcollider.tag = "Watch";
+        boxcollider.GetComponent<BoxCollider>().isTrigger = true;
+        boxcollider.GetComponent<BoxCollider>().size = new Vector3(3, 3, 3);
+        selectAureaHUD.SetActive(true);
+        select(aurea.GetComponent<Aurea>().GetName());
+        TempleController.Instance.UnlockTrigger(false, null);
+    }
+
+    public void SelectedAurea(GameObject newaurea)
+    {
+        aurea = newaurea;
     }
 }
