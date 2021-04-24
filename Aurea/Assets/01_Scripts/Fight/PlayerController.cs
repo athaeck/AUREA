@@ -1,12 +1,14 @@
-﻿using System;
+﻿using System.IO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkedVar;
+using Photon.Pun;
 
-public class PlayerController : NetworkedBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     public Action StartedTurn;
     public Action EndedTurn;
@@ -33,8 +35,6 @@ public class PlayerController : NetworkedBehaviour
     [SerializeField]
     private bool isOnTurn = false;
 
-    // TO-DO Hier kommt die ULTI hin
-
     [SerializeField]
     private List<Aurea> aureaInstances = new List<Aurea>();
 
@@ -43,31 +43,54 @@ public class PlayerController : NetworkedBehaviour
 
     [SerializeField]
     private int actionPointsPerRound = 3;
+    [SerializeField]
+    public List<GameObject> spawnPoints = new List<GameObject>();
 
-    // private NetworkedVar<Aurea> selected = new NetworkedVar<Aurea>(new NetworkedVarSettings() {
-    //     ReadPermission = NetworkedVarPermission.Everyone,
-    //     WritePermission = NetworkedVarPermission.E
-    // })
+    public PhotonView view = null;
     private Aurea selected = null;
 
-    void Start()
+    private bool registered = false;
+
+    private void Awake()
     {
-        isPlayer = GetComponent<NetworkedObject>().IsLocalPlayer;
+        view = GetComponent<PhotonView>();
+    }
+
+    private void Update()
+    {
+
+        if (FightController.instance && !registered)
+        {
+            if (view != null && view.Owner.IsLocal)
+            {
+                view.RPC("RegisterAtFightController", RpcTarget.AllBuffered);
+            }
+
+        }
+    }
+
+    [PunRPC]
+    public void RegisterAtFightController()
+    {
+        FightController.instance.Register(this);
+        registered = true;
+        isPlayer = view.Owner.IsLocal;
+    }
+    public void TakeSpawnPoints(List<GameObject> _spawnPoints) => spawnPoints = _spawnPoints;
+
+    [PunRPC]
+    public void StartGame()
+    {
+        if (!view.Owner.IsLocal) return;
 
         IslandController.Instance.fight.ResetFight += ResetPlayer;
         SetData(Player.Instance);
-        IslandController.Instance.fight.Register(this);
-    }
 
-    public void StartGame(List<GameObject> spawnPoints)
-    {
-        if (IslandController.Instance.fight.training)
-            CreateRandomSquad();
-
-        InstantiateSquad(spawnPoints);
+        InstantiateSquad();
 
         AddAP(actionPoints);
     }
+
     public void CreateRandomSquad()
     {
         List<string> newsquad = new List<string>();
@@ -91,25 +114,39 @@ public class PlayerController : NetworkedBehaviour
         aureaInstances = new List<Aurea>();
     }
 
-    void InstantiateSquad(List<GameObject> spawnPoints)
+    public void InstantiateSquad()
     {
         int i = 0;
         List<string> squad = data.GetSquad();
         foreach (GameObject spawnPoint in spawnPoints)
         {
             int aureaLevel = data.GetAureaLevel(squad[i]);
+
             AureaData aureaData = IslandController.Instance.fight.GetAureaData(squad[i]);
             GameObject aureaPrefab = aureaData.levels[aureaLevel - 1].prefab;
-            Aurea aurea = Instantiate(aureaPrefab, spawnPoint.transform).GetComponent<Aurea>();
-            aurea.transform.localPosition = new Vector3(0, aureaData.instantiateAtheight, 0);
-            aurea.Init(aureaLevel, this);
-            aureaInstances.Add(aurea);
-            aurea.Died += AureaDied;
+            GameObject aureaObject = PhotonNetwork.Instantiate(Path.Combine("Prefabs", aureaPrefab.name), spawnPoint.transform.position, spawnPoint.transform.rotation);
+            Aurea aurea = aureaObject.GetComponent<Aurea>();
 
+            aureaObject.transform.SetParent(spawnPoint.transform);
+            aurea.transform.localPosition = new Vector3(0, aureaData.instantiateAtheight, 0);
+
+            // aurea.Init(aureaLevel, this);
+            aurea.view.RPC("Init", RpcTarget.AllBuffered, aureaLevel, this.view.ViewID);
+            view.RPC("AddAurea", RpcTarget.AllBuffered, aurea.view.ViewID);
+
+            aurea.Died += AureaDied;
 
             i++;
         }
     }
+
+    [PunRPC]
+    public void AddAurea(int _viewID) {
+        Aurea aurea = PhotonView.Find(_viewID).gameObject.GetComponent<Aurea>();
+        aureaInstances.Add(aurea);
+    }
+
+    [PunRPC]
     public void StartTurn()
     {
         StartedTurn?.Invoke();
@@ -117,6 +154,7 @@ public class PlayerController : NetworkedBehaviour
         AddAP(actionPointsPerRound);
     }
 
+    [PunRPC]
     public void EndTurn()
     {
         EndedTurn?.Invoke();
@@ -128,7 +166,7 @@ public class PlayerController : NetworkedBehaviour
         ResetedSelection?.Invoke();
     }
 
-    [ServerRPC]
+    [PunRPC]
     public void ManuallyEndTurn()
     {
         // Debug.Log("Manually end Turn on " + gameObject.name + " is " + !isOnTurn + " and " + !IslandController.Instance.fight.CanInteract());
@@ -159,41 +197,61 @@ public class PlayerController : NetworkedBehaviour
         }
     }
 
-    public void Print(string _val) {
+    public void Print(string _val)
+    {
         Debug.Log(_val);
+    }
+    [PunRPC]
+    public void Select(int _viewID)
+    {
+        if (_viewID == -1)
+        {
+            Select(null);
+            Debug.Log("Selected Null");
+            return;
+
+        }
+        Aurea aurea = PhotonView.Find(_viewID).gameObject.GetComponent<Aurea>();
+
+        if (aurea)
+            Debug.Log("Found Aurea by ID with name: " + aurea.name);
+        else
+            Debug.Log("Didnt found Aurea by ID");
+
+        Select(aurea);
     }
 
     public void Select(Aurea _aurea)
     {
-        // InvokeServerRpc("SelectServerRpc");
-        // if(NetworkingManager.Singleton.IsHost) {
-        //     // InvokeClientRpc("SelectClientRpc");
+        Debug.Log("Aurea before selected");
 
-        //     // SelectClientRpc();
-        //     // SelectServerRpc();
-        // }
 
         if (_aurea && !_aurea.IsAlive())
             return;
 
-
+        Debug.Log("Aurea and aurea alive");
 
         if (!_aurea)
         {
             if (selected)
                 selected.CancelSkill();
 
+            Debug.Log("Aborted Skill");
+
             AbortedSkill?.Invoke();
             return;
         }
 
+        Debug.Log("Selected: " + (selected ? selected.name : "null"));
+
         if (selected)
         {
-            // Debug.Log("Selected aurea: " + _aurea.name);
+            Debug.Log("Selected Target: " + _aurea.name);
             selected.TakeTarget(_aurea);
         }
         else if (_aurea.GetPlayer() == this)
         {
+            Debug.Log("Aurea selected");
             selected = _aurea;
             selected.SkillCancled += RemoveSelected;
             SelectedAurea?.Invoke(selected);

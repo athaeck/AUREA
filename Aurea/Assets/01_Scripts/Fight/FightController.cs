@@ -8,13 +8,11 @@ using UnityEngine.EventSystems;
 using System;
 using Random = UnityEngine.Random;
 using Unity.MLAgents;
-using MLAPI;
-using MLAPI.NetworkedVar;
-using MLAPI.Messaging;
+using Photon.Pun;
 
-public class FightController : NetworkedBehaviour
+public class FightController : MonoBehaviourPunCallbacks
 {
-
+    public static FightController instance;
     public Action GameStarting;
     public Action GameLoaded;
     public Action GameEnded;
@@ -28,7 +26,7 @@ public class FightController : NetworkedBehaviour
     public Action<PlayerController> LoadedPlayer;
     public Action<PlayerController> LoadedEnemy;
 
-    public NetworkedVar<PlayerController> p;
+    // public NetworkedVar<PlayerController> p;
 
     [Header("Machine Learning")]
     [SerializeField] public bool training = false;
@@ -42,24 +40,31 @@ public class FightController : NetworkedBehaviour
     public FightCameraController camController = null;
 
     [SerializeField]
-    private PlayerController player = null;
+    public List<PlayerController> players = new List<PlayerController>();
+
+    [SerializeField]
+    private PlayerController oldplayer = null;
     // [SerializeField]
     // private RandomPlayerController randomPlayer = null;
 
     [SerializeField]
-    private PlayerController enemy = null;
-    // [SerializeField]
-    // private AgentController enemyAgent = null;
+    private PlayerController olsenemy = null;
+    [SerializeField]
+    private AgentController enemyAgent = null;
 
     [SerializeField]
     private List<GameObject> playerSpawnpoints = new List<GameObject>();
     [SerializeField]
     private List<GameObject> playerCrystals = new List<GameObject>();
+    [SerializeField]
+    private List<Transform> playerCamPositions = new List<Transform>();
 
     [SerializeField]
     private List<GameObject> enemySpawnpoints = new List<GameObject>();
     [SerializeField]
     private List<GameObject> enemyCrystals = new List<GameObject>();
+    [SerializeField]
+    private List<Transform> enemyCamPositions = new List<Transform>();
 
     [SerializeField]
     public float roundTime = 30f;
@@ -76,6 +81,12 @@ public class FightController : NetworkedBehaviour
     [SerializeField]
     private SelectSkillController skillController = null;
 
+    [SerializeField]
+    private FightCameraController cameraController = null;
+
+    [SerializeField]
+    public PhotonView view = null;
+
     public PlayerController activePlayer = null;
     private bool canInteract = true;
     public float timeLeft = 0;
@@ -85,20 +96,18 @@ public class FightController : NetworkedBehaviour
     bool gameEnded = false;
     public bool firstStart = true;
 
-    private void Start()
+    private void Awake()
     {
-        // Academy.Instance.AutomaticSteppingEnabled = false;
+        if (FightController.instance)
+            Debug.LogError("Already an FightController Instnace");
+
+        FightController.instance = this;
     }
 
     public void ResetIsland()
     {
-        // ClearSlots();
-        // player.ResetAureaInstances();
-        // enemy.ResetAureaInstances();
-        // LoadData();
         gameEnded = false;
         ResetFight?.Invoke();
-        // StartGame();
     }
     private void Update()
     {
@@ -115,59 +124,53 @@ public class FightController : NetworkedBehaviour
         GameStarting?.Invoke();
 
         gameOverScreen.SetActive(false);
-
-        // LoadData();
-
-        player.StartGame(playerSpawnpoints);
-        enemy.StartGame(enemySpawnpoints);
-
-        if (firstStart)
+        foreach (PlayerController player in players)
         {
-            firstStart = false;
-            player.GameOver += EndGame;
-            enemy.GameOver += EndGame;
-            enemy.AureaHasDied += EnemyDied;
+            if (player.view.Owner.IsLocal)
+            {
+                player.GameOver += EndGame;
+                player.StartGame();
+            }
         }
 
-        int startPlayerNumber = FlipCoin();
-
-        if (!training)
-            startPlayerNumber = 0;
+        PlayerController masterPlayer = players[0].view.Owner.IsMasterClient ? players[0] : players[1];
+        StartTurn(masterPlayer);
 
         canInteract = true;
-        StartTurn(startPlayerNumber % 2 == 0 ? player : enemy);
         GameLoaded?.Invoke();
     }
 
     public void Register(PlayerController _player)
     {
-        if (!player)
+        if (_player.view.Owner.IsMasterClient)
         {
-            player = _player;
-            skillController.TakePlayer(player);
-            player.GetComponent<CrystalVisualizationController>()?.TakeCrystals(playerCrystals);
-        }
-        else if (!enemy)
-        {
-            enemy = _player;
-            enemy.GetComponent<CrystalVisualizationController>()?.TakeCrystals(enemyCrystals);
+            _player.GetComponent<CrystalVisualizationController>()?.TakeCrystals(playerCrystals);
+            _player.TakeSpawnPoints(playerSpawnpoints);
+            if (_player.view.Owner.IsLocal)
+            {
+                camController.TakePositions(playerCamPositions);
+                skillController.TakePlayer(_player);
+            }
         }
         else
         {
-            Debug.LogError("More Players than 2!");
+            _player.GetComponent<CrystalVisualizationController>()?.TakeCrystals(enemyCrystals);
+            _player.TakeSpawnPoints(enemySpawnpoints);
+            if (_player.view.Owner.IsLocal)
+            {
+                camController.TakePositions(enemyCamPositions);
+                skillController.TakePlayer(_player);
+            }
         }
+        players.Add(_player);
 
-        if (player && enemy)
+        if (players.Count > 1)
             StartGame();
-    }
-
-    public void StartHost()
-    {
     }
 
     public void TakeInput(Ray _ray)
     {
-        if (justClicked || !player.IsOnTurn() || gameEnded) { return; }
+        if (justClicked || gameEnded) { return; }
 
         if (Physics.Raycast(_ray, out RaycastHit hit, float.MaxValue))
         {
@@ -202,39 +205,16 @@ public class FightController : NetworkedBehaviour
         if (_hit.collider.CompareTag("Aurea"))
             hero = _hit.collider.GetComponent<Aurea>();
 
-        // InvokeServerRpc(activePlayer.Select);
-        activePlayer.Select(hero);
-        // if(NetworkingManager.Singleton.IsHost) {
-        //     // InvokeClientRpc(activePlayer.SelectClientRpc);
-        //     activePlayer.SelectClientRpc();
-        // }else {
-        //     activePlayer.SelectServerRpc();
-        // }
+        if (hero)
+            activePlayer.view.RPC("Select", RpcTarget.AllBuffered, hero.view.ViewID);
+        else
+            activePlayer.view.RPC("Select", RpcTarget.AllBuffered, -1);
 
-        if (_hit.collider.CompareTag("EndTurn") && player.IsOnTurn())
-            player.ManuallyEndTurn();
+        if (_hit.collider.CompareTag("EndTurn") && activePlayer.view.Owner.IsLocal && activePlayer.IsOnTurn())
+            activePlayer.view.RPC("ManuallyEndTurn", RpcTarget.AllBuffered);
 
         StartCoroutine(WaitBetweenClick());
     }
-
-    // public void TakeAgentInput(AgentInput _input)
-    // {
-    //     if (_input.endTurn)
-    //     {
-    //         activePlayer.ManuallyEndTurn();
-    //     }
-    //     else
-    //     {
-    //         activePlayer.Select(_input.selected);
-    //         _input.selected.activeSkill = _input.selected.GetSkills()[_input.skill];
-    //         activePlayer.Select(_input.target);
-
-    //         if (activePlayer.gameObject.name == "Player")
-    //             randomPlayer.GetDecision();
-    //         else
-    //             enemyAgent.GetDecision();
-    //     }
-    // }
 
     public void ClearSlots()
     {
@@ -256,13 +236,10 @@ public class FightController : NetworkedBehaviour
 
     void LoadData()
     {
-        // Load PlayerData
-        player.SetData(Player.Instance);
-        LoadedPlayer?.Invoke(player);
+        oldplayer.SetData(Player.Instance);
+        LoadedPlayer?.Invoke(oldplayer);
 
-        //Load Enemy Data
-        //Its HardCoded right now
-        LoadedEnemy?.Invoke(player);
+        LoadedEnemy?.Invoke(oldplayer);
     }
 
     int FlipCoin()
@@ -280,36 +257,26 @@ public class FightController : NetworkedBehaviour
         canInteract = false;
         gameEnded = true;
 
-        PlayerData data = player.GetData();
-        PlayerData enemyData = enemy.GetData();
+        PlayerData data = oldplayer.GetData();
+        PlayerData enemyData = olsenemy.GetData();
 
-        if (player == _player)
+        if (oldplayer == _player)
         {
             gameOverText.text = "You lose!";
-            enemy.Won();
+            olsenemy.Won();
             data.AddLoseStatistics();
             enemyData.AddWonStatistics();
-            // if (training)
-            // {
-            //     enemyAgent.AddReward(10f);
-            //     enemyAgent.EndEpisode();
-            // }
         }
         else
         {
             gameOverText.text = "You won!";
-            player.Won();
+            oldplayer.Won();
             data.AddWonStatistics();
             enemyData.AddLoseStatistics();
-            // if (training)
-            // {
-            //     enemyAgent.AddReward(-1f);
-            //     enemyAgent.EndEpisode();
-            // }
         }
 
-        player.SetData(data);
-        enemy.SetData(enemyData);
+        oldplayer.SetData(data);
+        olsenemy.SetData(enemyData);
 
         if (!training)
             StateManager.SavePlayer(data);
@@ -323,11 +290,12 @@ public class FightController : NetworkedBehaviour
             ResetIsland();
     }
 
+    [PunRPC]
     void StartTurn(PlayerController _player)
     {
         activePlayer = _player;
 
-        _player.StartTurn();
+        _player.view.RPC("StartTurn", RpcTarget.AllBuffered);
 
         timerStarted = true;
         timeLeft = roundTime;
@@ -337,7 +305,6 @@ public class FightController : NetworkedBehaviour
 
     public void StartUsingSkill()
     {
-        // if (!training)
         canInteract = false;
         StartedUsingSkill?.Invoke();
     }
@@ -346,12 +313,10 @@ public class FightController : NetworkedBehaviour
     {
         canInteract = true;
         EndedUsingSkill?.Invoke();
-        // Academy.Instance.EnvironmentStep();
-        // Debug.Log("Skill");
     }
     public void EndTurn()
     {
-        activePlayer.EndTurn();
+        activePlayer.view.RPC("EndTurn", RpcTarget.AllBuffered);
 
         timerStarted = false;
         NextTurn();
@@ -359,8 +324,8 @@ public class FightController : NetworkedBehaviour
 
     void NextTurn()
     {
-        // Debug.Log("Start new Turn");
-        StartTurn(activePlayer == player ? enemy : player);
+        Debug.Log("Start new Turn");
+        StartTurn(activePlayer == players[0] ? players[1] : players[0]);
     }
 
     public bool CanInteract()
@@ -370,10 +335,10 @@ public class FightController : NetworkedBehaviour
 
     public PlayerController GetPlayer()
     {
-        return player;
+        return oldplayer;
     }
 
-    public PlayerController GetEnemy() { return enemy; }
+    public PlayerController GetEnemy() { return olsenemy; }
 
     public AureaData GetAureaData(string _name)
     {
@@ -383,7 +348,6 @@ public class FightController : NetworkedBehaviour
                 return data;
         }
 
-        // Debug.Log("Didnt found: " + name);
         return null;
     }
     IEnumerator WaitBetweenClick()

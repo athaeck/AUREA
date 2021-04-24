@@ -25,7 +25,8 @@ public class TurnCrystalController : MonoBehaviour
 
     private void TurnChanged(PlayerController _playerController)
     {
-        if (_playerController.isPlayer)
+
+        if (_playerController.view.Owner.IsMasterClient)
             positionController.TakeTarget(playerPosition);
         else
             positionController.TakeTarget(enemyPosition);

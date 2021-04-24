@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/00_Scenes/_preload.unity
     guid: 3195bbac95bc1c34586ff53b07f5e45b
-  - enabled: 0
+  - enabled: 1
+    path: Assets/00_Scenes/EnterFight.unity
+    guid: 6843ec9e37771ac4083ec27e20b98095
+  - enabled: 1
+    path: Assets/00_Scenes/Fight.unity
+    guid: 9145eb948f1cc2c41ac1050196811f41
+  - enabled: 1
     path: Assets/00_Scenes/Game.unity
     guid: cd23064e7e9e7c746868c50bc8b4aba8
   - enabled: 1

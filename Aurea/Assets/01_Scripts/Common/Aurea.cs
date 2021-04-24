@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
 using MLAPI.NetworkedVar;
+using Photon.Pun;
 
 // [RequireComponent(typeof(Animator))]
 public class Aurea : MonoBehaviour
@@ -20,6 +21,8 @@ public class Aurea : MonoBehaviour
     public Action SkillCancled;
     public Action GotHit;
 
+    [SerializeField]
+    public PhotonView view = null;
 
     [SerializeField]
     private AureaData data = null;
@@ -68,20 +71,27 @@ public class Aurea : MonoBehaviour
         lifePointsLeft = data.levels[level - 1].lifePoints;
     }
 
+    [PunRPC]
+    public void Init(int _initLevel, int _playerViewId){
+        level = _initLevel;
+        player = PhotonView.Find(_playerViewId).GetComponent<PlayerController>();
+        lifePointsLeft = data.levels[level - 1].lifePoints;
+    }
+
     public bool IsAlive() { return lifePointsLeft > 0; }
 
     public void TakeTarget(Aurea _aurea)
     {
-        if(!_aurea) {
-            // Debug.Log("Aurea is null");
-        }
+        if(!_aurea) 
+            Debug.Log("Target is null");
+
         if (!activeSkill)
         {
-            // Debug.Log("Selected Target but no skill active!");
+            Debug.Log("Selected Target but no skill active!");
             return;
         }
 
-        // Debug.Log("Took Target and have skill active: " + activeSkill.name);
+        Debug.Log("Took Target and have skill active: " + activeSkill.name);
 
         foreach (Aurea target in targets)
         {
@@ -110,6 +120,11 @@ public class Aurea : MonoBehaviour
         }
         else
             CancelSkill();
+    }
+
+    [PunRPC]
+    public void TakeSkill(int _i) {
+        activeSkill = GetSkills()[_i];
     }
 
     private void UseSkill()
