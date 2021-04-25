@@ -4406,6 +4406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: 031d9ba9e3309e248920ff5cd64d4d10, type: 2}
   level: 1
   lifePointsLeft: 1300
@@ -18576,6 +18577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: 19c7f4a9a2e97cd40af0ec83e12d3d20, type: 2}
   level: 1
   lifePointsLeft: 1200
@@ -21022,6 +21024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6245877b68ae324e8f12f0d94ea4a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placementController: {fileID: 0}
   speed: 5
   arSpeedMultiplier: 0.15
   rotationSpeed: 175
@@ -26446,6 +26449,8 @@ MonoBehaviour:
   - {fileID: 2091943031}
   actionPointsLeft: 15
   actionPointsPerRound: 3
+  spawnPoints: []
+  view: {fileID: 0}
 --- !u!114 &569588395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26839,8 +26844,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 12
+  world: {fileID: 0}
   centerX: 0
-  centerY: 0
+  centerZ: 0
   height: 0.5
 --- !u!114 &580992125
 MonoBehaviour:
@@ -31675,6 +31681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
   level: 1
   lifePointsLeft: 1500
@@ -34997,6 +35004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots: {fileID: 580992123}
+  islands: {fileID: 0}
   player: {fileID: 731509026}
   layout: {fileID: 580992123}
   layoutstyle: 1
@@ -35004,6 +35012,7 @@ MonoBehaviour:
     type: 3}
   aureaData: {fileID: 11400000, guid: 1eddec29d9d5f6647a07f00853f6758c, type: 2}
   selectAureaHUD: {fileID: 1081614889}
+  unlockHUD: {fileID: 0}
   viewAureaHUD: {fileID: 569491998}
   teleportHUD: {fileID: 71385629}
   buttonSelect: {fileID: 1623633974}
@@ -35765,7 +35774,7 @@ MonoBehaviour:
         type: 3}
       PlayerPrefab: 1
     PlayerPrefabHash:
-      Value: 1897319656204293034
+      Value: 0
     CreatePlayerPrefab: 1
     ReceiveTickrate: 64
     MaxReceiveEventsPerTickRate: 500
@@ -37188,6 +37197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: d72f2563828cbeb469023c331d7fbfee, type: 2}
   level: 1
   lifePointsLeft: 1500
@@ -37312,6 +37322,8 @@ MonoBehaviour:
   - {fileID: 1397504608}
   actionPointsLeft: 15
   actionPointsPerRound: 3
+  spawnPoints: []
+  view: {fileID: 0}
 --- !u!114 &810910035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39503,8 +39515,10 @@ MonoBehaviour:
   training: 0
   aureaData: {fileID: 11400000, guid: 1eddec29d9d5f6647a07f00853f6758c, type: 2}
   camController: {fileID: 1278161627}
-  player: {fileID: 810910034}
-  enemy: {fileID: 569588394}
+  players: []
+  oldplayer: {fileID: 0}
+  olsenemy: {fileID: 0}
+  enemyAgent: {fileID: 0}
   playerSpawnpoints:
   - {fileID: 280490773}
   - {fileID: 1770410747}
@@ -39525,6 +39539,7 @@ MonoBehaviour:
   - {fileID: 342325880}
   - {fileID: 1370889600}
   - {fileID: 1877851999}
+  playerCamPositions: []
   enemySpawnpoints:
   - {fileID: 467613851}
   - {fileID: 108618006}
@@ -39545,11 +39560,14 @@ MonoBehaviour:
   - {fileID: 1113508839}
   - {fileID: 1675047645}
   - {fileID: 1562313174}
+  enemyCamPositions: []
   roundTime: 10
   waitBetweenClicks: 0.5
   gameOverScreen: {fileID: 151961327}
   gameOverText: {fileID: 732172718}
   skillController: {fileID: 0}
+  cameraController: {fileID: 0}
+  view: {fileID: 0}
   activePlayer: {fileID: 810910034}
   timeLeft: 10
   firstStart: 0
@@ -39751,6 +39769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
   level: 2
   lifePointsLeft: 1750
@@ -43203,6 +43222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: 22afd44eaac59c04bb92d7b11f2f7136, type: 2}
   level: 1
   lifePointsLeft: 0
@@ -50077,6 +50097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: 031d9ba9e3309e248920ff5cd64d4d10, type: 2}
   level: 1
   lifePointsLeft: 1300
@@ -53656,6 +53677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: d72f2563828cbeb469023c331d7fbfee, type: 2}
   level: 1
   lifePointsLeft: 0
@@ -54319,6 +54341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: 22afd44eaac59c04bb92d7b11f2f7136, type: 2}
   level: 1
   lifePointsLeft: 2000
@@ -56937,6 +56960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: 19c7f4a9a2e97cd40af0ec83e12d3d20, type: 2}
   level: 1
   lifePointsLeft: 0
@@ -62048,6 +62072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
   level: 2
   lifePointsLeft: 1750
@@ -64644,6 +64669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: 19c7f4a9a2e97cd40af0ec83e12d3d20, type: 2}
   level: 1
   lifePointsLeft: 1200
@@ -66061,6 +66087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
   level: 1
   lifePointsLeft: 0
@@ -71471,6 +71498,8 @@ MonoBehaviour:
   cam: {fileID: 1962793005}
   selectAureaHUD: {fileID: 1081614889}
   viewAureaHUD: {fileID: 569491998}
+  unlockHUD: {fileID: 0}
+  selectedAurea: 
   newpos: {x: 0, y: 5, z: 15}
 --- !u!4 &1623633975
 Transform:
@@ -77747,6 +77776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
   level: 2
   lifePointsLeft: 1750
@@ -83439,6 +83469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
   level: 1
   lifePointsLeft: 1500
@@ -89806,6 +89837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: fc55dfbe553ddd842960a158d08ee32c, type: 2}
   level: 1
   lifePointsLeft: 0
@@ -91305,6 +91337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: 031d9ba9e3309e248920ff5cd64d4d10, type: 2}
   level: 1
   lifePointsLeft: 0
@@ -91937,6 +91970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee664383dc423e4e9d044bd802a4be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   data: {fileID: 11400000, guid: fc55eaa8e9459ad44abcfcb7526c0dac, type: 2}
   level: 1
   lifePointsLeft: 1500
