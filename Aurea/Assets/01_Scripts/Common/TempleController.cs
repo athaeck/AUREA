@@ -228,6 +228,10 @@ public class TempleController : MonoBehaviour
 
     public void ResetIsland()
     {
+        if (viewAureaHUD.activeSelf)
+        {
+            buttonSelect.exitView();
+        }
         GameObject[] all_slots = null;
         all_slots = GameObject.FindGameObjectsWithTag("Podest");
         foreach (GameObject slots in all_slots)

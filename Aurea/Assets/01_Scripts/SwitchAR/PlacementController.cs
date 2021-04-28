@@ -13,7 +13,7 @@ public class PlacementController : MonoBehaviour
     public GameObject cam = null;
     public Text modeText = null;
     public float distance = 5f;
-    public ARPlacementMode placementMode = ARPlacementMode.FREE_ASPEKT;
+    public ARPlacementMode placementMode = ARPlacementMode.PLACE_IN_AIR;
     private ARRaycastManager arRaycastManager = null;
     private bool isLocked = false;
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
@@ -25,58 +25,25 @@ public class PlacementController : MonoBehaviour
     
     private void Update()
     {
-        if (!target || !cam) return;
-
-        switch (placementMode)
-        {
-            case ARPlacementMode.PLACE_IN_AIR:
-                PlaceInAir();
-                break;
-            case ARPlacementMode.PLACE_ON_GROUND:
-                PlaceOnGround();
-                break;
-            case ARPlacementMode.FREE_ASPEKT:
-            default:
-                PlaceFreeAspekt();
-                break;
-        }
+        PlaceInAir();
     }
 
-    public void ChangeMode() {
-        switch (placementMode)
-        {
-            case ARPlacementMode.PLACE_IN_AIR:
-                placementMode = ARPlacementMode.PLACE_ON_GROUND;
-                modeText.text = "Place Island on the ground." + isLocked.ToString();
-                break;
-            case ARPlacementMode.PLACE_ON_GROUND:
-                placementMode = ARPlacementMode.FREE_ASPEKT;
-                modeText.text = "Free Aspekt." + isLocked.ToString();
-                break;
-            case ARPlacementMode.FREE_ASPEKT:
-            default:
-                placementMode = ARPlacementMode.PLACE_IN_AIR;
-                modeText.text = "Place Island in the air." + isLocked.ToString();
-                break;
-        }
-    }
+    //private void PlaceFreeAspekt()
+    //{
+    //    target.transform.position = cam.transform.position + cam.transform.forward * distance;
+    //}
 
-    private void PlaceFreeAspekt()
-    {
-        target.transform.position = cam.transform.position + cam.transform.forward * distance;
-    }
+    //private void PlaceOnGround()
+    //{
+    //    if(isLocked) return;
 
-    private void PlaceOnGround()
-    {
-        if(isLocked) return;
-
-        Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        if (arRaycastManager.Raycast(screenCenter, hits, TrackableType.PlaneWithinPolygon))
-        {
-            Pose hitPose = hits[0].pose;
-            target.transform.position = hitPose.position;
-        }
-    }
+    //    Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
+    //    if (arRaycastManager.Raycast(screenCenter, hits, TrackableType.PlaneWithinPolygon))
+    //    {
+    //        Pose hitPose = hits[0].pose;
+    //        target.transform.position = hitPose.position;
+    //    }
+    //}
 
     private void PlaceInAir()
     {
@@ -85,12 +52,21 @@ public class PlacementController : MonoBehaviour
         target.transform.position = cam.transform.position + cam.transform.forward * distance;
     }
 
-    public void ChangeLock() {
+    public void ChangeLock(ARToolkitController arTool) {
         isLocked = !isLocked;
+        if (isLocked)
+        {
+            arTool.ToggleToolkit();
+        }
+
     }
 
     public bool GetLock()
     {
         return isLocked;
+    }
+    public void SetLock(bool locked)
+    {
+        isLocked = locked;
     }
 }

@@ -21,12 +21,6 @@ public class ButtonSelect : MonoBehaviour
 
     public string selectedAurea = null;
 
-    private Vector3 oldpos = new Vector3(0, 0, 0);
-    private Quaternion oldrot = new Quaternion();
-
-    [SerializeField]
-    private Vector3 newpos = new Vector3(0, 0, 0);
-
     private GameObject parent = null;
 
     private bool team = true;
@@ -110,10 +104,9 @@ public class ButtonSelect : MonoBehaviour
                     viewAureaHUD.GetComponent<ViewAurea>().HUDtext(g.GetComponent<Aurea>());
                     viewAureaHUD.SetActive(true);
                     position = g.transform.position;
+                    g.transform.localPosition = new Vector3(0, 0.65f/parent.transform.parent.transform.localScale.y + g.GetComponent<Aurea>().GetAureaData().instantiateAtheight * 200, 0);
                     g.transform.localScale = g.transform.localScale * 2;
-                    g.transform.position = new Vector3(0,1 + g.GetComponent<Aurea>().GetAureaData().instantiateAtheight * 2,0);
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, -10));
-
                     cam.GetComponent<FollowTarget>().TakeTarget(g.transform);
                 }
             }

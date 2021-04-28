@@ -55,6 +55,16 @@ public class ARToolkitController : MonoBehaviour
     {
         toolkitOpen = !toolkitOpen;
         toolkitContent.SetActive(toolkitOpen);
+        if (toolkitOpen)
+        {
+            placementController.SetLock(false);
+        }
+        if (!toolkitOpen)
+        {
+            placementController.SetLock(true);
+        }
+
+        Debug.Log(placementController.GetLock());
     }
 
     public void ChangeSize()
