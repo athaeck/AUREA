@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 105639656f7023949ab74c27fc7714be,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -11518,6 +11518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6245877b68ae324e8f12f0d94ea4a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placementController: {fileID: 0}
   speed: 5
   arSpeedMultiplier: 0.15
   rotationSpeed: 175
@@ -15341,8 +15342,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 12
+  world: {fileID: 0}
   centerX: 0
-  centerY: 0
+  centerZ: 0
   height: 0.5
 --- !u!114 &580992125
 MonoBehaviour:
@@ -20711,6 +20713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots: {fileID: 580992123}
+  islands: {fileID: 0}
   player: {fileID: 731509026}
   layout: {fileID: 580992123}
   layoutstyle: 1
@@ -20718,6 +20721,7 @@ MonoBehaviour:
     type: 3}
   aureaData: {fileID: 11400000, guid: 1eddec29d9d5f6647a07f00853f6758c, type: 2}
   selectAureaHUD: {fileID: 1081614889}
+  unlockHUD: {fileID: 0}
   viewAureaHUD: {fileID: 569491998}
   teleportHUD: {fileID: 71385629}
   buttonSelect: {fileID: 1623633974}
@@ -45509,7 +45513,8 @@ MonoBehaviour:
   cam: {fileID: 1962793005}
   selectAureaHUD: {fileID: 1081614889}
   viewAureaHUD: {fileID: 569491998}
-  newpos: {x: 0, y: 5, z: 15}
+  unlockHUD: {fileID: 0}
+  selectedAurea: 
 --- !u!4 &1623633975
 Transform:
   m_ObjectHideFlags: 0
