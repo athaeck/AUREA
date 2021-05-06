@@ -27,7 +27,7 @@ public class SIHUDController : MonoBehaviour
         {
             if(portalHUD != null)
             {
-                ControlPortal(true,"Durch dieses Portal gelangst du zum Playground");
+                ControlPortal(true,"Zum Duell", Island.ChickenFight);
                 if(skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Fight);
@@ -38,7 +38,7 @@ public class SIHUDController : MonoBehaviour
         {
             if(portalHUD != null)
             {
-                ControlPortal(true,"Durch dieses Portal gelangst du zur Aurea Auswahl");
+                ControlPortal(true,"Zur Auswahl",Island.TempleOfDoom);
                 if(skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Select);
@@ -49,7 +49,7 @@ public class SIHUDController : MonoBehaviour
         {
             if(portalHUD != null)
             {
-                ControlPortal(true,"Durch dieses Portal gelangst du zum Arenakampf");
+                ControlPortal(true,"Zur Auswahl",Island.TempleOfDoom);
                 if(skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Competition);
@@ -116,14 +116,14 @@ public class SIHUDController : MonoBehaviour
 
     }
 
-    private void ControlPortal(bool state,string message)
+    private void ControlPortal(bool state,string message, Island island)
     {
         portalHUD.SetActive(state);
        if(state == true)
         {
             portalHUD.transform.position = transform.position;
             PortalController pc = portalHUD.GetComponent<PortalController>();
-            pc.SetHUD(message);
+            pc.SetDescription(message, island);
         }
     }
     private void ControlPortal(bool state)
