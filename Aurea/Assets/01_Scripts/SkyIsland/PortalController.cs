@@ -29,19 +29,20 @@ public class PortalController : MonoBehaviour
     private void Start()
     {
         Init();
-        Debug.Log("Start");
     }
     void Update()
     {
         Init();
-        Debug.Log("Update");
     }
     private void Init()
     {
         _difficulty = Player.Instance.GetDifficulty();
         SetAvailableFullStars();
         SetStars();
-        _description.text = description;
+        if(_description != null)
+        {
+            _description.text = description;
+        }
     }
     public void SetDescription(string des,Island land)
     {
@@ -52,7 +53,6 @@ public class PortalController : MonoBehaviour
 
     public void Teleport()
     {
-        Debug.Log(island);
         switch(island)
         {
             case Island.TempleOfDoom:
@@ -68,7 +68,7 @@ public class PortalController : MonoBehaviour
     }
     private void SetStars()
     {
-        if(_currentDifficulty != null)
+        if(_currentDifficulty != null && _emptystar != null && _fullStar != null)
         {
             int length = _currentDifficulty.Count;
              for(int i = 0 ; i <= availableFullStars ; i++)
