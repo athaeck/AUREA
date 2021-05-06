@@ -104,6 +104,7 @@ public class ShopController : MonoBehaviour
                 item.name = activeItem.GetTitle();
                 Player.Instance.BuyItem(activeItem.GetPrice(),item);
                 itemHUDController.CloseHUD();
+
            }
           
             
