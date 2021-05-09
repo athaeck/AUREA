@@ -12,8 +12,8 @@ public class AudioController : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-
             s.source.volume = s.volume;
+            s.defaultVol = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
@@ -32,5 +32,25 @@ public class AudioController : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
         s.source.Stop();
+    }
+
+    public void ChangeVolume(float bgVol, float sfxVol)
+    {
+        foreach(Sound s in sounds)
+        {
+            if(s.type == Sound.typeEnum.Background)
+            {
+                s.volume = s.defaultVol * bgVol;
+                s.source.volume = s.volume;
+                
+            }
+
+            if (s.type == Sound.typeEnum.SFX)
+            {
+                s.volume = s.defaultVol * sfxVol;
+                s.source.volume = s.volume;
+            }
+        }
+        
     }
 }
