@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
+    [SerializeField]
     private List<PlayerItemData> ownedItems = new List<PlayerItemData>();
 
     [SerializeField]
@@ -35,26 +36,25 @@ public class InventoryController : MonoBehaviour
             inventoryHUD.SetActive(true);
         }
         int i = 0;
-        Text buttonText;
         foreach(GameObject spawnPlace in itemSpawnPlaces)
         {
             if(i < ownedItems.Count)
             {
-                 PlayerItemData item = ownedItems[i];
-                buttonText = spawnPlace.GetComponentInChildren<Text>();
-                buttonText.text = item.name;
+                PlayerItemData pid = ownedItems[i];
+                InventoryItem item = spawnPlace.AddComponent<InventoryItem>() as InventoryItem;
+                item.SetItem(pid.description,pid.name);
 
             }
             else
             {
-                buttonText = spawnPlace.GetComponentInChildren<Text>();
-                buttonText.text = "";
+                spawnPlace.transform.GetChild(0).gameObject.SetActive(false);
+                spawnPlace.transform.GetChild(1).gameObject.SetActive(false);
             }
             i++;
         }
     }
-    public void ChooseItem()
+    public void ChooseItem(Text item)
     {
-        
+        Debug.Log(item.text);
     }
 }
