@@ -9,15 +9,25 @@ public class InventoryController : MonoBehaviour
     private List<PlayerItemData> ownedItems = new List<PlayerItemData>();
 
     [SerializeField]
-    private List<GameObject> itemSpawnPlaces = new List<GameObject>();
+    private GameObject _itemObject = null;
+
+    [SerializeField]
+    private GameObject _container = null;
 
     [SerializeField]
     private GameObject inventoryHUD = null;
 
+    private Text _quantity = null;
+
+    private Text _title = null;
+
     public void InitInventory()
     {
         SetItems();
-    } 
+    }
+    private void Start()
+    {
+    }
     public void Exit()
     {
         if(inventoryHUD != null)
@@ -35,26 +45,34 @@ public class InventoryController : MonoBehaviour
         {
             inventoryHUD.SetActive(true);
         }
-        int i = 0;
-        foreach(GameObject spawnPlace in itemSpawnPlaces)
+        foreach(PlayerItemData item in ownedItems)
         {
-            if(i < ownedItems.Count)
-            {
-                PlayerItemData pid = ownedItems[i];
-                InventoryItem item = spawnPlace.AddComponent<InventoryItem>() as InventoryItem;
-                item.SetItem(pid.description,pid.name);
+            GameObject iO = Instantiate(_itemObject,_container.transform.position,_container.transform.rotation,_container.transform);
+            InventoryItem iI = iO.AddComponent<InventoryItem>() as InventoryItem;
+            iI.SetItem(item.description,item.name,1,this);
 
-            }
-            else
-            {
-                spawnPlace.transform.GetChild(0).gameObject.SetActive(false);
-                spawnPlace.transform.GetChild(1).gameObject.SetActive(false);
-            }
-            i++;
         }
+        //int i = 0;
+        //foreach(GameObject spawnPlace in itemSpawnPlaces)
+        //{
+        //    if(i < ownedItems.Count)
+        //    {
+        //        PlayerItemData pid = ownedItems[i];
+        //        InventoryItem item = spawnPlace.AddComponent<InventoryItem>() as InventoryItem;
+        //        item.SetItem(pid.description,pid.name);
+
+        //    }
+        //    else
+        //    {
+        //        spawnPlace.transform.GetChild(0).gameObject.SetActive(false);
+        //        spawnPlace.transform.GetChild(1).gameObject.SetActive(false);
+        //    }
+        //    i++;
+        //}
+
     }
-    public void ChooseItem(Text item)
+    public void ChooseItem(string item)
     {
-        Debug.Log(item.text);
+        Debug.Log(item);
     }
 }
