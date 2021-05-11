@@ -45,31 +45,26 @@ public class InventoryController : MonoBehaviour
         {
             inventoryHUD.SetActive(true);
         }
+        int i = 0;
         foreach(PlayerItemData item in ownedItems)
         {
+            int x = 1;
+            int y = 0;
+            foreach(PlayerItemData it in ownedItems)
+            {
+                if(item.name.Equals(it.name))
+                {
+                    if(i != y)
+                    {
+                        x++;
+                    }
+                }
+            }
             GameObject iO = Instantiate(_itemObject,_container.transform.position,_container.transform.rotation,_container.transform);
             InventoryItem iI = iO.AddComponent<InventoryItem>() as InventoryItem;
-            iI.SetItem(item.description,item.name,1,this);
-
+            iI.SetItem(item.description,item.name,x,this);
+            i++;
         }
-        //int i = 0;
-        //foreach(GameObject spawnPlace in itemSpawnPlaces)
-        //{
-        //    if(i < ownedItems.Count)
-        //    {
-        //        PlayerItemData pid = ownedItems[i];
-        //        InventoryItem item = spawnPlace.AddComponent<InventoryItem>() as InventoryItem;
-        //        item.SetItem(pid.description,pid.name);
-
-        //    }
-        //    else
-        //    {
-        //        spawnPlace.transform.GetChild(0).gameObject.SetActive(false);
-        //        spawnPlace.transform.GetChild(1).gameObject.SetActive(false);
-        //    }
-        //    i++;
-        //}
-
     }
     public void ChooseItem(string item)
     {
