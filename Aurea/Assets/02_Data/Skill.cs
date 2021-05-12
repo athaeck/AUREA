@@ -53,24 +53,40 @@ public abstract class Skill : ScriptableObject
         PlayerController controllerPlayer = null;
         PlayerController controllerEnemy = null;
 
-        foreach (PlayerController player in players)
+        // foreach (PlayerController player in players)
+        // {
+
+
+        //     // if (player.view.Owner.IsLocal)
+        //     //     controllerPlayer = player;
+        //     // else
+        //     //     controllerEnemy = player;
+        // }
+
+        foreach (Aurea _aurea in players[0].GetAureas())
         {
-            if (player.view.Owner.IsLocal)
-                controllerPlayer = player;
-            else
-                controllerEnemy = player;
+            if (_aurea.view.ViewID == _dmg.sender.view.ViewID)
+                return players[1].GetAureas();
+        }
+        foreach (Aurea _aurea in players[1].GetAureas())
+        {
+            if (_aurea.view.ViewID == _dmg.sender.view.ViewID)
+                return players[0].GetAureas();
         }
 
-        return controllerEnemy.GetAureas();
+        Debug.Log("No Aurea found");
+        return new List<Aurea>();
+
+        // return controllerEnemy.GetAureas();
 
 
         // PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
         // PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
 
-        if(controllerPlayer == null || controllerEnemy == null) {
-            Debug.LogError("Didint found player or enemy");
-            return null;
-        }
+        // if(controllerPlayer == null || controllerEnemy == null) {
+        //     Debug.LogError("Didint found player or enemy");
+        //     return null;
+        // }
 
         foreach (Aurea _aurea in controllerPlayer.GetAureas())
         {

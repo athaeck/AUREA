@@ -8,8 +8,8 @@ public class Feuerregen : Skill
     [SerializeField]
     private float magicDamageMultiplier = 1f;
 
-    [SerializeField]
-    private int amountOfFireballs = 5;
+    // [SerializeField]
+    // private int amountOfFireballs = 5;
 
     public override void Use(Damage _dmg)
     {
@@ -18,23 +18,29 @@ public class Feuerregen : Skill
 
         List<Aurea> enemyAurea = new List<Aurea>(GetEnemyAurea(_dmg));
 
-        for (int i = 0; i < amountOfFireballs; i++)
+        foreach (Aurea aurea in enemyAurea)
         {
-            int rndAurea = Random.Range(0, enemyAurea.Count);
-
-            Damage dmg = _dmg.Copy();
-            dmg.targets = new List<Aurea>();
-            dmg.targets.Add(enemyAurea[rndAurea]);
-
-
-            if (Player.Instance.AnimationsOn() && animation)
-                animation.StartAnimation(dmg);
-            else
-            {
-                if (dmg.targets[0] != null)
-                    dmg.targets[0].TakeDamage(dmg);
-            }
+            if (aurea != null)
+                aurea.TakeDamage(_dmg.Copy());
         }
+
+        // for (int i = 0; i < amountOfFireballs; i++)
+        // {
+        //     int rndAurea = Random.Range(0, enemyAurea.Count);
+
+        //     Damage dmg = _dmg.Copy();
+        //     dmg.targets = new List<Aurea>();
+        //     dmg.targets.Add(enemyAurea[rndAurea]);
+
+
+        //     if (Player.Instance.AnimationsOn() && animation)
+        //         animation.StartAnimation(dmg);
+        //     else
+        //     {
+        //         if (dmg.targets[0] != null)
+        //             dmg.targets[0].TakeDamage(dmg);
+        //     }
+        // }
     }
     public override bool IsTargetValid(Aurea _target, Aurea _sender)
     {
