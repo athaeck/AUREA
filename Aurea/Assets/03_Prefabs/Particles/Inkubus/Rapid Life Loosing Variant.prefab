@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2955969297456402094, guid: dbb24411ce8504c4aa2faf70f5226fc2,
         type: 3}
       propertyPath: m_Name
-      value: Rapid Life Loosing
+      value: Rapid Life Loosing Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7232167500537259013, guid: dbb24411ce8504c4aa2faf70f5226fc2,
         type: 3}

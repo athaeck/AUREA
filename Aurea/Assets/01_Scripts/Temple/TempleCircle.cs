@@ -19,8 +19,10 @@ public class TempleCircle : MonoBehaviour
 
     public Vector3[] Setpoints(int numberpoints)
     {
-        gameObject.transform.position = new Vector3(centerX + world.transform.position.x, gameObject.transform.position.y, centerZ + world.transform.position.z);
-        
+        if(world != null)
+        {
+            gameObject.transform.position = new Vector3(centerX + world.transform.position.x,gameObject.transform.position.y,centerZ + world.transform.position.z);
+        }
         numberpoints = numberpoints + 1;
         Vector3[] points = new Vector3[numberpoints + 1];
         for (int i = 0; i < numberpoints; i++)

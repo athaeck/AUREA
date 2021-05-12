@@ -104,27 +104,6 @@ public class SkyIslandController : MonoBehaviour
 
             if (collided == true)
             {
-                if (hit.collider.CompareTag("To-Gameground") && collidedWith == CollisionInteractable.Fight)
-                {
-                    IslandController.Instance.OpenFight();
-                    actionExecuted = true;
-                }
-                if (hit.collider.CompareTag("To-Competition") && collidedWith == CollisionInteractable.Competition)
-                {
-                    IslandController.Instance.OpenFight();
-                    actionExecuted = true;
-                }
-                if (hit.collider.CompareTag("To-AureaSelect") && collidedWith == CollisionInteractable.Select)
-                {
-                    if (goToPosition != null)
-                    {
-                        // MovementController c = character.GetComponent<MovementController>();
-                        // Vector3 movement = new Vector3(goToPosition.transform.position.x, goToPosition.transform.position.y, goToPosition.transform.position.z);
-                        // c.destination = movement;
-                        IslandController.Instance.OpenTemple();
-                        actionExecuted = true;
-                    }
-                }
                 if (hit.collider.CompareTag("Shop") && collidedWith == CollisionInteractable.Shop)
                 {
                     enterController.EnterShop();
