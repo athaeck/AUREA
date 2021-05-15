@@ -12,6 +12,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rapid Life Loosing Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3249261084771804751, guid: dbb24411ce8504c4aa2faf70f5226fc2,
+        type: 3}
+      propertyPath: SubModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249261084771804751, guid: dbb24411ce8504c4aa2faf70f5226fc2,
+        type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6369178729811147338, guid: dbb24411ce8504c4aa2faf70f5226fc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7232167500537259013, guid: dbb24411ce8504c4aa2faf70f5226fc2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -70,17 +85,17 @@ PrefabInstance:
     - target: {fileID: 7232167500537259013, guid: dbb24411ce8504c4aa2faf70f5226fc2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7232167500537259013, guid: dbb24411ce8504c4aa2faf70f5226fc2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7232167500537259013, guid: dbb24411ce8504c4aa2faf70f5226fc2,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbb24411ce8504c4aa2faf70f5226fc2, type: 3}
