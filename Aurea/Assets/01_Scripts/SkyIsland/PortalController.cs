@@ -37,8 +37,8 @@ public class PortalController : MonoBehaviour
     private void Init()
     {
         _difficulty = Player.Instance.GetDifficulty();
-        SetAvailableFullStars();
-        SetStars();
+       // SetAvailableFullStars();
+     //   SetStars();
         if(_description != null)
         {
             _description.text = description;
