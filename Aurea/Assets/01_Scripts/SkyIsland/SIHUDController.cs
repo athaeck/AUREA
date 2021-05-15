@@ -27,7 +27,7 @@ public class SIHUDController : MonoBehaviour
         {
             if(portalHUD != null)
             {
-                ControlPortal(true,"Zum Duell", Island.ChickenFight);
+                ControlPortal(true,"Kämpfen", Island.ChickenFight);
                 if(skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Fight);
@@ -38,7 +38,7 @@ public class SIHUDController : MonoBehaviour
         {
             if(portalHUD != null)
             {
-                ControlPortal(true,"Zur Auswahl",Island.TempleOfDoom);
+                ControlPortal(true,"Betreten",Island.TempleOfDoom);
                 if(skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Select);
@@ -49,7 +49,7 @@ public class SIHUDController : MonoBehaviour
         {
             if(portalHUD != null)
             {
-                ControlPortal(true,"Zur Auswahl",Island.TempleOfDoom);
+                ControlPortal(true,"Kämpfen",Island.TempleOfDoom);
                 if(skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Competition);
