@@ -39,7 +39,6 @@ public class ViewAurea : MonoBehaviour
     public string werteList(Aurea aurea)
     {
         string wertetext = "";
-        wertetext += "Level: " + aurea.GetLevel() + "\n";
         wertetext += "Lebenspunkte: " + aurea.GetLifePointsMax() + "\n";
         wertetext += "Magischer Schaden: " + aurea.GetMagicalDamage() + "\n";
         wertetext += "Magischer Schutz: " + aurea.GetMagicalDefence() + "\n";

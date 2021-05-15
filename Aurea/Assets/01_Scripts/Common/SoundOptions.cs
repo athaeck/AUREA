@@ -19,5 +19,12 @@ public class SoundOptions : MonoBehaviour
         float bgVol = backgroundVolume.value;
         float sfxVol = sfxVolume.value;
         audioController.ChangeVolume(bgVol, sfxVol);
+        Player.Instance.setVol(bgVol, sfxVol);
+    }
+
+    public void setSlider()
+    {
+        backgroundVolume.value = Player.Instance.backgroundVol;
+        sfxVolume.value = Player.Instance.sfxVol;
     }
 }

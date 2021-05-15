@@ -17,13 +17,14 @@ public class Startscreen : MonoBehaviour
 
     public void Options()
     {
+        //options.GetComponent<SoundOptions>().setSlider();
         options.SetActive(true);
-
     }
 
     public void OptionsExit()
     {
         options.SetActive(false);
+        StateManager.SavePlayer(Player.Instance);
     }
 
     public void ResetPlayer()
