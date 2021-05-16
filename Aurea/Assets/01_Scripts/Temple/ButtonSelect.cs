@@ -147,11 +147,6 @@ public class ButtonSelect : MonoBehaviour
             }
         }
     }
-    
-    public void Teleport()
-    {
-        IslandController.Instance.OpenSkyIsland();
-    }
 
     public void Unlock()
     {

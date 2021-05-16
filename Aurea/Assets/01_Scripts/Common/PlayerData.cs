@@ -122,5 +122,12 @@ public class PlayerData
         backgroundVol = bgVol;
         this.sfxVol = sfxVol;
     }
+
+    public void setArSlider(float disSlider, float sizeSlider)
+    {
+        distance = disSlider;
+        size = sizeSlider;
+        StateManager.SavePlayer(Player.Instance);
+    }
     #endregion
 }

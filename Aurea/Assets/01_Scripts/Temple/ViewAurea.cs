@@ -10,7 +10,7 @@ public class ViewAurea : MonoBehaviour
     private GameObject aureaName = null;
 
     [SerializeField]
-    private GameObject skills = null;
+    private GameObject[] skills = null;
 
     [SerializeField]
     private GameObject werte = null;
@@ -18,21 +18,20 @@ public class ViewAurea : MonoBehaviour
     public void HUDtext(Aurea aurea)
     {
         aureaName.GetComponent<Text>().text = aurea.GetName();
-        skills.GetComponent<Text>().text = skillList(aurea);
+        
+        for (int i = 0; i < aurea.GetSkills().Count; i++)
+        {
+            skills[i].GetComponent<Text>().text = skillList(aurea, i);
+        }
         werte.GetComponent<Text>().text = werteList(aurea);
 
 
     }
 
-    public string skillList(Aurea aurea)
+    public string skillList(Aurea aurea, int count)
     {
         string skillnames = "";
-        
-        for (int i = 0; i < aurea.GetSkills().Count; i++)
-        {
-
-            skillnames += aurea.GetSkills()[i].GetName() + "\n";
-        }
+            skillnames += aurea.GetSkills()[count].GetName();
         return skillnames;
     }
 
