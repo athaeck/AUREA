@@ -146,7 +146,7 @@ public class Aurea : MonoBehaviour
     }
     public void TakeDamage(Damage _dmg)
     {
-        // Debug.Log("Got hit " + this.name);
+        Debug.Log("Got hit " + this.name);
         BeforeGettingHit?.Invoke(_dmg);
         // Debug.Log("Before Getting Hit");
 
@@ -184,8 +184,9 @@ public class Aurea : MonoBehaviour
 
     public void Die()
     {
-        // Debug.Log("Died " + name);
-        Died?.Invoke(this);
+        Debug.Log("Died " + name);
+        player.AureaDied(this);
+        // Died?.Invoke(this);
     }
 
     IEnumerator WaitTillApplyDamage(float _attackDelay)

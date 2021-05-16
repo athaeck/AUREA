@@ -172,4 +172,8 @@ public class IslandController : MonoBehaviour
     {
         ChangeActiveIsland(Island.ChickenFight);
     }
+
+    public void OpenEnterFight() {
+        SceneManager.LoadSceneAsync("EnterFight");
+    }
 }
