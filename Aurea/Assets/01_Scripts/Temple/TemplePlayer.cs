@@ -11,7 +11,7 @@ public class TemplePlayer : MonoBehaviour
     {
         if (other.CompareTag("Watch"))
         {
-            FindObjectOfType<AudioController>().Play("monster");
+            FindObjectOfType<AudioController>()?.Play("monster");
             tc.WatchTrigger(true,other.gameObject);
         }
         if (other.CompareTag("To-SkyIsland"))

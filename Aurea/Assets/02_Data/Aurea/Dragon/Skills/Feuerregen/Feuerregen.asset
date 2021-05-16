@@ -21,4 +21,4 @@ MonoBehaviour:
   modifier: []
   animation: {fileID: 0}
   attackDelay: 1.8
-  magicDamageMultiplier: 1.2
+  magicDamageMultiplier: 500

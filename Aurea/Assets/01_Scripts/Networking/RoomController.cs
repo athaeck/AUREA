@@ -27,7 +27,16 @@ public class RoomController : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        if(players.Count > 1) {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+        }
         StartGame();
+    }
+
+    public void Kill() {
+        players = new List<GameObject>();
+        
     }
 
     public void StartGame()

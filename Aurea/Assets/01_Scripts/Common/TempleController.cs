@@ -244,7 +244,7 @@ public class TempleController : MonoBehaviour
         CreateSpiral();
         if(FindObjectOfType<AudioController>() != null)
         {
-            FindObjectOfType<AudioController>().Play("Background");
+            FindObjectOfType<AudioController>()?.Play("Background");
         }
 
 
