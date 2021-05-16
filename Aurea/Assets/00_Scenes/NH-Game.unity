@@ -26349,7 +26349,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aureaName: {fileID: 1203163499}
-  skills: {fileID: 2018040351}
+  skills:
+  - {fileID: 0}
   werte: {fileID: 1357547894}
 --- !u!4 &569492001
 Transform:
@@ -26426,6 +26427,10 @@ MonoBehaviour:
     items: []
     difficulty: 0
     animationsOn: 1
+    backgroundVol: 0
+    sfxVol: 0
+    distance: 0
+    size: 0
   actionPoints: 15
   isOnTurn: 1
   aureaInstances:
@@ -37220,6 +37225,10 @@ MonoBehaviour:
       description: 
     difficulty: 0
     animationsOn: 0
+    backgroundVol: 0
+    sfxVol: 0
+    distance: 0
+    size: 0
   actionPoints: 15
   isOnTurn: 1
   aureaInstances:
