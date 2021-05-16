@@ -75,6 +75,10 @@ MonoBehaviour:
     items: []
     difficulty: 0
     animationsOn: 1
+    backgroundVol: 0
+    sfxVol: 0
+    distance: 0
+    size: 0
   actionPoints: 15
   isOnTurn: 1
   aureaInstances: []

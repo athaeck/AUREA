@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/00_Scenes/Fight.unity
     guid: 9145eb948f1cc2c41ac1050196811f41
   - enabled: 1
-    path: Assets/00_Scenes/JS-Game.unity
+    path: Assets/00_Scenes/JS-Game_ALT.unity
     guid: 9c98404ec6c61e442b85e0c7bffdd4d5
   - enabled: 1
     path: Assets/00_Scenes/Won.unity

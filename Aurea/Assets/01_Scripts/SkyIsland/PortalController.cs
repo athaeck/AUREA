@@ -20,6 +20,11 @@ public class PortalController : MonoBehaviour
     [SerializeField]
     private Text _description = null;
 
+    [SerializeField]
+    private Text _instruction = null;
+
+    private string instruction = "";
+
     private int availableFullStars = 1;
 
     private string description = "";
@@ -37,51 +42,57 @@ public class PortalController : MonoBehaviour
     private void Init()
     {
         _difficulty = Player.Instance.GetDifficulty();
-       // SetAvailableFullStars();
-     //   SetStars();
-        if(_description != null)
+        // SetAvailableFullStars();
+        //   SetStars();
+        if (_description != null)
         {
             _description.text = description;
         }
+        if (_instruction != null)
+        {
+            _instruction.text = instruction;
+        }
     }
-    public void SetDescription(string des,Island land)
+    public void SetDescription(string des, Island land, string ins)
     {
         description = des;
-        
+
         island = land;
+
+        instruction = ins;
     }
 
     public void Teleport()
     {
-        switch(island)
+        switch (island)
         {
             case Island.TempleOfDoom:
                 IslandController.Instance.OpenTemple();
                 break;
             case Island.ChickenFight:
-                IslandController.Instance.OpenFight();
+                IslandController.Instance.OpenEnterFight();
                 break;
             default:
-                IslandController.Instance.OpenFight();
+                IslandController.Instance.OpenEnterFight();
                 break;
         }
     }
     private void SetStars()
     {
-        if(_currentDifficulty != null && _emptystar != null && _fullStar != null)
+        if (_currentDifficulty != null && _emptystar != null && _fullStar != null)
         {
             int length = _currentDifficulty.Count;
-             for(int i = 0 ; i <= availableFullStars ; i++)
-             {
-              _currentDifficulty[i].GetComponent<Image>().sprite = _fullStar;
-             }
-                 if(length - availableFullStars > 0)
-                 {
-                   for(int y = 2 ; y >  availableFullStars ; y--)
-                       {
-                           _currentDifficulty[y].GetComponent<Image>().sprite = _emptystar;
-                       }
-                 }
+            for (int i = 0; i <= availableFullStars; i++)
+            {
+                _currentDifficulty[i].GetComponent<Image>().sprite = _fullStar;
+            }
+            if (length - availableFullStars > 0)
+            {
+                for (int y = 2; y > availableFullStars; y--)
+                {
+                    _currentDifficulty[y].GetComponent<Image>().sprite = _emptystar;
+                }
+            }
         }
 
     }
@@ -91,7 +102,7 @@ public class PortalController : MonoBehaviour
     }
     private void SetAvailableFullStars()
     {
-        switch(_difficulty)
+        switch (_difficulty)
         {
             case Difficulty.Easy:
                 availableFullStars = 0;

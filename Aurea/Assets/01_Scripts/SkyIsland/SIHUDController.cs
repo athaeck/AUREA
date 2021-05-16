@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CollisionInteractable {
+public enum CollisionInteractable
+{
     None,
     Shop,
     Inventory,
@@ -23,49 +24,49 @@ public class SIHUDController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("To-Gameground"))
+        if (other.CompareTag("To-Gameground"))
         {
-            if(portalHUD != null)
+            if (portalHUD != null)
             {
-                ControlPortal(true,"Kämpfen", Island.ChickenFight);
-                if(skyIslandController != null)
+                ControlPortal(true, "Kämpfen", Island.ChickenFight, "Auf in den Kampf");
+                if (skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Fight);
                 }
             }
         }
-        if(other.CompareTag("To-AureaSelect"))
+        if (other.CompareTag("To-AureaSelect"))
         {
-            if(portalHUD != null)
+            if (portalHUD != null)
             {
-                ControlPortal(true,"Betreten",Island.TempleOfDoom);
-                if(skyIslandController != null)
+                ControlPortal(true, "Betreten", Island.TempleOfDoom, "Wähle dein Team aus");
+                if (skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Select);
                 }
             }
         }
-        if(other.CompareTag("To-Competition"))
+        if (other.CompareTag("To-Competition"))
         {
-            if(portalHUD != null)
+            if (portalHUD != null)
             {
-                ControlPortal(true,"Kämpfen",Island.TempleOfDoom);
-                if(skyIslandController != null)
+                ControlPortal(true, "Betreten", Island.TempleOfDoom, "Wähle dein Team aus");
+                if (skyIslandController != null)
                 {
                     skyIslandController.SetCollided(true, CollisionInteractable.Competition);
                 }
             }
         }
-        if(other.CompareTag("Shop"))
+        if (other.CompareTag("Shop"))
         {
-            if(skyIslandController != null)
+            if (skyIslandController != null)
             {
                 skyIslandController.SetCollided(true, CollisionInteractable.Shop);
             }
         }
-        if(other.CompareTag("Inventory"))
+        if (other.CompareTag("Inventory"))
         {
-            if(skyIslandController != null)
+            if (skyIslandController != null)
             {
                 skyIslandController.SetCollided(true, CollisionInteractable.Inventory);
             }
@@ -75,40 +76,40 @@ public class SIHUDController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("To-Gameground"))
+        if (other.CompareTag("To-Gameground"))
         {
             ControlPortal(false);
-            if(skyIslandController != null)
+            if (skyIslandController != null)
             {
                 skyIslandController.RemoveCollision();
             }
         }
-        if(other.CompareTag("To-AureaSelect"))
+        if (other.CompareTag("To-AureaSelect"))
         {
             ControlPortal(false);
-            if(skyIslandController != null)
+            if (skyIslandController != null)
             {
                 skyIslandController.RemoveCollision();
             }
         }
-        if(other.CompareTag("To-Competition"))
+        if (other.CompareTag("To-Competition"))
         {
             ControlPortal(false);
-            if(skyIslandController != null)
+            if (skyIslandController != null)
             {
                 skyIslandController.RemoveCollision();
             }
         }
-        if(other.CompareTag("Shop"))
+        if (other.CompareTag("Shop"))
         {
-            if(skyIslandController != null)
+            if (skyIslandController != null)
             {
                 skyIslandController.RemoveCollision();
             }
         }
-        if(other.CompareTag("Inventory"))
+        if (other.CompareTag("Inventory"))
         {
-            if(skyIslandController != null)
+            if (skyIslandController != null)
             {
                 skyIslandController.RemoveCollision();
             }
@@ -116,14 +117,14 @@ public class SIHUDController : MonoBehaviour
 
     }
 
-    private void ControlPortal(bool state,string message, Island island)
+    private void ControlPortal(bool state, string message, Island island, string instruction)
     {
         portalHUD.SetActive(state);
-       if(state == true)
+        if (state == true)
         {
             portalHUD.transform.position = transform.position;
             PortalController pc = portalHUD.GetComponent<PortalController>();
-            pc.SetDescription(message, island);
+            pc.SetDescription(message, island, instruction);
         }
     }
     private void ControlPortal(bool state)
