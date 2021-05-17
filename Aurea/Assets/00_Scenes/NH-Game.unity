@@ -32160,6 +32160,7 @@ MonoBehaviour:
     NetworkTransport: {fileID: 774626393}
     RegisteredScenes:
     - Game
+    - NH-Game
     AllowRuntimeSceneChanges: 0
     NetworkedPrefabs:
     - Prefab: {fileID: 6594623776631944088, guid: 2f98c0f0b1edf1f41af07f2ef6dd84a8,

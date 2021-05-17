@@ -7,6 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1088220975888163319, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088220975888163319, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088220975888163319, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2712310668553152044, guid: e50e6e9f51421a242905dcf09a6fd490,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -85,16 +100,31 @@ PrefabInstance:
     - target: {fileID: 4984344291436286162, guid: e50e6e9f51421a242905dcf09a6fd490,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4984344291436286162, guid: e50e6e9f51421a242905dcf09a6fd490,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4984344291436286162, guid: e50e6e9f51421a242905dcf09a6fd490,
         type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265937991851942313, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265937991851942313, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265937991851942313, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
       value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
