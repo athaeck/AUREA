@@ -7,6 +7,7 @@ using Photon.Pun;
 public class RoomController : MonoBehaviourPunCallbacks
 {
     public static RoomController roomController;
+    [SerializeField] private int loadLevel = 2;
     public List<GameObject> players = new List<GameObject>();
     private void Awake()
     {
@@ -31,18 +32,18 @@ public class RoomController : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
         }
+        PhotonNetwork.LeaveLobby();
         StartGame();
     }
 
     public void Kill() {
         players = new List<GameObject>();
-        
     }
 
     public void StartGame()
     {
         if (PhotonNetwork.IsMasterClient)
-            PhotonNetwork.LoadLevel(1);
+            PhotonNetwork.LoadLevel(loadLevel);
 
         GameObject photonGameobject = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), Vector3.zero, Quaternion.identity);
 

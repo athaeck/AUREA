@@ -8,7 +8,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public static NetworkController instance;
     void Start()
     {
-        if(instance) {
+        if (instance)
+        {
             Debug.LogError("Already got NetworkController Instance!");
             Destroy(this.gameObject);
             return;
@@ -23,11 +24,14 @@ public class NetworkController : MonoBehaviourPunCallbacks
         Debug.Log("We are now connected to the " + PhotonNetwork.CloudRegion + " Server!");
     }
 
-    public void Kill() {
-        PhotonNetwork.LeaveRoom();
-        PhotonNetwork.LeaveLobby();
+    public void Kill()
+    {
         RoomController.roomController.Kill();
-        PhotonNetwork.Disconnect();
+        if (PhotonNetwork.NetworkClientState != Photon.Realtime.ClientState.Disconnected && PhotonNetwork.NetworkClientState != Photon.Realtime.ClientState.Disconnecting)
+        {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
+        }
 
         Destroy(this.gameObject);
     }
@@ -36,6 +40,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

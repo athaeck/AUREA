@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 105639656f7023949ab74c27fc7714be,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -15103,7 +15103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aureaName: {fileID: 1203163499}
-  skills: {fileID: 2018040351}
+  skills:
+  - {fileID: 0}
   werte: {fileID: 1357547894}
 --- !u!4 &569492001
 Transform:
@@ -15180,6 +15181,10 @@ MonoBehaviour:
     items: []
     difficulty: 0
     animationsOn: 1
+    backgroundVol: 0
+    sfxVol: 0
+    distance: 0
+    size: 0
   actionPoints: 15
   isOnTurn: 1
   aureaInstances:
@@ -23229,6 +23234,10 @@ MonoBehaviour:
     items: []
     difficulty: 0
     animationsOn: 1
+    backgroundVol: 0
+    sfxVol: 0
+    distance: 0
+    size: 0
   actionPoints: 15
   isOnTurn: 1
   aureaInstances:
@@ -25028,9 +25037,6 @@ MonoBehaviour:
   aureaData: {fileID: 11400000, guid: 1eddec29d9d5f6647a07f00853f6758c, type: 2}
   camController: {fileID: 1278161627}
   players: []
-  oldplayer: {fileID: 0}
-  olsenemy: {fileID: 0}
-  enemyAgent: {fileID: 0}
   playerSpawnpoints:
   - {fileID: 280490773}
   - {fileID: 1770410747}
@@ -25083,6 +25089,8 @@ MonoBehaviour:
   - {fileID: 1451258869}
   - {fileID: 1857778409}
   - {fileID: 164271752}
+  playAgainButton: {fileID: 1913750274}
+  returnButton: {fileID: 1488927266}
   roundTime: 30
   waitBetweenClicks: 0.5
   gameOverScreen: {fileID: 151961327}
@@ -33550,6 +33558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5775d2fed27b8b545ac33e93e3c9e9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadLevel: 2
   players: []
 --- !u!114 &1194519156
 MonoBehaviour:
@@ -58782,6 +58791,7 @@ MonoBehaviour:
   _emptystar: {fileID: 0}
   _fullStar: {fileID: 0}
   _description: {fileID: 0}
+  _instruction: {fileID: 0}
 --- !u!114 &1869216661
 MonoBehaviour:
   m_ObjectHideFlags: 0
