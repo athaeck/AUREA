@@ -9,7 +9,7 @@ public class Feuerball : Skill
     private float magicDamageMultiplier = 1f;
 
     public override void Use(Damage _dmg) {
-        _dmg.physicalDamage *= magicDamageMultiplier;
+        _dmg.magicalDamage *= magicDamageMultiplier;
         _dmg.attackDelay = attackDelay;
 
         if (Player.Instance.AnimationsOn() && animation)

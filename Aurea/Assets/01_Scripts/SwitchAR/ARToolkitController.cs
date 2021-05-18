@@ -57,11 +57,15 @@ public class ARToolkitController : MonoBehaviour
         toolkitContent.SetActive(toolkitOpen);
         if (toolkitOpen)
         {
+            setSlider();
+            ChangeDistance();
+            ChangeSize();
             placementController.SetLock(false);
         }
         if (!toolkitOpen)
         {
             placementController.SetLock(true);
+            Player.Instance.setArSlider(distanceSlider.value, sizeSlider.value);
         }
 
         Debug.Log(placementController.GetLock());
@@ -80,6 +84,12 @@ public class ARToolkitController : MonoBehaviour
     {
         if (Player.Instance.IsArOn())
             placementController.distance = distanceSlider.value;
+    }
+
+    public void setSlider()
+    {
+        distanceSlider.value = Player.Instance.distance;
+        sizeSlider.value = Player.Instance.size;
     }
 
     public void SwitchMode()
@@ -135,5 +145,6 @@ public class ARToolkitController : MonoBehaviour
         // InitView(Player.Instance.IsArOn());
         islands.transform.position = Vector3.zero;
         loadingScreen.SetActive(false);
+
     }
 }

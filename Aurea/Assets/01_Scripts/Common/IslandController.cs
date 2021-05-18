@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Island
-{
-    SkyIsland,
-    TempleOfDoom,
-    ChickenFight
-}
 
 public class IslandController : MonoBehaviour
 {
@@ -91,7 +85,7 @@ public class IslandController : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         ChangeActiveIsland(activeIsland);
     }
@@ -177,5 +171,9 @@ public class IslandController : MonoBehaviour
     public void OpenFight()
     {
         ChangeActiveIsland(Island.ChickenFight);
+    }
+
+    public void OpenEnterFight() {
+        SceneManager.LoadSceneAsync("EnterFight");
     }
 }

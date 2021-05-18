@@ -10,7 +10,32 @@ PrefabInstance:
     - target: {fileID: 2955969297456402094, guid: dbb24411ce8504c4aa2faf70f5226fc2,
         type: 3}
       propertyPath: m_Name
-      value: Rapid Life Loosing
+      value: Rapid Life Loosing Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249261084771804751, guid: dbb24411ce8504c4aa2faf70f5226fc2,
+        type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249261084771804751, guid: dbb24411ce8504c4aa2faf70f5226fc2,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249261084771804751, guid: dbb24411ce8504c4aa2faf70f5226fc2,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249261084771804751, guid: dbb24411ce8504c4aa2faf70f5226fc2,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249261084771804751, guid: dbb24411ce8504c4aa2faf70f5226fc2,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7232167500537259013, guid: dbb24411ce8504c4aa2faf70f5226fc2,
         type: 3}

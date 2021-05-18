@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System;
 using Random = UnityEngine.Random;
-using Unity.MLAgents;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class FightController : MonoBehaviourPunCallbacks
 {
@@ -42,15 +42,15 @@ public class FightController : MonoBehaviourPunCallbacks
     [SerializeField]
     public List<PlayerController> players = new List<PlayerController>();
 
-    [SerializeField]
-    private PlayerController oldplayer = null;
+    // [SerializeField]
+    // private PlayerController oldplayer = null;
     // [SerializeField]
     // private RandomPlayerController randomPlayer = null;
 
-    [SerializeField]
-    private PlayerController olsenemy = null;
-    [SerializeField]
-    private AgentController enemyAgent = null;
+    // [SerializeField]
+    // private PlayerController olsenemy = null;
+    // [SerializeField]
+    // private AgentController enemyAgent = null;
 
     [SerializeField]
     private List<GameObject> playerSpawnpoints = new List<GameObject>();
@@ -65,6 +65,10 @@ public class FightController : MonoBehaviourPunCallbacks
     private List<GameObject> enemyCrystals = new List<GameObject>();
     [SerializeField]
     private List<Transform> enemyCamPositions = new List<Transform>();
+    [SerializeField]
+    private GameObject playAgainButton = null;
+    [SerializeField]
+    private GameObject returnButton = null;
 
     [SerializeField]
     public float roundTime = 30f;
@@ -109,6 +113,21 @@ public class FightController : MonoBehaviourPunCallbacks
         gameEnded = false;
         ResetFight?.Invoke();
     }
+
+    public void ResetToIsland(string _island)
+    {
+        // gameEnded = false;
+        // ResetFight?.Invoke();
+        // foreach (PlayerController player in players)
+        // {
+        //     player.ResetAureaInstances();
+        //     PhotonView.Destroy(player.gameObject);
+        // }
+        // NetworkController.instance.Kill();
+        SceneManager.LoadSceneAsync(_island, LoadSceneMode.Single);
+    }
+
+    // public void ReturnToSkyIsland() 
     private void Update()
     {
         if (!timerStarted || gameEnded) { return; }
@@ -128,7 +147,7 @@ public class FightController : MonoBehaviourPunCallbacks
         {
             if (player.view.Owner.IsLocal)
             {
-                player.GameOver += EndGame;
+                // player.GameOver += EndGame;
                 player.StartGame();
             }
         }
@@ -163,6 +182,8 @@ public class FightController : MonoBehaviourPunCallbacks
             }
         }
         players.Add(_player);
+
+        _player.GameOver += GameOver;
 
         if (players.Count > 1)
             StartGame();
@@ -236,10 +257,10 @@ public class FightController : MonoBehaviourPunCallbacks
 
     void LoadData()
     {
-        oldplayer.SetData(Player.Instance);
-        LoadedPlayer?.Invoke(oldplayer);
+        // oldplayer.SetData(Player.Instance);
+        // LoadedPlayer?.Invoke(oldplayer);
 
-        LoadedEnemy?.Invoke(oldplayer);
+        // LoadedEnemy?.Invoke(oldplayer);
     }
 
     int FlipCoin()
@@ -252,42 +273,73 @@ public class FightController : MonoBehaviourPunCallbacks
         // player.ResetSelectedTarget();
     }
 
-    void EndGame(PlayerController _player)
+    void GameOver(PlayerController _player)
     {
+        view.RPC("EndGame", RpcTarget.AllBuffered, _player.view.ViewID);
+    }
+
+    [PunRPC]
+    void EndGame(int _playerID)
+    {
+        Debug.Log("EndGame!!!!!!!!!!!!!!!!!!");
         canInteract = false;
         gameEnded = true;
 
-        PlayerData data = oldplayer.GetData();
-        PlayerData enemyData = olsenemy.GetData();
+        PlayerController winPlayer = players[1].view.ViewID == _playerID ? players[0] : players[1];
+        PlayerController lostPlayer = players[0].view.ViewID == _playerID ? players[0] : players[1];
 
-        if (oldplayer == _player)
+        // PlayerController losePlayer = PhotonView.Find(_playerID).GetComponent<PlayerController>();
+        // NetworkController.instance.Kill();
+        StartCoroutine(CloseIn(3f));
+
+        winPlayer.Won();
+
+        if (lostPlayer.view.Owner.IsLocal)
         {
             gameOverText.text = "You lose!";
-            olsenemy.Won();
-            data.AddLoseStatistics();
-            enemyData.AddWonStatistics();
+            // SceneManager.LoadSceneAsync("Lose");
         }
         else
         {
             gameOverText.text = "You won!";
-            oldplayer.Won();
-            data.AddWonStatistics();
-            enemyData.AddLoseStatistics();
+            // SceneManager.LoadSceneAsync("Won");
         }
 
-        oldplayer.SetData(data);
-        olsenemy.SetData(enemyData);
 
-        if (!training)
-            StateManager.SavePlayer(data);
 
-        if (!training)
-            gameOverScreen.SetActive(true);
+        gameOverScreen.SetActive(true);
 
-        GameEnded?.Invoke();
+        // PlayerData data = oldplayer.GetData();
+        // PlayerData enemyData = olsenemy.GetData();
 
-        if (training)
-            ResetIsland();
+        // if (oldplayer == _player)
+        // {
+        //     gameOverText.text = "You lose!";
+        //     olsenemy.Won();
+        //     data.AddLoseStatistics();
+        //     enemyData.AddWonStatistics();
+        // }
+        // else
+        // {
+        //     gameOverText.text = "You won!";
+        //     oldplayer.Won();
+        //     data.AddWonStatistics();
+        //     enemyData.AddLoseStatistics();
+        // }
+
+        // oldplayer.SetData(data);
+        // olsenemy.SetData(enemyData);
+
+        // if (!training)
+        //     StateManager.SavePlayer(data);
+
+        // if (!training)
+        //     gameOverScreen.SetActive(true);
+
+        // GameEnded?.Invoke();
+
+        // if (training)
+        //     ResetIsland();
     }
 
     [PunRPC]
@@ -335,10 +387,10 @@ public class FightController : MonoBehaviourPunCallbacks
 
     public PlayerController GetPlayer()
     {
-        return oldplayer;
+        return players[0];
     }
 
-    public PlayerController GetEnemy() { return olsenemy; }
+    public PlayerController GetEnemy() { return players[0]; }
 
     public AureaData GetAureaData(string _name)
     {
@@ -349,6 +401,20 @@ public class FightController : MonoBehaviourPunCallbacks
         }
 
         return null;
+    }
+
+    IEnumerator CloseIn(float _time)
+    {
+        playAgainButton.SetActive(false);
+        returnButton.SetActive(false);
+        
+        yield return new WaitForSeconds(_time);
+
+        if (NetworkController.instance)
+            NetworkController.instance.Kill();
+
+        playAgainButton.SetActive(true);
+        returnButton.SetActive(true);
     }
     IEnumerator WaitBetweenClick()
     {

@@ -62,7 +62,7 @@ public static class StateManager
 
         SavePlayer(newData);
 
-        Debug.Log("Create - CREATED NEW PLAYER COMPLETED");
+        Debug.Log(Application.persistentDataPath + StateManager.path);
         return newData;
     }
 

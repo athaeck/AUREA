@@ -4,7 +4,15 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
+    public enum typeEnum
+    {
+        Background,
+        SFX
+    };
+
     public string name;
+
+    public typeEnum type = typeEnum.Background;
 
     public AudioClip clip;
 
@@ -13,6 +21,8 @@ public class Sound
 
     [Range(0.1f, 3f)]
     public float pitch;
+
+    public float defaultVol;
 
     public bool loop;
 

@@ -81,14 +81,20 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void StartGame()
     {
-        if (!view.Owner.IsLocal) return;
+        if (view.Owner.IsLocal)
+        {
+            IslandController.Instance.fight.ResetFight += ResetPlayer;
+            SetData(Player.Instance);
 
-        IslandController.Instance.fight.ResetFight += ResetPlayer;
-        SetData(Player.Instance);
+            InstantiateSquad();
 
-        InstantiateSquad();
+            AddAP(actionPoints);
+        }
 
-        AddAP(actionPoints);
+        // foreach(Aurea aurea in aureaInstances) {
+        //     Debug.Log("Installed Listener");
+        //     aurea.Died += AureaDied;
+        // }
     }
 
     public void CreateRandomSquad()
@@ -134,14 +140,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
             aurea.view.RPC("Init", RpcTarget.AllBuffered, aureaLevel, this.view.ViewID);
             view.RPC("AddAurea", RpcTarget.AllBuffered, aurea.view.ViewID);
 
-            aurea.Died += AureaDied;
-
             i++;
         }
     }
 
     [PunRPC]
-    public void AddAurea(int _viewID) {
+    public void AddAurea(int _viewID)
+    {
         Aurea aurea = PhotonView.Find(_viewID).gameObject.GetComponent<Aurea>();
         aureaInstances.Add(aurea);
     }
@@ -178,12 +183,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public void AureaDied(Aurea _aurea)
     {
+        Debug.Log("Aurea Died!");
         AureaHasDied?.Invoke(_aurea);
         foreach (Aurea aurea in aureaInstances)
         {
             if (aurea.IsAlive())
                 return;
         }
+        Debug.Log("GameOver!");
         GameOver?.Invoke(this);
     }
 
@@ -314,7 +321,14 @@ public class PlayerController : MonoBehaviourPunCallbacks
         return false;
     }
     public int GetAPLeft() { return actionPointsLeft; }
-    public void ResetAureaInstances() { aureaInstances = new List<Aurea>(); }
+    public void ResetAureaInstances()
+    {
+        foreach (Aurea aurea in aureaInstances)
+        {
+            PhotonView.Destroy(aurea.gameObject);
+        }
+        aureaInstances = new List<Aurea>();
+    }
     public List<Aurea> GetAureas() { return aureaInstances; }
     public bool IsOnTurn() { return isOnTurn; }
     public void SetData(PlayerData _data) { data = _data; }

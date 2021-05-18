@@ -8,4 +8,5 @@ public class PlayerItemData
 {
     public string name;
     public int amount;
+    public string description;
 }

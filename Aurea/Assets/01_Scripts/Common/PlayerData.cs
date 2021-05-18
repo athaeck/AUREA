@@ -41,6 +41,18 @@ public class PlayerData
 
     [SerializeField]
     public bool animationsOn = true;
+
+    [SerializeField]
+    public float backgroundVol = 0;
+
+    [SerializeField]
+    public float sfxVol = 0;
+
+    [SerializeField]
+    public float distance = 0;
+
+    [SerializeField]
+    public float size = 0;
     #endregion
 
 
@@ -104,6 +116,18 @@ public class PlayerData
     public List<PlayerItemData> GetItems()
     {
         return items;
+    }
+    public void setVol(float bgVol, float sfxVol)
+    {
+        backgroundVol = bgVol;
+        this.sfxVol = sfxVol;
+    }
+
+    public void setArSlider(float disSlider, float sizeSlider)
+    {
+        distance = disSlider;
+        size = sizeSlider;
+        StateManager.SavePlayer(Player.Instance);
     }
     #endregion
 }
