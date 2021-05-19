@@ -29,6 +29,7 @@ TagManager:
   - To-SkyIsland
   - Unlock
   - Watch
+  - ResetPosition
   layers:
   - Default
   - TransparentFX
@@ -42,7 +43,7 @@ TagManager:
   - Shop
   - Inventory
   - Settings
-  - 
+  - Reset
   - 
   - 
   - 

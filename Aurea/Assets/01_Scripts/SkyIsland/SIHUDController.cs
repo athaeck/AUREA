@@ -71,6 +71,10 @@ public class SIHUDController : MonoBehaviour
                 skyIslandController.SetCollided(true, CollisionInteractable.Inventory);
             }
         }
+        if (other.CompareTag("ResetPosition"))
+        {
+            other.gameObject.GetComponent<ResetController>()?.RespwanPlayer();
+        }
 
     }
 

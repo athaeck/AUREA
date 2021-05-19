@@ -12,7 +12,7 @@ public class TemplePlayer : MonoBehaviour
         if (other.CompareTag("Watch"))
         {
             FindObjectOfType<AudioController>()?.Play("monster");
-            tc.WatchTrigger(true,other.gameObject);
+            tc.WatchTrigger(true, other.gameObject);
         }
         if (other.CompareTag("To-SkyIsland"))
         {
@@ -22,6 +22,10 @@ public class TemplePlayer : MonoBehaviour
         {
             tc.UnlockTrigger(true, other.gameObject);
         }
+        if (other.CompareTag("ResetPosition"))
+        {
+            other.gameObject.GetComponent<ResetController>()?.RespwanPlayer();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -29,7 +33,7 @@ public class TemplePlayer : MonoBehaviour
         if (other.CompareTag("Watch"))
         {
             tc.WatchTrigger(false, null);
-            
+
         }
         if (other.CompareTag("To-SkyIsland"))
         {
