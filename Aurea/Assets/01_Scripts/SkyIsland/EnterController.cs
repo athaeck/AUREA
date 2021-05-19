@@ -17,6 +17,9 @@ public class EnterController : MonoBehaviour
     private SkyIslandController skyIslandController = null;
 
     [SerializeField]
+    private GameObject _optionsHud = null;
+
+    [SerializeField]
     private GameObject exitShopHud = null;
 
     private GameObject characterPosition = null;
@@ -36,23 +39,23 @@ public class EnterController : MonoBehaviour
 
     private void Awake()
     {
-        if(shopController != null)
+        if (shopController != null)
         {
             shopCamPosition = shopController.GetCamPosition();
             characterPosition = shopController.GetCharacterPosition();
         }
-        if(skyIslandController != null)
+        if (skyIslandController != null)
         {
             ReactiveProps();
         }
-       
+
     }
 
     private void ReactiveProps()
     {
         collided = skyIslandController.GetCollided();
         armode = Player.Instance.IsArOn();
-      // armode = true;
+        // armode = true;
     }
 
     void Update()
@@ -61,9 +64,10 @@ public class EnterController : MonoBehaviour
     }
     public void EnterShop()
     {
-        if(armode == true)
+        CloseOptionsHud(false);
+        if (armode == true)
         {
-            if(exitShopHud != null && skyIslandController != null)
+            if (exitShopHud != null && skyIslandController != null)
             {
                 skyIslandController.SetStaticmode(true);
                 exitShopHud.SetActive(true);
@@ -72,31 +76,32 @@ public class EnterController : MonoBehaviour
         }
         else
         {
-            if(exitShopHud != null)
+            if (exitShopHud != null)
             {
                 exitShopHud.SetActive(true);
                 skyIslandController.SetStaticmode(true);
-                if(characterPosition != null && shopCamPosition != null && character != null)
+                if (characterPosition != null && shopCamPosition != null && character != null)
                 {
                     FollowTarget followTarget = cam.GetComponent<FollowTarget>();
                     followTarget.TakeTarget(null);
                     cam.transform.position = shopCamPosition.transform.position;
                     cam.transform.rotation = shopCamPosition.transform.rotation;
                     character.transform.position = characterPosition.transform.position;
-                   
+
                 }
             }
         }
     }
     public void Transfer(ItemData item, GameObject gobject)
     {
-        if(shopController != null)   shopController.ActivateItemHUD(item,gobject);
-     
+        if (shopController != null) shopController.ActivateItemHUD(item, gobject);
+
     }
 
     public void EnterInventory()
     {
-        if(inventoryController != null)
+        CloseOptionsHud(false);
+        if (inventoryController != null)
         {
             inventoryController.InitInventory();
         }
@@ -104,7 +109,8 @@ public class EnterController : MonoBehaviour
 
     public void ExitInventory()
     {
-        if(inventoryController != null)
+        CloseOptionsHud(true);
+        if (inventoryController != null)
         {
             inventoryController.Exit();
         }
@@ -112,9 +118,10 @@ public class EnterController : MonoBehaviour
 
     public void ExitShop()
     {
-        if(armode == true)
+        CloseOptionsHud(true);
+        if (armode == true)
         {
-            if(exitShopHud != null)
+            if (exitShopHud != null)
             {
                 skyIslandController.SetStaticmode(false);
                 exitShopHud.SetActive(false);
@@ -123,21 +130,28 @@ public class EnterController : MonoBehaviour
         }
         else
         {
-            if(exitShopHud != null)
+            if (exitShopHud != null)
             {
                 exitShopHud.SetActive(false);
                 skyIslandController.SetStaticmode(false);
-                if(shopController!= null)
+                if (shopController != null)
                 {
                     ItemHUDController ihc = shopController.GetItemHUDController();
                     ihc.CloseHUD();
                 }
-                if(cam != null)
+                if (cam != null)
                 {
                     FollowTarget followTarget = cam.GetComponent<FollowTarget>();
                     followTarget.TakeTarget(character.transform);
                 }
             }
+        }
+    }
+    private void CloseOptionsHud(bool b)
+    {
+        if (_optionsHud != null)
+        {
+            _optionsHud.SetActive(b);
         }
     }
 }
