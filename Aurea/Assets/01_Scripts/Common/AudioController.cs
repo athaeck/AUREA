@@ -24,7 +24,10 @@ public class AudioController : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
+        if(s.source != null)
+        {
         s?.source.Play();
+        }
     }
 
     public void Stop(string name)
