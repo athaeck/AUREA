@@ -3,7 +3,12 @@ guid: 1b525fe4334af4146a06e5421355fc63
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kristall
+    second: {fileID: 2100000, guid: f3e75fa601b3ada44b5ab54350912d4f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
