@@ -55,7 +55,7 @@ public class TempleController : MonoBehaviour
     [SerializeField]
     public AureaList aureaData = null;
 
-   [SerializeField]
+    [SerializeField]
 
     private GameObject selectAureaHUD = null;
 
@@ -85,9 +85,19 @@ public class TempleController : MonoBehaviour
 
     private GameObject hitpodest;
 
+    [SerializeField]
+    private GameObject spawnPlace = null;
+
     void Start()
     {
 
+    }
+    public void ResetPlayerPosition()
+    {
+        if (player != null && spawnPlace != null)
+        {
+            player.transform.position = spawnPlace.transform.position;
+        }
     }
 
     public AureaData GetAureaData(string name)
@@ -119,18 +129,19 @@ public class TempleController : MonoBehaviour
                 spawnPoint = layout.GetComponent<TempleSpiral>().Setpoints(numberAurea);
                 break;
         }
-        if(slotPrefab != null){
-            for(int i = 0 ; i < numberAurea ; i++)
+        if (slotPrefab != null)
+        {
+            for (int i = 0; i < numberAurea; i++)
             {
-                for(int j = 0 ; j < CapturedAurea.Count ; j++)
+                for (int j = 0; j < CapturedAurea.Count; j++)
                 {
-                    if(aureaData.aureas[i].NAME == CapturedAurea[j].aureaName)
+                    if (aureaData.aureas[i].NAME == CapturedAurea[j].aureaName)
                     {
                         int aureaLevel = data.GetAureaLevel(CapturedAurea[j].aureaName);
                         GameObject aureaPrefab = GetAureaData(CapturedAurea[j].aureaName).levels[aureaLevel - 1].prefab;
-                        GameObject podest = Instantiate(slotPrefab,spawnPoint[i],slotPrefab.transform.rotation,slots.transform);
-                        podest.transform.localScale = new Vector3(podest.transform.localScale.x / islands.transform.localScale.x,podest.transform.localScale.y / islands.transform.localScale.y,podest.transform.localScale.z / islands.transform.localScale.z);
-                        Aurea aurea = Instantiate(aureaPrefab,podest.transform.position + new Vector3(0,(podest.GetComponent<MeshRenderer>().bounds.size.y + aureaData.aureas[i].instantiateAtheight),0),aureaPrefab.transform.rotation,podest.transform).GetComponent<Aurea>();
+                        GameObject podest = Instantiate(slotPrefab, spawnPoint[i], slotPrefab.transform.rotation, slots.transform);
+                        podest.transform.localScale = new Vector3(podest.transform.localScale.x / islands.transform.localScale.x, podest.transform.localScale.y / islands.transform.localScale.y, podest.transform.localScale.z / islands.transform.localScale.z);
+                        Aurea aurea = Instantiate(aureaPrefab, podest.transform.position + new Vector3(0, (podest.GetComponent<MeshRenderer>().bounds.size.y + aureaData.aureas[i].instantiateAtheight), 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
                         GameObject boxcollider = new GameObject("BoxCollider");
                         boxcollider.transform.parent = podest.transform;
                         boxcollider.transform.position = spawnPoint[i];
@@ -138,20 +149,20 @@ public class TempleController : MonoBehaviour
                         boxcollider.layer = 2;
                         boxcollider.tag = "Watch";
                         boxcollider.GetComponent<BoxCollider>().isTrigger = true;
-                        boxcollider.GetComponent<BoxCollider>().size = new Vector3(3,3,3);
-                        boxcollider.transform.localScale = new Vector3(1,1,1);
+                        boxcollider.GetComponent<BoxCollider>().size = new Vector3(3, 3, 3);
+                        boxcollider.transform.localScale = new Vector3(1, 1, 1);
                         DestroyImmediate(aurea.GetComponent<BoxCollider>());
-                        aurea.transform.LookAt(new Vector3(0,aurea.transform.position.y,0));
+                        aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
 
 
                         break;
                     }
-                    if(aureaData.aureas[i].NAME != CapturedAurea[j].aureaName && j == CapturedAurea.Count - 1)
+                    if (aureaData.aureas[i].NAME != CapturedAurea[j].aureaName && j == CapturedAurea.Count - 1)
                     {
                         GameObject aureaPrefab = aureaData.aureas[i].levels[0].prefab;
-                        GameObject podest = Instantiate(slotPrefab,spawnPoint[i],slotPrefab.transform.rotation,slots.transform);
-                        podest.transform.localScale = new Vector3(podest.transform.localScale.x / islands.transform.localScale.x,podest.transform.localScale.y / islands.transform.localScale.y,podest.transform.localScale.z / islands.transform.localScale.z);
-                        Aurea aurea = Instantiate(aureaPrefab,podest.transform.position + new Vector3(0,(podest.GetComponent<MeshRenderer>().bounds.size.y + aureaData.aureas[i].instantiateAtheight),0),aureaPrefab.transform.rotation,podest.transform).GetComponent<Aurea>();
+                        GameObject podest = Instantiate(slotPrefab, spawnPoint[i], slotPrefab.transform.rotation, slots.transform);
+                        podest.transform.localScale = new Vector3(podest.transform.localScale.x / islands.transform.localScale.x, podest.transform.localScale.y / islands.transform.localScale.y, podest.transform.localScale.z / islands.transform.localScale.z);
+                        Aurea aurea = Instantiate(aureaPrefab, podest.transform.position + new Vector3(0, (podest.GetComponent<MeshRenderer>().bounds.size.y + aureaData.aureas[i].instantiateAtheight), 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
                         aurea.tag = "Locked";
                         GameObject boxcollider = new GameObject("BoxCollider");
                         boxcollider.transform.parent = podest.transform;
@@ -160,10 +171,10 @@ public class TempleController : MonoBehaviour
                         boxcollider.layer = 2;
                         boxcollider.tag = "Unlock";
                         boxcollider.GetComponent<BoxCollider>().isTrigger = true;
-                        boxcollider.GetComponent<BoxCollider>().size = new Vector3(3,3,3);
-                        boxcollider.transform.localScale = new Vector3(1,1,1);
+                        boxcollider.GetComponent<BoxCollider>().size = new Vector3(3, 3, 3);
+                        boxcollider.transform.localScale = new Vector3(1, 1, 1);
                         DestroyImmediate(aurea.GetComponent<BoxCollider>());
-                        aurea.transform.LookAt(new Vector3(0,aurea.transform.position.y,0));
+                        aurea.transform.LookAt(new Vector3(0, aurea.transform.position.y, 0));
                     }
                 }
             }
@@ -173,14 +184,15 @@ public class TempleController : MonoBehaviour
 
 
 
-    public void TakeInput(Ray ray) {
+    public void TakeInput(Ray ray)
+    {
 
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue))
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
-            } 
+            }
 
             Aurea aurea = null;
             if (watchTrigger)
@@ -201,7 +213,7 @@ public class TempleController : MonoBehaviour
                 aurea = hitpodest.transform.parent.gameObject.transform.GetComponentInChildren<Aurea>();
                 unlockHUD.SetActive(true);
                 buttonSelect.SelectedAurea(aurea.gameObject);
-                if(data.GetMoney() <= 50)
+                if (data.GetMoney() <= 50)
                 {
                     unlockHUD.GetComponentInChildren<Button>().interactable = false;
                     unlockHUD.GetComponentInChildren<Text>().text = "You need 50 Coins";
@@ -224,7 +236,7 @@ public class TempleController : MonoBehaviour
                 MovementController c = player.GetComponent<MovementController>();
                 c.Move(movement);
             }
-        }       
+        }
     }
 
     public void ResetIsland()
@@ -237,12 +249,12 @@ public class TempleController : MonoBehaviour
         all_slots = GameObject.FindGameObjectsWithTag("Podest");
         foreach (GameObject slots in all_slots)
         {
-                DestroyImmediate(slots);
+            DestroyImmediate(slots);
         }
         data = Player.Instance;
         slots.transform.localScale = Vector3.one;
         CreateSpiral();
-        if(FindObjectOfType<AudioController>() != null)
+        if (FindObjectOfType<AudioController>() != null)
         {
             FindObjectOfType<AudioController>()?.Play("Background");
         }
@@ -250,7 +262,7 @@ public class TempleController : MonoBehaviour
 
         Debug.Log("Reset Temple");
     }
-    
+
     public void WatchTrigger(bool newtrigger, GameObject newhitpodest)
     {
         watchTrigger = newtrigger;

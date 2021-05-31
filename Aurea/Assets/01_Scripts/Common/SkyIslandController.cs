@@ -141,7 +141,6 @@ public class SkyIslandController : MonoBehaviour
 
     public void ResetPlayerPosition()
     {
-        MovementController movementController = character.GetComponent<MovementController>();
         character.transform.position = spawnPlace.transform.position;
     }
 
@@ -160,11 +159,11 @@ public class SkyIslandController : MonoBehaviour
     }
     private void DisabledHudsAtStart()
     {
-        foreach(GameObject hud in AtStartDisabledHuds)
+        foreach (GameObject hud in AtStartDisabledHuds)
         {
             hud.SetActive(false);
         }
-        if(enterController != null)
+        if (enterController != null)
         {
             enterController.ExitShop();
         }
