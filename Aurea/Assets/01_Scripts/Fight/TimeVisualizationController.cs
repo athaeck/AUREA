@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class TimeVisualizationController : MonoBehaviour
 {
@@ -11,11 +12,24 @@ public class TimeVisualizationController : MonoBehaviour
     public FightController fightController = null;
     public Slider timeSlider = null;
     public Image fillImage = null;
-    private void Update()
-    {
-        if(!fightController) return;
 
-        float fillAmount = fightController.timeLeft / fightController.roundTime;
+    public bool timerStarted = false;
+    public float roundTime = 30f;
+    public float timeLeft = 0f;
+
+    public Photon.Pun.PhotonView view = null;
+
+    public void StartTimer() {
+        timeLeft = roundTime;
+        timerStarted = true;
+    }
+
+    public void EndTimer() {
+        timerStarted = false;
+    }
+
+    private void UpdateUI() {
+        float fillAmount = timeLeft / roundTime;
         timeSlider.value = fillAmount;
         
         if(fillAmount > 0.6f)
@@ -24,5 +38,21 @@ public class TimeVisualizationController : MonoBehaviour
             fillImage.sprite = orangeSprite;
         else
             fillImage.sprite = redSprite;
+    }
+
+    [PunRPC]
+    public void SetTimeLeft(float _time) {
+        timeLeft = _time;
+        UpdateUI();
+    }
+
+
+    private void Update()
+    {
+
+        // SetTimeLeft(timeLeft - Time.deltaTime);
+        if(PhotonNetwork.IsMasterClient) {
+            view.RPC("SetTimeLeft", RpcTarget.All, timeLeft - Time.deltaTime);
+        }
     }
 }

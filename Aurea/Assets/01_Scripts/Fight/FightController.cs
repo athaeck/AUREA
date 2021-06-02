@@ -9,6 +9,7 @@ using System;
 using Random = UnityEngine.Random;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class FightController : MonoBehaviourPunCallbacks
 {
@@ -89,6 +90,9 @@ public class FightController : MonoBehaviourPunCallbacks
     private FightCameraController cameraController = null;
 
     [SerializeField]
+    private TimeVisualizationController timeController = null;
+
+    [SerializeField]
     public PhotonView view = null;
 
     public PlayerController activePlayer = null;
@@ -130,11 +134,12 @@ public class FightController : MonoBehaviourPunCallbacks
     // public void ReturnToSkyIsland() 
     private void Update()
     {
-        if (!timerStarted || gameEnded) { return; }
+        if(PhotonNetwork.IsMasterClient && timeController && !timeController.timerStarted) return;
+        if (gameEnded) { return; }
 
-        timeLeft -= Time.deltaTime;
+        // timeLeft -= Time.deltaTime;
 
-        if (timeLeft <= 0f)
+        if (timeController && timeController.timeLeft <= 0f)
             EndTurn();
     }
 
@@ -152,11 +157,23 @@ public class FightController : MonoBehaviourPunCallbacks
             }
         }
 
+        if(PhotonNetwork.IsMasterClient) {
+            GameObject timeControllerObject = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "TimeCanvas"), transform.position, Quaternion.identity);
+            timeController = timeControllerObject.GetComponent<TimeVisualizationController>();
+            view.RPC("AddTimeController", RpcTarget.AllBuffered, timeController.view.ViewID);
+            timeController.StartTimer();
+        }
+
         PlayerController masterPlayer = players[0].view.Owner.IsMasterClient ? players[0] : players[1];
         StartTurn(masterPlayer);
 
         canInteract = true;
         GameLoaded?.Invoke();
+    }
+
+    [PunRPC]
+    public void AddTimeController(int _viewID) {
+        timeController = PhotonView.Find(_viewID).gameObject.GetComponent<TimeVisualizationController>();
     }
 
     public void Register(PlayerController _player)
@@ -370,7 +387,10 @@ public class FightController : MonoBehaviourPunCallbacks
     {
         activePlayer.view.RPC("EndTurn", RpcTarget.AllBuffered);
 
-        timerStarted = false;
+        // timerStarted = false;
+        // timeController.EndTimer();
+        if(PhotonNetwork.IsMasterClient)
+            timeController.EndTimer();
         NextTurn();
     }
 
@@ -378,6 +398,9 @@ public class FightController : MonoBehaviourPunCallbacks
     {
         Debug.Log("Start new Turn");
         StartTurn(activePlayer == players[0] ? players[1] : players[0]);
+
+        if(PhotonNetwork.IsMasterClient)
+            timeController.StartTimer();
     }
 
     public bool CanInteract()
