@@ -15,7 +15,7 @@ MonoBehaviour:
   NAME: Golem
   ID: 4
   DESCRIPTION: A Fucking mighty Golem
-  instantiateAtheight: 0
+  instantiateAtheight: -0.8
   levels:
   - {fileID: 11400000, guid: e1568bde86468c843834e83401588e70, type: 2}
   - {fileID: 11400000, guid: c455a119aacfb574abf796d01aeb4f7a, type: 2}
