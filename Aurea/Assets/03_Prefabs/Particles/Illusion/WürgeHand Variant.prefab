@@ -10,7 +10,17 @@ PrefabInstance:
     - target: {fileID: 286190204397576887, guid: 0aa24c274dda32f469a2d2896b225df6,
         type: 3}
       propertyPath: m_Name
-      value: "W\xFCrgeHand"
+      value: "W\xFCrgeHand Variant"
+      objectReference: {fileID: 0}
+    - target: {fileID: 636455067060179190, guid: 0aa24c274dda32f469a2d2896b225df6,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 64957
+      objectReference: {fileID: 0}
+    - target: {fileID: 636455067060179190, guid: 0aa24c274dda32f469a2d2896b225df6,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0.49019608
       objectReference: {fileID: 0}
     - target: {fileID: 2392731291440059357, guid: 0aa24c274dda32f469a2d2896b225df6,
         type: 3}
@@ -66,6 +76,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932109439010177475, guid: 0aa24c274dda32f469a2d2896b225df6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932109439010177475, guid: 0aa24c274dda32f469a2d2896b225df6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aa24c274dda32f469a2d2896b225df6, type: 3}
