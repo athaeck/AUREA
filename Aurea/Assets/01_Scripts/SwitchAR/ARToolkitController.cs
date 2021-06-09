@@ -147,4 +147,12 @@ public class ARToolkitController : MonoBehaviour
         loadingScreen.SetActive(false);
 
     }
+    public Slider GetSizeSlider()
+    {
+        return sizeSlider;
+    }
+    public float GetInitARScaling()
+    {
+        return initARScaling;
+    }
 }

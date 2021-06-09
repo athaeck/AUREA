@@ -129,5 +129,10 @@ public class PlayerData
         size = sizeSlider;
         StateManager.SavePlayer(Player.Instance);
     }
+
+    public void setName(string name)
+    {
+        NAME = name;
+    }
     #endregion
 }
