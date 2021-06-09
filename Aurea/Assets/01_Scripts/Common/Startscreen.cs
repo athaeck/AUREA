@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Startscreen : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class Startscreen : MonoBehaviour
     public void StartButton()
     {
         gameObject.SetActive(false);
+        if (Player.Instance.NAME == "")
+        {
+            SceneManager.LoadSceneAsync("Username");
+        }   
     }
 
     public void Options()
