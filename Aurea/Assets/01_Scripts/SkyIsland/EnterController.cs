@@ -14,6 +14,9 @@ public class EnterController : MonoBehaviour
     private Camera cam = null;
 
     [SerializeField]
+    private Camera arCamera = null;
+
+    [SerializeField]
     private SkyIslandController skyIslandController = null;
 
     [SerializeField]
@@ -71,7 +74,7 @@ public class EnterController : MonoBehaviour
             {
                 skyIslandController.SetStaticmode(true);
                 exitShopHud.SetActive(true);
-                cam.cullingMask = 1 << 9;
+                arCamera.cullingMask = 1 << 9;
             }
         }
         else
@@ -125,7 +128,7 @@ public class EnterController : MonoBehaviour
             {
                 skyIslandController.SetStaticmode(false);
                 exitShopHud.SetActive(false);
-                cam.cullingMask = LayerMask.NameToLayer("Everything");
+                arCamera.cullingMask = LayerMask.NameToLayer("Everything");
             }
         }
         else

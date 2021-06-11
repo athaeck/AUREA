@@ -24,35 +24,36 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     private int maxItemCount = 5;
 
+
     private ItemData activeItem = null;
 
     private void Awake()
     {
         ResetItems();
-        if(spawnPlaces.Count > 0)
+        if (spawnPlaces.Count > 0)
         {
             int i = 0;
-            foreach(GameObject spawn in spawnPlaces)
+            foreach (GameObject spawn in spawnPlaces)
             {
-               if(i < prefabItem.Count)
-               {
-                    SpawnItems(i,spawn.transform);
-               }
-               else
-               {
-                    SpawnItems(0,spawn.transform);
-               }
-              i++;
+                if (i < prefabItem.Count)
+                {
+                    SpawnItems(i, spawn.transform);
+                }
+                else
+                {
+                    SpawnItems(0, spawn.transform);
+                }
+                i++;
             }
         }
     }
 
     private void ResetItems()
     {
-        if(storedPrefab.Count > 0)
+        if (storedPrefab.Count > 0)
         {
             int i = 0;
-            foreach(GameObject prefab in storedPrefab)
+            foreach (GameObject prefab in storedPrefab)
             {
                 Destroy(prefab);
                 i++;
@@ -67,9 +68,9 @@ public class ShopController : MonoBehaviour
 
     private void SpawnItems(int index, Transform transform)
     {
-        GameObject prefab = Instantiate(prefabItem[index],transform);
+        GameObject prefab = Instantiate(prefabItem[index], transform);
         ItemData itemData = prefab.GetComponent<ItemData>();
-        itemData.Init("item" + index.ToString(),"schmack schmack",index + index);
+        itemData.Init("item" + index.ToString(), "schmack schmack", index + index);
         storedPrefab.Add(prefab);
     }
     public void ActivateItemHUD(ItemData item, GameObject gobject)
@@ -78,9 +79,9 @@ public class ShopController : MonoBehaviour
         string title = item.GetTitle();
         string description = item.GetDescription();
         string price = item.GetPrice().ToString();
-        if(itemHUDController != null)
+        if (itemHUDController != null)
         {
-            itemHUDController.Init(title,description,price,true, gobject.transform);
+            itemHUDController.Init(title, description, price, true, gobject.transform);
         }
 
     }
@@ -95,20 +96,20 @@ public class ShopController : MonoBehaviour
     }
     public void BuyItem()
     {
-        if(activeItem != null)
+        if (activeItem != null)
         {
-            if(Player.Instance.GetMoney() - activeItem.GetPrice() > 0 && Player.Instance.GetItems().Count <= maxItemCount)
-             {
+            if (Player.Instance.GetMoney() - activeItem.GetPrice() > 0 && Player.Instance.GetItems().Count <= maxItemCount)
+            {
                 PlayerItemData item = new PlayerItemData();
                 item.amount = activeItem.GetPrice();
                 item.name = activeItem.GetTitle();
-                Player.Instance.BuyItem(activeItem.GetPrice(),item);
+                Player.Instance.BuyItem(activeItem.GetPrice(), item);
                 itemHUDController.CloseHUD();
 
-           }
-          
-            
+            }
+
+
         }
     }
- 
+
 }
