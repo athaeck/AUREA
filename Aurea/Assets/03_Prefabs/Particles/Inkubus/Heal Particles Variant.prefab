@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Scale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1088220975888163319, guid: e50e6e9f51421a242905dcf09a6fd490,
+        type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2712310668553152044, guid: e50e6e9f51421a242905dcf09a6fd490,
         type: 3}
       propertyPath: m_LocalScale.x
