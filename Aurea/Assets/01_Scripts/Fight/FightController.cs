@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 using System;
 using Random = UnityEngine.Random;
 using Photon.Pun;
-using UnityEngine.SceneManagement;
 using System.IO;
 
 public class FightController : MonoBehaviourPunCallbacks
@@ -42,6 +41,8 @@ public class FightController : MonoBehaviourPunCallbacks
 
     [SerializeField]
     public List<PlayerController> players = new List<PlayerController>();
+    [SerializeField]
+    public TurnCrystalController turnController = null;
 
     // [SerializeField]
     // private PlayerController oldplayer = null;
@@ -140,7 +141,7 @@ public class FightController : MonoBehaviourPunCallbacks
         // timeLeft -= Time.deltaTime;
 
         if (timeController && timeController.timeLeft <= 0f)
-            EndTurn();
+            view.RPC("EndTurn", RpcTarget.AllBuffered);
     }
 
     void StartGame()
@@ -362,6 +363,7 @@ public class FightController : MonoBehaviourPunCallbacks
     [PunRPC]
     void StartTurn(PlayerController _player)
     {
+        Debug.Log("Start Turn Funktin");
         activePlayer = _player;
 
         _player.view.RPC("StartTurn", RpcTarget.AllBuffered);
@@ -383,6 +385,7 @@ public class FightController : MonoBehaviourPunCallbacks
         canInteract = true;
         EndedUsingSkill?.Invoke();
     }
+    [PunRPC]
     public void EndTurn()
     {
         activePlayer.view.RPC("EndTurn", RpcTarget.AllBuffered);
@@ -394,6 +397,7 @@ public class FightController : MonoBehaviourPunCallbacks
         NextTurn();
     }
 
+    [PunRPC]
     void NextTurn()
     {
         Debug.Log("Start new Turn");

@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             Aurea aurea = aureaObject.GetComponent<Aurea>();
 
             aureaObject.transform.SetParent(spawnPoint.transform);
-            aurea.transform.localPosition = new Vector3(0, aureaData.instantiateAtheight, 0);
+            // aurea.transform.localPosition = new Vector3(0, aureaData.instantiateAtheight, 0);
 
             // aurea.Init(aureaLevel, this);
             aurea.view.RPC("Init", RpcTarget.AllBuffered, aureaLevel, this.view.ViewID);
@@ -178,7 +178,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (!isOnTurn || !IslandController.Instance.fight.CanInteract())
             return;
 
-        IslandController.Instance.fight.EndTurn();
+        // IslandController.Instance.fight.EndTurn();
+        IslandController.Instance.fight.view.RPC("EndTurn", RpcTarget.AllBuffered);
     }
 
     public void AureaDied(Aurea _aurea)
@@ -264,19 +265,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             SelectedAurea?.Invoke(selected);
         }
     }
-
-    [ServerRPC]
-    public void SelectServerRpc()
-    {
-        Debug.Log("Got a ServerRPC");
-    }
-
-    [ClientRPC]
-    public void SelectClientRpc()
-    {
-        Debug.Log("Got a ClientRPC");
-    }
-
     public void RemoveSelected()
     {
         if (!selected) return;
