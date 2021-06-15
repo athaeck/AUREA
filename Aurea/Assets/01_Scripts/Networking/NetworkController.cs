@@ -11,10 +11,10 @@ public class NetworkController : MonoBehaviourPunCallbacks
         if (instance)
         {
             Debug.LogError("Already got NetworkController Instance!");
-            Destroy(this.gameObject);
+            // Destroy(this.gameObject);
             return;
         }
-
+        Debug.Log("Im an asshole");
         instance = this;
         PhotonNetwork.ConnectUsingSettings();
     }

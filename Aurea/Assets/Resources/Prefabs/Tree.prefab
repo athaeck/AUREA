@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7281328010484825385}
     m_Modifications:
+    - target: {fileID: 1773524031640543374, guid: 1f266c6846410c749b949b9e55e0d2d4,
+        type: 3}
+      propertyPath: aurea
+      value: 
+      objectReference: {fileID: 7977673693797580837}
     - target: {fileID: 2770569502481137954, guid: 1f266c6846410c749b949b9e55e0d2d4,
         type: 3}
       propertyPath: m_Name

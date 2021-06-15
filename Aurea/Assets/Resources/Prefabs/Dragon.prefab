@@ -208,6 +208,11 @@ PrefabInstance:
       propertyPath: aurea
       value: 
       objectReference: {fileID: 4430767857714828850}
+    - target: {fileID: 5341865317118945463, guid: f2c6090c222883449b917744adf85763,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.41
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c6090c222883449b917744adf85763, type: 3}
 --- !u!4 &2312210714528602189 stripped

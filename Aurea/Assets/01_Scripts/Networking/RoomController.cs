@@ -11,8 +11,10 @@ public class RoomController : MonoBehaviourPunCallbacks
     public List<GameObject> players = new List<GameObject>();
     private void Awake()
     {
-        if (roomController)
+        if (RoomController.roomController) {
             Debug.LogError("Already got a room controller");
+            return;
+        }
 
         roomController = this;
     }

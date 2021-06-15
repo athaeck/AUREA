@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Aurea))]
 public class AureaAnimationController : MonoBehaviour
 {
-    Animator anim = null;
-    Aurea aurea = null;
+    [SerializeField] private Animator anim = null;
+    [SerializeField] private Aurea aurea = null;
     private void Start()
     {
         if(IslandController.Instance.activeIsland != Island.ChickenFight) return;

@@ -116,6 +116,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Aurea
       objectReference: {fileID: 0}
+    - target: {fileID: 3558771469982590841, guid: 47f85be97dd42fb4fa1e5f4da120b516,
+        type: 3}
+      propertyPath: aurea
+      value: 
+      objectReference: {fileID: 1547996129838364955}
     - target: {fileID: 4318550532733247923, guid: 47f85be97dd42fb4fa1e5f4da120b516,
         type: 3}
       propertyPath: m_LocalPosition.x

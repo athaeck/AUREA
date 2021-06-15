@@ -28,7 +28,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &-8030473282940088154
 Animator:
   serializedVersion: 3
@@ -179,7 +179,7 @@ PrefabInstance:
     - target: {fileID: 4318550532733247923, guid: 47f85be97dd42fb4fa1e5f4da120b516,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2
+      value: 3.175
       objectReference: {fileID: 0}
     - target: {fileID: 4318550532733247923, guid: 47f85be97dd42fb4fa1e5f4da120b516,
         type: 3}
@@ -344,6 +344,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Aurea
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746099590024409468, guid: bf75a8a0dbf5906459c1f641b6ccce34,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.759
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746099590024409468, guid: bf75a8a0dbf5906459c1f641b6ccce34,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.223
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf75a8a0dbf5906459c1f641b6ccce34, type: 3}

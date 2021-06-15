@@ -134,7 +134,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
             Aurea aurea = aureaObject.GetComponent<Aurea>();
 
             aureaObject.transform.SetParent(spawnPoint.transform);
-            // aurea.transform.localPosition = new Vector3(0, aureaData.instantiateAtheight, 0);
+            // Vector3 pos = aurea.transform.position;
+            // pos.y += aureaData.instantiateAtheight;
+            // aurea.transform.position = pos;
 
             // aurea.Init(aureaLevel, this);
             aurea.view.RPC("Init", RpcTarget.AllBuffered, aureaLevel, this.view.ViewID);
