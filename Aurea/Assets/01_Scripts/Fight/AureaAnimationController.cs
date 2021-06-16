@@ -20,16 +20,20 @@ public class AureaAnimationController : MonoBehaviour
 
     public void Attack(Damage dmg)
     {
+        if(!anim) return;
+
         anim.SetTrigger("Attack");
     }
 
     public void GotHit()
     {
+        if(!anim) return;
         anim.SetTrigger("GotHit");
     }
 
     public void Won()
     {
+        if(!anim) return;
         if (aurea.IsAlive())
             anim.SetTrigger("Won");
     }

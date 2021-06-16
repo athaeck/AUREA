@@ -15,6 +15,9 @@ public class DunkleSakrament : Skill
             dmg.magicalDamage = (1 / dmg.targets[i].GetMagicalDefence()) * dmg.targets[i].GetLifePointsLeft();
             dmg.targets[i].TakeDamage(dmg);
         }
+
+        _dmg.sender.SetLifePointsLeft(0);
+        _dmg.sender.Die();
     }
     public override bool IsTargetValid(Aurea _target, Aurea _sender) {
         if (_target.GetPlayer() == _sender.GetPlayer())

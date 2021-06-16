@@ -40,6 +40,7 @@ public class ParticleVisualizer : MonoBehaviour
 
     private void Selected(Aurea _aurea)
     {
+        Debug.Log("Instantiate: " + _aurea);
         GameObject newSelected = Instantiate(selectedParticles, _aurea.transform.parent);
         if (instantiatedParticles.ContainsKey(_aurea))
             return;
@@ -52,7 +53,9 @@ public class ParticleVisualizer : MonoBehaviour
         {
             if (!instantiatedParticles.ContainsKey(aurea))
             {
-                GameObject newTarget = Instantiate(targetParticles, aurea.transform.parent);
+                Debug.Log("Instantiate on Target: " + aurea);
+                GameObject target = Photon.Pun.PhotonView.Find(aurea.view.ViewID).gameObject;
+                GameObject newTarget = Instantiate(targetParticles, target.transform);
                 instantiatedParticles.Add(aurea, newTarget);
             }
         }

@@ -29,7 +29,7 @@ public class Kristallisiert : MonoBehaviour
 
     void StartSplitterAttack()
     {
-        List<Aurea> aureaList = GetEnemyAurea();
+        List<Aurea> aureaList = GetEnemyAurea(aurea.view.ViewID);
         if (aureaList.Count <= 0)
         {
             // Debug.Log("Didnt found enemy Aurea");
@@ -63,26 +63,42 @@ public class Kristallisiert : MonoBehaviour
                 StartSplitterAttack();
         }
     }
-
-    List<Aurea> GetEnemyAurea()
-    {
-        PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
-        PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
-
-        foreach (Aurea _aurea in controllerPlayer.GetAureas())
+    protected List<Aurea> GetEnemyAurea(int _viewID) {
+        List<PlayerController> players = IslandController.Instance.fight.players;
+        foreach (Aurea _aurea in players[0].GetAureas())
         {
-            if (_aurea == aurea)
-                return controllerEnemy.GetAureas();
+            if (_aurea.view.ViewID == _viewID)
+                return players[1].GetAureas();
+        }
+        foreach (Aurea _aurea in players[1].GetAureas())
+        {
+            if (_aurea.view.ViewID == _viewID)
+                return players[0].GetAureas();
         }
 
-        foreach (Aurea _aurea in controllerEnemy.GetAureas())
-        {
-            if (_aurea == aurea)
-                return controllerPlayer.GetAureas();
-        }
-
+        Debug.Log("No Aurea found");
         return new List<Aurea>();
     }
+
+    // List<Aurea> GetEnemyAurea()
+    // {
+    //     PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
+    //     PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
+
+    //     foreach (Aurea _aurea in controllerPlayer.GetAureas())
+    //     {
+    //         if (_aurea == aurea)
+    //             return controllerEnemy.GetAureas();
+    //     }
+
+    //     foreach (Aurea _aurea in controllerEnemy.GetAureas())
+    //     {
+    //         if (_aurea == aurea)
+    //             return controllerPlayer.GetAureas();
+    //     }
+
+    //     return new List<Aurea>();
+    // }
 
     public void AddSplitter(int _amount)
     {

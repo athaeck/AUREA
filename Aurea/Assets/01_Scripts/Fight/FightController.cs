@@ -140,8 +140,10 @@ public class FightController : MonoBehaviourPunCallbacks
 
         // timeLeft -= Time.deltaTime;
 
-        if (timeController && timeController.timeLeft <= 0f)
+        if (timeController && timeController.timeLeft <= 0f && timeController.timerStarted && PhotonNetwork.IsMasterClient) {
+            timeController.EndTimer();
             view.RPC("EndTurn", RpcTarget.AllBuffered);
+        }
     }
 
     void StartGame()
@@ -392,8 +394,8 @@ public class FightController : MonoBehaviourPunCallbacks
 
         // timerStarted = false;
         // timeController.EndTimer();
-        if(PhotonNetwork.IsMasterClient)
-            timeController.EndTimer();
+        // if(PhotonNetwork.IsMasterClient)
+        //     timeController.EndTimer();
         NextTurn();
     }
 

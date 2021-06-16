@@ -46,61 +46,25 @@ public abstract class Skill : ScriptableObject
     public SkillType GetSkillType() { return skillType; }
     public List<string> GetModifier() { return modifier; }
 
-    protected List<Aurea> GetEnemyAurea(Damage _dmg)
-    {
+    protected List<Aurea> GetEnemyAurea(int _viewID) {
         List<PlayerController> players = IslandController.Instance.fight.players;
-
-        PlayerController controllerPlayer = null;
-        PlayerController controllerEnemy = null;
-
-        // foreach (PlayerController player in players)
-        // {
-
-
-        //     // if (player.view.Owner.IsLocal)
-        //     //     controllerPlayer = player;
-        //     // else
-        //     //     controllerEnemy = player;
-        // }
-
         foreach (Aurea _aurea in players[0].GetAureas())
         {
-            if (_aurea.view.ViewID == _dmg.sender.view.ViewID)
+            if (_aurea.view.ViewID == _viewID)
                 return players[1].GetAureas();
         }
         foreach (Aurea _aurea in players[1].GetAureas())
         {
-            if (_aurea.view.ViewID == _dmg.sender.view.ViewID)
+            if (_aurea.view.ViewID == _viewID)
                 return players[0].GetAureas();
         }
 
         Debug.Log("No Aurea found");
         return new List<Aurea>();
+    }
 
-        // return controllerEnemy.GetAureas();
-
-
-        // PlayerController controllerPlayer = IslandController.Instance.fight.GetPlayer();
-        // PlayerController controllerEnemy = IslandController.Instance.fight.GetEnemy();
-
-        // if(controllerPlayer == null || controllerEnemy == null) {
-        //     Debug.LogError("Didint found player or enemy");
-        //     return null;
-        // }
-
-        foreach (Aurea _aurea in controllerPlayer.GetAureas())
-        {
-            if (_aurea == _dmg.sender)
-                return controllerEnemy.GetAureas();
-        }
-
-        foreach (Aurea _aurea in controllerEnemy.GetAureas())
-        {
-            if (_aurea == _dmg.sender)
-                return controllerPlayer.GetAureas();
-        }
-
-        Debug.Log("No Aurea found");
-        return new List<Aurea>();
+    protected List<Aurea> GetEnemyAurea(Damage _dmg)
+    {
+        return GetEnemyAurea(_dmg.sender.view.ViewID);
     }
 }
