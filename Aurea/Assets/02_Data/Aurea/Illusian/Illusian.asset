@@ -15,6 +15,6 @@ MonoBehaviour:
   NAME: Illusian
   ID: 5
   DESCRIPTION: 
-  instantiateAtheight: 0.5
+  instantiateAtheight: 0
   levels:
   - {fileID: 11400000, guid: f8c81320983594a428074b4e4dad5dce, type: 2}

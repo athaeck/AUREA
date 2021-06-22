@@ -214,6 +214,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ilusian Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5732970036790947302, guid: 6532a54148e5c1245bdac894fcdd209a,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cca621788a001ee40b79d9ed1634d927, type: 2}
     m_RemovedComponents:
     - {fileID: 6612778570052205090, guid: 6532a54148e5c1245bdac894fcdd209a, type: 3}
     - {fileID: 8990207143252847818, guid: 6532a54148e5c1245bdac894fcdd209a, type: 3}
