@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837258dd14fcd5048b7615cd1270b262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: Potionrezepte Band 1
+  description: Lerne wie du AP Potions selber herstellen kannst
+  price: 1893
 --- !u!64 &5551587170530806011
 MeshCollider:
   m_ObjectHideFlags: 0

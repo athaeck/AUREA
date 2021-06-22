@@ -143,6 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837258dd14fcd5048b7615cd1270b262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: AP Potion
+  description: "Erhalte 70% deiner Aktionspunkte zur\xFCck"
+  price: 18
 --- !u!136 &5285280209576054529
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -268,6 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837258dd14fcd5048b7615cd1270b262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: Health Potion
+  description: "Gib einem Aurea 40 Lebenspunkte zur\xFCck"
+  price: 93
 --- !u!136 &5952400701870430148
 CapsuleCollider:
   m_ObjectHideFlags: 0

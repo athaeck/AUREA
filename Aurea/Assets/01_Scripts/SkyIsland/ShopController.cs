@@ -69,8 +69,8 @@ public class ShopController : MonoBehaviour
     private void SpawnItems(int index, Transform transform)
     {
         GameObject prefab = Instantiate(prefabItem[index], transform);
-        ItemData itemData = prefab.GetComponent<ItemData>();
-        itemData.Init("item" + index.ToString(), "schmack schmack", index + index);
+        // ItemData itemData = prefab.GetComponent<ItemData>();
+        // itemData.Init("item" + index.ToString(), "schmack schmack", index + index);
         storedPrefab.Add(prefab);
     }
     public void ActivateItemHUD(ItemData item, GameObject gobject)

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ItemData : MonoBehaviour
 {
+    [SerializeField]
     private string title = null;
-
+    [SerializeField]
     private string description = null;
-
+    [SerializeField]
     private int price = 0;
 
     public void Init(string _Title, string _Description, int _Price)
