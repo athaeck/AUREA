@@ -39,7 +39,7 @@ public static class StateManager
     public static PlayerData CreateNewPlayerData()
     {
         PlayerData newData = new PlayerData();
-        newData.NAME = "Player";
+        newData.NAME = "";
 
         PlayerAureaData golem = new PlayerAureaData();
         golem.aureaName = "Golem";

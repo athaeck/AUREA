@@ -11,13 +11,16 @@ public class Startscreen : MonoBehaviour
     [SerializeField]
     private GameObject options = null;
 
+    [SerializeField]
+    private GameObject UserNameHUD = null;
+
     public void StartButton()
     {
         gameObject.SetActive(false);
         if (Player.Instance.NAME == "")
         {
-            SceneManager.LoadSceneAsync("Username");
-        }   
+            UserNameHUD.SetActive(true);
+        }
     }
 
     public void Options()
