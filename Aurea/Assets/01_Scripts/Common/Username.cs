@@ -6,13 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class Username : MonoBehaviour
 {
-    private PlayerData  player;
+
     [SerializeField]
     private GameObject inputField;
-    string testing;
+
+    [SerializeField]
+    private GameObject UserNameHUD = null;
     // Start is called before the first frame update
     public void UsernameInput() {
         Player.Instance.setName(inputField.GetComponent<Text>().text);
-        SceneManager.LoadSceneAsync("JS-Game");
+        StateManager.SavePlayer(Player.Instance);
+        UserNameHUD.SetActive(false);
     }
 }

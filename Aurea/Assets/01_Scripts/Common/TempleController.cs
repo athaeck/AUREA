@@ -143,6 +143,7 @@ public class TempleController : MonoBehaviour
                         podest.transform.localScale = new Vector3(podest.transform.localScale.x / islands.transform.localScale.x, podest.transform.localScale.y / islands.transform.localScale.y, podest.transform.localScale.z / islands.transform.localScale.z);
                         Aurea aurea = Instantiate(aureaPrefab, podest.transform.position + new Vector3(0, (podest.GetComponent<MeshRenderer>().bounds.size.y + aureaData.aureas[i].instantiateAtheight), 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
                         GameObject boxcollider = new GameObject("BoxCollider");
+                        DestroyImmediate(aurea.GetComponent<Photon.Pun.PhotonView>());
                         boxcollider.transform.parent = podest.transform;
                         boxcollider.transform.position = spawnPoint[i];
                         boxcollider.AddComponent<BoxCollider>();
@@ -165,6 +166,7 @@ public class TempleController : MonoBehaviour
                         Aurea aurea = Instantiate(aureaPrefab, podest.transform.position + new Vector3(0, (podest.GetComponent<MeshRenderer>().bounds.size.y + aureaData.aureas[i].instantiateAtheight), 0), aureaPrefab.transform.rotation, podest.transform).GetComponent<Aurea>();
                         aurea.tag = "Locked";
                         GameObject boxcollider = new GameObject("BoxCollider");
+                        DestroyImmediate(aurea.GetComponent<Photon.Pun.PhotonView>());
                         boxcollider.transform.parent = podest.transform;
                         boxcollider.transform.position = spawnPoint[i];
                         boxcollider.AddComponent<BoxCollider>();
