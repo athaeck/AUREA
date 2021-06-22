@@ -15,6 +15,6 @@ MonoBehaviour:
   NAME: Dragon
   ID: 2
   DESCRIPTION: 
-  instantiateAtheight: 2
+  instantiateAtheight: 0
   levels:
   - {fileID: 11400000, guid: 5a8d722b1d0069d4a97afaf6d5ac6546, type: 2}

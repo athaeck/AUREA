@@ -15,6 +15,6 @@ MonoBehaviour:
   NAME: Ent
   ID: 3
   DESCRIPTION: 
-  instantiateAtheight: 2
+  instantiateAtheight: -0.5
   levels:
   - {fileID: 11400000, guid: 836c9c6ef0583c346a5b962613fde8a6, type: 2}
