@@ -19,6 +19,9 @@ public class ButtonSelect : MonoBehaviour
     [SerializeField]
     private GameObject unlockHUD = null;
 
+    [SerializeField]
+    public GameObject viewHeight = null;
+
     [HideInInspector]
     public string selectedAurea = null;
 
@@ -89,7 +92,7 @@ public class ButtonSelect : MonoBehaviour
             {
                 g.SetActive(false);
             }
-            if (g.tag == "Aurea" || g.tag == "Locked" )
+            if (g.GetComponent<Aurea>() != null &&  (g.tag == "Aurea" || g.tag == "Locked"))
             {
                 selectAureaHUD.SetActive(false);
                 if (g.GetComponent<Aurea>().GetName() != selectedAurea)
@@ -105,10 +108,11 @@ public class ButtonSelect : MonoBehaviour
                     viewAureaHUD.GetComponent<ViewAurea>().HUDtext(g.GetComponent<Aurea>());
                     viewAureaHUD.SetActive(true);
                     position = g.transform.position;
-                    g.transform.localPosition = new Vector3(0, 0.65f/parent.transform.parent.transform.localScale.y + g.GetComponent<Aurea>().GetAureaData().instantiateAtheight * 2 / parent.transform.parent.transform.localScale.y, 0);
+                    g.transform.localPosition = new Vector3(0, 0.65f / parent.transform.parent.transform.localScale.y + g.GetComponent<Aurea>().GetAureaData().instantiateAtheight * 2 / parent.transform.parent.transform.localScale.y, 0);
                     g.transform.localScale = g.transform.localScale * 2;
                     g.transform.LookAt(new Vector3(0, g.transform.position.y, -10));
-                    cam.GetComponent<FollowTarget>().TakeTarget(g.transform);
+                    cam.GetComponent<FollowTarget>().newOffset(new Vector3(0, 0, -12));
+                    cam.GetComponent<FollowTarget>().TakeTarget(viewHeight.transform);
                 }
             }
         }
@@ -122,13 +126,14 @@ public class ButtonSelect : MonoBehaviour
             if (g.tag == "Player")
             {
                 g.SetActive(true);
+                cam.GetComponent<FollowTarget>().newOffset(new Vector3(0, 12, -10));
                 cam.GetComponent<FollowTarget>().TakeTarget(g.transform);
             }
             if (g.tag == "Podest")
             {
                 g.SetActive(true);
             }
-            if (g.tag == "Aurea" || g.tag == "Locked")
+            if (g.GetComponent<Aurea>() != null && (g.tag == "Aurea" || g.tag == "Locked"))
             {
                 if (g.GetComponent<Aurea>().GetName() != selectedAurea)
                 {

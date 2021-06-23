@@ -56,4 +56,9 @@ public class FollowTarget : MonoBehaviour
     {
         target = newTarget;
     }
+
+    public void newOffset(Vector3 newOffset)
+    {
+        offset = newOffset;
+    }
 }
