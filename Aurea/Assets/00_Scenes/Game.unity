@@ -44647,7 +44647,7 @@ MonoBehaviour:
   cam: {fileID: 1761347709}
   arCamera: {fileID: 589626786}
   skyIslandController: {fileID: 2144227505}
-  _optionsHud: {fileID: 0}
+  _optionsHud: {fileID: 1786877527}
   exitShopHud: {fileID: 1204728978}
   character: {fileID: 1663704583}
   inventoryController: {fileID: 225600756}

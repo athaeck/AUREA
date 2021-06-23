@@ -25,7 +25,7 @@ public class InventoryController : MonoBehaviour
 
     public void InitInventory()
     {
-        if(!clicked)
+        if (!clicked)
         {
             SetItems();
         }
@@ -36,17 +36,17 @@ public class InventoryController : MonoBehaviour
     }
     public void Exit()
     {
-        if(inventoryHUD != null)
+        if (inventoryHUD != null)
         {
             inventoryHUD.SetActive(false);
             clicked = false;
             List<GameObject> items = new List<GameObject>();
             int length = _container.transform.childCount;
-            for(int i = 0 ; i < length ; i++)
+            for (int i = 0; i < length; i++)
             {
                 items.Add(_container.transform.GetChild(i).transform.gameObject);
             }
-            for(int i = length-1 ; i >= 0 ; i--)
+            for (int i = length - 1; i >= 0; i--)
             {
                 Destroy(items[i]);
             }
@@ -54,22 +54,23 @@ public class InventoryController : MonoBehaviour
     }
     private void Update()
     {
-       //ownedItems = Player.Instance.GetItems();
+        //ownedItems = Player.Instance.GetItems();
     }
     private void SetItems()
     {
         ownedItems = Player.Instance.GetItems();
-        if(inventoryHUD != null)
+        if (inventoryHUD != null)
         {
             inventoryHUD.SetActive(true);
         }
         int index = 0;
-        foreach(PlayerItemData item in ownedItems)
+        foreach (PlayerItemData item in ownedItems)
         {
-            int quantity = CheckQuantity(item,index);
-            GameObject iO = Instantiate(_itemObject,_container.transform.position,_container.transform.rotation,_container.transform);
+            Debug.Log(item);
+            int quantity = CheckQuantity(item, index);
+            GameObject iO = Instantiate(_itemObject, _container.transform.position, _container.transform.rotation, _container.transform);
             InventoryItem iI = iO.AddComponent<InventoryItem>();
-            iI.SetItem(item.description,item.name,quantity,this);
+            iI.SetItem(item.description, item.name, quantity, this, item.img);
             index++;
         }
     }
@@ -77,14 +78,15 @@ public class InventoryController : MonoBehaviour
     {
         Debug.Log(item);
     }
-    private int CheckQuantity(PlayerItemData item, int currentIndex) {
+    private int CheckQuantity(PlayerItemData item, int currentIndex)
+    {
         int quantity = 1;
         int index = 0;
-        foreach(PlayerItemData it in ownedItems)
+        foreach (PlayerItemData it in ownedItems)
         {
-            if(currentIndex != index)
+            if (currentIndex != index)
             {
-                if(item.name == it.name)
+                if (item.name == it.name)
                 {
 
                     quantity++;
