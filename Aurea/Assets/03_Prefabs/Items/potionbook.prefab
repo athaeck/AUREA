@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: Potionrezepte Band 1
+  image: {fileID: 21300000, guid: 0b070f6f72873364dadd2de2b77a9bf3, type: 3}
   description: Lerne wie du AP Potions selber herstellen kannst
   price: 1893
 --- !u!64 &5551587170530806011

@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: Health Potion
+  image: {fileID: 21300000, guid: dc11eba15f224864cad2b8afedd06723, type: 3}
   description: "Gib einem Aurea 40 Lebenspunkte zur\xFCck"
   price: 93
 --- !u!136 &5952400701870430148

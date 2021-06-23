@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemData : MonoBehaviour
 {
     [SerializeField]
     private string title = null;
+
+    [SerializeField]
+    private Sprite image = null;
+
     [SerializeField]
     private string description = null;
     [SerializeField]
@@ -28,6 +33,10 @@ public class ItemData : MonoBehaviour
     public int GetPrice()
     {
         return price;
+    }
+    public Sprite GetImage()
+    {
+        return image;
     }
 
 }

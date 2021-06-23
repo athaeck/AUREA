@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopController : MonoBehaviour
 {
@@ -79,9 +80,10 @@ public class ShopController : MonoBehaviour
         string title = item.GetTitle();
         string description = item.GetDescription();
         string price = item.GetPrice().ToString();
+        Sprite image = item.GetImage();
         if (itemHUDController != null)
         {
-            itemHUDController.Init(title, description, price, true, gobject.transform);
+            itemHUDController.Init(title, description, price, true, image, gobject.transform);
         }
 
     }
