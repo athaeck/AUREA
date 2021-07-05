@@ -16067,7 +16067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &592298745
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22000,6 +22000,7 @@ MonoBehaviour:
   title: {fileID: 1741999776}
   description: {fileID: 151556910}
   price: {fileID: 70395991}
+  image: {fileID: 0}
   hud: {fileID: 978238215}
 --- !u!4 &761479488
 Transform:
@@ -28699,6 +28700,7 @@ MonoBehaviour:
   title: {fileID: 1741999776}
   description: {fileID: 151556910}
   price: {fileID: 70395991}
+  image: {fileID: 0}
   hud: {fileID: 978238215}
 --- !u!114 &978238217
 MonoBehaviour:
@@ -33417,8 +33419,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d4699d0121e986444864abf18a9db08f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -47115,6 +47117,7 @@ MonoBehaviour:
   selectAureaHUD: {fileID: 1081614889}
   viewAureaHUD: {fileID: 569491998}
   unlockHUD: {fileID: 0}
+  viewHeight: {fileID: 0}
   selectedAurea: 
 --- !u!4 &1623633975
 Transform:
