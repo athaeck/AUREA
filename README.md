@@ -99,7 +99,7 @@ Durch die AR Funktionen soll sich das Spiel von anderen abheben und die Möglich
         <img src="./Inseln/templeIslandpng.png" width="350" />
     </td>
     <td>
-        <img src="./Inseln/figthisland copy.png" width="350" />
+        <img src="./Inseln/figthisland.png" width="350" />
     </td>
   </tr>
 </table>
