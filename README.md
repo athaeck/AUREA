@@ -137,6 +137,14 @@ Durch die AR Funktionen soll sich das Spiel von anderen abheben und die Möglich
   <img src="./Thumbnails/gameplay.png" alt="Gameplay anschauen" />
 </a>
 
+## Auszeichnung
+
+ <img src="./medienpreis.png"  />
+
+### Begründung
+
+Die Gruppe hat ein rundenbasiertes mobiles Multiplayer AR-Spiel von A bis Z entworfen und umgesetzt. Das Projekt ist deshalb attraktiv, da sich die Studierenden zum einen mit der Gestaltung auseinandergesetzt und zum anderen die Spielmechanik ausgefeilt haben. Auch technische Hürden, die bei Netzwerkspielen auftreten, sind gelöst worden, sodass am Ende des Projektes ein funktionsfähiges mobiles AR-Spiel im Netz gespielt werden konnte.
+
 ## Zum Prototyp
 
 Der entstandene Prototyp ist zum jetztigen Zeitpunkt nicht verfügbar, da die Netzwerkarchitektur damals über Photon entwickelt wurde und nur für den Zweck der Aufnahmen die Server eingerichtet wurden.
